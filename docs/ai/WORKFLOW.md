@@ -4,7 +4,7 @@
 
 Document ID   : AI-004
 Document Name : AI WORKFLOW
-Version       : 1.0.0
+Version       : 1.1.0
 Status        : Active
 Owner         : Muhammad Akhmal
 Architect     : ChatGPT
@@ -126,7 +126,7 @@ CURRENT_SPRINT
 
 ↓
 
-Architecture Review
+Architecture Planning
 
 ↓
 
@@ -142,17 +142,35 @@ Architecture Review
 
 ↓
 
-Merge
+Documentation Update
 
 ↓
 
-CHANGELOG
+Commit
+
+↓
+
+Merge
 
 ↓
 
 Release
 
 ---
+
+# AI Context Workflow
+
+Before starting any task, every AI contributor must:
+
+1. Read CURRENT_SPRINT.md
+2. Read the target source file(s)
+3. Focus only on the active task
+4. Ignore completed sprint history unless requested
+5. Follow repository documentation over chat history
+
+CURRENT_SPRINT.md is the operational context for all AI contributors.
+
+--- 
 
 # Repository Workflow
 
@@ -219,6 +237,98 @@ Merge
 5. Documentation follows implementation.
 6. Every completed build updates CHANGELOG.
 7. Product Owner has the final decision.
+
+---
+
+# Standard Development Cycle
+
+Every development task should follow this sequence:
+
+Planning
+
+↓
+
+Implementation
+
+↓
+
+Testing
+
+↓
+
+Documentation
+
+↓
+
+Review
+
+↓
+
+Commit
+
+↓
+
+Merge
+
+↓
+
+Release
+
+No stage should be skipped without Product Owner approval.
+
+---
+
+# Deliverables by Role
+
+## ChatGPT
+
+- Sprint Planning
+- Architecture Review
+- Methodology Review
+- Technical Decision
+- Repository Governance
+
+---
+
+## Claude
+
+- Pine Script Implementation
+- Refactoring
+- Bug Fix
+- Performance Optimization
+
+Must Deliver:
+
+- Updated Source Code
+- Change Report
+- Commit Message
+- Commit Description
+- Engineering Notes
+
+---
+
+## Gemini
+
+- QA Review
+- Research
+- Regression Validation
+- Benchmark Comparison
+
+Must Deliver:
+
+- QA Report
+- Findings
+- Improvement Suggestions
+
+---
+
+## Product Owner
+
+- Review
+- Git Commit
+- Merge
+- Release
+- Sprint Approval
 
 ---
 
