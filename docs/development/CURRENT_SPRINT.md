@@ -2,12 +2,114 @@
 ---
 Document ID   : DOC-009
 Document Name : CURRENT_SPRINT
-Version       : 1.0.0
+Version       : 1.1.0
 Status        : Active
 Owner         : Muhammad Akhmal
 Architect     : ChatGPT
 Last Updated  : 2026
 Review Cycle  : Every Sprint
+---
+# Current Project State
+
+---
+
+Release
+
+v0.1.0-alpha
+
+Build
+
+B002
+
+Sprint
+
+S001
+
+Status
+
+🟡 In Development
+
+Current Phase
+
+Valuation Engine
+
+---
+
+# Active Task
+
+Task ID
+
+VAL-003
+
+Objective
+
+Improve sector classification for IDX companies.
+
+Scope
+
+- Bank Classification
+- Insurance Classification
+- Securities Classification
+- Manual Sector Override
+
+Do Not
+
+- Change Valuation Methodology
+- Change Dashboard Layout
+- Add New Financial Ratios
+
+---
+
+# Target Files
+
+Primary
+
+src/PapanInstrumen.pine
+
+Supporting
+
+docs/development/CURRENT_SPRINT.md
+
+---
+
+# Build Progress
+
+Architecture
+
+✅ Completed
+
+Implementation
+
+🟡 In Progress
+
+Testing
+
+⬜ Pending
+
+Documentation
+
+⬜ Pending
+
+Review
+
+⬜ Pending
+
+Merge
+
+⬜ Pending
+
+---
+
+# Known Issues
+
+- Securities auto detection requires further validation.
+- TradingView industry classification may be inconsistent.
+
+---
+
+# Next Milestone
+
+Financial Health Module (B003)
 ---
 # Sprint Information
 Sprint Name
@@ -105,3 +207,15 @@ Sprint berikutnya direncanakan berfokus pada:
 - Dashboard Optimization
 - Performance Improvement
 Dokumen ini akan diperbarui setelah Sprint 001 selesai.
+---
+
+# AI Context
+
+This document serves as the primary operational context for all AI contributors.
+
+Before starting any development task:
+
+1. Read this document.
+2. Read the target source file.
+3. Complete only the active task.
+4. Ignore completed sprint history unless requested.
