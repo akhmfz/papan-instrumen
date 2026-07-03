@@ -13,3 +13,10 @@ Tanggal: 03 Juli 2026
 - Prepare development workflow
 ## Status
 ✅ Foundation Completed
+## Build 002 (In Progress)
+### Objective
+Improve fundamental methodology for Indonesian stock market.
+### Focus
+- Sector-aware analysis
+- Reduce US-market bias
+- Improve contextual scoring
