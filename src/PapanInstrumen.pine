@@ -1,0 +1,1242 @@
+//@version=6
+// ═══════════════════════════════════════════════════════════════════
+//
+//   SAHAM: PAPAN INSTRUMEN BY. AKHMFZ
+//   Versi 2.1.1 — Build 002 (Sprint: Valuation — Sector-Aware Weighting)
+//
+//   CHANGELOG BUILD 002 — REVISI 2 (ringkas)
+//   ✓ Bank/Asuransi/Sekuritas kini kelas deteksi eksplisit terpisah
+//     (sebelumnya digabung generik jadi isFinancialSector). TIDAK
+//     mengubah angka Skor Valuasi — file1 tidak memberi bobot valuasi
+//     berbeda antar ketiganya, hanya menyiapkan deteksi yang benar
+//     untuk sprint Financial Health berikutnya.
+//   ✓ Properti/Infrastruktur/Teknologi/Transportasi kini bisa
+//     di-override manual via dropdown "Deteksi Sektor" (sebelumnya
+//     hanya auto-detect).
+//   ⚠ BREAKING (opsional/aditif): opsi dropdown lama "Finansial
+//     (Bank/Asuransi)" TETAP ADA persis sama (setting pengguna lama
+//     tidak berubah). Opsi baru murni tambahan, bukan pengganti.
+//
+//   CHANGELOG BUILD 002 — REVISI 1 (ringkas)
+//   ✓ Skor VALUASI kini menggunakan bobot per-rasio yang disesuaikan
+//     menurut model bisnis emiten (mengacu pada proposal "Sector-Aware
+//     Fundamental Engine" — lihat catatan di MODUL 04 & scoring engine).
+//     Untuk emiten "Non-Finansial Umum" hasilnya IDENTIK dengan Build
+//     001 (bobot dasar direplikasi dari struktur f_avg5/f_avg3 lama).
+//   ✓ Deteksi otomatis tambahan: Properti, Infrastruktur, Teknologi,
+//     Transportasi (best-effort via syminfo.sector/industry).
+//   ✗ BELUM diubah (lih. blok BACKLOG di akhir file, sesuai roadmap
+//     Valuation → Profitability → Growth → Financial Health →
+//     Indonesia Layer — tidak melompati sprint): bobot sektor untuk
+//     Quality, Growth, Health, Income; threshold interpretasi per
+//     sektor; kategori Batubara/CPO/Consumer/Industri/Healthcare
+//     sebagai kelas terpisah dari Siklikal/Umum.
+//
+//   CHANGELOG BUILD 001 (ringkas — detail lengkap di changelog.md)
+//   ✓ Guard ekuitas negatif pada Debt/Equity (V1 bug #1 — FIXED)
+//   ✓ Hapus normalisasi unit berbasis tebakan magnitude (V1 bug #2 — FIXED)
+//   ✓ Deteksi sektor finansial (bank/asuransi) — rasio non-bank di-skip,
+//     bukan dipaksakan (V1 bug #3 — MITIGATED, bukan diselesaikan penuh)
+//   ✓ f_avg6 eksplisit untuk Skor Keseluruhan + opsi bobot kustom
+//     (V1 bug #4 — FIXED)
+//   ✓ Indikator kelengkapan data (n/5, n/6) di setiap skor komposit
+//     (V1 bug #6 — FIXED, sebagai indikator, bukan solusi data hilang)
+//   ✓ Toleransi siklikal opsional untuk Graham Number (V1 bug #7 —
+//     MITIGATED, bukan normalisasi multi-tahun penuh — lihat batasan)
+//   ✓ MODUL BARU: Risiko Likuiditas & Gorengan — mendeteksi proxy
+//     ARA/ARB, kapitalisasi kecil, likuiditas tipis, dan harga recehan.
+//     Ini SKOR TERPISAH, tidak dicampur ke skor fundamental.
+//
+//   TIDAK DIUBAH DARI V1 (lihat architecture.md § Batasan Diketahui)
+//   ✗ Kalibrasi ambang momentum/RSI/volatilitas masih gaya pasar AS
+//   ✗ Belum ada normalisasi EPS multi-tahun sungguhan (keterbatasan
+//     teknis request.financial di Pine Script — lihat catatan di kode)
+//   ✗ Belum ada data broker summary / kepemilikan — modul risiko di
+//     bawah ini murni proxy statistik harga & volume, BUKAN
+//     "bandarmology" sungguhan.
+//
+//   PERINGATAN
+//   Indikator ini adalah alat bantu analisis, BUKAN nasihat keuangan/
+//   investasi. Skor "Risiko Likuiditas & Gorengan" adalah proxy
+//   statistik berbasis harga & volume historis, bukan deteksi
+//   manipulasi pasar yang terverifikasi. Selalu lakukan riset mandiri.
+//
+// ═══════════════════════════════════════════════════════════════════
+
+indicator(
+     title             = "Saham: Papan Instrumen By. Akhmfz",
+     shorttitle        = "Papan Instrumen",
+     overlay           = true,
+     max_labels_count  = 50,
+     calc_bars_count   = 300)
+
+//══════════════════════════════
+//
+// MODUL 01
+// PENGATURAN
+//
+//══════════════════════════════
+grupUtama = "Pengaturan Utama"
+
+simbolInput = input.symbol("", "Simbol Saham", group = grupUtama)
+sym         = simbolInput == "" ? syminfo.tickerid : simbolInput
+
+indeksAcuan   = input.symbol("IDX:COMPOSITE", "Indeks Acuan / Benchmark", group = grupUtama)
+periodeLaporan = input.string("FQ", "Periode Laporan Keuangan", options = ["FQ", "FY", "TTM"], group = grupUtama)
+
+posisiInput = input.string("Kanan Atas", "Posisi Tabel",
+     options = ["Kanan Atas", "Kiri Atas", "Kanan Bawah", "Kiri Bawah"], group = grupUtama)
+
+ukuranTeksInput = input.string("Kecil Sekali", "Ukuran Teks",
+     options = ["Kecil Sekali", "Kecil", "Normal"], group = grupUtama)
+
+warnaTema = input.string("Profesional Gelap", "Tema Warna",
+     options = ["Profesional Gelap", "Profesional Terang", "Bursa Hijau", "Biru Nusantara", "Emas Premium"],
+     group = grupUtama)
+
+tampilLatarSkor    = input.bool(true, "Gunakan Latar Skor Berwarna", group = grupUtama)
+tampilBarSkor      = input.bool(true, "Tampilkan Bar Skor", group = grupUtama)
+barisSelangSeling  = input.bool(true, "Baris Berselang-seling Halus", group = grupUtama)
+headerBerwarna     = input.bool(true, "Header Bagian Berwarna", group = grupUtama)
+tampilSimbolStatus = input.bool(true, "Tampilkan Simbol ▲ ▼", group = grupUtama)
+tampilKelengkapan  = input.bool(true, "Tampilkan Indikator Kelengkapan Data (n/x)", group = grupUtama)
+
+tampilRingkasan    = input.bool(true, "Tampilkan Ringkasan", group = grupUtama)
+tampilValuasi      = input.bool(true, "Tampilkan Valuasi", group = grupUtama)
+tampilKualitas     = input.bool(true, "Tampilkan Kualitas", group = grupUtama)
+tampilPertumbuhan  = input.bool(true, "Tampilkan Pertumbuhan", group = grupUtama)
+tampilKesehatan    = input.bool(true, "Tampilkan Kesehatan Keuangan", group = grupUtama)
+tampilDividen      = input.bool(true, "Tampilkan Dividen & Imbal Hasil", group = grupUtama)
+tampilMomentum     = input.bool(true, "Tampilkan Momentum", group = grupUtama)
+
+// ── Sektor & Adaptasi (BARU di V2) ──
+grupSektor = "Sektor & Adaptasi"
+
+modeSektor = input.string("Otomatis", "Deteksi Sektor",
+     options = ["Otomatis", "Finansial (Bank/Asuransi)", "Bank", "Asuransi", "Sekuritas",
+       "Non-Finansial Umum", "Siklikal (Komoditas/Energi)", "Properti", "Infrastruktur",
+       "Teknologi", "Transportasi"],
+     group = grupSektor,
+     tooltip = "Otomatis: mencoba mendeteksi dari syminfo.sector/industry + daftar ticker bank utama IDX. " +
+       "'Finansial (Bank/Asuransi)' adalah override generik lama (Build 001) — tetap tersedia agar " +
+       "pengaturan lama tidak berubah. Opsi Bank/Asuransi/Sekuritas/Properti/Infrastruktur/Teknologi/" +
+       "Transportasi (BARU Build 002) memberi override lebih spesifik. Deteksi otomatis TIDAK lengkap " +
+       "— override manual jika salah deteksi.")
+
+toleransiSiklikal = input.bool(true, "Longgarkan Graham Number untuk Sektor Siklikal", group = grupSektor,
+     tooltip = "Melebarkan pita skor Graham Number untuk saham komoditas/energi yang labanya naik-turun tajam. " +
+       "Ini BUKAN normalisasi EPS multi-tahun sungguhan — lihat architecture.md.")
+
+// ── Bobot Skor Keseluruhan (BARU di V2) ──
+grupBobot = "Bobot Skor Keseluruhan"
+
+gunakanBobotKustom = input.bool(false, "Gunakan Bobot Kustom (default: 6 faktor sama rata)", group = grupBobot)
+bobotValue     = input.float(1.0, "Bobot Value", minval = 0, step = 0.1, group = grupBobot)
+bobotQuality   = input.float(1.0, "Bobot Quality", minval = 0, step = 0.1, group = grupBobot)
+bobotGrowth    = input.float(1.0, "Bobot Growth", minval = 0, step = 0.1, group = grupBobot)
+bobotHealth    = input.float(1.0, "Bobot Health", minval = 0, step = 0.1, group = grupBobot)
+bobotMomentum  = input.float(1.0, "Bobot Momentum", minval = 0, step = 0.1, group = grupBobot)
+bobotIncome    = input.float(1.0, "Bobot Income", minval = 0, step = 0.1, group = grupBobot)
+
+// ── Risiko Likuiditas & Gorengan (BARU di V2) ──
+grupRisiko = "Risiko Likuiditas & Gorengan"
+
+tampilRisikoGorengan = input.bool(true, "Tampilkan Modul Risiko Likuiditas", group = grupRisiko)
+ambangARA        = input.float(24.0, "Ambang Deteksi ARA/ARB (%)", minval = 1, group = grupRisiko,
+     tooltip = "Persentase perubahan harga harian yang dianggap 'mendekati/kena batas ARA-ARB'. " +
+       "Aturan ARA/ARB IDX bertingkat menurut harga & pernah berubah — sesuaikan sendiri sesuai " +
+       "aturan yang berlaku saat ini. Ini adalah proxy, bukan aturan resmi bursa.")
+lookbackARA       = input.int(20, "Lookback Hari untuk Hitung ARA/ARB", minval = 5, maxval = 60, group = grupRisiko)
+kapKecilMiliar    = input.float(1000, "Ambang Kapitalisasi 'Kecil' (Miliar Rp)", group = grupRisiko)
+kapBesarMiliar    = input.float(10000, "Ambang Kapitalisasi 'Besar' (Miliar Rp)", group = grupRisiko)
+likuiditasRendahJt = input.float(500, "Ambang Nilai Transaksi Harian 'Rendah' (Juta Rp, avg 20D)", group = grupRisiko)
+likuiditasTinggiJt = input.float(20000, "Ambang Nilai Transaksi Harian 'Tinggi' (Juta Rp, avg 20D)", group = grupRisiko)
+hargaRecehan      = input.float(50, "Ambang Harga 'Recehan' (Rp)", group = grupRisiko)
+
+posisiTabel = switch posisiInput
+    "Kiri Atas"    => position.top_left
+    "Kanan Bawah"  => position.bottom_right
+    "Kiri Bawah"   => position.bottom_left
+    => position.top_right
+
+ukuranTeks = switch ukuranTeksInput
+    "Kecil Sekali" => size.tiny
+    "Normal"       => size.normal
+    => size.small
+
+//══════════════════════════════
+//
+// MODUL 02
+// TEMA WARNA
+//
+//══════════════════════════════
+isLightTheme = warnaTema == "Profesional Terang"
+isEmerald    = warnaTema == "Bursa Hijau"
+isRoyal      = warnaTema == "Biru Nusantara"
+isAmber      = warnaTema == "Emas Premium"
+isDarkTheme  = not isLightTheme
+
+tableBg = isLightTheme ? color.rgb(246, 247, 250) :
+     isEmerald ? color.rgb(5, 18, 15) :
+     isRoyal ? color.rgb(7, 12, 28) :
+     isAmber ? color.rgb(19, 15, 9) :
+     color.rgb(8, 14, 26)
+
+altBg = isLightTheme ? color.rgb(235, 238, 243) :
+     isEmerald ? color.rgb(7, 27, 22) :
+     isRoyal ? color.rgb(10, 20, 45) :
+     isAmber ? color.rgb(29, 23, 13) :
+     color.rgb(10, 20, 36)
+
+headerBg = isLightTheme ? color.rgb(215, 220, 228) :
+     isEmerald ? color.rgb(5, 64, 49) :
+     isRoyal ? color.rgb(14, 45, 105) :
+     isAmber ? color.rgb(95, 58, 14) :
+     color.rgb(15, 40, 78)
+
+sectionBg = isLightTheme ? color.rgb(226, 230, 236) :
+     isEmerald ? color.rgb(8, 38, 31) :
+     isRoyal ? color.rgb(11, 28, 60) :
+     isAmber ? color.rgb(49, 34, 14) :
+     color.rgb(13, 27, 48)
+
+gridCol = isLightTheme ? color.rgb(178, 184, 195) :
+     isEmerald ? color.rgb(23, 91, 74) :
+     isRoyal ? color.rgb(34, 69, 125) :
+     isAmber ? color.rgb(112, 78, 32) :
+     color.rgb(31, 59, 98)
+
+mainTxt  = isLightTheme ? color.rgb(24, 27, 33) : color.rgb(215, 224, 238)
+mutedTxt = isLightTheme ? color.rgb(78, 84, 96) : color.rgb(142, 158, 182)
+
+titleTxt = isLightTheme ? color.rgb(15, 35, 60) :
+     isEmerald ? color.rgb(95, 255, 197) :
+     isRoyal ? color.rgb(105, 190, 255) :
+     isAmber ? color.rgb(255, 197, 85) :
+     color.rgb(94, 190, 255)
+
+bullTxt    = isLightTheme ? color.rgb(24, 145, 91) : color.rgb(73, 220, 165)
+bearTxt    = isLightTheme ? color.rgb(205, 52, 68) : color.rgb(255, 92, 120)
+purpleTxt  = isLightTheme ? color.rgb(107, 79, 202) : color.rgb(160, 135, 255)
+goldTxt    = isLightTheme ? color.rgb(168, 123, 25) : color.rgb(238, 207, 92)
+cyanTxt    = isLightTheme ? color.rgb(34, 132, 156) : color.rgb(86, 204, 255)
+neutralTxt = isLightTheme ? color.rgb(95, 101, 112) : color.rgb(164, 176, 195)
+
+secValueBg     = color.rgb(16, 80, 55)
+secQualityBg   = color.rgb(18, 70, 105)
+secGrowthBg    = color.rgb(105, 75, 20)
+secHealthBg    = color.rgb(105, 42, 50)
+secMomentumBg  = color.rgb(72, 55, 125)
+secIncomeBg    = color.rgb(95, 68, 18)
+secSnapshotBg  = color.rgb(55, 65, 82)
+secCompositeBg = color.rgb(20, 87, 95)
+secRiskBg      = color.rgb(110, 30, 20)
+
+//══════════════════════════════
+//
+// MODUL 03
+// UTILITAS
+//
+//══════════════════════════════
+f_clamp(float x, float lo, float hi) =>
+    math.max(lo, math.min(x, hi))
+
+f_safeDiv(float a, float b) =>
+    na(a) or na(b) or b == 0 ? na : a / b
+
+f_scoreHigher(float v, float bad, float good) =>
+    na(v) ? na : f_clamp((v - bad) / (good - bad) * 100, 0, 100)
+
+f_scoreLower(float v, float good, float bad) =>
+    na(v) ? na : f_clamp((bad - v) / (bad - good) * 100, 0, 100)
+
+f_scoreMid(float v, float low, float ideal, float high) =>
+    na(v) ? na : v <= ideal ? f_clamp((v - low) / (ideal - low) * 100, 0, 100) : f_clamp((high - v) / (high - ideal) * 100, 0, 100)
+
+f_scorePositive(float v) =>
+    na(v) ? na : v > 0 ? 100 : 0
+
+f_avg5(float a, float b, float c, float d, float e) =>
+    float sum = 0.0
+    int n = 0
+    if not na(a)
+        sum += a
+        n += 1
+    if not na(b)
+        sum += b
+        n += 1
+    if not na(c)
+        sum += c
+        n += 1
+    if not na(d)
+        sum += d
+        n += 1
+    if not na(e)
+        sum += e
+        n += 1
+    n == 0 ? na : sum / n
+
+f_avg3(float a, float b, float c) =>
+    f_avg5(a, b, c, na, na)
+
+// BARU V2 — pengganti eksplisit untuk kasus 6-faktor yang di V1
+// "ditumpangkan" ke dalam f_avg5 (lihat critique bug #4).
+f_avg6(float a, float b, float c, float d, float e, float f) =>
+    float sum = 0.0
+    int n = 0
+    if not na(a)
+        sum += a
+        n += 1
+    if not na(b)
+        sum += b
+        n += 1
+    if not na(c)
+        sum += c
+        n += 1
+    if not na(d)
+        sum += d
+        n += 1
+    if not na(e)
+        sum += e
+        n += 1
+    if not na(f)
+        sum += f
+        n += 1
+    n == 0 ? na : sum / n
+
+// BARU V2 — rata-rata berbobot 6 faktor, melewati komponen na dan
+// merenormalisasi bobot terhadap komponen yang tersedia saja.
+f_wavg6(float a, float b, float c, float d, float e, float f,
+     float wa, float wb, float wc, float wd, float we, float wf) =>
+    float sum = 0.0
+    float wsum = 0.0
+    if not na(a) and wa > 0
+        sum += a * wa
+        wsum += wa
+    if not na(b) and wb > 0
+        sum += b * wb
+        wsum += wb
+    if not na(c) and wc > 0
+        sum += c * wc
+        wsum += wc
+    if not na(d) and wd > 0
+        sum += d * wd
+        wsum += wd
+    if not na(e) and we > 0
+        sum += e * we
+        wsum += we
+    if not na(f) and wf > 0
+        sum += f * wf
+        wsum += wf
+    wsum == 0 ? na : sum / wsum
+
+// BARU V2 — indikator kelengkapan data (bug #6 di critique).
+f_countValid5(float a, float b, float c, float d, float e) =>
+    int n = 0
+    if not na(a)
+        n += 1
+    if not na(b)
+        n += 1
+    if not na(c)
+        n += 1
+    if not na(d)
+        n += 1
+    if not na(e)
+        n += 1
+    n
+
+f_countValid6(float a, float b, float c, float d, float e, float f) =>
+    f_countValid5(a, b, c, d, e) + (na(f) ? 0 : 1)
+
+// BARU V2 (Build 002) — rata-rata berbobot generik untuk array skor.
+// Dipakai untuk Skor Valuasi supaya bobot tiap rasio bisa disesuaikan
+// per model bisnis TANPA menduplikasi f_avgN/f_wavgN baru untuk setiap
+// kombinasi sektor (prinsip "Avoid duplicated code" di system prompt
+// reviewer). Komponen na atau berbobot 0 dilewati, sisanya dinormalisasi
+// ulang terhadap total bobot yang valid.
+f_wavgArr(array<float> vals, array<float> wts) =>
+    float sum = 0.0
+    float wsum = 0.0
+    for i = 0 to array.size(vals) - 1
+        v = array.get(vals, i)
+        w = array.get(wts, i)
+        if not na(v) and w > 0
+            sum += v * w
+            wsum += w
+    wsum == 0 ? na : sum / wsum
+
+f_countValidArr(array<float> vals) =>
+    int n = 0
+    for i = 0 to array.size(vals) - 1
+        if not na(array.get(vals, i))
+            n += 1
+    n
+
+pi_formatNumber(float v) =>
+    na(v) ? "—" : str.tostring(v, "#.##")
+
+pi_formatPercent(float v) =>
+    na(v) ? "—" : str.tostring(v, "#.##") + "%"
+
+pi_formatMoney(float v) =>
+    na(v) ? "—" :
+     math.abs(v) >= 1e12 ? str.tostring(v / 1e12, "#.##") + "T" :
+     math.abs(v) >= 1e9 ? str.tostring(v / 1e9, "#.##") + "M" :
+     math.abs(v) >= 1e6 ? str.tostring(v / 1e6, "#.##") + "Jt" :
+     str.tostring(v, "#.##")
+
+pi_grade(float s) =>
+    na(s) ? "N/A" :
+     s >= 85 ? "SANGAT BAIK" :
+     s >= 70 ? "BAIK" :
+     s >= 55 ? "CUKUP" :
+     s >= 40 ? "LEMAH" :
+     "RISIKO TINGGI"
+
+pi_overallBadge(float s) =>
+    na(s) ? "N/A " :
+     s >= 85 ? "SANGAT BAIK " :
+     s >= 70 ? "BAIK " :
+     s >= 55 ? "CUKUP " :
+     s >= 40 ? "LEMAH " :
+     "RISIKO TINGGI "
+
+// BARU V2 — grade khusus untuk skor keamanan likuiditas (arah makna
+// terbalik dari grade fundamental: skor tinggi = risiko gorengan rendah).
+pi_riskGrade(float s) =>
+    na(s) ? "N/A" :
+     s >= 70 ? "RISIKO RENDAH" :
+     s >= 40 ? "RISIKO SEDANG" :
+     "RISIKO TINGGI — WASPADA"
+
+pi_arrow(float v) =>
+    not tampilSimbolStatus or na(v) ? "" : v > 0 ? "▲ " : v < 0 ? "▼ " : "■ "
+
+pi_scoreText(float score) =>
+    string result = "—"
+    if not na(score)
+        if tampilBarSkor
+            int filled = int(math.round(f_clamp(score, 0, 100) / 100 * 6))
+            string bar = ""
+            for i = 0 to 5
+                bar += i < filled ? "█" : "░"
+            result := bar + " " + str.tostring(score, "#")
+        else
+            result := str.tostring(score, "#")
+    result
+
+f_rowBg(int row) =>
+    barisSelangSeling and row % 2 == 0 ? altBg : tableBg
+
+f_scoreColor(float s) =>
+    na(s) ? neutralTxt :
+     s >= 80 ? bullTxt :
+     s >= 60 ? purpleTxt :
+     s >= 40 ? goldTxt :
+     bearTxt
+
+// BARU V2 — skema warna terbalik untuk skor risiko (tinggi = aman = hijau)
+f_riskColor(float s) =>
+    na(s) ? neutralTxt :
+     s >= 70 ? bullTxt :
+     s >= 40 ? goldTxt :
+     bearTxt
+
+f_scoreBg(float s) =>
+    not tampilLatarSkor ? tableBg :
+     na(s) ? tableBg :
+     color.new(f_scoreColor(s), isLightTheme ? 86 : 84)
+
+f_riskBg(float s) =>
+    not tampilLatarSkor ? tableBg :
+     na(s) ? tableBg :
+     color.new(f_riskColor(s), isLightTheme ? 86 : 84)
+
+f_sectionBg(string title) =>
+    not headerBerwarna ? sectionBg :
+     str.contains(title, "SKOR KESELURUHAN") ? secCompositeBg :
+     str.contains(title, "RINGKASAN") ? secSnapshotBg :
+     str.contains(title, "VALUASI") ? secValueBg :
+     str.contains(title, "KUALITAS") ? secQualityBg :
+     str.contains(title, "PERTUMBUHAN") ? secGrowthBg :
+     str.contains(title, "KESEHATAN") ? secHealthBg :
+     str.contains(title, "MOMENTUM") ? secMomentumBg :
+     str.contains(title, "DIVIDEN") ? secIncomeBg :
+     str.contains(title, "RISIKO") ? secRiskBg :
+     sectionBg
+
+f_categoryColor(string name, color fallback) =>
+    str.contains(name, "Momentum") or str.contains(name, "RSI") or str.contains(name, "Return") or str.contains(name, "RS vs") ? purpleTxt :
+     str.contains(name, "Growth") or str.contains(name, "Income") or str.contains(name, "Yield") or str.contains(name, "Payout") or str.contains(name, "Buyback") or str.contains(name, "Cash") or str.contains(name, "Health") or str.contains(name, "Debt") or str.contains(name, "Ratio") or str.contains(name, "Cover") or str.contains(name, "Altman") or str.contains(name, "OCF") or str.contains(name, "FCF") ? goldTxt :
+     str.contains(name, "Quality") or str.contains(name, "ROE") or str.contains(name, "ROA") or str.contains(name, "Asset") or str.contains(name, "Piotroski") or str.contains(name, "ROIC") or str.contains(name, "Margin") or str.contains(name, "Profit") ? cyanTxt :
+     str.contains(name, "Value") or str.contains(name, "P/E") or str.contains(name, "PEG") or str.contains(name, "P/S") or str.contains(name, "P/B") or str.contains(name, "EV/") or str.contains(name, "Graham") or str.contains(name, "EPS") or str.contains(name, "BVPS") or str.contains(name, "52W") ? bullTxt :
+     fallback
+
+//══════════════════════════════
+//
+// MODUL 04
+// MESIN PASAR (MARKET ENGINE)
+//
+//══════════════════════════════
+type MarketData
+    float dClose
+    float rsi14
+    float sma20
+    float sma50
+    float sma200
+    float high52
+    float low52
+    float ret1m
+    float ret3m
+    float ret6m
+    float ret12m
+    float volatility
+    float volAvg20        // BARU V2 — rata-rata volume 20D
+    float valTradedAvg20  // BARU V2 — rata-rata nilai transaksi 20D (Rp)
+    float araHits         // BARU V2 — jumlah hari kena/mendekati ARA-ARB
+
+getMarketData() =>
+    float hits = 0.0
+    for i = 0 to lookbackARA - 1
+        chg = f_safeDiv(close[i] - close[i + 1], close[i + 1]) * 100
+        if not na(chg) and math.abs(chg) >= ambangARA
+            hits += 1
+    MarketData.new(
+         close,
+         ta.rsi(close, 14),
+         ta.sma(close, 20),
+         ta.sma(close, 50),
+         ta.sma(close, 200),
+         ta.highest(high, 252),
+         ta.lowest(low, 252),
+         (close / nz(close[21]) - 1) * 100,
+         (close / nz(close[63]) - 1) * 100,
+         (close / nz(close[126]) - 1) * 100,
+         (close / nz(close[252]) - 1) * 100,
+         ta.stdev(close / nz(close[1]) - 1, 63) * math.sqrt(252) * 100,
+         ta.sma(volume, 20),
+         ta.sma(close * volume, 20),
+         hits)
+
+dataPasar = request.security(sym, "D", getMarketData(), ignore_invalid_symbol = true)
+
+dClose = na(dataPasar) ? na : dataPasar.dClose
+rsi14  = na(dataPasar) ? na : dataPasar.rsi14
+sma20  = na(dataPasar) ? na : dataPasar.sma20
+sma50  = na(dataPasar) ? na : dataPasar.sma50
+sma200 = na(dataPasar) ? na : dataPasar.sma200
+high52 = na(dataPasar) ? na : dataPasar.high52
+low52  = na(dataPasar) ? na : dataPasar.low52
+ret1m  = na(dataPasar) ? na : dataPasar.ret1m
+ret3m  = na(dataPasar) ? na : dataPasar.ret3m
+ret6m  = na(dataPasar) ? na : dataPasar.ret6m
+ret12m = na(dataPasar) ? na : dataPasar.ret12m
+volatility     = na(dataPasar) ? na : dataPasar.volatility
+volAvg20       = na(dataPasar) ? na : dataPasar.volAvg20
+valTradedAvg20 = na(dataPasar) ? na : dataPasar.valTradedAvg20
+araHits        = na(dataPasar) ? na : dataPasar.araHits
+
+[bench6m, bench12m] = request.security(indeksAcuan, "D",
+     [(close / nz(close[126]) - 1) * 100, (close / nz(close[252]) - 1) * 100],
+     ignore_invalid_symbol = true)
+
+// BARU V2 — deteksi sektor (best-effort, lihat catatan di grupSektor).
+// syminfo.sector/industry tidak selalu terisi untuk semua feed data IDX;
+// jika kosong, sistem jatuh ke override manual pengguna.
+sektorRaw   = request.security(sym, "D", syminfo.sector, ignore_invalid_symbol = true)
+industriRaw = request.security(sym, "D", syminfo.industry, ignore_invalid_symbol = true)
+
+var bankListIDX = array.from(
+     "BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS",
+     "ARTO", "BBKP", "BNGA", "MEGA", "PNBN", "AGRO", "BABP", "BCIC", "BINA",
+     "BNBA", "BSIM", "DNAR", "INPC", "MAYA", "NISP", "SDRA", "BGTG", "BEKS")
+
+tickerOnly = syminfo.ticker
+
+isBankTicker = array.includes(bankListIDX, tickerOnly)
+
+// FIX V2 (Build 002, revisi) — Bank/Asuransi/Sekuritas kini kelas
+// eksplisit terpisah (sebelumnya ketiganya "menumpang" jadi satu
+// isFinancialSector generik — benar secara hasil skor tapi tidak benar
+// secara semantik/penamaan, lih. BACKLOG Build 002 sebelumnya).
+//
+// PENTING — batas sprint: untuk dimensi VALUASI, file1 TIDAK memberi
+// bobot valuasi yang berbeda antara Bank vs Asuransi vs Sekuritas
+// (ketiganya sama-sama memprioritaskan ROE/PBV/PER — perbedaan file1
+// baru muncul di dimensi Financial Health, yaitu perlakuan Current
+// Ratio/Quick Ratio/Cash Position, yang di luar scope sprint ini).
+// Karena itu ketiga flag di bawah tetap DIGABUNG jadi isFinancialSector
+// untuk keperluan bobot Valuasi (baris weighting TIDAK berubah dari
+// revisi sebelumnya) — pemecahan ini murni menyiapkan detseksi yang
+// benar untuk sprint Financial Health berikutnya, BUKAN mengubah skor
+// Valuasi saat ini. Lihat kritik & analisis dampak di chat.
+isFinancialLegacyMode = modeSektor == "Finansial (Bank/Asuransi)"
+
+isBankSektor = modeSektor == "Bank" or
+     (modeSektor == "Otomatis" and (isBankTicker or
+       (not na(industriRaw) and str.contains(industriRaw, "Bank"))))
+
+isAsuransiSektor = modeSektor == "Asuransi" or
+     (modeSektor == "Otomatis" and not na(industriRaw) and str.contains(industriRaw, "Insuran"))
+
+// CATATAN: emiten sekuritas IDX sering tidak konsisten mengisi field
+// syminfo.industry (kadang "Diversified Financial Services", kadang
+// kosong) — deteksi otomatis untuk kategori ini PALING LEMAH di antara
+// semua kategori sektor. Override manual "Sekuritas" sangat disarankan
+// dipakai langsung, jangan mengandalkan "Otomatis".
+isSekuritasSektor = modeSektor == "Sekuritas" or
+     (modeSektor == "Otomatis" and not na(industriRaw) and
+       (str.contains(industriRaw, "Securities") or str.contains(industriRaw, "Capital Markets") or str.contains(industriRaw, "Investment Services")))
+
+// FIX BUG (ditemukan saat review revisi ini): Build 001 punya fallback
+// generik "sektorRaw contains 'Financ'" untuk menangkap emiten finansial
+// yang TIDAK cocok kata kunci industri spesifik manapun (mis. holding
+// company finansial, atau field industriRaw kosong tapi sektorRaw
+// terisi). Saat memecah isFinancialSector jadi Bank/Asuransi/Sekuritas,
+// fallback ini sempat HILANG tanpa sengaja — akibatnya emiten yang
+// sebelumnya terdeteksi Finansial di Build 001 bisa jatuh ke
+// "Non-Finansial Umum" di Otomatis (regresi diam-diam). Dikembalikan
+// di sini sebagai kelas fallback eksplisit, BUKAN digabung lagi ke
+// Bank/Asuransi/Sekuritas.
+isFinancialGenericAuto = modeSektor == "Otomatis" and not isBankSektor and not isAsuransiSektor and not isSekuritasSektor and
+     not na(sektorRaw) and str.contains(sektorRaw, "Financ")
+
+isFinancialSector = isBankSektor or isAsuransiSektor or isSekuritasSektor or isFinancialLegacyMode or isFinancialGenericAuto
+
+isSiklikalSektor = modeSektor == "Siklikal (Komoditas/Energi)" or
+     (modeSektor == "Otomatis" and toleransiSiklikal and
+       ((not na(sektorRaw) and (str.contains(sektorRaw, "Energy") or str.contains(sektorRaw, "Materials"))) or
+        (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil") or str.contains(industriRaw, "Metal") or str.contains(industriRaw, "Palm")))))
+
+// REVISI V2 (Build 002) — 4 kategori berikut kini BISA di-override
+// manual (sebelumnya hanya auto-detect di mode "Otomatis"). Tidak ada
+// perubahan pada logika deteksi otomatisnya sendiri, hanya ditambah
+// jalur "modeSektor == <label>" seperti kategori lain.
+isPropertySektor = modeSektor == "Properti" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Real Estate")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Real Estate") or str.contains(industriRaw, "Property") or str.contains(industriRaw, "REIT")))))
+
+isInfrastrukturSektor = modeSektor == "Infrastruktur" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Utilities")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Utilit") or str.contains(industriRaw, "Infrastructure") or str.contains(industriRaw, "Toll") or str.contains(industriRaw, "Telecom")))))
+
+isTechnologySektor = modeSektor == "Teknologi" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Technology")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Software") or str.contains(industriRaw, "Internet") or str.contains(industriRaw, "E-Commerce")))))
+
+isTransportasiSektor = modeSektor == "Transportasi" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Transportation")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Airlines") or str.contains(industriRaw, "Shipping") or str.contains(industriRaw, "Transport") or str.contains(industriRaw, "Logistics")))))
+
+// Urutan prioritas label SENGAJA sama dengan urutan prioritas pada
+// blok bobot valuasi di scoring engine (isFinancialSector dicek
+// duluan, dst) — supaya label yang ditampilkan selalu konsisten
+// dengan bobot yang benar-benar dipakai jika kategori tumpang tindih
+// (mis. industriRaw memuat kata kunci >1 kategori sekaligus).
+sektorLabel = isBankSektor ? "Finansial — Bank" :
+     isAsuransiSektor ? "Finansial — Asuransi" :
+     isSekuritasSektor ? "Finansial — Sekuritas" :
+     isFinancialLegacyMode ? "Finansial (Bank/Asuransi)" :
+     isFinancialGenericAuto ? "Finansial (Umum)" :
+     isPropertySektor ? "Properti" :
+     isInfrastrukturSektor ? "Infrastruktur" :
+     isSiklikalSektor ? "Siklikal (Komoditas/Energi)" :
+     isTechnologySektor ? "Teknologi" :
+     isTransportasiSektor ? "Transportasi" :
+     "Non-Finansial Umum"
+
+//══════════════════════════════
+//
+// MODUL 05
+// MESIN KEUANGAN (FINANCIAL ENGINE)
+//
+//══════════════════════════════
+statPeriod = periodeLaporan == "TTM" ? "FQ" : periodeLaporan
+
+f_fin(id) =>
+    request.financial(sym, id, periodeLaporan, ignore_invalid_symbol = true)
+
+f_stat(id) =>
+    request.financial(sym, id, statPeriod, ignore_invalid_symbol = true)
+
+f_ttm(id) =>
+    request.financial(sym, id, "TTM", ignore_invalid_symbol = true)
+
+sharesOut       = f_stat("TOTAL_SHARES_OUTSTANDING")
+enterpriseValue = f_stat("ENTERPRISE_VALUE")
+
+epsTtm     = f_ttm("EARNINGS_PER_SHARE_DILUTED")
+fpe        = f_stat("PRICE_EARNINGS_FORWARD")
+bvps       = f_stat("BOOK_VALUE_PER_SHARE")
+revenueTtm = f_ttm("TOTAL_REVENUE")
+evEbitda   = f_stat("ENTERPRISE_VALUE_EBITDA")
+evSales    = f_stat("EV_REVENUE")
+
+roe       = f_stat("RETURN_ON_EQUITY")
+roa       = f_stat("RETURN_ON_ASSETS")
+roic      = f_stat("RETURN_ON_INVESTED_CAPITAL")
+grossM    = f_fin("GROSS_MARGIN")
+opM       = f_fin("OPERATING_MARGIN")
+netM      = f_fin("NET_MARGIN")
+ebitdaM   = f_fin("EBITDA_MARGIN")
+fcfMargin = f_fin("FREE_CASH_FLOW_MARGIN")
+piotroski = f_stat("PIOTROSKI_F_SCORE")
+
+revGrowth = f_fin("REVENUE_ONE_YEAR_GROWTH")
+epsGrowth = f_fin("EARNINGS_PER_SHARE_DILUTED_ONE_YEAR_GROWTH")
+sgr       = f_stat("SUSTAINABLE_GROWTH_RATE")
+
+// CATATAN V2 (fix bug #2): TIDAK ADA LAGI normalisasi berbasis tebakan
+// magnitude (math.abs(x) <= 5 ? x*100 : x). Field DEBT_TO_EQUITY dan
+// CASH_TO_DEBT dari request.financial TradingView adalah RASIO desimal
+// langsung (mis. 0.8 = 80%), bukan format campuran. Jika setelah
+// compile Anda menemukan skala yang tidak masuk akal untuk emiten IDX
+// tertentu, verifikasi field mentahnya dulu (jangan tebak lagi lewat
+// kode) — lihat architecture.md § Batasan Diketahui.
+debtEq        = f_stat("DEBT_TO_EQUITY")
+debtAsset     = f_stat("DEBT_TO_ASSET")
+debtEbitda    = f_stat("DEBT_TO_EBITDA")
+netDebtEbitda = f_stat("NET_DEBT_TO_EBITDA")
+cashDebt      = f_stat("CASH_TO_DEBT")
+currRatio     = f_stat("CURRENT_RATIO")
+quickRatio    = f_stat("QUICK_RATIO")
+interestCover = f_stat("INTERST_COVER")
+altmanZ       = f_stat("ALTMAN_Z_SCORE")
+ocf           = f_fin("CASH_F_OPERATING_ACTIVITIES")
+fcf           = f_fin("FREE_CASH_FLOW")
+
+divYield     = f_stat("DIVIDENDS_YIELD")
+payout       = f_fin("DIVIDEND_PAYOUT_RATIO")
+dps          = f_fin("DPS_COMMON_STOCK_PRIM_ISSUE")
+buybackYield = f_stat("BUYBACK_YIELD")
+buybackRatio = f_stat("SHARE_BUYBACK_RATIO")
+
+//══════════════════════════════
+//
+// MODUL 06
+// MESIN ANTARMUKA (UI ENGINE)
+//
+//══════════════════════════════
+const int ROWS = 90
+
+var table papan = table.new(posisiTabel, 6, ROWS,
+     bgcolor = tableBg, border_color = gridCol, border_width = 0,
+     frame_color = gridCol, frame_width = 2)
+
+f_cell(int col, int row, string txt, color bg, color tc) =>
+    if row < ROWS
+        table.cell(papan, col, row, txt, bgcolor = bg, text_color = tc, text_size = ukuranTeks)
+
+f_boldCell(int col, int row, string txt, color bg, color tc) =>
+    if row < ROWS
+        table.cell(papan, col, row, txt, bgcolor = bg, text_color = tc, text_size = ukuranTeks, text_formatting = text.format_bold)
+
+f_headerCell(int col, string txt, color bg, color tc) =>
+    table.cell(papan, col, 0, txt, bgcolor = bg, text_color = tc, text_size = ukuranTeks, text_formatting = text.format_bold)
+
+f_section(int base, int row, string title) =>
+    bg = f_sectionBg(title)
+    f_boldCell(base, row, title, bg, color.white)
+    f_boldCell(base + 1, row, "Nilai", bg, color.white)
+    f_boldCell(base + 2, row, "Skor", bg, color.white)
+    row + 1
+
+f_row(int base, int row, string name, string value, float score) =>
+    bg = f_rowBg(row)
+    scoreBg = tampilLatarSkor ? f_scoreBg(score) : bg
+    scoreTxt = pi_scoreText(score)
+    valTxtCol = na(score) ? mainTxt : isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
+    f_cell(base, row, name, bg, mutedTxt)
+    f_cell(base + 1, row, value, bg, valTxtCol)
+    f_cell(base + 2, row, scoreTxt, scoreBg, valTxtCol)
+    row + 1
+
+// BARU V2 — varian f_row dengan skema warna risiko terbalik
+f_riskRow(int base, int row, string name, string value, float score) =>
+    bg = f_rowBg(row)
+    scoreBg = tampilLatarSkor ? f_riskBg(score) : bg
+    scoreTxt = pi_scoreText(score)
+    valTxtCol = na(score) ? mainTxt : f_riskColor(score)
+    f_cell(base, row, name, bg, mutedTxt)
+    f_cell(base + 1, row, value, bg, valTxtCol)
+    f_cell(base + 2, row, scoreTxt, scoreBg, valTxtCol)
+    row + 1
+
+f_scoreCard(int base, int row, string name, float score) =>
+    bg = tampilLatarSkor ? f_scoreBg(score) : f_rowBg(row)
+    tc = isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
+    f_cell(base, row, name, bg, mainTxt)
+    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(base + 2, row, pi_grade(score), bg, tc)
+    row + 1
+
+// BARU V2 — kartu skor dengan indikator kelengkapan data (bug #6)
+f_scoreCardN(int base, int row, string name, float score, int nValid, int nTotal) =>
+    bg = tampilLatarSkor ? f_scoreBg(score) : f_rowBg(row)
+    tc = isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
+    label = tampilKelengkapan ? name + " (" + str.tostring(nValid) + "/" + str.tostring(nTotal) + ")" : name
+    f_cell(base, row, label, bg, mainTxt)
+    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(base + 2, row, pi_grade(score), bg, tc)
+    row + 1
+
+// BARU V2 — kartu untuk skor risiko (skema warna & grade terbalik)
+f_riskCard(int base, int row, string name, float score) =>
+    bg = tampilLatarSkor ? f_riskBg(score) : f_rowBg(row)
+    tc = f_riskColor(score)
+    f_cell(base, row, name, bg, mainTxt)
+    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(base + 2, row, pi_riskGrade(score), bg, tc)
+    row + 1
+
+//══════════════════════════════
+//
+// MODUL 07 + 08
+// MESIN SKOR (SCORING ENGINE) & RENDER
+//
+//══════════════════════════════
+if barstate.islast
+    relStr6m  = ret6m - bench6m
+    relStr12m = ret12m - bench12m
+
+    pos52 = na(high52) or na(low52) or high52 == low52 ? na : (dClose - low52) / (high52 - low52) * 100
+    dist52High = na(high52) ? na : (dClose / high52 - 1) * 100
+
+    maStatus = dClose > sma20 and dClose > sma50 and dClose > sma200 ? "Bullish" :
+         dClose > sma50 and dClose > sma200 ? "Kuat" :
+         dClose > sma200 ? "Neutral" :
+         dClose > sma50 ? "Lemah" :
+         "Bearish"
+
+    maScore =
+         dClose > sma20 and dClose > sma50 and dClose > sma200 ? 100 :
+         dClose > sma50 and dClose > sma200 ? 80 :
+         dClose > sma200 ? 60 :
+         dClose > sma50 ? 45 :
+         25
+
+    // ── RASIO TURUNAN ──
+    mcap = na(sharesOut) or na(dClose) ? na : sharesOut * dClose
+
+    pe = f_safeDiv(dClose, epsTtm)
+    ps = f_safeDiv(mcap, revenueTtm)
+    pb = f_safeDiv(dClose, bvps)
+
+    peg = na(pe) or na(epsGrowth) or epsGrowth <= 0 ? na : pe / epsGrowth
+
+    earnYield = na(dClose) or na(epsTtm) or dClose == 0 ? na : epsTtm / dClose * 100
+    opEarnYield = na(opM) or na(ps) or ps == 0 ? na : opM / ps
+    fcfYield = na(fcf) or na(mcap) or mcap == 0 ? na : fcf / mcap * 100
+
+    grahamPrice = na(epsTtm) or na(bvps) or epsTtm <= 0 or bvps <= 0 ? na : math.sqrt(22.5 * epsTtm * bvps)
+    grahamUpside = na(grahamPrice) or na(dClose) or dClose == 0 ? na : (grahamPrice / dClose - 1) * 100
+
+    dpsEst = na(dps) and not na(divYield) and not na(dClose) ? dClose * divYield / 100 : dps
+
+    // ── SKOR VALUASI ──
+    peScore        = f_scoreLower(pe, 8, 45)
+    fpeScore       = f_scoreLower(fpe, 8, 40)
+    psScore        = f_scoreLower(ps, 1, 15)
+    pbScore        = f_scoreLower(pb, 1, 12)
+    pegScore       = f_scoreLower(peg, 0.5, 3.5)
+    evScore        = f_scoreLower(evEbitda, 5, 30)
+    evSalesScore   = f_scoreLower(evSales, 1, 15)
+    earnYieldScore = f_scoreHigher(earnYield, 2, 12)
+    opYieldScore   = f_scoreHigher(opEarnYield, 3, 15)
+    // FIX V2 (bug #7, mitigasi): pita Graham dilebarkan untuk sektor
+    // siklikal, karena EPS TTM mentah bisa berada di puncak/lembah siklus.
+    grahamLow  = isSiklikalSektor ? -50.0 : -30.0
+    grahamHigh = isSiklikalSektor ? 80.0 : 50.0
+    grahamScore = f_scoreHigher(grahamUpside, grahamLow, grahamHigh)
+
+    // FIX/ENHANCE V2 (Build 002) — mengacu pada file1 "Sector-Aware
+    // Fundamental Engine" lapisan Bobot Kategori, diterapkan HANYA pada
+    // dimensi VALUASI sesuai fokus sprint saat ini (roadmap: Valuation →
+    // Profitability → Growth → Financial Health → Indonesia Layer).
+    //
+    // Bobot dasar (wPe..wGraham) di bawah ini SENGAJA direplikasi dari
+    // struktur pengelompokan Build 001 (f_avg3 di dalam f_avg5), supaya
+    // untuk emiten "Non-Finansial Umum" (tanpa penyesuaian sektor) hasil
+    // valueScore IDENTIK dengan Build 001 — bukan regresi metodologi,
+    // murni refactor + ekstensi. Cara replikasinya: tiap grup 3-anggota
+    // (PE/FPE/PEG dan PS/PB/EV) diberi bobot 1 per anggota (kontribusi
+    // grup = 3), sedangkan anggota tunggal/grup 2-anggota (EV-Sales,
+    // Graham, dan Earn/Op Yield) diberi bobot setara 3 atau 1.5 supaya
+    // kontribusi total grupnya tetap sebanding (3) dengan dua grup lain.
+    wPe        = 1.0
+    wFpe       = 1.0
+    wPeg       = 1.0
+    wPs        = 1.0
+    wPb        = 1.0
+    wEv        = 1.0
+    wEvSales   = 3.0
+    wEarnYield = 1.5
+    wOpYield   = 1.5
+    wGraham    = 3.0
+
+    if isFinancialSector
+        // Bank/Asuransi/Sekuritas: PBV & PER adalah rasio penilaian
+        // utama (file1 §1-3). PEG & Graham kurang bermakna karena bisnis
+        // bank dinilai dari neraca aset-liabilitas, bukan pertumbuhan
+        // laba linear atau nilai intrinsik ala Graham (yang berasumsi
+        // model perusahaan manufaktur/dagang).
+        wPb     *= 1.5
+        wPe     *= 1.3
+        wFpe    *= 1.3
+        wPeg    *= 0.5
+        wGraham *= 0.3
+    else if isPropertySektor
+        // Properti: PBV prioritas utama karena aset tanah/bangunan besar
+        // relatif terhadap laba berjalan. PEG dikurangi karena laba
+        // sangat bergantung siklus pengakuan pendapatan proyek, bukan
+        // pertumbuhan tahunan yang mulus (file1 §4).
+        wPb   *= 1.5
+        wPeg  *= 0.3
+    else if isInfrastrukturSektor
+        // Infrastruktur: beban depresiasi aset besar membuat laba
+        // akuntansi (dan PER) kurang mencerminkan kondisi operasional;
+        // EV/EBITDA lebih relevan karena mengabaikan depresiasi &
+        // struktur permodalan (file1 §5).
+        wPe  *= 0.4
+        wFpe *= 0.4
+        wEv  *= 1.3
+    else if isSiklikalSektor
+        // Batubara/CPO: EPS TTM bisa berada di puncak/lembah siklus
+        // harga komoditas sehingga PEG (berbasis pertumbuhan EPS) tidak
+        // andal. Earnings/Operating Yield & Graham (pita sudah
+        // dilebarkan di atas) lebih diutamakan (file1 §6-7).
+        wPeg       *= 0.3
+        wEarnYield *= 1.3
+        wOpYield   *= 1.3
+    else if isTechnologySektor
+        // Teknologi: banyak emiten belum menghasilkan laba stabil
+        // sehingga PER, PBV, PEG, dan Graham (semua berbasis laba/nilai
+        // buku) kurang bermakna; EV/Sales jadi proxy valuasi yang lebih
+        // relevan untuk model bisnis pertumbuhan (file1 §8).
+        wPe      *= 0.3
+        wFpe     *= 0.3
+        wPb      *= 0.3
+        wPeg     *= 0.3
+        wGraham  *= 0.2
+        wEvSales *= 1.5
+    else if isTransportasiSektor
+        // Transportasi: beban depresiasi armada tinggi membuat PER
+        // kurang mencerminkan kondisi operasional (file1 §12).
+        wPe  *= 0.4
+        wFpe *= 0.4
+
+    valueVals = array.from(peScore, fpeScore, pegScore, psScore, pbScore, evScore, evSalesScore, earnYieldScore, opYieldScore, grahamScore)
+    valueWts  = array.from(wPe, wFpe, wPeg, wPs, wPb, wEv, wEvSales, wEarnYield, wOpYield, wGraham)
+
+    valueScore = f_wavgArr(valueVals, valueWts)
+    valueN     = f_countValidArr(valueVals)
+
+    // ── SKOR KUALITAS ──
+    roeScore       = f_scoreHigher(roe, 5, 25)
+    roaScore       = f_scoreHigher(roa, 2, 15)
+    roicScore      = f_scoreHigher(roic, 5, 25)
+    grossScore     = f_scoreHigher(grossM, 20, 60)
+    opScore        = f_scoreHigher(opM, 5, 30)
+    netScore       = f_scoreHigher(netM, 3, 25)
+    ebitdaScore    = f_scoreHigher(ebitdaM, 8, 35)
+    fcfMarginScore = f_scoreHigher(fcfMargin, 0, 20)
+    piotroskiScore = na(piotroski) ? na : f_clamp(piotroski / 9 * 100, 0, 100)
+
+    qualityScore = f_avg5(
+         f_avg3(roeScore, roaScore, roicScore),
+         f_avg3(grossScore, opScore, netScore),
+         f_avg3(ebitdaScore, fcfMarginScore, na),
+         piotroskiScore,
+         na)
+    qualityN = f_countValid5(
+         f_avg3(roeScore, roaScore, roicScore),
+         f_avg3(grossScore, opScore, netScore),
+         f_avg3(ebitdaScore, fcfMarginScore, na),
+         piotroskiScore,
+         na)
+
+    // ── SKOR PERTUMBUHAN ──
+    revScore = f_scoreHigher(revGrowth, 0, 25)
+    epsScore = f_scoreHigher(epsGrowth, 0, 30)
+    sgrScore = f_scoreHigher(sgr, 0, 20)
+
+    growthScore = f_avg3(revScore, epsScore, sgrScore)
+    growthN = f_countValid5(revScore, epsScore, sgrScore, na, na)
+
+    // ── SKOR KESEHATAN KEUANGAN ──
+    // FIX V2 (bug #1): guard ekuitas negatif. Jika Debt/Equity negatif,
+    // itu artinya ekuitas negatif (rugi terakumulasi) — beri skor 0
+    // langsung, JANGAN lewat rumus linear (yang sebelumnya bisa
+    // menghasilkan skor 100 "sempurna" untuk perusahaan distress).
+    debtEqScore = na(debtEq) ? na : debtEq < 0 ? 0.0 : f_scoreLower(debtEq, 0, 250)
+    // FIX V2 (bug #2): tidak ada lagi normalisasi tebak-tebakan magnitude.
+    debtAssetScore     = f_scoreLower(debtAsset, 0, 80)
+    debtEbitdaScore    = f_scoreLower(debtEbitda, 0, 6)
+    netDebtEbitdaScore = f_scoreLower(netDebtEbitda, 0, 5)
+    cashDebtScore      = f_scoreHigher(cashDebt, 0, 1.5)
+    currScore          = f_scoreMid(currRatio, 0.5, 2.0, 5.0)
+    quickScore         = f_scoreMid(quickRatio, 0.3, 1.5, 4.0)
+    interestScore      = f_scoreHigher(interestCover, 2, 20)
+    altmanScore        = f_scoreHigher(altmanZ, 1.8, 3.5)
+    ocfScore           = f_scorePositive(ocf)
+    fcfScore           = f_scorePositive(fcf)
+
+    // FIX V2 (bug #3, mitigasi): untuk sektor finansial, rasio leverage &
+    // likuiditas klasik (Debt/Equity, Current Ratio, Quick Ratio, Altman
+    // Z) TIDAK RELEVAN secara struktural untuk bank/asuransi — bukan
+    // dipaksakan, tapi di-skip (na) supaya tidak menghasilkan angka
+    // yang menyesatkan. Rasio yang lebih relevan (CAR, NPL, LDR) TIDAK
+    // tersedia di field standar TradingView — healthScore untuk sektor
+    // ini sengaja parsial. Lihat architecture.md § Batasan Diketahui.
+    healthScore = isFinancialSector ?
+         f_avg3(interestScore, ocfScore, fcfScore) :
+         f_avg5(
+              f_avg3(debtEqScore, debtAssetScore, debtEbitdaScore),
+              f_avg3(netDebtEbitdaScore, cashDebtScore, interestScore),
+              f_avg3(currScore, quickScore, na),
+              altmanScore,
+              f_avg3(ocfScore, fcfScore, na))
+    healthN = isFinancialSector ? f_countValid5(interestScore, ocfScore, fcfScore, na, na) :
+         f_countValid5(
+              f_avg3(debtEqScore, debtAssetScore, debtEbitdaScore),
+              f_avg3(netDebtEbitdaScore, cashDebtScore, interestScore),
+              f_avg3(currScore, quickScore, na),
+              altmanScore,
+              f_avg3(ocfScore, fcfScore, na))
+
+    // ── SKOR DIVIDEN / INCOME ──
+    yieldScore        = f_scoreHigher(divYield, 0, 5)
+    payoutScore       = f_scoreMid(payout, 0, 40, 100)
+    buybackYieldScore = f_scoreHigher(buybackYield, 0, 5)
+    buybackRatioScore = f_scoreHigher(buybackRatio, 0, 5)
+    fcfYieldScore     = f_scoreHigher(fcfYield, 0, 8)
+    dpsScore          = f_scorePositive(dpsEst)
+
+    incomeScore = f_avg5(
+         yieldScore,
+         payoutScore,
+         fcfYieldScore,
+         f_avg3(buybackYieldScore, buybackRatioScore, na),
+         dpsScore)
+    incomeN = f_countValid5(yieldScore, payoutScore, fcfYieldScore,
+         f_avg3(buybackYieldScore, buybackRatioScore, na), dpsScore)
+
+    // ── SKOR MOMENTUM ──
+    rsiScore  = f_scoreMid(rsi14, 30, 60, 85)
+    posScore  = f_scoreHigher(pos52, 20, 90)
+    rs6Score  = f_scoreHigher(relStr6m, -20, 25)
+    rs12Score = f_scoreHigher(relStr12m, -25, 35)
+    volScore  = f_scoreLower(volatility, 10, 80)
+
+    momentumScore = f_avg5(
+         rsiScore,
+         posScore,
+         rs6Score,
+         rs12Score,
+         f_avg3(maScore, volScore, na))
+    momentumN = f_countValid5(rsiScore, posScore, rs6Score, rs12Score, f_avg3(maScore, volScore, na))
+
+    // ── SKOR KESELURUHAN ──
+    // FIX V2 (bug #4): f_avg6 eksplisit, 6 faktor benar-benar setara
+    // (masing-masing 1/6), bukan ditumpangkan ke f_avg5 seperti V1.
+    // Opsi bobot kustom tersedia bagi yang ingin menekankan faktor
+    // tertentu (mis. menurunkan bobot Momentum untuk saham gorengan).
+    overallScore = gunakanBobotKustom ?
+         f_wavg6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore,
+              bobotValue, bobotQuality, bobotGrowth, bobotHealth, bobotMomentum, bobotIncome) :
+         f_avg6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore)
+    overallN = f_countValid6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore)
+
+    // ── RISIKO LIKUIDITAS & GORENGAN (BARU V2) ──
+    // Skor terpisah, TIDAK dicampur ke overallScore. Semakin TINGGI
+    // skor ini, semakin AMAN (risiko gorengan rendah) — kebalikan dari
+    // skema skor fundamental di atas. Ini proxy statistik harga/volume,
+    // bukan deteksi manipulasi terverifikasi.
+    mcapMiliar = na(mcap) ? na : mcap / 1e9
+    valTradedJt = na(valTradedAvg20) ? na : valTradedAvg20 / 1e6
+    turnoverPct = na(volAvg20) or na(sharesOut) or sharesOut == 0 ? na : volAvg20 / sharesOut * 100
+
+    mcapScore     = f_scoreHigher(mcapMiliar, kapKecilMiliar, kapBesarMiliar)
+    liqScore      = f_scoreHigher(valTradedJt, likuiditasRendahJt, likuiditasTinggiJt)
+    volRiskScore  = f_scoreLower(volatility, 30, 120)
+    araRiskScore  = f_scoreLower(araHits, 0, lookbackARA * 0.4)
+    priceTierScore = f_scoreHigher(dClose, hargaRecehan * 0.5, hargaRecehan * 5)
+
+    riskSafetyScore = f_avg5(mcapScore, liqScore, volRiskScore, araRiskScore, priceTierScore)
+
+    // ── RENDER KE TABEL ──
+    table.clear(papan, 0, 0, 5, ROWS - 1)
+
+    overallTxt = pi_overallBadge(overallScore) + pi_formatNumber(overallScore) +
+         (tampilKelengkapan ? " (" + str.tostring(overallN) + "/6)" : "")
+
+    f_headerCell(0, "PAPAN INSTRUMEN", headerBg, titleTxt)
+    f_headerCell(1, sym, headerBg, titleTxt)
+    f_headerCell(2, periodeLaporan, headerBg, titleTxt)
+    f_headerCell(3, "Sektor: " + sektorLabel, headerBg, titleTxt)
+    f_headerCell(4, indeksAcuan, headerBg, titleTxt)
+    f_headerCell(5, overallTxt, headerBg, f_scoreColor(overallScore))
+
+    int l = 1
+    int r = 1
+
+    l := f_section(0, l, "SKOR KESELURUHAN")
+    l := f_scoreCardN(0, l, "Quality", qualityScore, qualityN, 5)
+    l := f_scoreCardN(0, l, "Value", valueScore, valueN, 5)
+    l := f_scoreCardN(0, l, "Growth", growthScore, growthN, 5)
+    l := f_scoreCardN(0, l, "Health", healthScore, healthN, 5)
+    l := f_scoreCardN(0, l, "Income", incomeScore, incomeN, 5)
+    l := f_scoreCardN(0, l, "Momentum", momentumScore, momentumN, 5)
+
+    if tampilRisikoGorengan
+        l := f_section(0, l, "RISIKO LIKUIDITAS")
+        l := f_riskCard(0, l, "Keamanan Likuiditas", riskSafetyScore)
+
+    if tampilRingkasan
+        l := f_section(0, l, "RINGKASAN")
+        l := f_row(0, l, "Price", pi_formatNumber(dClose), na)
+        l := f_row(0, l, "Market Cap", pi_formatMoney(mcap), na)
+        l := f_row(0, l, "Enterprise Value", pi_formatMoney(enterpriseValue), na)
+        l := f_row(0, l, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
+        l := f_row(0, l, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
+
+    if tampilValuasi
+        l := f_section(0, l, "VALUASI")
+        l := f_row(0, l, "P/E TTM", pi_formatNumber(pe), peScore)
+        l := f_row(0, l, "Forward P/E", pi_formatNumber(fpe), fpeScore)
+        l := f_row(0, l, "PEG Ratio", pi_formatNumber(peg), pegScore)
+        l := f_row(0, l, "P/S TTM", pi_formatNumber(ps), psScore)
+        l := f_row(0, l, "P/B", pi_formatNumber(pb), pbScore)
+        l := f_row(0, l, "EV/EBITDA", pi_formatNumber(evEbitda), evScore)
+        l := f_row(0, l, "EV/Sales", pi_formatNumber(evSales), evSalesScore)
+        l := f_row(0, l, "Earnings Yield", pi_formatPercent(earnYield), earnYieldScore)
+        l := f_row(0, l, "Operating Earn. Yield", pi_formatPercent(opEarnYield), opYieldScore)
+        l := f_row(0, l, "Graham Price", pi_formatNumber(grahamPrice), grahamScore)
+        l := f_row(0, l, "Graham No. Upside", pi_arrow(grahamUpside) + pi_formatPercent(grahamUpside), grahamScore)
+        l := f_row(0, l, "EPS TTM", pi_formatNumber(epsTtm), na)
+        l := f_row(0, l, "BVPS", pi_formatNumber(bvps), pbScore)
+
+    if tampilDividen
+        l := f_section(0, l, "DIVIDEN & IMBAL HASIL")
+        l := f_row(0, l, "Dividend Yield", pi_formatPercent(divYield), yieldScore)
+        l := f_row(0, l, "Payout Ratio", pi_formatPercent(payout), payoutScore)
+        l := f_row(0, l, "FCF Yield", pi_formatPercent(fcfYield), fcfYieldScore)
+        l := f_row(0, l, "DPS", pi_formatNumber(dpsEst), dpsScore)
+        l := f_row(0, l, "Buyback Yield", pi_formatPercent(buybackYield), buybackYieldScore)
+        l := f_row(0, l, "Buyback Ratio", pi_formatPercent(buybackRatio), buybackRatioScore)
+
+    if tampilKualitas
+        r := f_section(3, r, "KUALITAS")
+        r := f_row(3, r, "ROE", pi_formatPercent(roe), roeScore)
+        r := f_row(3, r, "Asset Return / ROA", pi_formatPercent(roa), roaScore)
+        r := f_row(3, r, "ROIC", pi_formatPercent(roic), roicScore)
+        r := f_row(3, r, "Piotroski F-Score", pi_formatNumber(piotroski), piotroskiScore)
+        r := f_row(3, r, "Gross Margin", pi_formatPercent(grossM), grossScore)
+        r := f_row(3, r, "Operating Margin", pi_formatPercent(opM), opScore)
+        r := f_row(3, r, "Net Margin", pi_formatPercent(netM), netScore)
+        r := f_row(3, r, "EBITDA Margin", pi_formatPercent(ebitdaM), ebitdaScore)
+        r := f_row(3, r, "FCF Margin", pi_formatPercent(fcfMargin), fcfMarginScore)
+
+    if tampilPertumbuhan
+        r := f_section(3, r, "PERTUMBUHAN")
+        r := f_row(3, r, "Revenue Growth", pi_arrow(revGrowth) + pi_formatPercent(revGrowth), revScore)
+        r := f_row(3, r, "EPS Growth", pi_arrow(epsGrowth) + pi_formatPercent(epsGrowth), epsScore)
+        r := f_row(3, r, "Sustainable Growth", pi_arrow(sgr) + pi_formatPercent(sgr), sgrScore)
+
+    if tampilKesehatan
+        r := f_section(3, r, "KESEHATAN KEUANGAN")
+        if isFinancialSector
+            r := f_row(3, r, "(Sektor Finansial: rasio", "leverage non-bank di-skip)", na)
+        r := f_row(3, r, "Debt / Equity", pi_formatNumber(debtEq), isFinancialSector ? na : debtEqScore)
+        r := f_row(3, r, "Debt / Assets", pi_formatNumber(debtAsset), isFinancialSector ? na : debtAssetScore)
+        r := f_row(3, r, "Debt / EBITDA", pi_formatNumber(debtEbitda), isFinancialSector ? na : debtEbitdaScore)
+        r := f_row(3, r, "Net Debt / EBITDA", pi_formatNumber(netDebtEbitda), isFinancialSector ? na : netDebtEbitdaScore)
+        r := f_row(3, r, "Cash / Debt", pi_formatNumber(cashDebt), isFinancialSector ? na : cashDebtScore)
+        r := f_row(3, r, "Current Ratio", pi_formatNumber(currRatio), isFinancialSector ? na : currScore)
+        r := f_row(3, r, "Quick Ratio", pi_formatNumber(quickRatio), isFinancialSector ? na : quickScore)
+        r := f_row(3, r, "Interest Cover", pi_formatNumber(interestCover), interestScore)
+        r := f_row(3, r, "Altman Z-Score", pi_formatNumber(altmanZ), isFinancialSector ? na : altmanScore)
+        r := f_row(3, r, "OCF", pi_formatMoney(ocf), ocfScore)
+        r := f_row(3, r, "FCF", pi_formatMoney(fcf), fcfScore)
+
+    if tampilMomentum
+        r := f_section(3, r, "MOMENTUM PASAR")
+        r := f_row(3, r, "RSI 14", pi_formatNumber(rsi14), rsiScore)
+        r := f_row(3, r, "1M Return", pi_arrow(ret1m) + pi_formatPercent(ret1m), na)
+        r := f_row(3, r, "3M Return", pi_arrow(ret3m) + pi_formatPercent(ret3m), na)
+        r := f_row(3, r, "6M Return", pi_arrow(ret6m) + pi_formatPercent(ret6m), na)
+        r := f_row(3, r, "12M Return", pi_arrow(ret12m) + pi_formatPercent(ret12m), na)
+        r := f_row(3, r, "6M RS vs Index", pi_arrow(relStr6m) + pi_formatPercent(relStr6m), rs6Score)
+        r := f_row(3, r, "12M RS vs Index", pi_arrow(relStr12m) + pi_formatPercent(relStr12m), rs12Score)
+        r := f_row(3, r, "Volatility", pi_formatPercent(volatility), volScore)
+        r := f_row(3, r, "MA 20/50/200", maStatus, maScore)
+
+    if tampilRisikoGorengan
+        r := f_section(3, r, "DETAIL RISIKO GORENGAN")
+        r := f_riskRow(3, r, "Market Cap", pi_formatMoney(mcap), mcapScore)
+        r := f_riskRow(3, r, "Nilai Transaksi 20D", pi_formatMoney(valTradedAvg20), liqScore)
+        r := f_riskRow(3, r, "Turnover Harian (20D)", pi_formatPercent(turnoverPct), na)
+        r := f_riskRow(3, r, "Volatilitas Tahunan", pi_formatPercent(volatility), volRiskScore)
+        r := f_riskRow(3, r, "Hari Kena/Dekat ARA-ARB", str.tostring(araHits, "#") + "/" + str.tostring(lookbackARA), araRiskScore)
+        r := f_riskRow(3, r, "Tingkat Harga", pi_formatNumber(dClose), priceTierScore)
+
+//══════════════════════════════
+//
+// BACKLOG (Build 003+)
+// Sengaja BELUM diimplementasikan — di luar scope sprint Valuasi saat
+// ini. Sesuai roadmap Build 002 (Valuation → Profitability → Growth →
+// Financial Health → Indonesia Layer), item berikut dari proposal
+// "Sector-Aware Fundamental Engine" (file1) dipindah ke backlog supaya
+// tidak menyela development sprint yang sedang berjalan:
+//
+// [x] ~~Sprint Financial Health: skip juga untuk Asuransi & Sekuritas
+//     sebagai kelas eksplisit~~ — DETEKSI-nya sudah selesai (Build 002
+//     Revisi 2: isBankSektor/isAsuransiSektor/isSekuritasSektor). YANG
+//     BELUM: healthScore di scoring engine MASIH memakai isFinancialSector
+//     generik (skip Current/Quick Ratio dkk untuk ketiganya secara sama).
+//     file1 sebenarnya membedakan: Asuransi mengurangi Current/Quick
+//     Ratio, Sekuritas mengurangi Current Ratio & Debt Ratio tapi
+//     MEMPERHITUNGKAN Cash Position lebih besar. Ini tetap masuk sprint
+//     Financial Health berikutnya, BUKAN sprint Valuasi saat ini.
+// [x] ~~Business Model Engine dropdown manual eksplisit~~ — SEBAGIAN
+//     selesai (Build 002 Revisi 2): Bank/Asuransi/Sekuritas/Properti/
+//     Infrastruktur/Teknologi/Transportasi kini bisa di-override manual.
+//     BELUM ada override manual untuk Batubara vs CPO (keduanya masih
+//     digabung sebagai "Siklikal (Komoditas/Energi)"), dan untuk
+//     Consumer/Industri/Healthcare (belum ada bobot berbeda sama sekali
+//     di dimensi manapun, sesuai file1 yang menyebut ketiganya "Normal").
+//
+// [ ] Sprint Profitability/Quality: bobot ROE/ROA/ROIC/Margin per
+//     sektor (mis. Consumer/Industri/Healthcare menekankan Net Margin
+//     & EPS Growth lebih tinggi; Bank menekankan ROE).
+// [ ] Sprint Growth: bobot Revenue/EPS Growth diturunkan untuk sektor
+//     siklikal (Batubara, CPO) & properti — sudah disebut di file1
+//     tapi belum ada di kode.
+// [ ] Sprint Financial Health: DER/Current Ratio/Quick Ratio/Altman Z
+//     saat ini di-skip untuk isFinancialSector (Bank+Asuransi+Sekuritas
+//     digabung, sama seperti Build 001). Perlu dipecah per sub-kategori
+//     sesuai file1 (lih. catatan di atas).
+// [ ] Sprint Indonesia Layer: kategori "Indonesia Factor" pada Scoring
+//     Matrix file1 (bobot 10-20% tergantung sektor) belum punya padanan
+//     di kode sama sekali — perlu didefinisikan dulu rasio/proxy apa
+//     yang dimaksud sebelum bisa diimplementasikan.
+// [ ] Threshold interpretasi per sektor (mis. ROE 15% = "Bagus" untuk
+//     Bank, tapi "Normal" untuk Teknologi) — ini mengubah fungsi
+//     pi_grade/skor per kategori, bukan hanya bobot; berdampak besar
+//     pada semua dimensi, bukan hanya Valuasi. Butuh desain terpisah.
+// [ ] Batubara vs CPO sebagai kelas terpisah (saat ini digabung jadi
+//     "Siklikal (Komoditas/Energi)") — file1 memperlakukan keduanya
+//     mirip untuk Valuasi, jadi belum ada urgensi, tapi untuk Growth/
+//     Health nanti mungkin perlu dipisah.
+// [ ] Rule Engine generik (isX → disable/reweight rasio Y) yang
+//     dideskripsikan file1 saat ini masih hardcoded per kategori di
+//     dalam blok if/else-if scoring engine. Untuk 12 kategori penuh
+//     lintas 5 dimensi, pola if/else-if akan sulit dirawat — layak
+//     dipertimbangkan struktur data (mis. matrix bobot per kategori)
+//     saat item-item di atas mulai dikerjakan.
+//
+//══════════════════════════════
