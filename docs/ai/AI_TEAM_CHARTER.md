@@ -2,7 +2,7 @@
 ---
 Document ID   : DOC-007
 Document Name : AI_TEAM_CHARTER
-Version       : 1.0.0
+Version       : 1.1.0
 Status        : Active
 Owner         : Muhammad Akhmal
 Architect     : ChatGPT
@@ -74,6 +74,17 @@ Bertugas:
 - Memperbarui Sprint
 - Memperbarui Backlog
 - Memastikan dokumentasi tetap sinkron
+---
+# Operational Context
+
+Before starting any task, every AI contributor must read:
+
+1. CURRENT_SPRINT.md
+2. The target source file(s)
+
+CURRENT_SPRINT.md acts as the operational context for the entire AI team.
+
+Historical documents should only be consulted when required.\
 ---
 # Collaboration Principles
 Seluruh AI wajib mengikuti prinsip berikut.
