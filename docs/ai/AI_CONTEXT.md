@@ -2,7 +2,7 @@
 ---
 Document ID   : DOC-006
 Document Name : AI_CONTEXT
-Version       : 1.0.0
+Version       : 1.1.0
 Status        : Active
 Owner         : Muhammad Akhmal
 Architect     : ChatGPT
@@ -13,6 +13,18 @@ Review Cycle  : Every Major Release
 Dokumen ini menjadi sumber konteks utama bagi seluruh AI Assistant yang terlibat dalam pengembangan proyek.
 AI wajib memahami isi dokumen ini sebelum memberikan saran, melakukan review, maupun mengubah kode.
 Dokumen ini bertujuan mengurangi kebutuhan prompt panjang pada setiap sesi baru.
+---
+# Context Loading Order
+
+Every AI contributor must load project context using the following priority:
+
+1. CURRENT_SPRINT.md
+2. Target source file(s)
+3. CHANGELOG.md (if reviewing previous changes)
+4. BACKLOG.md (if planning future work)
+5. METHODOLOGY.md (only when methodology is involved)
+
+The AI should avoid reading unnecessary documents to reduce context usage and maintain focus.
 ---
 # Project Identity
 Project Name
@@ -139,6 +151,48 @@ Sebuah kontribusi AI dianggap berhasil apabila:
 - Mudah dipahami.
 - Mudah dipelihara.
 - Selaras dengan metodologi proyek.
+---
+# Context Rules
+
+## Rule 1
+
+Always assume the GitHub repository is the Single Source of Truth.
+
+---
+
+## Rule 2
+
+CURRENT_SPRINT.md is the primary operational context.
+
+---
+
+## Rule 3
+
+Only the active task should be implemented.
+
+---
+
+## Rule 4
+
+Do not modify completed features unless explicitly requested.
+
+---
+
+## Rule 5
+
+If project documentation conflicts with chat history, follow the repository documentation.
+---
+# AI Memory Limitation
+
+AI assistants do not retain repository state automatically.
+
+Project continuity depends on:
+
+- CURRENT_SPRINT.md
+- GitHub Repository
+- CHANGELOG.md
+
+These documents replace long conversational history and should always be considered the authoritative project context.
 ---
 # Closing Statement
 AI adalah mitra pengembangan.
