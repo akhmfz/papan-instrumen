@@ -1128,6 +1128,20 @@ if barstate.islast
         // Transportasi: beban depresiasi armada tinggi membuat PER
         // kurang mencerminkan kondisi operasional (file1 §12).
         wPe  *= 0.4
+    else if isKonsumerSektor
+        // Konsumer: earnings stabil → P/E lebih bermakna.
+        // Scale bisnis besar → P/B naik, PEG standar.
+        wPe  *= 1.2
+        wPb  *= 1.2
+    else if isIndustriSektor
+        // Industri: capital intensive seperti Property/Infra.
+        // Beban depresiasi → PER kurang informatif, EV metrics naik.
+        wPe *= 0.5
+        wEv *= 1.2
+    else if isKesehatanSektor
+        // Kesehatan: laba stabil, growth premium → PEG naik.
+        wPe    *= 1.2
+        wPeg   *= 1.3
 
     valueVals = array.from(peScore, pegScore, psScore, pbScore, evScore, evSalesScore, earnYieldScore, opYieldScore, grahamScore)
     valueWts  = array.from(wPe, wPeg, wPs, wPb, wEv, wEvSales, wEarnYield, wOpYield, wGraham)
@@ -1216,6 +1230,24 @@ if barstate.islast
         wRoa    *= 1.2
         wEbitda *= 1.3
         wFcfM   *= 1.2
+    else if isKonsumerSektor
+        // Konsumer: margin adalah indikator utama (brand power).
+        // Gross/Net Margin punya nilai prediktif tinggi.
+        wGross *= 1.3
+        wNet   *= 1.3
+        wFcfM  *= 1.2
+    else if isIndustriSektor
+        // Industri: capital heavy → EBITDA/FCF Margin is proxy
+        // efisiensi operasional. ROIC naik untuk capital efficiency.
+        wEbitda *= 1.3
+        wFcfM   *= 1.3
+        wRoic   *= 1.2
+    else if isKesehatanSektor
+        // Kesehatan: stabilitas margin tinggi. ROE + Net Margin
+        // adalah indikator utama keunggulan kompetitif.
+        wRoe    *= 1.3
+        wNet    *= 1.3
+        wRoic   *= 1.2
 
     qualityVals = array.from(roeScore, roaScore, roicScore, grossScore, opScore, netScore, ebitdaScore, fcfMarginScore, piotroskiScore)
     qualityWts  = array.from(wRoe, wRoa, wRoic, wGross, wOp, wNet, wEbitda, wFcfM, wPiotroski)
@@ -1281,6 +1313,16 @@ if barstate.islast
         wGRev *= 1.2
         wGEps *= 0.8
         wGSgr *= 0.8
+    else if isKonsumerSektor
+        // Konsumer: EPS Growth prioritas (volume×harga yang bisa
+        // dinaikkan secara konsisten lebih meaningful).
+        wGEps *= 1.3
+    else if isIndustriSektor
+        // Industri: Rev Growth dari kontrak/order book.
+        wGRev *= 1.2
+    else if isKesehatanSektor
+        // Kesehatan: EPS Growth is lead metric (margin scalable).
+        wGEps *= 1.3
 
     growthVals = array.from(revScore, epsScore, sgrScore)
     growthWts  = array.from(wGRev, wGEps, wGSgr)
@@ -1461,6 +1503,20 @@ if barstate.islast
         wHIC *= 1.3
         intBad := 3.0
         intGood := 20.0
+    else if isKonsumerSektor
+        // Konsumer: neraca sehat default, Cash/Debt naik sedikit.
+        wHCash *= 1.2
+    else if isIndustriSektor
+        // Industri: capital intensive → toleransi D/E longgar.
+        // Arus kas operasi prioritas.
+        wHOCF *= 1.3
+        debtEqB := 4.0
+        intBad := 2.0
+        intGood := 15.0
+    else if isKesehatanSektor
+        // Kesehatan: cash-rich, neraca sehat. Cash ratio naik.
+        wHCR *= 1.2
+        wHCash *= 1.2
 
     // Guard ekuitas negatif: beri skor 0 langsung
     debtEqScore = na(debtEq) ? na :
