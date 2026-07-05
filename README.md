@@ -2,10 +2,11 @@
 
 > All-in-One Fundamental Dashboard for Indonesian Stock Market — built with Pine Script v6.
 
-[![Version](https://img.shields.io/badge/version-v0.1.0--alpha-blue)](https://github.com/akhmfz/papan-instrumen/releases)
+[![Version](https://img.shields.io/badge/version-v0.3.0--beta-blue)](https://github.com/akhmfz/papan-instrumen/releases)
 [![Pine Script](https://img.shields.io/badge/Pine%20Script-v6-green)](https://www.tradingview.com/pine-script-docs/en/v6/)
-[![Build](https://img.shields.io/badge/build-B006-orange)]()
+[![Build](https://img.shields.io/badge/build-B010-orange)]()
 [![Market](https://img.shields.io/badge/Market-IDX-red)]()
+[![Tests](https://img.shields.io/badge/tests-89%20passed-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 ---
@@ -18,68 +19,59 @@
 3. Sesuaikan sektor via Settings jika auto-detect salah
 ```
 
+📖 **[Panduan Pengguna (Bahasa Indonesia)](docs/README.id.md)**
+
 ---
 
 ## Screenshot
 
 ![Dashboard Preview](assets/screenshot.svg)
-*Tampilan dashboard di chart TradingView — detail tampilan bisa disesuaikan via Settings (tema, posisi, ukuran teks, toggle section).*
 
 ---
 
 ## Overview
 
-**Papan Instrumen** adalah dashboard analisis fundamental khusus **Pasar Modal Indonesia (IDX)** — 7 dimensi scoring yang dinormalisasi per sektor, bukan angka mentah tanpa konteks.
+**Papan Instrumen** adalah dashboard analisis fundamental khusus **Pasar Modal Indonesia (IDX)**.
 
-Dirancang untuk menjawab masalah utama investor Indonesia:
-- Data fundamental tersebar di banyak platform
-- Dashboard luar negeri menggunakan asumsi pasar AS
-- Rasio fundamental berbeda relevansinya per sektor IDX
+**BUKAN** rekomendasi beli/jual — ini alat bantu analisis fundamental.
 
----
+### Fitur Unggulan
 
-## 7 Scoring Dimensions
-
-| # | Dimensi | Metodologi |
-|---|---------|-----------|
-| 1 | **Value** (Valuasi) | Sector-aware weighting, 10 rasio |
-| 2 | **Quality** (Profitability) | Sector-aware weighting, 9 rasio |
-| 3 | **Growth** | Hybrid 2-layer (weights + quality modifier) |
-| 4 | **Health** | Sector-aware thresholds + sub-kategori Finansial |
-| 5 | **Income** (Dividend) | Standard scoring |
-| 6 | **Momentum** | RSI, 52W position, RS vs Index |
-| 7 | **Indonesia Factor** *(opt-in)* | Likuiditas IDX + Beta + Makro (IDR) |
-
-**Indonesia Factor** adalah dimensi ke-7 yang menangkap karakteristik unik IDX — tersedia via toggle (default OFF untuk backward compatibility).
+| Fitur | Detail |
+|-------|--------|
+| **7 Dimensi Scoring** | Value, Quality, Growth, Health, Income, Momentum, Indonesia Factor |
+| **15 Kelas Sektor** | Bank, Asuransi, Sekuritas, Konsumer, Industri, Kesehatan, Batubara, CPO, Properti, Infrastruktur, Teknologi, Transportasi, Siklikal, Finansial, Non-Finansial |
+| **Sector-Aware** | Bobot dan threshold berbeda per sektor bisnis |
+| **Risk Module** | Deteksi risiko likuiditas & gorengan (terpisah dari skor) |
+| **Compact Mode** | Tampilan ringkas 25-30 baris |
+| **Bilingual** | 🇮🇩 Indonesia / 🇬🇧 English |
+| **5 Preset Bobot** | Equal, Value-biased, Quality-biased, Growth-biased, Conservative |
+| **5 Color Themes** | Gelap, Terang, Bursa Hijau, Biru Nusantara, Emas Premium |
+| **89 Automated Tests** | Via PineTS — setiap dimensi scoring terverifikasi |
 
 ---
 
-## Sector Classification
+## Sector Classification (15 Kelas)
 
-| Sektor | Deteksi | Override Manual |
-|--------|---------|----------------|
-| Bank | Auto via ticker list + industry field | ✅ |
-| Asuransi | Auto via industry field | ✅ |
-| Sekuritas | Auto (best-effort) | ✅ |
-| Properti | Auto via sector/industry | ✅ |
-| Infrastruktur | Auto via sector/industry | ✅ |
-| Teknologi | Auto via sector/industry | ✅ |
-| Transportasi | Auto via sector/industry | ✅ |
-| Siklikal (Komoditas/Energi) | Auto via sector/industry | ✅ |
-| Non-Finansial Umum | Fallback default | ✅ |
+| # | Sektor | Auto-Detect | Override Manual |
+|---|--------|------------|-----------------|
+| 1 | Bank | ✅ Ticker list (28) + industry | ✅ |
+| 2 | Asuransi | ✅ Industry field | ✅ |
+| 3 | Sekuritas | ✅ Best-effort | ✅ |
+| 4 | Konsumer (Makanan/Minuman) | ✅ Ticker list (19) + industry | ✅ |
+| 5 | Industri (Manufaktur) | ✅ Ticker list (20) + industry | ✅ |
+| 6 | Kesehatan (Farmasi) | ✅ Ticker list (15) + industry | ✅ |
+| 7 | Batubara | ✅ Ticker list (16) + industry | ✅ |
+| 8 | CPO & Perkebunan | ✅ Ticker list (15) + industry | ✅ |
+| 9 | Properti | ✅ Ticker list (20) + industry | ✅ |
+| 10 | Infrastruktur | ✅ Ticker list (14) + industry | ✅ |
+| 11 | Teknologi | ✅ Ticker list (20) + industry | ✅ |
+| 12 | Transportasi | ✅ Ticker list (15) + industry | ✅ |
+| 13 | Siklikal (Komoditas/Energi) | ✅ Industry fallback | ✅ |
+| 14 | Finansial (Umum/Legacy) | ✅ sektorRaw fallback | ✅ |
+| 15 | Non-Finansial Umum | ✅ Default | ✅ |
 
-Masing-masing sektor mendapat perlakuan scoring berbeda: bobot rasio disesuaikan, threshold dilonggarkan/dipersempit, dan rasio tertentu di-skip jika tidak relevan.
-
----
-
-## Scoring Features
-
-- **Individual ratio scores** (0-100) dengan color-coded visual bar
-- **Composite scores** per dimensi + **overall composite**
-- **Data completeness indicator** (n/x) — transparansi data availability
-- **Growth Quality Modifier** — deteksi margin expansion/compression
-- **Earnings Quality check** — OCF positivity (Piotroski proxy)
-- **Risk Module** (separate) — Likuiditas & Gorengan detection
+**175+ ticker** di 9 watchlist untuk deteksi otomatis.
 
 ---
 
@@ -87,43 +79,67 @@ Masing-masing sektor mendapat perlakuan scoring berbeda: bobot rasio disesuaikan
 
 | Fitur | Opsi |
 |-------|------|
-| Color Themes | 5 tema (Gelap, Terang, Hijau, Biru, Emas) |
+| Color Themes | 5 tema |
 | Table Position | 4 pojok |
 | Font Size | 3 level |
 | Toggle Sections | Per dimensi (ON/OFF) |
-| Custom Weights | Bobot kustom per dimensi |
-| Indonesia Factor | Opt-in (default OFF) |
+| Custom Weights | Bobot per dimensi |
+| Preset Bobot | 5 preset (Equal, Value, Quality, Growth, Conservative) |
+| Compact Mode | Score-only (25-30 rows) |
+| Bahasa | 🇮🇩 Indonesia · 🇬🇧 English |
+| Indonesia Factor | 7th dimension (opt-in) |
 
 ---
 
-## Current Status
+## Repository Structure
 
 ```
-Version  : v0.1.0-alpha
-Build    : Build 006
-Status   : Active Development
-Phase    : Alpha Release — Code Complete
-Next     : Beta Release
+build.sh                     — Build: concat modules → PapanInstrumen.pine
+package.json                 — npm scripts (build, lint, test, transpile, ci)
+CONTRIBUTING.md              — Cara berkontribusi
+docs/
+├── README.id.md             — Panduan pengguna (ID)
+├── AI.md                    — AI collaboration context & workflow
+├── ARCHITECTURE.md          — Arsitektur teknis, metodologi, roadmap
+└── DEVELOPMENT.md           — Coding standard, testing, changelog, sprint
+src/
+├── modules/                 — Source modules (edit these)
+│   ├── 01-base.pine         — Header, inputs, tema, utilities
+│   ├── 02-data.pine         — Market engine, financial data, sektor
+│   ├── 03-ui.pine           — Table & cell rendering
+│   └── 04-scoring.pine      — Scoring engine + render
+└── PapanInstrumen.pine      — Built output (auto-generated)
+tests/
+├── pinets-verify.mjs        — 12 utility function tests
+├── transpile.sh             — Syntax validation via PineTS
+└── scoring/                 — 77 scoring dimension tests
+scripts/
+├── lint.sh                  — Custom Pine Script v6 linter
+└── gh-sync.sh               — Auto-create GitHub Issues
+.github/
+├── workflows/build.yml      — CI/CD: lint → build → transpile → test
+└── ISSUE_TEMPLATE/          — Bug & feature request templates
+
 ```
 
 ---
 
-## Roadmap
+## Development
 
-### ✅ Completed (Phase 1)
-- [x] Repository Initialization
-- [x] Project Architecture
-- [x] Fundamental Research
-- [x] **Valuation Engine** (Build 002 — sector-aware weighting)
-- [x] **Profitability Engine** (Build 003 — sector-aware weights)
-- [x] **Growth Engine** (Build 004 — hybrid 2-layer + quality modifier)
-- [x] **Financial Health Engine** (Build 005 — sector thresholds + sub-kategori)
-- [x] **Indonesia Layer** (Build 006 — 7th factor, opt-in)
-- [x] **Alpha Release** (v0.1.0-alpha)
+```bash
+git clone git@github.com:akhmfz/papan-instrumen.git
+cd papan-instrumen
+npm install          # PineTS + deps
+npm run build        # Generate built file
+npm run lint         # Lint check
+npm run test:all     # 89 tests
+npm run transpile    # Syntax validation
+npm run ci           # Full CI pipeline
+```
 
-### 🚧 Upcoming
-- [ ] Beta Release (feedback, bug fixes, optimization)
-- [ ] Stable Release (v1.0.0)
+Edit `src/modules/*.pine`, run `bash build.sh`, copy `src/PapanInstrumen.pine` → TradingView.
+
+🔬 **[CONTRIBUTING.md](CONTRIBUTING.md)** — Full dev guide.
 
 ---
 
@@ -133,66 +149,31 @@ Next     : Beta Release
 |-----------|-----------|
 | Pine Script v6 | Core indicator |
 | TradingView | Platform |
-| Git + GitHub | Version control |
-| Markdown | Documentation |
+| [PineTS](https://github.com/LuxAlgo/PineTS) | Local testing & validation |
+| Git + GitHub Actions | Version control + CI/CD |
+| `gh` CLI | Issue management |
 
 ---
 
-## Development Principles
+## Testing
 
-- **Methodology Before Code** — setiap skor punya dasar riset
-- **Performance Over Features** — ringan & cepat adalah prioritas
-- **IDX First** — parameter pasar AS tidak relevan untuk IDX
-- **No Silent Changes** — semua perubahan tercatat di CHANGELOG
-- **Living Documentation** — dokumen hidup, bukan artefak
+89 automated tests via [LuxAlgo/PineTS](https://github.com/LuxAlgo/PineTS):
 
----
+| Suite | Tests |
+|-------|-------|
+| Utility functions | 12 |
+| Value (Valuation) | 14 |
+| Quality (Profitability) | 15 |
+| Growth | 8 |
+| Health | 16 |
+| Income (Dividend) | 10 |
+| Momentum | 11 |
+| Overall Score | 3 |
+| **Total** | **89** |
 
-## Repository Structure
-
+```bash
+npm run test:all    # ✅ 89/89 passed
 ```
-build.sh              — Build script (concat modules → PapanInstrumen.pine)
-docs/
-├── AI.md              — AI collaboration context & workflow
-├── ARCHITECTURE.md    — Arsitektur, metodologi, roadmap
-└── DEVELOPMENT.md     — Coding standard, testing, changelog, backlog
-src/
-├── modules/           — Source modules (edit these)
-│   ├── 01-base.pine   — Header, inputs, theme, utilities
-│   ├── 02-data.pine   — Market engine, financial data, sector
-│   ├── 03-ui.pine     — Table & cell rendering functions
-│   └── 04-scoring.pine — Scoring engine, render, backlog
-└── PapanInstrumen.pine — Built output (auto-generated by build.sh)
-assets/
-└── screenshot.svg       — Dashboard preview
-```
-
-## Development Workflow
-
-```
-1. Edit modul di src/modules/*.pine
-2. Jalankan: bash build.sh
-3. Copy src/PapanInstrumen.pine → TradingView Pine Editor
-```
-
----
-
-## Manual Testing Coverage
-
-| Sektor | Emiten | Status |
-|--------|--------|--------|
-| Bank | BBCA | ✅ |
-| Coal/Energy | ADRO | ✅ |
-| CPO/Plantation | AALI | ✅ |
-| Infrastructure | TLKM | ✅ |
-| Consumer | UNVR | ✅ |
-| Property | PWON | ✅ |
-
----
-
-## Contributing
-
-Saat ini masih tahap alpha internal. Kontribusi publik akan dibuka setelah Beta Release.
 
 ---
 
