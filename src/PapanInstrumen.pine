@@ -1056,22 +1056,17 @@ if barstate.islast
     grahamHigh = isSiklikalLike ? 80.0 : 50.0
     grahamScore = f_scoreHigher(grahamUpside, grahamLow, grahamHigh)
 
-    // FIX/ENHANCE V2 (Build 002) — mengacu pada file1 "Sector-Aware
-    // Fundamental Engine" lapisan Bobot Kategori, diterapkan HANYA pada
-    // dimensi VALUASI sesuai fokus sprint saat ini (roadmap: Valuation →
-    // Profitability → Growth → Financial Health → Indonesia Layer).
-    //
-    // Bobot dasar (wPe..wGraham) di bawah ini SENGAJA direplikasi dari
-    // struktur pengelompokan Build 001 (f_avg3 di dalam f_avg5), supaya
-    // untuk emiten "Non-Finansial Umum" hasil valueScore mendekati
-    // Build 001 — identik hanya jika semua 10 komponen tersedia.
-    // Bila ada komponen na, f_wavgArr mendistribusi ulang secara
-    // proporsional ke semua komponen lain (berbeda dari nested f_avg3
-    // yang hanya redistribusi dalam grup). Bukan regresi — metodologi
-    // yang berbeda untuk kebutuhan sector-aware weighting.
-    // Cara replikasinya: tiap grup 3-anggota (PE/PEG dan PS/PB/EV)
-    // Graham, dan Earn/Op Yield) diberi bobot setara 3 atau 1.5 supaya
-    // kontribusi total grupnya tetap sebanding (3) dengan dua grup lain.
+    // ── VALUE WEIGHT TABLE (Sector-Aware) ──
+    // Default (Non-Finansial): wPe=1.0 wPeg=1.0 wPs=1.0 wPb=1.0 wEv=1.0 wEvSales=3.0 wEY=1.5 wOY=1.5 wGraham=3.0
+    // Bank/Asuransi/Sek:   wPb×1.5  wPe×1.3  wPeg×0.5  wGraham×0.3
+    // Properti:            wPb×1.5  wPeg×0.3
+    // Infrastruktur:       wPe×0.4  wEv×1.3
+    // Siklikal/Batub/CPO:  wPeg×0.3 wEY×1.3   wOY×1.3
+    // Teknologi:           wPe×0.3  wPb×0.3   wPeg×0.3  wGraham×0.2  wEvSales×1.5
+    // Transportasi:        wPe×0.4
+    // Konsumer:            wPe×1.2  wPb×1.2
+    // Industri:            wPe×0.5  wEv×1.2
+    // Kesehatan:           wPe×1.2  wPeg×1.3
     wPe        = 1.0
     wPeg       = 1.0
     wPs        = 1.0
@@ -1083,50 +1078,27 @@ if barstate.islast
     wGraham    = 3.0
 
     if isFinancialSector
-        // Bank/Asuransi/Sekuritas: PBV & PER adalah rasio penilaian
-        // utama (file1 §1-3). PEG & Graham kurang bermakna karena bisnis
-        // bank dinilai dari neraca aset-liabilitas, bukan pertumbuhan
-        // laba linear atau nilai intrinsik ala Graham (yang berasumsi
-        // model perusahaan manufaktur/dagang).
         wPb     *= 1.5
         wPe     *= 1.3
         wPeg    *= 0.5
         wGraham *= 0.3
     else if isPropertySektor
-        // Properti: PBV prioritas utama karena aset tanah/bangunan besar
-        // relatif terhadap laba berjalan. PEG dikurangi karena laba
-        // sangat bergantung siklus pengakuan pendapatan proyek, bukan
-        // pertumbuhan tahunan yang mulus (file1 §4).
         wPb   *= 1.5
         wPeg  *= 0.3
     else if isInfrastrukturSektor
-        // Infrastruktur: beban depresiasi aset besar membuat laba
-        // akuntansi (dan PER) kurang mencerminkan kondisi operasional;
-        // EV/EBITDA lebih relevan karena mengabaikan depresiasi &
-        // struktur permodalan (file1 §5).
         wPe  *= 0.4
         wEv  *= 1.3
     else if isSiklikalLike
-        // Batubara/CPO: EPS TTM bisa berada di puncak/lembah siklus
-        // harga komoditas sehingga PEG (berbasis pertumbuhan EPS) tidak
-        // andal. Earnings/Operating Yield & Graham (pita sudah
-        // dilebarkan di atas) lebih diutamakan (file1 §6-7).
         wPeg       *= 0.3
         wEarnYield *= 1.3
         wOpYield   *= 1.3
     else if isTechnologySektor
-        // Teknologi: banyak emiten belum menghasilkan laba stabil
-        // sehingga PER, PBV, PEG, dan Graham (semua berbasis laba/nilai
-        // buku) kurang bermakna; EV/Sales jadi proxy valuasi yang lebih
-        // relevan untuk model bisnis pertumbuhan (file1 §8).
         wPe      *= 0.3
         wPb      *= 0.3
         wPeg     *= 0.3
         wGraham  *= 0.2
         wEvSales *= 1.5
     else if isTransportasiSektor
-        // Transportasi: beban depresiasi armada tinggi membuat PER
-        // kurang mencerminkan kondisi operasional (file1 §12).
         wPe  *= 0.4
     else if isKonsumerSektor
         // Konsumer: earnings stabil → P/E lebih bermakna.
@@ -1168,12 +1140,17 @@ if barstate.islast
     fcfMarginScore = f_scoreHigher(fcfMargin, 0, 20)
     piotroskiScore = na(piotroski) ? na : f_clamp(piotroski / 9 * 100, 0, 100)
 
-    // ENHANCE V2 (Build 003) — mengikuti pola yang sama seperti Valuasi
-    // di Build 002: bobot per-rasio disesuaikan menurut model bisnis
-    // emiten. Bobot dasar mereplikasi struktur f_avg5/f_avg3 Build 002
-    // (4 grup setara: Profitability, Margin, Cash Margin, Piotroski).
-    // Untuk "Non-Finansial Umum" hasil qualityScore IDENTIK dengan
-    // Build 002.
+    // ── QUALITY WEIGHT TABLE (Sector-Aware) ──
+    // Default: wRoe=1.0 wRoa=1.0 wRoic=1.0 wGross=1.0 wOp=1.0 wNet=1.0 wEbitda=1.5 wFcfM=1.5 wPiotroski=3.0
+    // Finansial (Bank/Asur/Sek): wRoe×1.5 wRoa×1.3 wRoic×1.2 wPiot×1.2  wGross/Op/Net/Ebitda/FcfM→0 (di-skip)
+    // Properti:  wRoic×1.3  wGross×1.2  wNet×1.1
+    // Infra:     wEbitda×1.5 wFcfM×1.3  wRoic×1.2  wRoe×0.7
+    // Siklikal:  wEbitda×1.3 wFcfM×1.3  wPiot×1.2
+    // Teknologi: wGross×1.5 wOp×1.3  wNet×1.3
+    // Transport: wRoa×1.2    wEbitda×1.3 wFcfM×1.2
+    // Konsumer:  wGross×1.3  wNet×1.3   wFcfM×1.2
+    // Industri:  wEbitda×1.3 wFcfM×1.3  wRoic×1.2
+    // Kesehatan: wRoe×1.3    wNet×1.3   wRoic×1.2
     wRoe     = 1.0
     wRoa     = 1.0
     wRoic    = 1.0
@@ -1185,10 +1162,6 @@ if barstate.islast
     wPiotroski = 3.0
 
     if isFinancialSector
-        // Finansial (Bank/Asuransi/Sekuritas digabung — keputusan sadar):
-        // ROE/ROA adalah metrik profitabilitas inti untuk ketiganya,
-        // tidak ada perbedaan bobot yang signifikan antar sub-kategori.
-        // Margin tradisional tidak relevan (NIM-based) — di-skip.
         wRoe      *= 1.5
         wRoa      *= 1.3
         wRoic     *= 1.2
@@ -1199,34 +1172,23 @@ if barstate.islast
         wEbitda   := 0
         wFcfM     := 0
     else if isPropertySektor
-        // Properti: ROIC prioritas (capital intensive).
         wRoic  *= 1.3
         wGross *= 1.2
         wNet   *= 1.1
     else if isInfrastrukturSektor
-        // Infrastruktur: EBITDA/FCF Margin prioritas (depresiasi
-        // aset besar), ROIC meningkat, ROE diturunkan.
         wEbitda *= 1.5
         wFcfM   *= 1.3
         wRoic   *= 1.2
         wRoe    *= 0.7
     else if isSiklikalLike
-        // Siklikal: EBITDA/FCF Margin prioritas (siklus harga
-        // komoditas). Piotroski dinaikkan.
         wEbitda   *= 1.3
         wFcfM     *= 1.3
         wPiotroski *= 1.2
     else if isTechnologySektor
-        // Teknologi: Gross/Op/Net Margin prioritas (scalability).
-        // ROE/ROA TIDAK diturunkan — banyak emiten tech IDX masih
-        // rugi; menurunkan bobot ROE/ROA akan memberi bias (rasio
-        // negatif jadi na, dilewati, proporsi margin naik).
         wGross *= 1.5
         wOp    *= 1.3
         wNet   *= 1.3
     else if isTransportasiSektor
-        // Transportasi: ROA (aset berat), EBITDA/FCF Margin
-        // (depresiasi armada).
         wRoa    *= 1.2
         wEbitda *= 1.3
         wFcfM   *= 1.2
@@ -1263,10 +1225,17 @@ if barstate.islast
          (na(fcfMarginScore) or wFcfM <= 0 ? 0 : 1) +
          (na(piotroskiScore) or wPiotroski <= 0 ? 0 : 1)
 
-    // ── SKOR PERTUMBUHAN ──
-    // ENHANCE V2 (Build 004) — Hybrid 2-Layer approach:
-    // Layer 1: f_wavgArr sector-aware (3 komponen, Non-Finansial identik)
-    // Layer 2: Growth Quality Modifier (±20%) berdasarkan spread Rev vs EPS
+    // ── GROWTH WEIGHT TABLE (Sector-Aware) ──
+    // Default: wGRev=1.0 wGEps=1.0 wGSgr=1.0
+    // Finansial:  wGRev×0.7  wGEps×1.0  wGSgr×1.7
+    // Properti:   wGRev×1.3  wGEps×0.3  wGSgr×0.7
+    // Infra:      wGRev×1.1  wGEps×0.7  wGSgr×1.1
+    // Siklikal:   wGRev×1.3  wGEps×0.2  wGSgr×0.3
+    // Teknologi:  wGRev×1.7  wGEps×0.5  wGSgr×0 (di-skip)
+    // Transport:  wGRev×1.2  wGEps×0.8  wGSgr×0.8
+    // Konsumer:   wGEps×1.3
+    // Industri:   wGRev×1.2
+    // Kesehatan:  wGEps×1.3
     revScore = f_scoreHigher(revGrowth, 0, 25)
     epsScore = f_scoreHigher(epsGrowth, 0, 30)
     sgrScore = f_scoreHigher(sgr, 0, 20)
@@ -1277,39 +1246,26 @@ if barstate.islast
     wGSgr = 1.0
 
     if isFinancialSector
-        // Finansial: SGR (ROE×payout) = growth capacity bank.
-        // EPS bank dipengaruhi provisi kredit (manipulable).
-        // Rev growth (NII-driven) kurang diskriminatif.
         wGRev *= 0.7
         wGEps *= 1.0
         wGSgr *= 1.7
     else if isPropertySektor
-        // Properti: Rev growth = pipeline proyek (paling meaningful).
-        // EPS timing-distorted oleh pengakuan pendapatan proyek.
         wGRev *= 1.3
         wGEps *= 0.3
         wGSgr *= 0.7
     else if isInfrastrukturSektor
-        // Infrastruktur: Rev growth = kontrak baru. EPS depresiasi.
         wGRev *= 1.1
         wGEps *= 0.7
         wGSgr *= 1.1
     else if isSiklikalLike
-        // Siklikal: Rev growth = volume/price (paling bersih).
-        // EPS & SGR semu karena siklus komoditas.
         wGRev *= 1.3
         wGEps *= 0.2
         wGSgr *= 0.3
     else if isTechnologySektor
-        // Teknologi: Rev growth = market share/scalability (prioritas).
-        // SGR di-skip — ROE negatif/rendah membuat SGR tidak informatif.
-        // EPS tetap dipakai (bobot kecil) sebagai sinyal path to profit.
         wGRev *= 1.7
         wGEps *= 0.5
         wGSgr := 0
     else if isTransportasiSektor
-        // Transportasi: Rev growth = volume angkut.
-        // EPS terganggu biaya variabel (fuel, maintenance).
         wGRev *= 1.2
         wGEps *= 0.8
         wGSgr *= 0.8
@@ -1358,22 +1314,21 @@ if barstate.islast
          (na(epsScore) or wGEps <= 0 ? 0 : 1) +
          (na(sgrScore) or wGSgr <= 0 ? 0 : 1)
 
-    // ── SKOR KESEHATAN KEUANGAN ──
-    // ENHANCE V2 (Build 005) — sector-aware thresholds + weights +
-    // sub-kategori Bank/Asuransi/Sekuritas.
-    // Sumber: Altman Z (1968), Piotroski F-Score (2000), Moody's/S&P,
-    // AQR Quality Minus Junk (2019).
-    //
-    // Threshold parameters per sektor:
-    // [debtEqGood, debtEqBad] = f_scoreLower boundaries
-    // [debtEbitdaGood, debtEbitdaBad] = f_scoreLower boundaries
-    // [currLow, currIdeal, currHigh] = f_scoreMid boundaries
-    // [interestBad, interestGood] = f_scoreHigher boundaries
-    // [altmanBad, altmanGood] = f_scoreHigher boundaries (Z"-Score EM)
-    //
-    // Weight matrix mereplikasi f_avg5 untuk Non-Finansial (identik
-    // Build 003). 5 grup setara: Leverage, DebtService, Liquidity,
-    // AltmanZ, CashFlow.
+    // ── HEALTH WEIGHT TABLE (Sector-Aware, plus threshold overrides) ──
+    // Default: wHDe=1.0 wHDa=1.0 wHDeB=1.0 wHNetD=1.0 wHCash=1.0 wHIC=1.0 wHCR=1.5 wHQR=1.5 wHAltman=3.0 wHOCF=1.5 wHFCF=1.5
+    // Bank:      all leverage→0  wHIC:=1.5  wHOCF:=1.5  wHFCF:=1.5
+    // Asuransi:  all leverage→0  wHIC:=1.0  wHOCF:=1.5  wHFCF:=1.5
+    // Sekuritas: wHDe:=0.7 wHDa:=0.7 wHDeB→0 wHNetD→0 wHCash:=1.3 wHIC:=1.0 wHCR:=0.7 wHQR:=0.7 wHAltman→0 wHOCF:=1.5 wHFCF:=1.5
+    //            debtEqB:=5.0 debtEbitdaB:=8.0 currL:=0.5 currI:=1.5 currH:=4.0 intBad:=2.0 intGood:=15.0
+    // Infra:     wHDeB×1.3 wHOCF×1.3 wHIC×0.7  debtEqB:=5.0 debtEbitdaB:=8.0 currL:=0.5 currI:=1.5 currH:=3.0 intBad:=1.5 intGood:=10.0
+    // Properti:  wHDeB×1.2 wHNetD×1.2 wHCR×0.5 wHQR×0.5 wHOCF×1.3 wHFCF×1.3
+    //            debtEqB:=4.0 debtEbitdaB:=8.0 currL:=0.5 currI:=1.5 currH:=3.0 intBad:=2.0 intGood:=10.0
+    // Teknologi: wHDe×0.3 wHDa×0.3 wHDeB×0.3 wHNetD×0.3 wHCash×1.5 wHCR×1.3 wHFCF×1.3
+    //            debtEqB:=2.0 debtEbitdaB:=4.0 currL:=1.0 currI:=2.5 currH:=6.0 intBad:=5.0 intGood:=25.0
+    // Siklikal:  wHIC×1.3  intBad:=3.0 intGood:=20.0
+    // Konsumer:  wHCash×1.2
+    // Industri:  wHOCF×1.3  debtEqB:=4.0 intBad:=2.0 intGood:=15.0
+    // Kesehatan: wHCR×1.2  wHCash×1.2
     float debtEqG = 0.0
     float debtEqB = 2.5
     float debtEbitdaG = 0.0
@@ -1404,9 +1359,6 @@ if barstate.islast
     wHFCF = 1.5
 
     if isBankSektor
-        // Bank: rasio leverage/likuiditas klasik tidak relevan.
-        // Fokus pada Interest Cover, OCF, FCF + ROE stability.
-        // CAR/NPL/LDR tidak tersedia di TradingView — skor parsial.
         wHDe := 0
         wHDa := 0
         wHDeB := 0
@@ -1419,7 +1371,6 @@ if barstate.islast
         wHOCF := 1.5
         wHFCF := 1.5
     else if isAsuransiSektor
-        // Asuransi: sama seperti bank, Interest Cover kurang relevan.
         wHDe := 0
         wHDa := 0
         wHDeB := 0
@@ -1432,8 +1383,6 @@ if barstate.islast
         wHOCF := 1.5
         wHFCF := 1.5
     else if isSekuritasSektor
-        // Sekuritas: Cash/Debt prioritas (likuiditas trading).
-        // D/E relevan tapi longgar. CR/QR partially relevant.
         wHDe := 0.7
         wHDa := 0.7
         wHDeB := 0
@@ -1453,8 +1402,6 @@ if barstate.islast
         intBad := 2.0
         intGood := 15.0
     else if isInfrastrukturSektor
-        // Infrastruktur: D/EBITDA & OCF prioritas (arus kas stabil).
-        // D/E longgar (BUMN infra normal 3-4x).
         wHDeB *= 1.3
         wHOCF *= 1.3
         wHIC *= 0.7
@@ -1466,8 +1413,6 @@ if barstate.islast
         intBad := 1.5
         intGood := 10.0
     else if isPropertySektor
-        // Properti: Cash flow prioritas (project sales).
-        // D/E longgar (project financing 2-3x normal).
         wHDeB *= 1.2
         wHNetD *= 1.2
         wHCR *= 0.5
@@ -1482,8 +1427,6 @@ if barstate.islast
         intBad := 2.0
         intGood := 10.0
     else if isTechnologySektor
-        // Teknologi: Cash/Debt + Current Ratio prioritas (cash runway).
-        // D/E & leverage tidak terlalu relevan (banyak tech tanpa utang).
         wHDe *= 0.3
         wHDa *= 0.3
         wHDeB *= 0.3
@@ -1499,22 +1442,17 @@ if barstate.islast
         intBad := 5.0
         intGood := 25.0
     else if isSiklikalLike
-        // Siklikal: Interest Cover prioritas (trough safety).
         wHIC *= 1.3
         intBad := 3.0
         intGood := 20.0
     else if isKonsumerSektor
-        // Konsumer: neraca sehat default, Cash/Debt naik sedikit.
         wHCash *= 1.2
     else if isIndustriSektor
-        // Industri: capital intensive → toleransi D/E longgar.
-        // Arus kas operasi prioritas.
         wHOCF *= 1.3
         debtEqB := 4.0
         intBad := 2.0
         intGood := 15.0
     else if isKesehatanSektor
-        // Kesehatan: cash-rich, neraca sehat. Cash ratio naik.
         wHCR *= 1.2
         wHCash *= 1.2
 
