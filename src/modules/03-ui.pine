@@ -21,63 +21,63 @@ f_boldCell(int col, int row, string txt, color bg, color tc) =>
 f_headerCell(int col, string txt, color bg, color tc) =>
     table.cell(papan, col, 0, txt, bgcolor = bg, text_color = tc, text_size = ukuranTeks, text_formatting = text.format_bold)
 
-f_section(int base, int row, string title) =>
+f_section(int col, int row, string title) =>
     bg = f_sectionBg(title)
-    f_boldCell(base, row, title, bg, color.white)
-    f_boldCell(base + 1, row, "Nilai", bg, color.white)
-    f_boldCell(base + 2, row, "Skor", bg, color.white)
+    f_boldCell(col, row, title, bg, color.white)
+    f_boldCell(col + 1, row, "Nilai", bg, color.white)
+    f_boldCell(col + 2, row, "Skor", bg, color.white)
     row + 1
 
-f_row(int base, int row, string name, string value, float score) =>
+f_row(int col, int row, string name, string value, float score) =>
     bg = f_rowBg(row)
     scoreBg = tampilLatarSkor ? f_scoreBg(score) : bg
     scoreTxt = pi_scoreText(score)
     valTxtCol = na(score) ? mainTxt : isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
-    f_cell(base, row, name, bg, mutedTxt)
-    f_cell(base + 1, row, value, bg, valTxtCol)
-    f_cell(base + 2, row, scoreTxt, scoreBg, valTxtCol)
+    f_cell(col, row, name, bg, mutedTxt)
+    f_cell(col + 1, row, value, bg, valTxtCol)
+    f_cell(col + 2, row, scoreTxt, scoreBg, valTxtCol)
     row + 1
 
 // BARU V2 — varian f_row dengan skema warna risiko terbalik
-f_riskRow(int base, int row, string name, string value, float score) =>
+f_riskRow(int col, int row, string name, string value, float score) =>
     bg = f_rowBg(row)
     scoreBg = tampilLatarSkor ? f_riskBg(score) : bg
     scoreTxt = pi_scoreText(score)
     valTxtCol = na(score) ? mainTxt : f_riskColor(score)
-    f_cell(base, row, name, bg, mutedTxt)
-    f_cell(base + 1, row, value, bg, valTxtCol)
-    f_cell(base + 2, row, scoreTxt, scoreBg, valTxtCol)
+    f_cell(col, row, name, bg, mutedTxt)
+    f_cell(col + 1, row, value, bg, valTxtCol)
+    f_cell(col + 2, row, scoreTxt, scoreBg, valTxtCol)
     row + 1
 
-f_scoreCard(int base, int row, string name, float score) =>
+f_scoreCard(int col, int row, string name, float score) =>
     bg = tampilLatarSkor ? f_scoreBg(score) : f_rowBg(row)
     tc = isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
-    f_cell(base, row, name, bg, mainTxt)
-    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
-    f_cell(base + 2, row, pi_grade(score), bg, tc)
+    f_cell(col, row, name, bg, mainTxt)
+    f_cell(col + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(col + 2, row, pi_grade(score), bg, tc)
     row + 1
 
 // BARU V2 — kartu skor dengan indikator kelengkapan data (bug #6)
-f_scoreCardN(int base, int row, string name, float score, int nValid, int nTotal) =>
+f_scoreCardN(int col, int row, string name, float score, int nValid, int nTotal) =>
     bg = tampilLatarSkor ? f_scoreBg(score) : f_rowBg(row)
     tc = isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
     label = tampilKelengkapan ? name + " (" + str.tostring(nValid) + "/" + str.tostring(nTotal) + ")" : name
-    f_cell(base, row, label, bg, mainTxt)
-    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
-    f_cell(base + 2, row, pi_grade(score), bg, tc)
+    f_cell(col, row, label, bg, mainTxt)
+    f_cell(col + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(col + 2, row, pi_grade(score), bg, tc)
     row + 1
 
-f_warningCell(int base, int row, string msg) =>
-    f_cell(base, row, msg, secRiskBg, color.white)
-    f_cell(base + 1, row, "", tableBg, mainTxt)
-    f_cell(base + 2, row, "", tableBg, mainTxt)
+f_warningCell(int col, int row, string msg) =>
+    f_cell(col, row, msg, secRiskBg, color.white)
+    f_cell(col + 1, row, "", tableBg, mainTxt)
+    f_cell(col + 2, row, "", tableBg, mainTxt)
     row + 1
 
-f_riskCard(int base, int row, string name, float score) =>
+f_riskCard(int col, int row, string name, float score) =>
     bg = tampilLatarSkor ? f_riskBg(score) : f_rowBg(row)
     tc = f_riskColor(score)
-    f_cell(base, row, name, bg, mainTxt)
-    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
-    f_cell(base + 2, row, pi_riskGrade(score), bg, tc)
+    f_cell(col, row, name, bg, mainTxt)
+    f_cell(col + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(col + 2, row, pi_riskGrade(score), bg, tc)
     row + 1
 
