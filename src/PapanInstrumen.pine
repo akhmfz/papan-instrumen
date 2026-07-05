@@ -577,14 +577,13 @@ volAvg20       = na(dataPasar) ? na : dataPasar.volAvg20
 valTradedAvg20 = na(dataPasar) ? na : dataPasar.valTradedAvg20
 araHits        = na(dataPasar) ? na : dataPasar.araHits
 
-[bench6m, bench12m] = request.security(indeksAcuan, "D",
-     [(close / nz(close[126]) - 1) * 100, (close / nz(close[252]) - 1) * 100],
+[bench6m, bench12m, benchClose] = request.security(indeksAcuan, "D",
+     [(close / nz(close[126]) - 1) * 100, (close / nz(close[252]) - 1) * 100, close],
      ignore_invalid_symbol = true)
 
 // BARU V2 (Build 006) — Faktor Indonesia: data makro & beta
 // USD/IDR untuk macro stability + commodity proxy via sektor index
 usdIdrClose = request.security("FX_IDC:USDIDR", "D", close, ignore_invalid_symbol = true)
-benchClose  = request.security(indeksAcuan, "D", close, ignore_invalid_symbol = true)
 // Beta dihitung manual: correlation × (stdev stock / stdev benchmark)
 float stockDailyRet = close / nz(close[1]) - 1
 float benchDailyRet = benchClose / nz(benchClose[1]) - 1
@@ -601,8 +600,7 @@ idrTrend3M = na(usdIdrClose) ? na : (usdIdrClose / nz(usdIdrClose[63]) - 1) * 10
 // BARU V2 — deteksi sektor (best-effort, lihat catatan di grupSektor).
 // syminfo.sector/industry tidak selalu terisi untuk semua feed data IDX;
 // jika kosong, sistem jatuh ke override manual pengguna.
-sektorRaw   = request.security(sym, "D", syminfo.sector, ignore_invalid_symbol = true)
-industriRaw = request.security(sym, "D", syminfo.industry, ignore_invalid_symbol = true)
+[sektorRaw, industriRaw] = request.security(sym, "D", [syminfo.sector, syminfo.industry], ignore_invalid_symbol = true)
 
 var bankListIDX = array.from(
      "BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS",
