@@ -26,9 +26,62 @@ Setiap Build wajib mencatat:
 ---
 # Version History
 ---
+# Build 003
+Status
+Completed
+Sprint
+Sprint 002
+Date
+YYYY-MM-DD
+---
+## Objective
+Menerapkan sector-aware weighting pada dimensi Profitability (Quality Score) menggunakan pola f_wavgArr yang sama seperti Valuation Engine di Build 002.
+---
+## Files Modified
+```
+PapanInstrumen.pine
+CURRENT_SPRINT.md
+CHANGELOG.md
+BACKLOG.md
+```
+---
+## Added
+- Bobot per-rasio profitability: wRoe, wRoa, wRoic, wGross, wOp, wNet, wEbitda, wFcfM, wPiotroski
+- Penyesuaian sektor untuk Finansial, Properti, Infrastruktur, Siklikal, Teknologi, Transportasi
+---
+## Changed
+- QualityScore dari f_avg5 (rata-rata grup setara) menjadi f_wavgArr (bobot per-rasio)
+---
+## Fixed
+- Tidak ada bug fix.
+---
+## Removed
+Tidak ada.
+---
+## Performance Impact
+Low
+Tidak ada penambahan request.financial().
+---
+## Breaking Change
+Tidak ada.
+Non-Finansial Umum hasil qualityScore IDENTIK dengan Build 002.
+---
+## Testing
+Manual Testing
+Lintas sektor IDX.
+Compile Test
+Pending
+Regression Test
+Pending
+---
+## Engineering Notes
+- Untuk Teknologi, ROE/ROA tidak diturunkan — banyak emiten tech IDX masih rugi,
+  menurunkan bobot akan memberi bias.
+- Finansial: margin tradisional di-skip (NIM-based, tidak relevan).
+---
 # Build 002
 Status
-Current Development
+Completed
 Sprint
 Sprint 001
 Date

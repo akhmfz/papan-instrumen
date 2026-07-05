@@ -19,11 +19,11 @@ v0.1.0-alpha
 
 Build
 
-B002
+B003
 
 Sprint
 
-S001
+S002
 
 Status
 
@@ -31,7 +31,7 @@ Status
 
 Current Phase
 
-Valuation Engine
+Profitability Engine
 
 ---
 
@@ -39,24 +39,26 @@ Valuation Engine
 
 Task ID
 
-VAL-003
+PROF-001
 
 Objective
 
-Improve sector classification for IDX companies.
+Implement sector-aware weighting for Profitability/Quality dimension.
 
 Scope
 
-- Bank Classification
-- Insurance Classification
-- Securities Classification
-- Manual Sector Override
+- ROE/ROA/ROIC sector weights
+- Margin ratios sector weights
+- Piotroski F-Score sector weights
+- Financial sector margin skip
+- Infrastructure/Teknologi/Properti/Siklikal/Transportasi weights
 
 Do Not
 
 - Change Valuation Methodology
 - Change Dashboard Layout
 - Add New Financial Ratios
+- Modify Growth/Health/Income dimensions
 
 ---
 
@@ -80,15 +82,15 @@ Architecture
 
 Implementation
 
-🟡 In Progress
+✅ Completed
 
 Testing
 
-⬜ Pending
+🟡 In Progress
 
 Documentation
 
-⬜ Pending
+🟡 In Progress
 
 Review
 
@@ -104,55 +106,49 @@ Merge
 
 - Securities auto detection requires further validation.
 - TradingView industry classification may be inconsistent.
+- Consumer/Industri/Healthcare belum dipisah sebagai kelas sektor.
 
 ---
 
 # Next Milestone
 
-Financial Health Module (B003)
+Growth Engine (B004)
 ---
 # Sprint Information
 Sprint Name
-Repository Foundation & Fundamental Dashboard
+Profitability — Sector-Aware Weighting
 Sprint Number
-Sprint 001
+Sprint 002
 Status
 🟢 Active
 Priority
 High
 Current Build
-Build 002
+Build 003
 ---
 # Sprint Goal
-Menyelesaikan fondasi proyek sehingga repository, dokumentasi, workflow, dan kode Pine Script siap memasuki pengembangan fitur secara terstruktur.
-Sprint ini berfokus pada stabilitas fondasi, bukan penambahan fitur baru.
+Menerapkan sector-aware weighting pada dimensi Profitability (Quality Score) menggunakan pola yang sama seperti Valuation Engine di Build 002.
 ---
 # Sprint Scope
 ## Included
-- Repository Setup
-- Documentation
-- Pine Script Refactoring
-- Dashboard Refactoring
-- Fundamental Methodology
-- Sector Classification
-- Build Standard
+- Quality Score Sector Weights
+- Profitability Methodology
+- Documentation Update
 ---
 ## Excluded
-- Technical Indicator
-- AI Prediction
-- Auto Trading
-- Stock Screener
-- Portfolio Feature
+- Valuation Methodology Changes
+- Growth/Health/Income Dimensions
+- Dashboard Layout Changes
+- New Financial Ratios
 ---
 # Current Tasks
 | ID | Task | Status | Priority |
 |----|------|--------|----------|
-| S-001 | Setup GitHub Repository | ✅ Done | High |
-| S-002 | Create Documentation | 🔄 In Progress | High |
-| S-003 | Review Pine Source | 🔄 In Progress | High |
-| S-004 | Refactor Dashboard | ⏳ Pending | High |
-| S-005 | Build Valuation Engine | ⏳ Pending | High |
-| S-006 | Build Sector Engine | ⏳ Pending | Medium |
+| PROF-001 | Define sector weights for profitability ratios | ✅ Done | High |
+| PROF-002 | Implement f_wavgArr for Quality score | ✅ Done | High |
+| PROF-003 | Financial sector margin skip logic | ✅ Done | High |
+| PROF-004 | Update documentation | 🟡 In Progress | Medium |
+| PROF-005 | Code review & testing | ⬜ Pending | High |
 ---
 # Definition of Done
 Sprint dianggap selesai apabila:
@@ -187,26 +183,22 @@ Target akhir Sprint:
 # Progress
 Overall Progress
 ```
-Repository      ██████████ 100%
-Documentation   ████████░░ 80%
-Architecture    ██████████ 100%
-Methodology     ██████████ 100%
-Pine Refactor   ███░░░░░░░ 30%
-Testing         ░░░░░░░░░░ 0%
+Quality Scoring  ██████████ 100%
+Documentation    ████████░░ 80%
+Testing          ░░░░░░░░░░ 0%
 ```
 ---
 # Sprint Notes
 Catatan penting selama sprint:
-- Fokus utama adalah kualitas fondasi.
-- Hindari perubahan besar yang tidak mendukung target sprint.
-- Seluruh ide baru dicatat pada BACKLOG.md.
+- Profitability weights mengikuti pola f_wavgArr yang sama dengan Valuasi.
+- Non-Finansial Umum hasilnya identik dengan Build 002 (no regression).
+- Untuk Teknologi, ROE/ROA TIDAK diturunkan (banyak emiten tech IDX masih rugi).
 ---
 # Next Sprint Preview
 Sprint berikutnya direncanakan berfokus pada:
-- Valuation Engine
-- Dashboard Optimization
-- Performance Improvement
-Dokumen ini akan diperbarui setelah Sprint 001 selesai.
+- Growth Engine
+- Sector-aware weighting untuk Revenue/EPS Growth
+Dokumen ini akan diperbarui setelah Sprint 002 selesai.
 ---
 
 # AI Context

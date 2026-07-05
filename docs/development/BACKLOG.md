@@ -72,6 +72,8 @@ Tidak menjadi prioritas sprint saat ini.
 | BL-003 | Sector | Validasi klasifikasi seluruh sektor IDX | P2 | Open |
 | BL-004 | Performance | Optimasi request.financial() | P2 | Open |
 | BL-005 | Documentation | Review metodologi setiap build | P3 | Open |
+| BL-006 | Profitability | Profitability sector weights (Build 003) | P2 | ✅ Done |
+| BL-007 | Sector | Consumer/Industri/Healthcare sebagai kelas sektor terpisah | P2 | Open |
 ---
 # Future Backlog
 ## Dashboard

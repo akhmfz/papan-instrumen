@@ -2,52 +2,40 @@
 // ═══════════════════════════════════════════════════════════════════
 //
 //   SAHAM: PAPAN INSTRUMEN BY. AKHMFZ
-//   Versi 2.1.1 — Build 002 (Sprint: Valuation — Sector-Aware Weighting)
+//   Versi 2.2.0 — Build 003 (Sprint: Profitability — Sector-Aware Weighting)
 //
-//   CHANGELOG BUILD 002 — REVISI 2 (ringkas)
-//   ✓ Bank/Asuransi/Sekuritas kini kelas deteksi eksplisit terpisah
-//     (sebelumnya digabung generik jadi isFinancialSector). TIDAK
-//     mengubah angka Skor Valuasi — file1 tidak memberi bobot valuasi
-//     berbeda antar ketiganya, hanya menyiapkan deteksi yang benar
-//     untuk sprint Financial Health berikutnya.
-//   ✓ Properti/Infrastruktur/Teknologi/Transportasi kini bisa
-//     di-override manual via dropdown "Deteksi Sektor" (sebelumnya
-//     hanya auto-detect).
-//   ⚠ BREAKING (opsional/aditif): opsi dropdown lama "Finansial
-//     (Bank/Asuransi)" TETAP ADA persis sama (setting pengguna lama
-//     tidak berubah). Opsi baru murni tambahan, bukan pengganti.
+//   CHANGELOG BUILD 003 (ringkas)
+//   ✓ Skor KUALITAS (Profitability) kini menggunakan bobot per-rasio
+//     yang disesuaikan menurut model bisnis emiten — menyusul pola yang
+//     sama seperti Valuasi di Build 002. Untuk emiten "Non-Finansial
+//     Umum" hasilnya IDENTIK dengan Build 002 (bobot dasar direplikasi
+//     dari struktur f_avg5/f_avg3 lama).
+//   ✓ Finansial (Bank/Asuransi/Sekuritas): ROE/ROA prioritas utama,
+//     margin tradisional di-skip (NIM-based). Piotroski dinaikkan.
+//   ✓ Properti: ROIC prioritas (capital intensive), Gross/Net Margin
+//     dinaikkan.
+//   ✓ Infrastruktur: EBITDA/FCF Margin prioritas (depresiasi tinggi),
+//     ROE diturunkan, ROIC dinaikkan.
+//   ✓ Siklikal (Komoditas/Energi): EBITDA/FCF Margin prioritas (siklus
+//     harga), Piotroski dinaikkan.
+//   ✓ Teknologi: Gross/Op/Net Margin prioritas (scalability), ROE/ROA
+//     tetap (banyak emiten tech IDX masih rugi — jangan bias).
+//   ✓ Transportasi: ROA, EBITDA/FCF Margin dinaikkan (aset berat).
+//   ✗ BELUM diubah: bobot sektor untuk Growth, Health, Income; threshold
+//     interpretasi per sektor; kategori Consumer/Industri/Healthcare
+//     sebagai kelas terpisah (masih tergabung di Non-Finansial Umum).
 //
-//   CHANGELOG BUILD 002 — REVISI 1 (ringkas)
-//   ✓ Skor VALUASI kini menggunakan bobot per-rasio yang disesuaikan
-//     menurut model bisnis emiten (mengacu pada proposal "Sector-Aware
-//     Fundamental Engine" — lihat catatan di MODUL 04 & scoring engine).
-//     Untuk emiten "Non-Finansial Umum" hasilnya IDENTIK dengan Build
-//     001 (bobot dasar direplikasi dari struktur f_avg5/f_avg3 lama).
-//   ✓ Deteksi otomatis tambahan: Properti, Infrastruktur, Teknologi,
-//     Transportasi (best-effort via syminfo.sector/industry).
-//   ✗ BELUM diubah (lih. blok BACKLOG di akhir file, sesuai roadmap
-//     Valuation → Profitability → Growth → Financial Health →
-//     Indonesia Layer — tidak melompati sprint): bobot sektor untuk
-//     Quality, Growth, Health, Income; threshold interpretasi per
-//     sektor; kategori Batubara/CPO/Consumer/Industri/Healthcare
-//     sebagai kelas terpisah dari Siklikal/Umum.
+//   CHANGELOG BUILD 002 (ringkas — detail lengkap di changelog.md)
+//   ✓ Skor VALUASI menggunakan bobot per-rasio sector-aware (Build 002,
+//     Rev 1) + Deteksi Bank/Asuransi/Sekuritas eksplisit + Override
+//     manual sektor lebih banyak (Build 002, Rev 2).
 //
 //   CHANGELOG BUILD 001 (ringkas — detail lengkap di changelog.md)
-//   ✓ Guard ekuitas negatif pada Debt/Equity (V1 bug #1 — FIXED)
-//   ✓ Hapus normalisasi unit berbasis tebakan magnitude (V1 bug #2 — FIXED)
-//   ✓ Deteksi sektor finansial (bank/asuransi) — rasio non-bank di-skip,
-//     bukan dipaksakan (V1 bug #3 — MITIGATED, bukan diselesaikan penuh)
-//   ✓ f_avg6 eksplisit untuk Skor Keseluruhan + opsi bobot kustom
-//     (V1 bug #4 — FIXED)
-//   ✓ Indikator kelengkapan data (n/5, n/6) di setiap skor komposit
-//     (V1 bug #6 — FIXED, sebagai indikator, bukan solusi data hilang)
-//   ✓ Toleransi siklikal opsional untuk Graham Number (V1 bug #7 —
-//     MITIGATED, bukan normalisasi multi-tahun penuh — lihat batasan)
-//   ✓ MODUL BARU: Risiko Likuiditas & Gorengan — mendeteksi proxy
-//     ARA/ARB, kapitalisasi kecil, likuiditas tipis, dan harga recehan.
-//     Ini SKOR TERPISAH, tidak dicampur ke skor fundamental.
+//   ✓ Guard ekuitas negatif, hapus normalisasi magnitude, f_avg6,
+//     indikator kelengkapan data, toleransi siklikal Graham, modul
+//     Risiko Likuiditas & Gorengan.
 //
-//   TIDAK DIUBAH DARI V1 (lihat architecture.md § Batasan Diketahui)
+//   TIDAK DIUBAH DARI V2 (lihat architecture.md § Batasan Diketahui)
 //   ✗ Kalibrasi ambang momentum/RSI/volatilitas masih gaya pasar AS
 //   ✗ Belum ada normalisasi EPS multi-tahun sungguhan (keterbatasan
 //     teknis request.financial di Pine Script — lihat catatan di kode)
@@ -946,18 +934,72 @@ if barstate.islast
     fcfMarginScore = f_scoreHigher(fcfMargin, 0, 20)
     piotroskiScore = na(piotroski) ? na : f_clamp(piotroski / 9 * 100, 0, 100)
 
-    qualityScore = f_avg5(
-         f_avg3(roeScore, roaScore, roicScore),
-         f_avg3(grossScore, opScore, netScore),
-         f_avg3(ebitdaScore, fcfMarginScore, na),
-         piotroskiScore,
-         na)
-    qualityN = f_countValid5(
-         f_avg3(roeScore, roaScore, roicScore),
-         f_avg3(grossScore, opScore, netScore),
-         f_avg3(ebitdaScore, fcfMarginScore, na),
-         piotroskiScore,
-         na)
+    // ENHANCE V2 (Build 003) — mengikuti pola yang sama seperti Valuasi
+    // di Build 002: bobot per-rasio disesuaikan menurut model bisnis
+    // emiten. Bobot dasar mereplikasi struktur f_avg5/f_avg3 Build 002
+    // (4 grup setara: Profitability, Margin, Cash Margin, Piotroski).
+    // Untuk "Non-Finansial Umum" hasil qualityScore IDENTIK dengan
+    // Build 002.
+    wRoe     = 1.0
+    wRoa     = 1.0
+    wRoic    = 1.0
+    wGross   = 1.0
+    wOp      = 1.0
+    wNet     = 1.0
+    wEbitda  = 1.5
+    wFcfM    = 1.5
+    wPiotroski = 3.0
+
+    if isFinancialSector
+        // Finansial: ROE/ROA adalah metrik profitabilitas inti.
+        // Margin tradisional tidak relevan (NIM-based) — di-skip.
+        wRoe      *= 1.5
+        wRoa      *= 1.3
+        wRoic     *= 1.2
+        wPiotroski *= 1.2
+        wGross    := 0
+        wOp       := 0
+        wNet      := 0
+        wEbitda   := 0
+        wFcfM     := 0
+    else if isPropertySektor
+        // Properti: ROIC prioritas (capital intensive).
+        wRoic  *= 1.3
+        wGross *= 1.2
+        wNet   *= 1.1
+    else if isInfrastrukturSektor
+        // Infrastruktur: EBITDA/FCF Margin prioritas (depresiasi
+        // aset besar), ROIC meningkat, ROE diturunkan.
+        wEbitda *= 1.5
+        wFcfM   *= 1.3
+        wRoic   *= 1.2
+        wRoe    *= 0.7
+    else if isSiklikalSektor
+        // Siklikal: EBITDA/FCF Margin prioritas (siklus harga
+        // komoditas). Piotroski dinaikkan.
+        wEbitda   *= 1.3
+        wFcfM     *= 1.3
+        wPiotroski *= 1.2
+    else if isTechnologySektor
+        // Teknologi: Gross/Op/Net Margin prioritas (scalability).
+        // ROE/ROA TIDAK diturunkan — banyak emiten tech IDX masih
+        // rugi; menurunkan bobot ROE/ROA akan memberi bias (rasio
+        // negatif jadi na, dilewati, proporsi margin naik).
+        wGross *= 1.5
+        wOp    *= 1.3
+        wNet   *= 1.3
+    else if isTransportasiSektor
+        // Transportasi: ROA (aset berat), EBITDA/FCF Margin
+        // (depresiasi armada).
+        wRoa    *= 1.2
+        wEbitda *= 1.3
+        wFcfM   *= 1.2
+
+    qualityVals = array.from(roeScore, roaScore, roicScore, grossScore, opScore, netScore, ebitdaScore, fcfMarginScore, piotroskiScore)
+    qualityWts  = array.from(wRoe, wRoa, wRoic, wGross, wOp, wNet, wEbitda, wFcfM, wPiotroski)
+
+    qualityScore = f_wavgArr(qualityVals, qualityWts)
+    qualityN     = f_countValidArr(qualityVals)
 
     // ── SKOR PERTUMBUHAN ──
     revScore = f_scoreHigher(revGrowth, 0, 25)
@@ -1210,9 +1252,16 @@ if barstate.islast
 //     Consumer/Industri/Healthcare (belum ada bobot berbeda sama sekali
 //     di dimensi manapun, sesuai file1 yang menyebut ketiganya "Normal").
 //
-// [ ] Sprint Profitability/Quality: bobot ROE/ROA/ROIC/Margin per
+// [x] ~~Sprint Profitability/Quality: bobot ROE/ROA/ROIC/Margin per
 //     sektor (mis. Consumer/Industri/Healthcare menekankan Net Margin
-//     & EPS Growth lebih tinggi; Bank menekankan ROE).
+//     & EPS Growth lebih tinggi; Bank menekankan ROE).~~ — SELESAI
+//     (Build 003). Bank/Asuransi/Sekuritas: ROE/ROA prioritas, margin
+//     di-skip. Properti: ROIC prioritas. Infrastruktur: EBITDA/FCF
+//     Margin prioritas. Siklikal: EBITDA/FCF Margin, Piotroski. Teknologi:
+//     Gross/Op/Net Margin prioritas. Transportasi: ROA, EBITDA/FCF Margin.
+//     YANG BELUM: Consumer/Industri/Healthcare sebagai kelas terpisah
+//     (masih di Non-Finansial Umum — perlu deteksi sektor otomatis &
+//     manual tambahan di MODUL 04).
 // [ ] Sprint Growth: bobot Revenue/EPS Growth diturunkan untuk sektor
 //     siklikal (Batubara, CPO) & properti — sudah disebut di file1
 //     tapi belum ada di kode.
