@@ -206,6 +206,20 @@ likuiditasRendahJt = input.float(500, "Ambang Nilai Transaksi Harian 'Rendah' (J
 likuiditasTinggiJt = input.float(20000, "Ambang Nilai Transaksi Harian 'Tinggi' (Juta Rp, avg 20D)", group = grupRisiko)
 hargaRecehan      = input.float(50, "Ambang Harga 'Recehan' (Rp)", group = grupRisiko)
 
+// ── Kesehatan Bank (P3-1) ──
+grupBank = "Kesehatan Bank (Data Manual)"
+carInput = input.float(na, "CAR (%) — Rasio Kecukupan Modal", minval = 0, step = 0.1, group = grupBank,
+     tooltip = "Capital Adequacy Ratio. Isi manual — tidak tersedia dari TV. " +
+       "Data dari laporan keuangan bank. ≥ 12% = sehat.")
+
+nplInput = input.float(na, "NPL Gross (%) — Non-Performing Loan", minval = 0, step = 0.1, group = grupBank,
+     tooltip = "Non-Performing Loan ratio gross. Isi manual — tidak tersedia dari TV. " +
+       "Data dari laporan keuangan bank. ≤ 3% = sehat.")
+
+ldrInput = input.float(na, "LDR (%) — Loan-to-Deposit Ratio", minval = 0, step = 0.1, group = grupBank,
+     tooltip = "Loan to Deposit Ratio. Isi manual — tidak tersedia dari TV. " +
+       "Data dari laporan keuangan bank. 78-92% range ideal.")
+
 posisiTabel = switch posisiInput
     "Kiri Atas"    => position.top_left
     "Kanan Bawah"  => position.bottom_right
@@ -1149,15 +1163,16 @@ if barstate.islast
 
     // ── QUALITY WEIGHT TABLE (Sector-Aware) ──
     // Default: wRoe=1.0 wRoa=1.0 wRoic=1.0 wGross=1.0 wOp=1.0 wNet=1.0 wEbitda=1.5 wFcfM=1.5 wPiotroski=3.0
-    // Finansial (Bank/Asur/Sek): wRoe×1.5 wRoa×1.3 wRoic×1.2 wPiot×1.2  wGross/Op/Net/Ebitda/FcfM→0 (di-skip)
-    // Properti:  wRoic×1.3  wGross×1.2  wNet×1.1
-    // Infra:     wEbitda×1.5 wFcfM×1.3  wRoic×1.2  wRoe×0.7
-    // Siklikal:  wEbitda×1.3 wFcfM×1.3  wPiot×1.2
-    // Teknologi: wGross×1.5 wOp×1.3  wNet×1.3
-    // Transport: wRoa×1.2    wEbitda×1.3 wFcfM×1.2
-    // Konsumer:  wGross×1.3  wNet×1.3   wFcfM×1.2
-    // Industri:  wEbitda×1.3 wFcfM×1.3  wRoic×1.2
-    // Kesehatan: wRoe×1.3    wNet×1.3   wRoic×1.2
+    // Bank/Asuransi: wRoe×1.5 wRoa×1.3 wRoic×1.2 wPiot×1.2  wGross/Op/Net/Ebitda/FcfM→0 (di-skip, NIM-based)
+    // Sekuritas:     wRoe×1.3 wOp×1.2 wNet×1.2 wFcfM×1.3  wGross×0.7  (commission/opex-based)
+    // Properti:      wRoic×1.3  wGross×1.2  wNet×1.1
+    // Infra:         wEbitda×1.5 wFcfM×1.3  wRoic×1.2  wRoe×0.7
+    // Siklikal:      wEbitda×1.3 wFcfM×1.3  wPiot×1.2
+    // Teknologi:     wGross×1.5 wOp×1.3  wNet×1.3
+    // Transport:     wRoa×1.2    wEbitda×1.3 wFcfM×1.2
+    // Konsumer:      wGross×1.3  wNet×1.3   wFcfM×1.2
+    // Industri:      wEbitda×1.3 wFcfM×1.3  wRoic×1.2
+    // Kesehatan:     wRoe×1.3    wNet×1.3   wRoic×1.2
     wRoe     = 1.0
     wRoa     = 1.0
     wRoic    = 1.0
@@ -1168,7 +1183,8 @@ if barstate.islast
     wFcfM    = 1.5
     wPiotroski = 3.0
 
-    if isFinancialSector
+    if isBankSektor or isAsuransiSektor
+        // Bank/Asuransi: NIM-based → margin tradisional di-skip
         wRoe      *= 1.5
         wRoa      *= 1.3
         wRoic     *= 1.2
@@ -1178,6 +1194,14 @@ if barstate.islast
         wNet      := 0
         wEbitda   := 0
         wFcfM     := 0
+    else if isSekuritasSektor
+        // Sekuritas: commission/opex-based, bukan NIM-based.
+        // Op/Net Margin relevant (brokerage efficiency).
+        wRoe      *= 1.3
+        wOp       *= 1.2
+        wNet      *= 1.2
+        wFcfM     *= 1.3
+        wGross    *= 0.7
     else if isPropertySektor
         wRoic  *= 1.3
         wGross *= 1.2
@@ -1477,11 +1501,26 @@ if barstate.islast
     ocfScore           = f_scoreCashFlow(ocf, mcap)
     fcfScore           = f_scoreCashFlow(fcf, mcap)
 
+    // P3-1: Bank-specific CAR/NPL/LDR (manual inputs — data tidak tersedia di TV)
+    carScore  = f_scoreHigher(carInput, 8, 15)
+    nplScore  = f_scoreLower(nplInput, 1, 8)
+    ldrScore  = f_scoreMid(ldrInput, 60, 85, 110)
+
     healthVals = array.from(debtEqScore, debtAssetScore, debtEbitdaScore,
          netDebtEbitdaScore, cashDebtScore, interestScore,
          currScore, quickScore, altmanScore, ocfScore, fcfScore)
     healthWts  = array.from(wHDe, wHDa, wHDeB, wHNetD, wHCash, wHIC,
          wHCR, wHQR, wHAltman, wHOCF, wHFCF)
+
+    // P3-1: bank health score with CAR/NPL/LDR (if manual inputs provided)
+    if isBankSektor and (not na(carInput) or not na(nplInput) or not na(ldrInput))
+        healthVals := array.from(debtEqScore, debtAssetScore, debtEbitdaScore,
+             netDebtEbitdaScore, cashDebtScore, interestScore,
+             currScore, quickScore, altmanScore, ocfScore, fcfScore,
+             carScore, nplScore, ldrScore)
+        healthWts  := array.from(wHDe, wHDa, wHDeB, wHNetD, wHCash, wHIC,
+             wHCR, wHQR, wHAltman, wHOCF, wHFCF,
+             2.0, 2.0, 1.5)
 
     healthScore = f_wavgArr(healthVals, healthWts)
     healthN = (na(debtEqScore) or wHDe <= 0 ? 0 : 1) +
@@ -1709,6 +1748,12 @@ if barstate.islast
         r := f_section(3, r, isEN ? "FINANCIAL HEALTH" : "KESEHATAN KEUANGAN")
         if isBankSektor or isAsuransiSektor or isSekuritasSektor
             r := f_row(3, r, "(Sektor Finansial: rasio", "terbatas — lihat skor)", na)
+        if isBankSektor and not na(carInput)
+            r := f_row(3, r, "CAR (manual input)", pi_formatPercent(carInput), carScore)
+        if isBankSektor and not na(nplInput)
+            r := f_row(3, r, "NPL Gross (manual)", pi_formatPercent(nplInput), nplScore)
+        if isBankSektor and not na(ldrInput)
+            r := f_row(3, r, "LDR (manual input)", pi_formatPercent(ldrInput), ldrScore)
         if wHDe > 0
             r := f_row(3, r, "Debt / Equity", pi_formatNumber(debtEq), debtEqScore)
         if wHDa > 0

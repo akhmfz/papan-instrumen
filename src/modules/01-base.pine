@@ -205,6 +205,20 @@ likuiditasRendahJt = input.float(500, "Ambang Nilai Transaksi Harian 'Rendah' (J
 likuiditasTinggiJt = input.float(20000, "Ambang Nilai Transaksi Harian 'Tinggi' (Juta Rp, avg 20D)", group = grupRisiko)
 hargaRecehan      = input.float(50, "Ambang Harga 'Recehan' (Rp)", group = grupRisiko)
 
+// ── Kesehatan Bank (P3-1) ──
+grupBank = "Kesehatan Bank (Data Manual)"
+carInput = input.float(na, "CAR (%) — Rasio Kecukupan Modal", minval = 0, step = 0.1, group = grupBank,
+     tooltip = "Capital Adequacy Ratio. Isi manual — tidak tersedia dari TV. " +
+       "Data dari laporan keuangan bank. ≥ 12% = sehat.")
+
+nplInput = input.float(na, "NPL Gross (%) — Non-Performing Loan", minval = 0, step = 0.1, group = grupBank,
+     tooltip = "Non-Performing Loan ratio gross. Isi manual — tidak tersedia dari TV. " +
+       "Data dari laporan keuangan bank. ≤ 3% = sehat.")
+
+ldrInput = input.float(na, "LDR (%) — Loan-to-Deposit Ratio", minval = 0, step = 0.1, group = grupBank,
+     tooltip = "Loan to Deposit Ratio. Isi manual — tidak tersedia dari TV. " +
+       "Data dari laporan keuangan bank. 78-92% range ideal.")
+
 posisiTabel = switch posisiInput
     "Kiri Atas"    => position.top_left
     "Kanan Bawah"  => position.bottom_right
