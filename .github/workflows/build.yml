@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build PapanInstrumen.pine
+        run: bash build.sh
+      - name: Verify output
+        run: |
+          if [ ! -f src/PapanInstrumen.pine ]; then
+            echo "ERROR: src/PapanInstrumen.pine not found"; exit 1
+          fi
+          LINES=$(wc -l < src/PapanInstrumen.pine)
+          echo "✅ src/PapanInstrumen.pine — $LINES lines"
+      - name: Check module consistency
+        run: |
+          # rebuild and verify no changes (idempotent)
+          bash build.sh
+          git diff --exit-code src/PapanInstrumen.pine && echo "✅ Build idempotent" || {
+            echo "❌ Build not idempotent — commit the updated build"; exit 1
+          }
