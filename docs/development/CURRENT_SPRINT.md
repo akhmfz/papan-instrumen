@@ -85,7 +85,7 @@ Implementation
 
 Testing
 
-⬜ Pending
+🟡 In Progress
 
 Documentation
 
@@ -185,8 +185,8 @@ Overall Progress
 ```
 Hide Rows       ██████████ 100%
 Threshold Fix   ██████████ 100%
-Testing         ░░░░░░░░░░ 0%
-Documentation   ░░░░░░░░░░ 0%
+Testing         ██░░░░░░░░ 25%
+Documentation   ████████░░ 80%
 ```
 ---
 # Sprint Notes

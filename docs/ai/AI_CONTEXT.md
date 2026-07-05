@@ -88,6 +88,14 @@ AI harus:
 - Menjelaskan dampak setiap perubahan.
 - Menyarankan solusi yang realistis.
 - Mengutamakan stabilitas dibanding eksperimen.
+
+### No Silent Changes Rule
+Sebelum commit, AI WAJIB:
+1. Update CHANGELOG.md (entry build/rev)
+2. Update CURRENT_SPRINT.md (progress tasks)
+3. Update BACKLOG.md jika ada item yang selesai/ditambahkan
+4. Tulis dampak di commit message
+5. Update ARCHITECTURE.md jika ada perubahan request budget/struktur
 ---
 # Development Workflow
 Seluruh pekerjaan mengikuti alur berikut.
