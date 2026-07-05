@@ -2,24 +2,17 @@
 // ═══════════════════════════════════════════════════════════════════
 //
 //   SAHAM: PAPAN INSTRUMEN BY. AKHMFZ
-//   Versi 2.3.0 — Build 004 (Sprint: Growth — Hybrid Quality Approach)
+//   Versi 2.3.0 — Build 004 Rev 1 (Sprint: Growth — Revised from Research)
 //
-//   CHANGELOG BUILD 004 (ringkas)
-//   ✓ Skor PERTUMBUHAN kini menggunakan hybrid 2-layer: (1) f_wavgArr
-//     sector-aware untuk Rev/EPS/SGR, (2) Growth Quality Modifier yang
-//     menyesuaikan skor berdasarkan spread Rev vs EPS (margin expansion
-//     vs compression). Untuk emiten "Non-Finansial Umum" dengan spread
-//     ≥ 0, hasilnya IDENTIK dengan Build 003.
-//   ✓ Finansial: SGR prioritas (ROE×(1-payout) = growth capacity), Rev
-//     diturunkan (NII stabil), EPS dinaikkan.
-//   ✓ Properti: Rev prioritas (pipeline proyek), EPS diturunkan (timing
-//     pengakuan), SGR diturunkan.
-//   ✓ Infrastruktur: Rev & SGR dinaikkan, EPS diturunkan (depresiasi).
-//   ✓ Siklikal: Rev prioritas (volume/price), EPS & SGR diturunkan
-//     drastis (distorsi siklus).
-//   ✓ Teknologi: Rev prioritas (market share/scalability), EPS & SGR
-//     diturunkan (banyak rugi).
-//   ✓ Transportasi: Rev & SGR normal, EPS diturunkan (biaya variabel).
+//   CHANGELOG BUILD 004 REV 1 (koreksi dari riset metodologi)
+//   ✓ Finansial: SGR ×1.7 (↑ dari ×1.5), EPS ×1.0 (↓ dari ×1.3) —
+//     EPS bank dipengaruhi provisi kredit yang bisa dimanipulasi,
+//     SGR (ROE×(1-payout)) lebih mencerminkan growth capacity.
+//   ✓ Teknologi: SGR di-skip (w=0) — ROE negatif/rendah membuat SGR
+//     tidak informatif. Rev ×1.7 (↑ dari ×1.5).
+//   ✓ Growth Quality Modifier diperluas: spread Rev-EPS progresif
+//     (max -40%, sebelumnya -20%) + Earnings Quality check (OCF).
+//   ✓ Sumber: Piotroski F-Score, AQR Quality Minus Junk, Higgins SGR.
 //
 //   CHANGELOG BUILD 003 (ringkas — detail lengkap di changelog.md)
 //   ✓ Skor KUALITAS (Profitability) menggunakan bobot per-rasio
@@ -1014,10 +1007,11 @@ if barstate.islast
 
     if isFinancialSector
         // Finansial: SGR (ROE×payout) = growth capacity bank.
-        // Rev growth standar (NII-driven) kurang diskriminatif.
+        // EPS bank dipengaruhi provisi kredit (manipulable).
+        // Rev growth (NII-driven) kurang diskriminatif.
         wGRev *= 0.7
-        wGEps *= 1.3
-        wGSgr *= 1.5
+        wGEps *= 1.0
+        wGSgr *= 1.7
     else if isPropertySektor
         // Properti: Rev growth = pipeline proyek (paling meaningful).
         // EPS timing-distorted oleh pengakuan pendapatan proyek.
@@ -1026,7 +1020,7 @@ if barstate.islast
         wGSgr *= 0.7
     else if isInfrastrukturSektor
         // Infrastruktur: Rev growth = kontrak baru. EPS depresiasi.
-        wGRev *= 1.2
+        wGRev *= 1.1
         wGEps *= 0.7
         wGSgr *= 1.1
     else if isSiklikalSektor
@@ -1037,10 +1031,11 @@ if barstate.islast
         wGSgr *= 0.3
     else if isTechnologySektor
         // Teknologi: Rev growth = market share/scalability (prioritas).
-        // EPS & SGR sering negatif (banyak emiten masih rugi).
-        wGRev *= 1.5
+        // SGR di-skip — ROE negatif/rendah membuat SGR tidak informatif.
+        // EPS tetap dipakai (bobot kecil) sebagai sinyal path to profit.
+        wGRev *= 1.7
         wGEps *= 0.5
-        wGSgr *= 0.5
+        wGSgr := 0
     else if isTransportasiSektor
         // Transportasi: Rev growth = volume angkut.
         // EPS terganggu biaya variabel (fuel, maintenance).
@@ -1053,18 +1048,31 @@ if barstate.islast
 
     growthBaseScore = f_wavgArr(growthVals, growthWts)
 
-    // Layer 2: Growth Quality Modifier
-    // Menangkap kualitas pertumbuhan — apakah Rev Growth menghasilkan
-    // EPS Growth yang sepadan. Spread negatif = margin compression
-    // (revenue naik tapi EPS tidak) = potensi masalah.
-    // Hanya aktif untuk spread negatif; spread ≥ 0 = no change.
+    // Layer 2: Multi-Factor Growth Quality Modifier
+    // Berdasarkan riset: Piotroski F-Score (point 4: OCF > NI) +
+    // AQR Quality Factor (earnings quality check).
+    //
+    // Faktor 1 — Rev-EPS Spread (progresif, max -40%):
+    // Spread negatif = margin compression. Semakin parah, semakin besar
+    // pengurangan. Progressif (bukan linier) biar tidak terlalu drastis
+    // untuk spread kecil.
     growthSpread = f_safeDiv(epsGrowth - revGrowth, math.abs(revGrowth)) * 100
-    growthModifier = na(growthSpread) ? 1.0 :
+    spreadModifier = na(growthSpread) ? 1.0 :
          growthSpread >= 0 ? 1.0 :
-         math.max(0.8, 1.0 + growthSpread / 100)
+         math.max(0.6, 1.0 + growthSpread / 100 * 0.6)
+    // multiplier 0.6 bikin -50% spread → modifier 0.7 (bukan 0.5),
+    // -100% spread → modifier 0.6 (max).
+
+    // Faktor 2 — Earnings Quality (Piotroski F-Score point 4 proxy):
+    // OCF positif = laba berbasis kas. OCF negatif = risiko akrual.
+    earningsQuality = na(ocf) ? 1.0 : ocf > 0 ? 1.0 : 0.9
+
+    growthModifier = spreadModifier * earningsQuality
 
     growthScore = na(growthBaseScore) ? na : growthBaseScore * growthModifier
-    growthN = f_countValidArr(growthVals)
+    growthN = (na(revScore) or wGRev <= 0 ? 0 : 1) +
+         (na(epsScore) or wGEps <= 0 ? 0 : 1) +
+         (na(sgrScore) or wGSgr <= 0 ? 0 : 1)
 
     // ── SKOR KESEHATAN KEUANGAN ──
     // FIX V2 (bug #1): guard ekuitas negatif. Jika Debt/Equity negatif,
@@ -1321,11 +1329,11 @@ if barstate.islast
 //     manual tambahan di MODUL 04).
 // [x] ~~Sprint Growth: bobot Revenue/EPS Growth diturunkan untuk sektor
 //     siklikal (Batubara, CPO) & properti — sudah disebut di file1
-//     tapi belum ada di kode.~~ — SELESAI (Build 004) dengan hybrid
-//     2-layer: f_wavgArr sector-aware + Growth Quality Modifier.
-//     Siklikal: Rev prioritas, EPS/SGR ×0.2/×0.3. Properti: Rev prioritas,
-//     EPS ×0.3. Finansial: SGR ×1.5. Teknologi: Rev ×1.5. Infrastruktur:
-//     Rev ×1.2, SGR ×1.1. Transportasi: Rev ×1.2.
+//     tapi belum ada di kode.~~ — SELESAI (Build 004 + Rev 1) dengan
+//     hybrid 2-layer: f_wavgArr sector-aware + Growth Quality Modifier
+//     multi-faktor (spread + earnings quality). Koreksi Rev 1: Finansial
+//     SGR ×1.7, EPS ×1.0. Teknologi SGR skip. Rev progressive max -40%.
+//     Earnings quality check via OCF.
 // [ ] Sprint Financial Health: DER/Current Ratio/Quick Ratio/Altman Z
 //     saat ini di-skip untuk isFinancialSector (Bank+Asuransi+Sekuritas
 //     digabung, sama seperti Build 001). Perlu dipecah per sub-kategori

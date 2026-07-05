@@ -80,6 +80,50 @@ Pending
 - Teknologi: SGR×0.5 — banyak rugi, SGR negatif tidak informatif.
 - Growth Quality Modifier hanya aktif untuk spread negatif (margin compression).
 ---
+# Build 004 Rev 1
+Status
+Current Development
+Sprint
+Sprint 003
+Date
+YYYY-MM-DD
+---
+## Objective
+Koreksi Growth Engine berdasarkan riset metodologi (Piotroski, AQR, Higgins SGR).
+---
+## Files Modified
+```
+PapanInstrumen.pine
+CURRENT_SPRINT.md
+CHANGELOG.md
+BACKLOG.md
+```
+---
+## Changed
+- Finansial: SGR ×1.7 (↑ dari ×1.5), EPS ×1.0 (↓ dari ×1.3)
+- Teknologi: SGR di-skip (w=0), Rev ×1.7 (↑ dari ×1.5)
+- Infrastruktur: Rev ×1.1 (↓ dari ×1.2)
+- Growth Quality Modifier: spread progresif max -40% (↑ dari -20%) dengan multiplier 0.6
+- Earnings Quality check via OCF (Piotroski proxy) ditambahkan ke modifier
+- growthN sekarang hanya hitung komponen dengan bobot > 0
+---
+## Fixed
+- SGR untuk Teknologi di-skip karena ROE negatif membuat SGR tidak informatif
+- EPS Finansial diturunkan karena provisi kredit bisa dimanipulasi
+---
+## Breaking Change
+Minimal.
+Non-Finansial Umum tetap identik Build 003.
+---
+## Performance Impact
+Low
+Tidak ada penambahan request.financial().
+---
+## Engineering Notes
+- Rev 1 didasarkan pada riset: Piotroski F-Score (point 4: OCF quality),
+  AQR Quality Factor (earnings quality), dan Higgins SGR (1977).
+- Sumber rujukan: Piotroski (2000), Asness/Frazzini/Pedersen (2019).
+---
 # Build 003
 Status
 Completed

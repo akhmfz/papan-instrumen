@@ -188,10 +188,11 @@ Testing          ░░░░░░░░░░ 0%
 ---
 # Sprint Notes
 Catatan penting selama sprint:
-- Layer 1 (f_wavgArr): Non-Finansial Umum ± identik Build 003 (hanya berbeda jika Growth Quality aktif).
-- Layer 2 (Quality Modifier): hanya aktif untuk spread Rev-EPS negatif (margin compression), max -20%.
-- Siklikal: EPS ×0.2, SGR ×0.3 — sengaja drastis karena siklus komoditas membuat EPS/SGR semu.
-- Teknologi: SGR ×0.5 — banyak tech IDX rugi, SGR negatif tidak informatif.
+- Layer 1 (f_wavgArr): Non-Finansial Umum ± identik Build 003.
+- Layer 2: Spread modifier progresif (max -40%, multiplier 0.6) + Earnings Quality (OCF check, Piotroski proxy).
+- Finansial Rev 1: SGR ×1.7 (↑ dari ×1.5), EPS ×1.0 (↓ dari ×1.3) — EPS bank manipulable.
+- Teknologi Rev 1: SGR di-skip (w=0), Rev ×1.7 (↑ dari ×1.5).
+- Sumber riset: Piotroski F-Score, AQR Quality Minus Junk, Higgins SGR.
 ---
 # Next Sprint Preview
 Sprint berikutnya direncanakan berfokus pada:
