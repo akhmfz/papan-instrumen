@@ -193,6 +193,27 @@ Dashboard
 ```
 Tidak boleh ada dependency terbalik.
 ---
+# Request Budget
+
+Script ini memiliki anggaran 40 panggilan unik ke fungsi `request.*()`
+(limitasi platform TradingView, tidak dapat dinegosiasikan).
+Setiap build WAJIB mencatat sisa kuota di sini.
+
+| Tipe | Jumlah | Keterangan |
+|------|--------|-----------|
+| `request.security()` | 4 | market data, benchmark + FX, sektor/industri |
+| `request.financial()` via `f_fin` | 11 | margin, growth, cash flow fields |
+| `request.financial()` via `f_stat` | 20 | valuation, profitability, health fields |
+| `request.financial()` via `f_ttm` | 2 | EPS, revenue TTM |
+| **Total terpakai** | **37** | |
+| **Sisa kuota** | **3** | |
+
+**Aturan:**
+- Setiap field baru HARUS menggantikan field existing yang kurang bermakna.
+- Jika butuh > 40 field, pertimbangkan memecah indikator menjadi 2 script
+  terpisah (TradingView mendukung multi-indicator di chart yang sama).
+- Update tabel ini setiap ada perubahan request.*().
+
 # Design Rules
 1. Dashboard tidak boleh menghitung data.
 2. Dashboard hanya membaca hasil.
