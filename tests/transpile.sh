@@ -1,43 +1,47 @@
 #!/bin/bash
-# tests/transpile.sh — validate Pine Script syntax via pinets-cli transpilation
-# pinets-cli will fail at execution (TradingView-specific features),
-# but if it gets past transpile, syntax is valid.
-
-PINETS=$(which pinets-cli 2>/dev/null || true)
-if [ -z "$PINETS" ]; then
-    echo "⏭  pinets-cli not installed, skipping transpile check"
-    echo "   Install: npm i -g pinets-cli"
-    exit 0
-fi
+# tests/transpile.sh — Pine Script syntax validation via PineTS
+# Uses LuxAlgo/PineTS (npm: pinets) — open-source Pine Script runtime
+# https://github.com/LuxAlgo/PineTS
 
 PINE_FILE="${1:-src/PapanInstrumen.pine}"
 
-python3 -c "
-import json
-candles = []
-for i in range(400):
-    p = 100 + i * 0.5
-    candles.append({
-        'openTime': 1751673600 + i * 86400,
-        'open': p, 'high': p + 2, 'low': p - 1, 'close': p + 1,
-        'volume': 100000 + i * 1000,
-        'closeTime': 1751673600 + (i+1) * 86400
-    })
-json.dump(candles, open('/tmp/pinets_test.json','w'))
-" 2>/dev/null
+echo "🔬 PineTS Syntax Validation"
+echo ""
 
-OUTPUT=$("$PINETS" run --data /tmp/pinets_test.json --quiet "$PINE_FILE" 2>&1) || true
-
-if echo "$OUTPUT" | grep -q "Cannot read properties\|request\.\|invalid_symbol\|syminfo"; then
-    echo "✅ Syntax valid (runtime error from TV-specific features, expected)"
-    echo "   pinets-cli does not support request.financial/security"
+node -e "require('pinets')" 2>/dev/null || {
+    echo "⏭  pinets not installed locally"
+    echo "   Run: npm install pinets"
     exit 0
-fi
+}
 
-if echo "$OUTPUT" | grep -q "Error\|Unexpected\|Cannot parse\|SyntaxError\|undefined"; then
-    echo "❌ Syntax error:"
-    echo "$OUTPUT"
-    exit 1
-fi
+node --input-type=module -e "
+import { PineTS } from 'pinets';
+import { readFileSync } from 'fs';
 
-echo "✅ Transpile passed"
+const d = [{
+    open: 100, high: 102, low: 99, close: 101, volume: 1000,
+    openTime: Date.now() - 86400000, closeTime: Date.now()
+}];
+
+try {
+    await new PineTS(d).run(readFileSync('$PINE_FILE', 'utf8'));
+} catch (e) {
+    const m = e.message || '';
+    if (m.includes('tickerid') || m.includes('syminfo') || m.includes('request.financial')) {
+        console.log('✅ Syntax valid');
+        console.log('   Runtime error (expected): ' + m.substring(0, 80) + '...');
+        console.log('   PineTS does not support syminfo/request.financial');
+    } else if (m.includes('parse') || m.includes('Syntax') || m.includes('Unexpected')) {
+        console.log('❌ Parse error: ' + m);
+        process.exit(1);
+    } else {
+        console.log('❌ Unexpected: ' + m);
+        process.exit(1);
+    }
+}
+" 2>&1
+
+STATUS=$?
+echo ""
+[ $STATUS -eq 0 ] && echo "✅ PineTS validation passed" || echo "❌ PineTS validation failed"
+exit $STATUS

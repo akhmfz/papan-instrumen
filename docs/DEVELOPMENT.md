@@ -131,6 +131,14 @@ Compact mode, quality score, capital allocation, earnings quality, economic moat
 - **[DSP Techniques](https://www.pinecoders.com/techniques/dsp/)** — Digital Signal Processing di Pine
 - **[awesome-pinescript](https://github.com/pAulseperformance/awesome-pinescript)** — Direktori curated lengkap
 
+### PineTS Testing
+**[LuxAlgo/PineTS](https://github.com/LuxAlgo/PineTS)** — Runtime + transpiler Pine Script v5/v6 di Node.js.
+- `npm test` → `tests/pinets-verify.mjs` — verifikasi 12 fungsi utilitas PapanInstrumen
+- `npm run transpile` → `tests/transpile.sh` — syntax check full file via PineTS
+- Semua utility functions (f_clamp, f_safeDiv, f_scoreHigher/Lower/Mid/Positive, f_avg3/5) terverifikasi
+- Runtime script penuh gagal di `syminfo.tickerid` & `request.financial()` (TradingView-specific, expected)
+- Source: [pine-utils](https://github.com/pinecoders/pine-utils) — snippets reusable Pine Coders
+
 ### Benchmark
 Gunakan **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-Stopwatch-PineCoders-FAQ/)** untuk mengukur performa:
 1. Copy Script Stopwatch ke Pine Editor

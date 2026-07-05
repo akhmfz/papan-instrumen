@@ -1,0 +1,17 @@
+{
+  "name": "papan-instrumen",
+  "version": "0.2.0-alpha",
+  "description": "Saham: Papan Instrumen By. Akhmfz — TradingView Pine Script v6 fundamental dashboard for IDX",
+  "private": true,
+  "scripts": {
+    "build": "bash build.sh",
+    "lint": "bash scripts/lint.sh",
+    "test": "node tests/pinets-verify.mjs",
+    "transpile": "bash tests/transpile.sh",
+    "ci": "npm run lint && npm run build && npm run transpile"
+  },
+  "devDependencies": {
+    "pinets": "^0.9.27"
+  },
+  "license": "MIT"
+}
