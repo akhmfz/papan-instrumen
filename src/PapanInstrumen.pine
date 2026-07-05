@@ -1189,56 +1189,102 @@ if barstate.islast
         // Bank: rasio leverage/likuiditas klasik tidak relevan.
         // Fokus pada Interest Cover, OCF, FCF + ROE stability.
         // CAR/NPL/LDR tidak tersedia di TradingView — skor parsial.
-        wHDe := 0; wHDa := 0; wHDeB := 0
-        wHNetD := 0; wHCash := 0; wHIC := 1.5
-        wHCR := 0; wHQR := 0; wHAltman := 0
-        wHOCF := 1.5; wHFCF := 1.5
+        wHDe := 0
+        wHDa := 0
+        wHDeB := 0
+        wHNetD := 0
+        wHCash := 0
+        wHIC := 1.5
+        wHCR := 0
+        wHQR := 0
+        wHAltman := 0
+        wHOCF := 1.5
+        wHFCF := 1.5
     else if isAsuransiSektor
         // Asuransi: sama seperti bank, Interest Cover kurang relevan.
-        wHDe := 0; wHDa := 0; wHDeB := 0
-        wHNetD := 0; wHCash := 0; wHIC := 1.0
-        wHCR := 0; wHQR := 0; wHAltman := 0
-        wHOCF := 1.5; wHFCF := 1.5
+        wHDe := 0
+        wHDa := 0
+        wHDeB := 0
+        wHNetD := 0
+        wHCash := 0
+        wHIC := 1.0
+        wHCR := 0
+        wHQR := 0
+        wHAltman := 0
+        wHOCF := 1.5
+        wHFCF := 1.5
     else if isSekuritasSektor
         // Sekuritas: Cash/Debt prioritas (likuiditas trading).
         // D/E relevan tapi longgar. CR/QR partially relevant.
-        wHDe := 0.7; wHDa := 0.7; wHDeB := 0
-        wHNetD := 0; wHCash := 1.3; wHIC := 1.0
-        wHCR := 0.7; wHQR := 0.7; wHAltman := 0
-        wHOCF := 1.5; wHFCF := 1.5
-        debtEqB := 5.0; debtEbitdaB := 8.0
-        currL := 0.5; currI := 1.5; currH := 4.0
-        intBad := 2.0; intGood := 15.0
+        wHDe := 0.7
+        wHDa := 0.7
+        wHDeB := 0
+        wHNetD := 0
+        wHCash := 1.3
+        wHIC := 1.0
+        wHCR := 0.7
+        wHQR := 0.7
+        wHAltman := 0
+        wHOCF := 1.5
+        wHFCF := 1.5
+        debtEqB := 5.0
+        debtEbitdaB := 8.0
+        currL := 0.5
+        currI := 1.5
+        currH := 4.0
+        intBad := 2.0
+        intGood := 15.0
     else if isInfrastrukturSektor
         // Infrastruktur: D/EBITDA & OCF prioritas (arus kas stabil).
         // D/E longgar (BUMN infra normal 3-4x).
-        wHDeB *= 1.3; wHOCF *= 1.3
+        wHDeB *= 1.3
+        wHOCF *= 1.3
         wHIC *= 0.7
-        debtEqB := 5.0; debtEbitdaB := 8.0
-        currL := 0.5; currI := 1.5; currH := 3.0
-        intBad := 1.5; intGood := 10.0
+        debtEqB := 5.0
+        debtEbitdaB := 8.0
+        currL := 0.5
+        currI := 1.5
+        currH := 3.0
+        intBad := 1.5
+        intGood := 10.0
     else if isPropertySektor
         // Properti: Cash flow prioritas (project sales).
         // D/E longgar (project financing 2-3x normal).
-        wHDeB *= 1.2; wHNetD *= 1.2
-        wHCR *= 0.5; wHQR *= 0.5
-        wHOCF *= 1.3; wHFCF *= 1.3
-        debtEqB := 4.0; debtEbitdaB := 8.0
-        currL := 0.5; currI := 1.5; currH := 3.0
-        intBad := 2.0; intGood := 10.0
+        wHDeB *= 1.2
+        wHNetD *= 1.2
+        wHCR *= 0.5
+        wHQR *= 0.5
+        wHOCF *= 1.3
+        wHFCF *= 1.3
+        debtEqB := 4.0
+        debtEbitdaB := 8.0
+        currL := 0.5
+        currI := 1.5
+        currH := 3.0
+        intBad := 2.0
+        intGood := 10.0
     else if isTechnologySektor
         // Teknologi: Cash/Debt + Current Ratio prioritas (cash runway).
         // D/E & leverage tidak terlalu relevan (banyak tech tanpa utang).
-        wHDe *= 0.3; wHDa *= 0.3; wHDeB *= 0.3
-        wHNetD *= 0.3; wHCash *= 1.5
-        wHCR *= 1.3; wHFCF *= 1.3
-        debtEqB := 2.0; debtEbitdaB := 4.0
-        currL := 1.0; currI := 2.5; currH := 6.0
-        intBad := 5.0; intGood := 25.0
+        wHDe *= 0.3
+        wHDa *= 0.3
+        wHDeB *= 0.3
+        wHNetD *= 0.3
+        wHCash *= 1.5
+        wHCR *= 1.3
+        wHFCF *= 1.3
+        debtEqB := 2.0
+        debtEbitdaB := 4.0
+        currL := 1.0
+        currI := 2.5
+        currH := 6.0
+        intBad := 5.0
+        intGood := 25.0
     else if isSiklikalSektor
         // Siklikal: Interest Cover prioritas (trough safety).
         wHIC *= 1.3
-        intBad := 3.0; intGood := 20.0
+        intBad := 3.0
+        intGood := 20.0
 
     // Guard ekuitas negatif: beri skor 0 langsung
     debtEqScore = na(debtEq) ? na :
