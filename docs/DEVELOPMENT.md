@@ -108,6 +108,36 @@ Compact mode, quality score, capital allocation, earnings quality, economic moat
 
 ---
 
+## External Resources
+
+### Reference
+- **[Pine Script v6 Manual](https://www.tradingview.com/pine-script-docs/welcome/)** — Official docs
+- **[Pine Coders FAQ](https://www.pinecoders.com/faq_and_code/)** — Bookmark wajib
+- **[Pine Coders Utils](https://github.com/pinecoders/pine-utils)** — Reusable snippets & trik
+- **[Writing Good Pine](https://www.pinecoders.com/coding_conventions/)** — Coding conventions
+- **[What is Repainting?](https://www.tradingview.com/pine-script-docs/en/v5/concepts/Repainting.html)** — Wajib paham
+
+### Tools
+- **[pine-script-linter](https://github.com/pine-language-tools)** — Linter + VSCode syntax highlighting
+- **[Pine Script Pro (VSCode)](https://github.com/revanthpobala/pinescript-vscode-extension)** — Static analysis & type checking
+- **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-Stopwatch-PineCoders-FAQ/)** — Benchmark performa script
+- **[pinets-cli](https://www.npmjs.com/package/pinets-cli)** — Run Pine Script locally via CLI
+- **[pinescript-mcp](https://www.npmjs.com/package/pinescript-mcp)** — Linting & validation via MCP
+
+### Advanced
+- **[120 ticker Screener](https://www.tradingview.com/script/0h0gKNcy-120x-ticker-screener-composite-tickers/)** — Trik bypass 40 request limit
+- **[Fundamentals Graphing](https://www.tradingview.com/script/7qjXp2op-Fundamentals-Graphing-Kioseff-Trading/)** — Visualisasi fundamental alternatif
+- **[TradingView-Screener (Python)](https://github.com/shner-elmo/TradingView-Screener)** — Screener via API
+- **[DSP Techniques](https://www.pinecoders.com/techniques/dsp/)** — Digital Signal Processing di Pine
+- **[awesome-pinescript](https://github.com/pAulseperformance/awesome-pinescript)** — Direktori curated lengkap
+
+### Automation (future)
+- **[TradersPost](https://traderspost.io/)** — Webhook → stocks/options/futures
+- **[Pine Connector](https://www.pineconnector.com/)** — TradingView → MT4/MT5
+- **[AutoView](https://autoview.with.pink/)** — Chrome extension TV alerts → exchange
+
+---
+
 ## Changelog
 
 ### Build 008 (Current)

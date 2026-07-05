@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Lint Pine Script
+        run: bash scripts/lint.sh
       - name: Build PapanInstrumen.pine
         run: bash build.sh
       - name: Verify output
