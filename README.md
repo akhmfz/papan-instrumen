@@ -73,6 +73,29 @@
 
 **175+ ticker** di 9 watchlist untuk deteksi otomatis.
 
+### Sector-Aware Coverage
+
+| Dimensi | Finansial | Konsumer | Industri | Kesehatan | Properti | Infra | Tekno | Transport | Siklikal |
+|---------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Value | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Quality | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Growth | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Health | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Income | — | — | — | — | — | — | — | — | — |
+| Momentum | — | — | — | — | — | — | — | — | — |
+| Indonesia | ⬜ | — | — | — | — | ⬜ | ⬜ | — | ⬜ |
+
+✅ = bobot berbeda per sektor | — = formula universal | ⬜ = planned
+
+### Known Limitations
+
+- **EV/EBITDA**, **PEG**, dan beberapa field TradingView sering tidak tersedia untuk emiten IDX — baris akan disembunyikan otomatis
+- **Data fundamental tidak real-time** — update per kuartal, bukan per hari
+- **Deteksi sektor otomatis** tidak 100% akurat — override manual disarankan untuk hasil terbaik
+- **Skor Bank** bersifat parsial — CAR/NPL/LDR tidak tersedia di `request.financial()` TradingView
+- **Faktor Indonesia** (dimensi ke-7) bersifat eksperimental — default OFF
+- **Momentum/RSI thresholds** masih menggunakan kalibrasi generic, belum dikalibrasi khusus IDX
+
 ---
 
 ## Customization

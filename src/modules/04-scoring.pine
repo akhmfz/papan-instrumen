@@ -477,8 +477,8 @@ if barstate.islast
     quickScore         = f_scoreMid(quickRatio, quickL, quickI, quickH)
     interestScore      = f_scoreHigher(interestCover, intBad, intGood)
     altmanScore        = f_scoreHigher(altmanZ, altmanBad, altmanGood)
-    ocfScore           = f_scorePositive(ocf)
-    fcfScore           = f_scorePositive(fcf)
+    ocfScore           = f_scoreCashFlow(ocf, mcap)
+    fcfScore           = f_scoreCashFlow(fcf, mcap)
 
     healthVals = array.from(debtEqScore, debtAssetScore, debtEbitdaScore,
          netDebtEbitdaScore, cashDebtScore, interestScore,

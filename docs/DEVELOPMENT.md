@@ -186,7 +186,21 @@ Status per Fase 0 (P0-2 fixed). ✅ = bobot berbeda dari Non-Finansial Umum, ⬜
 Keterangan: Income, Momentum, Indonesia tidak sector-aware (menggunakan formula universal).
 - **[PyneCore](https://github.com/PyneSys/pynecore)** (160⭐) — Pine Script → Python via AST transform. Alternative to PineTS for scoring tests. v6.5.4 installed.
 - **[everget/unit-testing](https://github.com/everget/tradingview-pinescript-indicators)** (857⭐) — Pine Script unit testing framework: `_describe()`, `_it()`, `_isEqual()`. Bisa test scoring langsung di TradingView chart.
-- **[TradingGoose Studio](https://github.com/TradingGoose/TradingGoose-Studio)** (115⭐) — AI trading workflow platform. Next.js + shadcn/ui + Lightweight Charts. Inspirasi UI untuk web dashboard.
+- **[TradingGoose Studio](https://github.com/TradingGoose/TradingGoose-Studio)** (115⭐) — AI trading workflow platform.
+
+---
+
+## Release Checklist (P4-1)
+
+Wajib sebelum setiap `git tag` + `gh release create`:
+
+- [ ] `git diff <tag_sebelumnya>..HEAD -- src/` dijalankan, hasil di changelog
+- [ ] README: versi & build number & test count sinkron
+- [ ] `npm run test:all` — semua passing
+- [ ] Screenshot compile di TradingView Pine Editor
+- [ ] Klaim angka dihitung ulang manual dari kode
+- [ ] File yang disebut di changelog benar-benar ada di commit
+- [ ] Label `alpha`/`beta`/`stable` konsisten di semua tempat
 
 ---
 

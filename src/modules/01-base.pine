@@ -315,6 +315,13 @@ f_scoreMid(float v, float loVal, float ideal, float hiVal) =>
 f_scorePositive(float v) =>
     na(v) ? na : v > 0 ? 100 : 0
 
+// P3-2 — pengganti f_scorePositive untuk OCF/FCF:
+// Bukan biner 0/100, tapi graded berdasarkan rasio cash flow terhadap market cap
+// (-2% → 5%: dari negatif parah ke positif kuat)
+f_scoreCashFlow(float cf, float mcapVal) =>
+    na(cf) or na(mcapVal) or mcapVal == 0 ? na :
+    f_scoreHigher(cf / mcapVal * 100, -2, 5)
+
 f_avg5(float a, float b, float c, float d, float e) =>
     float sum = 0.0
     int n = 0
