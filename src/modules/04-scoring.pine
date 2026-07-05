@@ -614,7 +614,7 @@ if barstate.islast
     noData = na(epsTtm) and na(bvps) and na(roe) and na(debtEq) and na(divYield)
 
     // ── RENDER FUNCTIONS (closure over scoring variables) ──
-    f_renderLeft(int col, int row) =>
+    f_renderLeft(col, row) =>
         if noData
             row := f_warningCell(col, row, isEN ? "⚠ NO DATA" : "⚠ DATA TIDAK TERSEDIA")
             row := f_warningCell(col, row, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
@@ -672,7 +672,7 @@ if barstate.islast
                     row := f_row(col, row, "DPS", pi_formatNumber(dpsEst), dpsScore)
             row
 
-    f_renderRight(int col, int row) =>
+    f_renderRight(col, row) =>
         if noData
             row := f_warningCell(col, row, isEN ? "⚠ NO DATA" : "⚠ DATA TIDAK TERSEDIA")
             row := f_warningCell(col, row, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
