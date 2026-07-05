@@ -158,6 +158,11 @@ Gunakan **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-
 - **[Pine Connector](https://www.pineconnector.com/)** — TradingView → MT4/MT5
 - **[AutoView](https://autoview.with.pink/)** — Chrome extension TV alerts → exchange
 
+### New Discoveries (Build 011)
+- **[PyneCore](https://github.com/PyneSys/pynecore)** (160⭐) — Pine Script → Python via AST transform. Alternative to PineTS for scoring tests. v6.5.4 installed.
+- **[everget/unit-testing](https://github.com/everget/tradingview-pinescript-indicators)** (857⭐) — Pine Script unit testing framework: `_describe()`, `_it()`, `_isEqual()`. Bisa test scoring langsung di TradingView chart.
+- **[TradingGoose Studio](https://github.com/TradingGoose/TradingGoose-Studio)** (115⭐) — AI trading workflow platform. Next.js + shadcn/ui + Lightweight Charts. Inspirasi UI untuk web dashboard.
+
 ---
 
 ## Changelog
