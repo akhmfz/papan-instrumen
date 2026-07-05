@@ -9,7 +9,7 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Alpha
 
 | Item | Status |
 |------|--------|
-| **Milestone**: Phase A → v0.3.0-beta | 🟡 In Progress |
+| **Milestone**: Phase A → v0.3.0-beta | ✅ Completed |
 | **Sprint**: A4 — Benchmark performa 90-row table |
 | **Target**: TradingView (Script Stopwatch) |
 | **Ref**: GitHub Issue #4 |
@@ -162,21 +162,30 @@ Gunakan **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-
 
 ## Changelog
 
-### Build 008 (Current)
-**API Budget Optimization**
-- Merge `request.security(sym, ...)` market+sector calls → hemat 1 request
-- Hapus `enterpriseValue` (display only) → hemat 1 f_stat
-- Budget: 37→35 terpakai, sisa 5 slot
+### Build 010 (Current)
+**Screenshot + Polish + PineForge**
+- EV/EBITDA & PEG: hide rows when data unavailable (common IDX gap)
+- Screenshot: real BBCA + Papan Instrumen (477x468px)
+- External refs: PineForge engine compiled (78/78 tests), pinets-cli E2E OK
+- Docs: CONTRIBUTING.md, semua konsisten v0.3.0-beta
 
-### Build 008 (Current)
-**API Budget + Dev Tools + PineTS**
-- API budget: 37→35 (merge request.security market+sector, hapus enterpriseValue)
+### Build 009
+**15 Sektor + Compact Mode + i18n + Presets**
+- Sektor: 10→15 kelas (tambah Consumer/Industri/Healthcare/Batubara/CPO)
+- Compact mode: 25-30 row score-only view (toggle)
+- Bilingual: EN/ID untuk grades, headers, status, noData messages
+- Presets: 5 preset bobot (Equal, Value, Quality, Growth, Conservative)
+- Render: inline (Pine Script v6 no local functions — lesson learned)
+
+### Build 008
+**API Budget + Dev Tools + PineTS + Scoring Audit**
+- API budget: 37→35 (merge request.security, hapus enterpriseValue)
 - Sektor: 6 watchlist (115 ticker) + f_watchlist()
-- No-data guard: f_warningCell, pesan '⚠ DATA TIDAK TERSEDIA'
-- Dev: scripts/lint.sh, tests/transpile.sh, tests/pinets-verify.mjs (12 utils verified)
+- No-data guard: f_warningCell
+- Dev: scripts/lint.sh, tests/transpile.sh, tests/pinets-verify.mjs
 - CI: GitHub Actions (lint → build → verify → transpile → test)
-- VSCode: .vscode/extensions.json (Pine Script Pro rec)
-- Docs: 16 reference curated dari awesome-pinescript + PineTS + pine-utils
+- Scoring Audit: 89 tests via PineTS — 7 dimensi
+- Docs: 16 reference dari awesome-pinescript + PineTS + pine-utils
 
 ### Build 007 (Previous)
 **Alpha Fix & Polish**

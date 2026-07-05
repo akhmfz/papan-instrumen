@@ -1,6 +1,6 @@
 {
   "name": "papan-instrumen",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-beta",
   "description": "Saham: Papan Instrumen By. Akhmfz — TradingView Pine Script v6 fundamental dashboard for IDX",
   "private": true,
   "scripts": {
