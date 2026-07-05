@@ -285,9 +285,6 @@ f_avg3(float a, float b, float c) =>
 f_avg4(float a, float b, float c, float d) =>
     f_avg5(a, b, c, d, na)
 
-f_countValid4(float a, float b, float c, float d) =>
-    f_countValid5(a, b, c, d, na)
-
 // BARU V2 — pengganti eksplisit untuk kasus 6-faktor yang di V1
 // "ditumpangkan" ke dalam f_avg5 (lihat critique bug #4).
 f_avg6(float a, float b, float c, float d, float e, float f) =>
@@ -353,6 +350,9 @@ f_countValid5(float a, float b, float c, float d, float e) =>
     if not na(e)
         n += 1
     n
+
+f_countValid4(float a, float b, float c, float d) =>
+    f_countValid5(a, b, c, d, na)
 
 f_countValid6(float a, float b, float c, float d, float e, float f) =>
     f_countValid5(a, b, c, d, e) + (na(f) ? 0 : 1)
