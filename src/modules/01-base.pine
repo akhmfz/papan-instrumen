@@ -207,17 +207,17 @@ hargaRecehan      = input.float(50, "Ambang Harga 'Recehan' (Rp)", group = grupR
 
 // ── Kesehatan Bank (P3-1) ──
 grupBank = "Kesehatan Bank (Data Manual)"
-carInput = input.float(na, "CAR (%) — Rasio Kecukupan Modal", minval = 0, step = 0.1, group = grupBank,
+carInput = input.float(-1.0, "CAR (%) — Rasio Kecukupan Modal", minval = -1.0, step = 0.1, group = grupBank,
      tooltip = "Capital Adequacy Ratio. Isi manual — tidak tersedia dari TV. " +
-       "Data dari laporan keuangan bank. ≥ 12% = sehat.")
+       "Data dari laporan keuangan bank. ≥ 12% = sehat. Nilai -1 = abaikan.")
 
-nplInput = input.float(na, "NPL Gross (%) — Non-Performing Loan", minval = 0, step = 0.1, group = grupBank,
+nplInput = input.float(-1.0, "NPL Gross (%) — Non-Performing Loan", minval = -1.0, step = 0.1, group = grupBank,
      tooltip = "Non-Performing Loan ratio gross. Isi manual — tidak tersedia dari TV. " +
-       "Data dari laporan keuangan bank. ≤ 3% = sehat.")
+       "Data dari laporan keuangan bank. ≤ 3% = sehat. Nilai -1 = abaikan.")
 
-ldrInput = input.float(na, "LDR (%) — Loan-to-Deposit Ratio", minval = 0, step = 0.1, group = grupBank,
+ldrInput = input.float(-1.0, "LDR (%) — Loan-to-Deposit Ratio", minval = -1.0, step = 0.1, group = grupBank,
      tooltip = "Loan to Deposit Ratio. Isi manual — tidak tersedia dari TV. " +
-       "Data dari laporan keuangan bank. 78-92% range ideal.")
+       "Data dari laporan keuangan bank. 78-92% range ideal. Nilai -1 = abaikan.")
 
 posisiTabel = switch posisiInput
     "Kiri Atas"    => position.top_left

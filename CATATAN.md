@@ -48,6 +48,19 @@ if cond
     stmt2
 ```
 
+### 5. `input.float()` tidak bisa default `na`
+```pine
+// ❌ ERROR (CE10034) — defval tidak bisa na
+carInput = input.float(na, "CAR (%)", ...)
+
+// ✅ CORRECT — pakai sentinel value
+carInput = input.float(-1.0, "CAR (%)", minval = -1.0, ...)
+// Cek di kode: carInput >= 0 ? skor() : na
+```
+
+### 6. Error Cascade — fix error PERTAMA dulu
+Satu error `input.float(na)` bisa memunculkan error palsu di baris berikutnya (`end of line without line continuation` padahal barisnya valid). Selalu fix error pertama, lalu compile ulang.
+
 ---
 
 ## 🐛 Bug yang Pernah Ada (Fase 0)

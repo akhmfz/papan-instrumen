@@ -491,9 +491,9 @@ if barstate.islast
     fcfScore           = f_scoreCashFlow(fcf, mcap)
 
     // P3-1: Bank-specific CAR/NPL/LDR (manual inputs — data tidak tersedia di TV)
-    carScore  = f_scoreHigher(carInput, 8, 15)
-    nplScore  = f_scoreLower(nplInput, 1, 8)
-    ldrScore  = f_scoreMid(ldrInput, 60, 85, 110)
+    carScore  = carInput >= 0 ? f_scoreHigher(carInput, 8, 15) : na
+    nplScore  = nplInput >= 0 ? f_scoreLower(nplInput, 1, 8) : na
+    ldrScore  = ldrInput >= 0 ? f_scoreMid(ldrInput, 60, 85, 110) : na
 
     healthVals = array.from(debtEqScore, debtAssetScore, debtEbitdaScore,
          netDebtEbitdaScore, cashDebtScore, interestScore,
@@ -502,7 +502,7 @@ if barstate.islast
          wHCR, wHQR, wHAltman, wHOCF, wHFCF)
 
     // P3-1: bank health score with CAR/NPL/LDR (if manual inputs provided)
-    if isBankSektor and (not na(carInput) or not na(nplInput) or not na(ldrInput))
+    if isBankSektor and (carInput >= 0 or nplInput >= 0 or ldrInput >= 0)
         healthVals := array.from(debtEqScore, debtAssetScore, debtEbitdaScore,
              netDebtEbitdaScore, cashDebtScore, interestScore,
              currScore, quickScore, altmanScore, ocfScore, fcfScore,
@@ -737,11 +737,11 @@ if barstate.islast
         r := f_section(3, r, isEN ? "FINANCIAL HEALTH" : "KESEHATAN KEUANGAN")
         if isBankSektor or isAsuransiSektor or isSekuritasSektor
             r := f_row(3, r, "(Sektor Finansial: rasio", "terbatas — lihat skor)", na)
-        if isBankSektor and not na(carInput)
+        if isBankSektor and carInput >= 0
             r := f_row(3, r, "CAR (manual input)", pi_formatPercent(carInput), carScore)
-        if isBankSektor and not na(nplInput)
+        if isBankSektor and nplInput >= 0
             r := f_row(3, r, "NPL Gross (manual)", pi_formatPercent(nplInput), nplScore)
-        if isBankSektor and not na(ldrInput)
+        if isBankSektor and ldrInput >= 0
             r := f_row(3, r, "LDR (manual input)", pi_formatPercent(ldrInput), ldrScore)
         if wHDe > 0
             r := f_row(3, r, "Debt / Equity", pi_formatNumber(debtEq), debtEqScore)
