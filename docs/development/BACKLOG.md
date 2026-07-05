@@ -6,7 +6,7 @@ Version       : 1.0.0
 Status        : Active
 Owner         : Muhammad Akhmal
 Architect     : ChatGPT
-Last Updated  : 2026
+Last Updated  : 2026-07
 Review Cycle  : Every Sprint
 ---
 # Purpose
@@ -72,11 +72,16 @@ Tidak menjadi prioritas sprint saat ini.
 | BL-003 | Sector | Validasi klasifikasi seluruh sektor IDX | P2 | Open |
 | BL-004 | Performance | Optimasi request.financial() | P2 | Open |
 | BL-005 | Documentation | Review metodologi setiap build | P3 | Open |
-| BL-006 | Profitability | Profitability sector weights (Build 003) | P2 | ✅ Done |
 | BL-007 | Sector | Consumer/Industri/Healthcare sebagai kelas sektor terpisah | P2 | Open |
-| BL-008 | Growth | Growth Engine hybrid (Build 004 + Rev 1) | P2 | ✅ Done |
-| BL-009 | Financial Health | Health Engine — sector thresholds + sub-kategori (Build 005) | P2 | ✅ Done |
-| BL-010 | Indonesia Layer | "Indonesia Factor" pada Scoring Matrix (Build 006) | P2 | ✅ Done |
+| BL-011 | Sector | Batubara vs CPO sebagai kelas terpisah | P3 | Open |
+---
+# Completed Backlog
+| ID | Category | Task | Build |
+|----|----------|------|-------|
+| BL-006 | Profitability | Profitability sector weights | B003 |
+| BL-008 | Growth | Growth Engine hybrid | B004 |
+| BL-009 | Financial Health | Health Engine — sector thresholds + sub-kategori | B005 |
+| BL-010 | Indonesia Layer | "Indonesia Factor" pada Scoring Matrix | B006 |
 ---
 # Future Backlog
 ## Dashboard
