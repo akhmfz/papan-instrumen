@@ -10,30 +10,28 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Alpha
 | Item | Status |
 |------|--------|
 | **Milestone**: Phase A → v0.3.0-beta | 🟡 In Progress |
-| **Sprint**: A3 — Sector Classification (Consumer/Industri/Healthcare + Batubara/CPO) |
-| **Target**: `src/modules/02-data.pine`, `src/modules/04-scoring.pine` |
-| **Ref**: GitHub Issues #1 (A1), #2 (A2) |
+| **Sprint**: A4 — Benchmark performa 90-row table |
+| **Target**: TradingView (Script Stopwatch) |
+| **Ref**: GitHub Issue #4 |
 
 ### Completed Tasks
 | ID | Sprint | Task | Status |
 |----|--------|------|--------|
 | A1-ALL | A1 | GitHub Issues: 15 issues + 13 labels | ✅ Done |
 | A2-ALL | A2 | Scoring audit: 89 tests via PineTS | ✅ Done |
-| A2-START | A2 | `npm run test:all` — 7 dimensi verified | ✅ Done |
+| A3-ALL | A3 | 15 kelas sektor (175+ ticker, 5 baru) | ✅ Done |
 
 ### Active Tasks
 | ID | Task | Status |
 |----|------|--------|
-| A3-001 | Consumer/Industri/Healthcare detection + ticker lists | ⬜ Pending |
-| A3-002 | Batubara vs CPO detection + ticker lists | ⬜ Pending |
-| A3-003 | Override manual di dropdown sektor | ⬜ Pending |
-| A3-004 | Bobot scoring per dimensi untuk 3+2 kelas baru | ⬜ Pending |
-| A3-005 | Update scoring audit tests | ⬜ Pending |
+| A4-001 | Install Script Stopwatch di chart TV | ⏳ Manual (butuh TradingView) |
+| A4-002 | Ukur end-to-end load time (target < 2s) | ⏳ Manual |
+| A4-003 | Profiling: identifikasi bottleneck | ⏳ Manual |
+| A4-004 | Optimasi jika > 2s | ⏳ Manual |
 
 ### Known Issues
 - Securities auto detection perlu validasi lanjutan
 - TradingView industry classification tidak konsisten
-- Consumer/Industri/Healthcare belum dipisah sebagai kelas sektor
 - Banyak field TV tidak terisi utk emiten IDX tertentu
 
 ---
