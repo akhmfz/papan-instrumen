@@ -41,13 +41,13 @@ Repository Version
 v0.1.0-alpha
 
 Current Build
-Build 002
+Build 006
 
 Current Sprint
-Fundamental Methodology
+Sprint 005 — Indonesia Layer
 
 Project Status
-Active Development
+Alpha Release
 ---
 # Development Stages
 ## Phase 1
@@ -65,15 +65,15 @@ Deliverables
 ## Phase 2
 Fundamental Engine
 Status
-In Progress
+Completed
 Objective
 Membangun engine fundamental inti.
 Modules
-- Valuation
-- Profitability
-- Growth
-- Financial Health
-- Dividend
+- Valuation (Build 002 — sector-aware weighting)
+- Profitability (Build 003 — sector-aware weights)
+- Growth (Build 004 — hybrid 2-layer + quality modifier)
+- Financial Health (Build 005 — sector thresholds + sub-kategori)
+- Dividend (Build 001 — standard scoring)
 ---
 ## Phase 3
 Sector Intelligence
@@ -114,13 +114,15 @@ Focus
 ## Phase 6
 Alpha Release
 Status
-Planned
+Completed (v0.1.0-alpha)
 Objective
-Merilis versi Alpha kepada pengguna terbatas.
+Merilis versi Alpha — 7 dimensi scoring, sector-aware, Indonesia Factor.
 Target
-- Internal Testing
-- KSPM Members
-- Community Feedback
+- [x] 7 dimensi scoring (Value, Quality, Growth, Health, Income, Momentum, Indonesia)
+- [x] Sector-aware methodology (10 klasifikasi)
+- [x] Indonesia Factor (7th factor, opt-in)
+- [x] 5 color themes
+- [ ] User testing & feedback
 ---
 ## Phase 7
 Beta Release

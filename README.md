@@ -3,7 +3,7 @@
 > All-in-One Fundamental Dashboard for Indonesian Stock Market — built with Pine Script v6.
 
 [![Version](https://img.shields.io/badge/version-v0.1.0--alpha-blue)](https://github.com/akhmfz/papan-instrumen/releases)
-[![Pine Script](https://img.shields.io/badge/Pine%20Script-v6-green)](https://www.tradingview.com/pine-script-docs/en/v5/)
+[![Pine Script](https://img.shields.io/badge/Pine%20Script-v6-green)](https://www.tradingview.com/pine-script-docs/en/v6/)
 [![Build](https://img.shields.io/badge/build-B006-orange)]()
 [![Market](https://img.shields.io/badge/Market-IDX-red)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)

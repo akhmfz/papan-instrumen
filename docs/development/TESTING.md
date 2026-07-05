@@ -195,21 +195,20 @@ Mandatory
 
 Setiap Build minimal diuji pada emiten dari berbagai sektor IDX.
 
-| Sector | Example | Status |
-|---------|---------|--------|
-| Bank | BBCA | ☐ |
-| Bank Syariah | BRIS | ☐ |
-| Insurance | AMAG | ☐ |
-| Securities | TRIM | ☐ |
-| Consumer | ICBP | ☐ |
-| Mining | ADRO | ☐ |
-| Energy | MEDC | ☐ |
-| Property | CTRA | ☐ |
-| Infrastructure | JSMR | ☐ |
-| Technology | GOTO | ☐ |
-| Healthcare | KLBF | ☐ |
-| Transportation | ASSA | ☐ |
-| Industrial | ASII | ☐ |
+| Sector | Example | Build 001 | Build 002 | Build 003 | Build 004 | Build 005 | Build 006 |
+|---------|---------|-----------|-----------|-----------|-----------|-----------|-----------|
+| Bank | BBCA | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Insurance | AMAG | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Securities | TRIM | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Consumer | ICBP | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Mining | ADRO | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Energy | MEDC | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Property | CTRA | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Infrastructure | JSMR | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Technology | GOTO | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Healthcare | KLBF | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Transportation | ASSA | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Industrial | ASII | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 Catatan:
 Daftar ticker dapat diperbarui sesuai perkembangan klasifikasi sektor.

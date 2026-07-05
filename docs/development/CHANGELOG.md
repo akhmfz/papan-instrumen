@@ -28,11 +28,11 @@ Setiap Build wajib mencatat:
 ---
 # Build 004
 Status
-Current Development
+Completed
 Sprint
 Sprint 003
 Date
-YYYY-MM-DD
+2026-07
 ---
 ## Objective
 Menerapkan hybrid 2-layer Growth Engine: sector-aware weighting (Layer 1) + Growth Quality Modifier (Layer 2).
@@ -82,11 +82,11 @@ Pending
 ---
 # Build 004 Rev 1
 Status
-Current Development
+Completed
 Sprint
 Sprint 003
 Date
-YYYY-MM-DD
+2026-07
 ---
 ## Objective
 Koreksi Growth Engine berdasarkan riset metodologi (Piotroski, AQR, Higgins SGR).
@@ -126,11 +126,11 @@ Tidak ada penambahan request.financial().
 ---
 # Build 005
 Status
-Current Development
+Completed
 Sprint
 Sprint 004
 Date
-YYYY-MM-DD
+2026-07
 ---
 ## Objective
 Menerapkan sector-aware thresholds + weight matrix + sub-kategori Bank/Asuransi/Sekuritas pada Financial Health Engine.
@@ -179,11 +179,11 @@ Pending
 ---
 # Build 006
 Status
-Current Development
+Current
 Sprint
 Sprint 005
 Date
-YYYY-MM-DD
+2026-07
 ---
 ## Objective
 Menerapkan Indonesia Layer sebagai 7th factor (opt-in via toggle) — Likuiditas IDX + Stabilitas Pasar + Dukungan Makro.
