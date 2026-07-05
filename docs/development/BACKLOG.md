@@ -74,6 +74,8 @@ Tidak menjadi prioritas sprint saat ini.
 | BL-005 | Documentation | Review metodologi setiap build | P3 | Open |
 | BL-006 | Profitability | Profitability sector weights (Build 003) | P2 | ✅ Done |
 | BL-007 | Sector | Consumer/Industri/Healthcare sebagai kelas sektor terpisah | P2 | Open |
+| BL-008 | Growth | Growth Engine hybrid (Build 004) | P2 | ✅ Done |
+| BL-009 | Financial Health | Health Engine — pisah Bank/Asuransi/Sekuritas | P2 | Open |
 ---
 # Future Backlog
 ## Dashboard

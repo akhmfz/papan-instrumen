@@ -26,6 +26,60 @@ Setiap Build wajib mencatat:
 ---
 # Version History
 ---
+# Build 004
+Status
+Current Development
+Sprint
+Sprint 003
+Date
+YYYY-MM-DD
+---
+## Objective
+Menerapkan hybrid 2-layer Growth Engine: sector-aware weighting (Layer 1) + Growth Quality Modifier (Layer 2).
+---
+## Files Modified
+```
+PapanInstrumen.pine
+CURRENT_SPRINT.md
+CHANGELOG.md
+BACKLOG.md
+```
+---
+## Added
+- Growth Quality Modifier: menyesuaikan skor ±0-20% berdasarkan spread Rev vs EPS
+- Bobot per-sektor: wGRev, wGEps, wGSgr untuk Finansial, Properti, Infrastruktur, Siklikal, Teknologi, Transportasi
+---
+## Changed
+- Growth Score dari f_avg3 menjadi f_wavgArr (Layer 1) + Growth Quality Modifier (Layer 2)
+---
+## Fixed
+- Tidak ada bug fix.
+---
+## Removed
+Tidak ada.
+---
+## Performance Impact
+Low
+Tidak ada penambahan request.financial().
+---
+## Breaking Change
+Minimal.
+Non-Finansial Umum dengan spread Rev-EPS ≥ 0: growthScore identik Build 003.
+Untuk spread negatif, skor dikurangi maksimal 20%.
+---
+## Testing
+Manual Testing
+Lintas sektor IDX.
+Compile Test
+Pending
+Regression Test
+Pending
+---
+## Engineering Notes
+- Siklikal: EPS×0.2, SGR×0.3 — sengaja drastis, EPS/SGR semu karena siklus.
+- Teknologi: SGR×0.5 — banyak rugi, SGR negatif tidak informatif.
+- Growth Quality Modifier hanya aktif untuk spread negatif (margin compression).
+---
 # Build 003
 Status
 Completed

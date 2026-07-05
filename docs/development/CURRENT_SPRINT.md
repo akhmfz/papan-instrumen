@@ -19,11 +19,11 @@ v0.1.0-alpha
 
 Build
 
-B003
+B004
 
 Sprint
 
-S002
+S003
 
 Status
 
@@ -31,7 +31,7 @@ Status
 
 Current Phase
 
-Profitability Engine
+Growth Engine
 
 ---
 
@@ -39,26 +39,24 @@ Profitability Engine
 
 Task ID
 
-PROF-001
+GRO-001
 
 Objective
 
-Implement sector-aware weighting for Profitability/Quality dimension.
+Implement hybrid Growth Engine with sector-aware weighting (Layer 1) and Growth Quality Modifier (Layer 2).
 
 Scope
 
-- ROE/ROA/ROIC sector weights
-- Margin ratios sector weights
-- Piotroski F-Score sector weights
-- Financial sector margin skip
-- Infrastructure/Teknologi/Properti/Siklikal/Transportasi weights
+- Rev/EPS/SGR sector weights (Layer 1)
+- Growth Quality Modifier based on Rev vs EPS spread (Layer 2)
+- Financial/Siklikal/Properti/Teknologi/Infrastruktur/Transportasi weights
 
 Do Not
 
-- Change Valuation Methodology
+- Change Valuation/Profitability Methodology
 - Change Dashboard Layout
 - Add New Financial Ratios
-- Modify Growth/Health/Income dimensions
+- Modify Health/Income dimensions
 
 ---
 
@@ -112,43 +110,43 @@ Merge
 
 # Next Milestone
 
-Growth Engine (B004)
+Financial Health Engine (B005)
 ---
 # Sprint Information
 Sprint Name
-Profitability — Sector-Aware Weighting
+Growth — Hybrid Quality Approach
 Sprint Number
-Sprint 002
+Sprint 003
 Status
 🟢 Active
 Priority
 High
 Current Build
-Build 003
+Build 004
 ---
 # Sprint Goal
-Menerapkan sector-aware weighting pada dimensi Profitability (Quality Score) menggunakan pola yang sama seperti Valuation Engine di Build 002.
+Menerapkan hybrid 2-layer Growth Engine: sector-aware weighting (Layer 1) + Growth Quality Modifier berdasarkan spread Rev vs EPS (Layer 2).
 ---
 # Sprint Scope
 ## Included
-- Quality Score Sector Weights
-- Profitability Methodology
+- Growth Score Sector Weights
+- Growth Quality Modifier
 - Documentation Update
 ---
 ## Excluded
-- Valuation Methodology Changes
-- Growth/Health/Income Dimensions
+- Valuation/Profitability Methodology Changes
+- Health/Income Dimensions
 - Dashboard Layout Changes
 - New Financial Ratios
 ---
 # Current Tasks
 | ID | Task | Status | Priority |
 |----|------|--------|----------|
-| PROF-001 | Define sector weights for profitability ratios | ✅ Done | High |
-| PROF-002 | Implement f_wavgArr for Quality score | ✅ Done | High |
-| PROF-003 | Financial sector margin skip logic | ✅ Done | High |
-| PROF-004 | Update documentation | 🟡 In Progress | Medium |
-| PROF-005 | Code review & testing | ⬜ Pending | High |
+| GRO-001 | Define sector weights for Rev/EPS/SGR | ✅ Done | High |
+| GRO-002 | Implement f_wavgArr for Growth score | ✅ Done | High |
+| GRO-003 | Implement Growth Quality Modifier | ✅ Done | High |
+| GRO-004 | Update documentation | 🟡 In Progress | Medium |
+| GRO-005 | Code review & testing | ⬜ Pending | High |
 ---
 # Definition of Done
 Sprint dianggap selesai apabila:
@@ -183,22 +181,23 @@ Target akhir Sprint:
 # Progress
 Overall Progress
 ```
-Quality Scoring  ██████████ 100%
+Growth Scoring   ██████████ 100%
 Documentation    ████████░░ 80%
 Testing          ░░░░░░░░░░ 0%
 ```
 ---
 # Sprint Notes
 Catatan penting selama sprint:
-- Profitability weights mengikuti pola f_wavgArr yang sama dengan Valuasi.
-- Non-Finansial Umum hasilnya identik dengan Build 002 (no regression).
-- Untuk Teknologi, ROE/ROA TIDAK diturunkan (banyak emiten tech IDX masih rugi).
+- Layer 1 (f_wavgArr): Non-Finansial Umum ± identik Build 003 (hanya berbeda jika Growth Quality aktif).
+- Layer 2 (Quality Modifier): hanya aktif untuk spread Rev-EPS negatif (margin compression), max -20%.
+- Siklikal: EPS ×0.2, SGR ×0.3 — sengaja drastis karena siklus komoditas membuat EPS/SGR semu.
+- Teknologi: SGR ×0.5 — banyak tech IDX rugi, SGR negatif tidak informatif.
 ---
 # Next Sprint Preview
 Sprint berikutnya direncanakan berfokus pada:
-- Growth Engine
-- Sector-aware weighting untuk Revenue/EPS Growth
-Dokumen ini akan diperbarui setelah Sprint 002 selesai.
+- Financial Health Engine
+- Perlakuan terpisah untuk Bank/Asuransi/Sekuritas di Health
+Dokumen ini akan diperbarui setelah Sprint 003 selesai.
 ---
 
 # AI Context

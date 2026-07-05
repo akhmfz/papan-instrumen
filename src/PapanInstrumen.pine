@@ -2,33 +2,31 @@
 // ═══════════════════════════════════════════════════════════════════
 //
 //   SAHAM: PAPAN INSTRUMEN BY. AKHMFZ
-//   Versi 2.2.0 — Build 003 (Sprint: Profitability — Sector-Aware Weighting)
+//   Versi 2.3.0 — Build 004 (Sprint: Growth — Hybrid Quality Approach)
 //
-//   CHANGELOG BUILD 003 (ringkas)
-//   ✓ Skor KUALITAS (Profitability) kini menggunakan bobot per-rasio
-//     yang disesuaikan menurut model bisnis emiten — menyusul pola yang
-//     sama seperti Valuasi di Build 002. Untuk emiten "Non-Finansial
-//     Umum" hasilnya IDENTIK dengan Build 002 (bobot dasar direplikasi
-//     dari struktur f_avg5/f_avg3 lama).
-//   ✓ Finansial (Bank/Asuransi/Sekuritas): ROE/ROA prioritas utama,
-//     margin tradisional di-skip (NIM-based). Piotroski dinaikkan.
-//   ✓ Properti: ROIC prioritas (capital intensive), Gross/Net Margin
-//     dinaikkan.
-//   ✓ Infrastruktur: EBITDA/FCF Margin prioritas (depresiasi tinggi),
-//     ROE diturunkan, ROIC dinaikkan.
-//   ✓ Siklikal (Komoditas/Energi): EBITDA/FCF Margin prioritas (siklus
-//     harga), Piotroski dinaikkan.
-//   ✓ Teknologi: Gross/Op/Net Margin prioritas (scalability), ROE/ROA
-//     tetap (banyak emiten tech IDX masih rugi — jangan bias).
-//   ✓ Transportasi: ROA, EBITDA/FCF Margin dinaikkan (aset berat).
-//   ✗ BELUM diubah: bobot sektor untuk Growth, Health, Income; threshold
-//     interpretasi per sektor; kategori Consumer/Industri/Healthcare
-//     sebagai kelas terpisah (masih tergabung di Non-Finansial Umum).
+//   CHANGELOG BUILD 004 (ringkas)
+//   ✓ Skor PERTUMBUHAN kini menggunakan hybrid 2-layer: (1) f_wavgArr
+//     sector-aware untuk Rev/EPS/SGR, (2) Growth Quality Modifier yang
+//     menyesuaikan skor berdasarkan spread Rev vs EPS (margin expansion
+//     vs compression). Untuk emiten "Non-Finansial Umum" dengan spread
+//     ≥ 0, hasilnya IDENTIK dengan Build 003.
+//   ✓ Finansial: SGR prioritas (ROE×(1-payout) = growth capacity), Rev
+//     diturunkan (NII stabil), EPS dinaikkan.
+//   ✓ Properti: Rev prioritas (pipeline proyek), EPS diturunkan (timing
+//     pengakuan), SGR diturunkan.
+//   ✓ Infrastruktur: Rev & SGR dinaikkan, EPS diturunkan (depresiasi).
+//   ✓ Siklikal: Rev prioritas (volume/price), EPS & SGR diturunkan
+//     drastis (distorsi siklus).
+//   ✓ Teknologi: Rev prioritas (market share/scalability), EPS & SGR
+//     diturunkan (banyak rugi).
+//   ✓ Transportasi: Rev & SGR normal, EPS diturunkan (biaya variabel).
 //
-//   CHANGELOG BUILD 002 (ringkas — detail lengkap di changelog.md)
-//   ✓ Skor VALUASI menggunakan bobot per-rasio sector-aware (Build 002,
-//     Rev 1) + Deteksi Bank/Asuransi/Sekuritas eksplisit + Override
-//     manual sektor lebih banyak (Build 002, Rev 2).
+//   CHANGELOG BUILD 003 (ringkas — detail lengkap di changelog.md)
+//   ✓ Skor KUALITAS (Profitability) menggunakan bobot per-rasio
+//     sector-aware menyusul pola Build 002. Finansial: ROE/ROA prioritas,
+//     margin di-skip. Properti: ROIC. Infrastruktur: EBITDA/FCF margin.
+//     Siklikal: EBITDA/FCF. Teknologi: Gross/Op/Net. Transportasi: ROA,
+//     EBITDA/FCF. Non-Finansial Umum identik Build 002.
 //
 //   CHANGELOG BUILD 001 (ringkas — detail lengkap di changelog.md)
 //   ✓ Guard ekuitas negatif, hapus normalisasi magnitude, f_avg6,
@@ -1002,12 +1000,71 @@ if barstate.islast
     qualityN     = f_countValidArr(qualityVals)
 
     // ── SKOR PERTUMBUHAN ──
+    // ENHANCE V2 (Build 004) — Hybrid 2-Layer approach:
+    // Layer 1: f_wavgArr sector-aware (3 komponen, Non-Finansial identik)
+    // Layer 2: Growth Quality Modifier (±20%) berdasarkan spread Rev vs EPS
     revScore = f_scoreHigher(revGrowth, 0, 25)
     epsScore = f_scoreHigher(epsGrowth, 0, 30)
     sgrScore = f_scoreHigher(sgr, 0, 20)
 
-    growthScore = f_avg3(revScore, epsScore, sgrScore)
-    growthN = f_countValid5(revScore, epsScore, sgrScore, na, na)
+    // Bobot dasar (1:1:1 = f_avg3 utk Non-Finansial Umum)
+    wGRev = 1.0
+    wGEps = 1.0
+    wGSgr = 1.0
+
+    if isFinancialSector
+        // Finansial: SGR (ROE×payout) = growth capacity bank.
+        // Rev growth standar (NII-driven) kurang diskriminatif.
+        wGRev *= 0.7
+        wGEps *= 1.3
+        wGSgr *= 1.5
+    else if isPropertySektor
+        // Properti: Rev growth = pipeline proyek (paling meaningful).
+        // EPS timing-distorted oleh pengakuan pendapatan proyek.
+        wGRev *= 1.3
+        wGEps *= 0.3
+        wGSgr *= 0.7
+    else if isInfrastrukturSektor
+        // Infrastruktur: Rev growth = kontrak baru. EPS depresiasi.
+        wGRev *= 1.2
+        wGEps *= 0.7
+        wGSgr *= 1.1
+    else if isSiklikalSektor
+        // Siklikal: Rev growth = volume/price (paling bersih).
+        // EPS & SGR semu karena siklus komoditas.
+        wGRev *= 1.3
+        wGEps *= 0.2
+        wGSgr *= 0.3
+    else if isTechnologySektor
+        // Teknologi: Rev growth = market share/scalability (prioritas).
+        // EPS & SGR sering negatif (banyak emiten masih rugi).
+        wGRev *= 1.5
+        wGEps *= 0.5
+        wGSgr *= 0.5
+    else if isTransportasiSektor
+        // Transportasi: Rev growth = volume angkut.
+        // EPS terganggu biaya variabel (fuel, maintenance).
+        wGRev *= 1.2
+        wGEps *= 0.8
+        wGSgr *= 0.8
+
+    growthVals = array.from(revScore, epsScore, sgrScore)
+    growthWts  = array.from(wGRev, wGEps, wGSgr)
+
+    growthBaseScore = f_wavgArr(growthVals, growthWts)
+
+    // Layer 2: Growth Quality Modifier
+    // Menangkap kualitas pertumbuhan — apakah Rev Growth menghasilkan
+    // EPS Growth yang sepadan. Spread negatif = margin compression
+    // (revenue naik tapi EPS tidak) = potensi masalah.
+    // Hanya aktif untuk spread negatif; spread ≥ 0 = no change.
+    growthSpread = f_safeDiv(epsGrowth - revGrowth, math.abs(revGrowth)) * 100
+    growthModifier = na(growthSpread) ? 1.0 :
+         growthSpread >= 0 ? 1.0 :
+         math.max(0.8, 1.0 + growthSpread / 100)
+
+    growthScore = na(growthBaseScore) ? na : growthBaseScore * growthModifier
+    growthN = f_countValidArr(growthVals)
 
     // ── SKOR KESEHATAN KEUANGAN ──
     // FIX V2 (bug #1): guard ekuitas negatif. Jika Debt/Equity negatif,
@@ -1262,9 +1319,13 @@ if barstate.islast
 //     YANG BELUM: Consumer/Industri/Healthcare sebagai kelas terpisah
 //     (masih di Non-Finansial Umum — perlu deteksi sektor otomatis &
 //     manual tambahan di MODUL 04).
-// [ ] Sprint Growth: bobot Revenue/EPS Growth diturunkan untuk sektor
+// [x] ~~Sprint Growth: bobot Revenue/EPS Growth diturunkan untuk sektor
 //     siklikal (Batubara, CPO) & properti — sudah disebut di file1
-//     tapi belum ada di kode.
+//     tapi belum ada di kode.~~ — SELESAI (Build 004) dengan hybrid
+//     2-layer: f_wavgArr sector-aware + Growth Quality Modifier.
+//     Siklikal: Rev prioritas, EPS/SGR ×0.2/×0.3. Properti: Rev prioritas,
+//     EPS ×0.3. Finansial: SGR ×1.5. Teknologi: Rev ×1.5. Infrastruktur:
+//     Rev ×1.2, SGR ×1.1. Transportasi: Rev ×1.2.
 // [ ] Sprint Financial Health: DER/Current Ratio/Quick Ratio/Altman Z
 //     saat ini di-skip untuk isFinancialSector (Bank+Asuransi+Sekuritas
 //     digabung, sama seperti Build 001). Perlu dipecah per sub-kategori
