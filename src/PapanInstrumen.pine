@@ -39,7 +39,7 @@
 
 indicator(
      title             = "Saham: Papan Instrumen By. Akhmfz",
-     shorttitle        = "Papan Instrumen",
+     shorttitle        = "PnInstrum",
      overlay           = true,
      max_labels_count  = 50,
      calc_bars_count   = 300)
@@ -1173,11 +1173,17 @@ if barstate.islast
     float intBad = 2.0, intGood = 20.0
     float altmanBad = 1.1, altmanGood = 2.6
 
-    wHDe = 1.0; wHDa = 1.0; wHDeB = 1.0
-    wHNetD = 1.0; wHCash = 1.0; wHIC = 1.0
-    wHCR = 1.5; wHQR = 1.5
+    wHDe = 1.0
+    wHDa = 1.0
+    wHDeB = 1.0
+    wHNetD = 1.0
+    wHCash = 1.0
+    wHIC = 1.0
+    wHCR = 1.5
+    wHQR = 1.5
     wHAltman = 3.0
-    wHOCF = 1.5; wHFCF = 1.5
+    wHOCF = 1.5
+    wHFCF = 1.5
 
     if isBankSektor
         // Bank: rasio leverage/likuiditas klasik tidak relevan.
