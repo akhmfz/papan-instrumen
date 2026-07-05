@@ -51,11 +51,11 @@ Configuration → Data Layer → Sector Engine → Calculation Engine → Scorin
 
 | Tipe | Jumlah | Keterangan |
 |------|--------|-----------|
-| `request.security()` | 4 | market data, benchmark, FX, sektor |
+| `request.security()` | 3 | market+sector (merged), benchmark, FX |
 | `request.financial()` via f_fin | 11 | margin, growth, cash flow |
-| `request.financial()` via f_stat | 20 | valuation, profitability, health |
+| `request.financial()` via f_stat | 19 | valuation, profitability, health |
 | `request.financial()` via f_ttm | 2 | EPS, revenue TTM |
-| **Total** | **37** | **Sisa: 3** |
+| **Total** | **35** | **Sisa: 5** |
 
 Aturan: Setiap field baru HARUS menggantikan field existing. Update tabel setiap ada perubahan.
 

@@ -623,7 +623,6 @@ if barstate.islast
         l := f_section(0, l, "RINGKASAN")
         l := f_row(0, l, "Price", pi_formatNumber(dClose), na)
         l := f_row(0, l, "Market Cap", pi_formatMoney(mcap), na)
-        l := f_row(0, l, "Enterprise Value", pi_formatMoney(enterpriseValue), na)
         l := f_row(0, l, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
         l := f_row(0, l, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
 

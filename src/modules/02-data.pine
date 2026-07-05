@@ -17,9 +17,11 @@ type MarketData
     float ret6m
     float ret12m
     float volatility
-    float volAvg20        // BARU V2 — rata-rata volume 20D
-    float valTradedAvg20  // BARU V2 — rata-rata nilai transaksi 20D (Rp)
-    float araHits         // BARU V2 — jumlah hari kena/mendekati ARA-ARB
+    float volAvg20
+    float valTradedAvg20
+    float araHits
+    string sectorRaw
+    string industriRaw
 
 getMarketData() =>
     float hits = 0.0
@@ -42,7 +44,9 @@ getMarketData() =>
          ta.stdev(close / nz(close[1]) - 1, 63) * math.sqrt(252) * 100,
          ta.sma(volume, 20),
          ta.sma(close * volume, 20),
-         hits)
+         hits,
+         syminfo.sector,
+         syminfo.industry)
 
 dataPasar = request.security(sym, "D", getMarketData(), ignore_invalid_symbol = true)
 
@@ -61,31 +65,23 @@ volatility     = na(dataPasar) ? na : dataPasar.volatility
 volAvg20       = na(dataPasar) ? na : dataPasar.volAvg20
 valTradedAvg20 = na(dataPasar) ? na : dataPasar.valTradedAvg20
 araHits        = na(dataPasar) ? na : dataPasar.araHits
+sektorRaw      = na(dataPasar) ? na : dataPasar.sectorRaw
+industriRaw    = na(dataPasar) ? na : dataPasar.industriRaw
 
 [bench6m, bench12m, benchClose] = request.security(indeksAcuan, "D",
      [(close / nz(close[126]) - 1) * 100, (close / nz(close[252]) - 1) * 100, close],
      ignore_invalid_symbol = true)
 
-// BARU V2 (Build 006) — Faktor Indonesia: data makro & beta
-// USD/IDR untuk macro stability + commodity proxy via sektor index
 usdIdrClose = request.security("FX_IDC:USDIDR", "D", close, ignore_invalid_symbol = true)
-// Beta dihitung manual: correlation × (stdev stock / stdev benchmark)
 float stockDailyRet = close / nz(close[1]) - 1
 float benchDailyRet = benchClose / nz(benchClose[1]) - 1
 float betaVal = ta.correlation(stockDailyRet, benchDailyRet, 252) * ta.stdev(stockDailyRet, 252) / ta.stdev(benchDailyRet, 252)
 
-// IDR volatility: stdev harian dalam 63 hari, annualized
 idrDailyRet = na(usdIdrClose) ? na : usdIdrClose / nz(usdIdrClose[1]) - 1
 float idrStdev = ta.stdev(idrDailyRet, 63)
 idrVol = na(idrDailyRet) ? na : idrStdev * math.sqrt(252) * 100
 
-// IDR 3M trend: positif = IDR melemah (bullish untuk eksportir)
 idrTrend3M = na(usdIdrClose) ? na : (usdIdrClose / nz(usdIdrClose[63]) - 1) * 100
-
-// BARU V2 — deteksi sektor (best-effort, lihat catatan di grupSektor).
-// syminfo.sector/industry tidak selalu terisi untuk semua feed data IDX;
-// jika kosong, sistem jatuh ke override manual pengguna.
-[sektorRaw, industriRaw] = request.security(sym, "D", [syminfo.sector, syminfo.industry], ignore_invalid_symbol = true)
 
 var bankListIDX = array.from(
      "BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS",
@@ -209,8 +205,7 @@ f_stat(id) =>
 f_ttm(id) =>
     request.financial(sym, id, "TTM", ignore_invalid_symbol = true)
 
-sharesOut       = f_stat("TOTAL_SHARES_OUTSTANDING")
-enterpriseValue = f_stat("ENTERPRISE_VALUE")
+sharesOut = f_stat("TOTAL_SHARES_OUTSTANDING")
 
 epsTtm     = f_ttm("EARNINGS_PER_SHARE_DILUTED")
 bvps       = f_stat("BOOK_VALUE_PER_SHARE")

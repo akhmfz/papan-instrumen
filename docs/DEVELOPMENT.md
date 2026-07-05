@@ -21,7 +21,9 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Alpha
 | ALPHA-002 | Hide rows by weight in Health render | ✅ Done |
 | ALPHA-003 | Fix Interest Cover threshold (5-30) | ✅ Done |
 | ALPHA-004 | Testing (BBCA, ADRO, TLKM) | ⬜ Pending |
-| ALPHA-005 | Update documentation | 🟡 In Progress |
+| ALPHA-005 | Update documentation | ✅ Done |
+| OPT-001 | Merge request.security(sym) market+sector calls | ✅ Done |
+| OPT-002 | Hapus enterpriseValue (display only) | ✅ Done |
 
 ### Known Issues
 - Securities auto detection perlu validasi lanjutan
@@ -108,7 +110,13 @@ Compact mode, quality score, capital allocation, earnings quality, economic moat
 
 ## Changelog
 
-### Build 007 (Current)
+### Build 008 (Current)
+**API Budget Optimization**
+- Merge `request.security(sym, ...)` market+sector calls → hemat 1 request
+- Hapus `enterpriseValue` (display only) → hemat 1 f_stat
+- Budget: 37→35 terpakai, sisa 5 slot
+
+### Build 007 (Previous)
 **Alpha Fix & Polish**
 - Fix K1: multi-var float declarations split (7→16 baris)
 - Fix K2: Valuasi + debtEbitdaScore → f_scoreLowerSafe (negatif=0)
