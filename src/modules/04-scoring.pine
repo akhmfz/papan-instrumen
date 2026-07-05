@@ -569,11 +569,11 @@ if barstate.islast
     // dengan Faktor Indonesia sebagai dimensi ke-7 (bobot ~14-18%).
     // Default OFF untuk backward compatibility.
     overallScore = tampilIndonesia ?
-         (gunakanBobotKustom ?
+         (pakaiBobotTertimbang ?
               f_wavg7(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore, indonesiaScore,
                    bobotValue, bobotQuality, bobotGrowth, bobotHealth, bobotMomentum, bobotIncome, bobotIndonesia) :
               f_avg7(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore, indonesiaScore)) :
-         (gunakanBobotKustom ?
+         (pakaiBobotTertimbang ?
               f_wavg6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore,
                    bobotValue, bobotQuality, bobotGrowth, bobotHealth, bobotMomentum, bobotIncome) :
               f_avg6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore))

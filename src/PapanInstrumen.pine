@@ -135,6 +135,13 @@ toleransiSiklikal = input.bool(true, "Longgarkan Graham Number untuk Sektor Sikl
 grupBobot = "Bobot Skor Keseluruhan"
 
 gunakanBobotKustom = input.bool(false, "Gunakan Bobot Kustom (default: 6 faktor sama rata)", group = grupBobot)
+presetBobot = input.string("Custom", "Preset Bobot",
+     options = ["Custom", "Equal Weight", "Value-biased", "Quality-biased",
+       "Growth-biased", "Conservative"],
+     group = grupBobot,
+     tooltip = "Preset mengisi bobot otomatis. Pilih 'Custom' untuk mengatur manual.")
+
+// Apply preset (overrides slider defaults)
 bobotValue     = input.float(1.0, "Bobot Value", minval = 0, step = 0.1, group = grupBobot)
 bobotQuality   = input.float(1.0, "Bobot Quality", minval = 0, step = 0.1, group = grupBobot)
 bobotGrowth    = input.float(1.0, "Bobot Growth", minval = 0, step = 0.1, group = grupBobot)
@@ -145,6 +152,45 @@ bobotIndonesia = input.float(1.0, "Bobot Indonesia Factor", minval = 0, step = 0
      tooltip = "Bobot untuk Faktor Indonesia (aktif hanya jika toggle ON). " +
        "Default 1.0 = ~14%. Naikkan ke 1.5 = ~20%, turunkan ke 0.7 = ~10%.")
 
+
+// Preset bobot otomatis (override slider jika bukan Custom)
+if presetBobot != "Custom"
+    if presetBobot == "Equal Weight"
+        bobotValue    := 1.0
+        bobotQuality   := 1.0
+        bobotGrowth    := 1.0
+        bobotHealth    := 1.0
+        bobotMomentum  := 1.0
+        bobotIncome    := 1.0
+    else if presetBobot == "Value-biased"
+        bobotValue    := 2.0
+        bobotQuality   := 1.0
+        bobotGrowth    := 1.0
+        bobotHealth    := 1.0
+        bobotMomentum  := 0.5
+        bobotIncome    := 0.5
+    else if presetBobot == "Quality-biased"
+        bobotValue    := 1.0
+        bobotQuality   := 2.0
+        bobotGrowth    := 1.0
+        bobotHealth    := 1.0
+        bobotMomentum  := 0.5
+        bobotIncome    := 0.5
+    else if presetBobot == "Growth-biased"
+        bobotValue    := 1.0
+        bobotQuality   := 1.0
+        bobotGrowth    := 2.0
+        bobotHealth    := 1.0
+        bobotMomentum  := 0.5
+        bobotIncome    := 0.5
+    else if presetBobot == "Conservative"
+        bobotValue    := 1.2
+        bobotQuality   := 1.5
+        bobotGrowth    := 0.8
+        bobotHealth    := 1.5
+        bobotMomentum  := 0.5
+        bobotIncome    := 1.0
+pakaiBobotTertimbang = gunakanBobotKustom or presetBobot != "Custom"
 // ── Risiko Likuiditas & Gorengan (BARU di V2) ──
 grupRisiko = "Risiko Likuiditas & Gorengan"
 
@@ -1513,11 +1559,11 @@ if barstate.islast
     // dengan Faktor Indonesia sebagai dimensi ke-7 (bobot ~14-18%).
     // Default OFF untuk backward compatibility.
     overallScore = tampilIndonesia ?
-         (gunakanBobotKustom ?
+         (pakaiBobotTertimbang ?
               f_wavg7(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore, indonesiaScore,
                    bobotValue, bobotQuality, bobotGrowth, bobotHealth, bobotMomentum, bobotIncome, bobotIndonesia) :
               f_avg7(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore, indonesiaScore)) :
-         (gunakanBobotKustom ?
+         (pakaiBobotTertimbang ?
               f_wavg6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore,
                    bobotValue, bobotQuality, bobotGrowth, bobotHealth, bobotMomentum, bobotIncome) :
               f_avg6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore))
