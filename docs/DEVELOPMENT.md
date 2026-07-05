@@ -5,25 +5,23 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Alpha
 
 ---
 
-## Current Sprint (S006 — Build 007)
+## Current Sprint (S007 — Phase A: Beta Readiness)
 
 | Item | Status |
 |------|--------|
-| **Task**: Alpha Fix & Polish — hide irrelevant rows, fix thresholds, testing | 🟡 In Progress |
-| **Target files**: `src/PapanInstrumen.pine` |
-| **Sprint scope**: Hide rows by weight, Interest Cover fix, BBCA+ADRO+TLKM testing |
-| **Do NOT**: Change methodology, add request.financial(), add new features |
+| **Milestone**: Phase A → v0.3.0-beta | 🟡 In Progress |
+| **Sprint**: A1 — Backlog Migration | 🟡 In Progress |
+| **Target files**: `.github/`, `scripts/gh-sync.sh`, `docs/` |
+| **Scope**: Migrate backlog → GitHub Issues + labels + templates |
+| **Next**: A2 — Sector Classification (Consumer/Industri/Healthcare) |
 
 ### Active Tasks
 | ID | Task | Status |
 |----|------|--------|
-| ALPHA-001 | Hide rows by weight in Quality render | ✅ Done |
-| ALPHA-002 | Hide rows by weight in Health render | ✅ Done |
-| ALPHA-003 | Fix Interest Cover threshold (5-30) | ✅ Done |
-| ALPHA-004 | Testing (BBCA, ADRO, TLKM) | ⬜ Pending |
-| ALPHA-005 | Update documentation | ✅ Done |
-| OPT-001 | Merge request.security(sym) market+sector calls | ✅ Done |
-| OPT-002 | Hapus enterpriseValue (display only) | ✅ Done |
+| A1-001 | GitHub Issues: backlog → issues + labels | ✅ Done |
+| A1-002 | Issue templates (feature, bug) | ✅ Done |
+| A1-003 | gh-sync.sh auto-create script | ✅ Done |
+| A1-004 | User run `bash scripts/gh-sync.sh` | ⏳ After `gh auth login` |
 
 ### Known Issues
 - Securities auto detection perlu validasi lanjutan
@@ -92,19 +90,19 @@ BBCA (Bank), AMAG (Asuransi), TRIM (Sekuritas), ICBP (Consumer), ADRO (Mining), 
 
 ## Backlog
 
-### Active
-| ID | Task | Priority |
-|----|------|----------|
-| BL-001 | Refactor Dashboard Layout | P2 |
-| BL-002 | Finalisasi cutoff sektor IDX | P2 |
-| BL-003 | Validasi klasifikasi seluruh sektor IDX | P2 |
-| BL-004 | Optimasi request.financial() | P2 |
-| BL-005 | Review metodologi setiap build | P3 |
-| BL-007 | Consumer/Industri/Healthcare sebagai kelas sektor terpisah | P2 |
-| BL-011 | Batubara vs CPO sebagai kelas terpisah | P3 |
+Seluruh backlog telah dimigrasi ke **[GitHub Issues](https://github.com/akhmfz/papan-instrumen/issues)**.
 
-### Future Ideas (Parking Lot)
-Compact mode, quality score, capital allocation, earnings quality, economic moat, dynamic sector weight, user guide, macro/technical/portfolio dashboard
+Jalankan `bash scripts/gh-sync.sh` (setelah `gh auth login`) untuk auto-create semua issues + labels.
+
+### Issue Labels
+| Label | Warna | Use |
+|-------|-------|-----|
+| `P1-critical` | #d73a4a | Bug kritis, compile error |
+| `P2-high` | #f29513 | Fitur dampak besar |
+| `P3-medium` | #0e8a16 | UX, docs, improvement |
+| `P4-low` | #5319e7 | Long-term ideas |
+| `phase-a` `phase-b` `phase-c` | blue/orange/green | Sprint milestone |
+| `scoring` `dashboard` `sector` `performance` `docs` `test` | — | Komponen |
 
 ---
 
@@ -164,6 +162,16 @@ Gunakan **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-
 - Merge `request.security(sym, ...)` market+sector calls → hemat 1 request
 - Hapus `enterpriseValue` (display only) → hemat 1 f_stat
 - Budget: 37→35 terpakai, sisa 5 slot
+
+### Build 008 (Current)
+**API Budget + Dev Tools + PineTS**
+- API budget: 37→35 (merge request.security market+sector, hapus enterpriseValue)
+- Sektor: 6 watchlist (115 ticker) + f_watchlist()
+- No-data guard: f_warningCell, pesan '⚠ DATA TIDAK TERSEDIA'
+- Dev: scripts/lint.sh, tests/transpile.sh, tests/pinets-verify.mjs (12 utils verified)
+- CI: GitHub Actions (lint → build → verify → transpile → test)
+- VSCode: .vscode/extensions.json (Pine Script Pro rec)
+- Docs: 16 reference curated dari awesome-pinescript + PineTS + pine-utils
 
 ### Build 007 (Previous)
 **Alpha Fix & Polish**

@@ -1,0 +1,24 @@
+name: Bug Report
+description: Laporan bug atau regresi
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Deskripsi
+      description: Apa yang terjadi vs yang diharapkan?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Langkah reproduksi + ticker + timeframe
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options: ["Critical (compile gagal)", "Major (skor/display salah)", "Minor (typo/alignment)"]
+    validations:
+      required: true

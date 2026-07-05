@@ -1,0 +1,38 @@
+name: Feature / Enhancement
+description: Usulan fitur baru atau peningkatan
+title: "[feat]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Feature Request
+  - type: textarea
+    id: summary
+    attributes:
+      label: Ringkasan
+      description: Apa yang ingin ditambahkan?
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Dampak
+      description: Dimensi scoring mana yang terpengaruh? Ada perubahan request budget?
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioritas
+      options: ["P1 — Critical", "P2 — High", "P3 — Medium", "P4 — Low"]
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Kapan fitur dianggap selesai?
+      value: |
+        - [ ] Implementasi
+        - [ ] Testing di PineTS
+        - [ ] Docs updated
+        - [ ] CHANGELOG updated
