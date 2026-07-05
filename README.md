@@ -153,14 +153,13 @@ Next     : Beta Release
 
 ```
 docs/
-├── ai/               — AI collaboration context
-├── architecture/     — Architecture, methodology, roadmap
-├── development/      — Sprint docs, changelog, backlog
-└── rfc/              — RFC proposals (template)
+├── AI.md              — AI collaboration context & workflow
+├── ARCHITECTURE.md    — Arsitektur, metodologi, roadmap
+└── DEVELOPMENT.md     — Coding standard, testing, changelog, backlog
 src/
-└── PapanInstrumen.pine  — Main indicator (~1574 lines)
+└── PapanInstrumen.pine  — Main indicator (~1680 lines)
 assets/
-└── screenshot.png       — Dashboard preview
+└── screenshot.svg       — Dashboard preview
 ```
 
 ---
