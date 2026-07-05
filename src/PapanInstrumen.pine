@@ -1296,8 +1296,8 @@ if barstate.islast
     // Spread negatif = margin compression. Semakin parah, semakin besar
     // pengurangan. Progressif (bukan linier) biar tidak terlalu drastis
     // untuk spread kecil.
-    growthSpread = f_safeDiv(epsGrowth - revGrowth, math.abs(revGrowth)) * 100
-    spreadModifier = na(growthSpread) ? 1.0 :
+    growthSpread = na(revGrowth) or revGrowth == 0 ? na : f_safeDiv(epsGrowth - revGrowth, math.abs(revGrowth)) * 100
+    spreadModifier = na(growthSpread) ? (revGrowth == 0 and epsGrowth < 0 ? 0.9 : 1.0) :
          growthSpread >= 0 ? 1.0 :
          math.max(0.6, 1.0 + growthSpread / 100 * 0.6)
     // multiplier 0.6 bikin -50% spread → modifier 0.7 (bukan 0.5),
@@ -1305,6 +1305,8 @@ if barstate.islast
 
     // Faktor 2 — Earnings Quality (Piotroski F-Score point 4 proxy):
     // OCF positif = laba berbasis kas. OCF negatif = risiko akrual.
+    // Note: ini hanya cek tanda OCF (bukan full OCF > Net Income check
+    // seperti Piotroski asli — keterbatasan data Pine Script).
     earningsQuality = na(ocf) ? 1.0 : ocf > 0 ? 1.0 : 0.9
 
     growthModifier = spreadModifier * earningsQuality
@@ -1465,7 +1467,7 @@ if barstate.islast
          debtEq < 0 ? 0.0 : f_scoreLower(debtEq, debtEqG, debtEqB)
     debtAssetScore     = f_scoreLowerSafe(debtAsset, 0, 0.8)
     debtEbitdaScore    = f_scoreLowerSafe(debtEbitda, debtEbitdaG, debtEbitdaB)
-    netDebtEbitdaScore = f_scoreLower(netDebtEbitda, netDebtEbitdaG, netDebtEbitdaB)
+    netDebtEbitdaScore = f_scoreLowerSafe(netDebtEbitda, netDebtEbitdaG, netDebtEbitdaB)
     cashDebtScore      = f_scoreHigher(cashDebt, 0, 1.5)
     currScore          = f_scoreMid(currRatio, currL, currI, currH)
     quickScore         = f_scoreMid(quickRatio, quickL, quickI, quickH)
@@ -1671,7 +1673,7 @@ if barstate.islast
 
     if tampilKualitas and not tampilCompact
         r := f_section(3, r, isEN ? "QUALITY" : "KUALITAS")
-        if isBankSektor or isAsuransiSektor
+        if isBankSektor or isAsuransiSektor or isSekuritasSektor
             r := f_row(3, r, "(Sektor Finansial: margin", "non-bank di-skip)", na)
         r := f_row(3, r, "ROE", pi_formatPercent(roe), roeScore)
         r := f_row(3, r, "Asset Return / ROA", pi_formatPercent(roa), roaScore)

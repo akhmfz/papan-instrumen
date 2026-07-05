@@ -1,7 +1,7 @@
 # DEVELOPMENT.md — Panduan Pengembangan
 
 Proyek: **Saham: Papan Instrumen By. Akhmfz**
-Platform: TradingView Pine Script v6 | Market: IDX | Status: Alpha
+Platform: TradingView Pine Script v6 | Market: IDX | Status: Beta
 
 ---
 
