@@ -1,0 +1,257 @@
+//══════════════════════════════
+//
+// MODUL 04
+// MESIN PASAR (MARKET ENGINE)
+//
+//══════════════════════════════
+type MarketData
+    float dClose
+    float rsi14
+    float sma20
+    float sma50
+    float sma200
+    float high52
+    float low52
+    float ret1m
+    float ret3m
+    float ret6m
+    float ret12m
+    float volatility
+    float volAvg20        // BARU V2 — rata-rata volume 20D
+    float valTradedAvg20  // BARU V2 — rata-rata nilai transaksi 20D (Rp)
+    float araHits         // BARU V2 — jumlah hari kena/mendekati ARA-ARB
+
+getMarketData() =>
+    float hits = 0.0
+    for i = 0 to lookbackARA - 1
+        chg = f_safeDiv(close[i] - close[i + 1], close[i + 1]) * 100
+        if not na(chg) and math.abs(chg) >= ambangARA
+            hits += 1
+    MarketData.new(
+         close,
+         ta.rsi(close, 14),
+         ta.sma(close, 20),
+         ta.sma(close, 50),
+         ta.sma(close, 200),
+         ta.highest(high, 252),
+         ta.lowest(low, 252),
+         (close / nz(close[21]) - 1) * 100,
+         (close / nz(close[63]) - 1) * 100,
+         (close / nz(close[126]) - 1) * 100,
+         (close / nz(close[252]) - 1) * 100,
+         ta.stdev(close / nz(close[1]) - 1, 63) * math.sqrt(252) * 100,
+         ta.sma(volume, 20),
+         ta.sma(close * volume, 20),
+         hits)
+
+dataPasar = request.security(sym, "D", getMarketData(), ignore_invalid_symbol = true)
+
+dClose = na(dataPasar) ? na : dataPasar.dClose
+rsi14  = na(dataPasar) ? na : dataPasar.rsi14
+sma20  = na(dataPasar) ? na : dataPasar.sma20
+sma50  = na(dataPasar) ? na : dataPasar.sma50
+sma200 = na(dataPasar) ? na : dataPasar.sma200
+high52 = na(dataPasar) ? na : dataPasar.high52
+low52  = na(dataPasar) ? na : dataPasar.low52
+ret1m  = na(dataPasar) ? na : dataPasar.ret1m
+ret3m  = na(dataPasar) ? na : dataPasar.ret3m
+ret6m  = na(dataPasar) ? na : dataPasar.ret6m
+ret12m = na(dataPasar) ? na : dataPasar.ret12m
+volatility     = na(dataPasar) ? na : dataPasar.volatility
+volAvg20       = na(dataPasar) ? na : dataPasar.volAvg20
+valTradedAvg20 = na(dataPasar) ? na : dataPasar.valTradedAvg20
+araHits        = na(dataPasar) ? na : dataPasar.araHits
+
+[bench6m, bench12m, benchClose] = request.security(indeksAcuan, "D",
+     [(close / nz(close[126]) - 1) * 100, (close / nz(close[252]) - 1) * 100, close],
+     ignore_invalid_symbol = true)
+
+// BARU V2 (Build 006) — Faktor Indonesia: data makro & beta
+// USD/IDR untuk macro stability + commodity proxy via sektor index
+usdIdrClose = request.security("FX_IDC:USDIDR", "D", close, ignore_invalid_symbol = true)
+// Beta dihitung manual: correlation × (stdev stock / stdev benchmark)
+float stockDailyRet = close / nz(close[1]) - 1
+float benchDailyRet = benchClose / nz(benchClose[1]) - 1
+float betaVal = ta.correlation(stockDailyRet, benchDailyRet, 252) * ta.stdev(stockDailyRet, 252) / ta.stdev(benchDailyRet, 252)
+
+// IDR volatility: stdev harian dalam 63 hari, annualized
+idrDailyRet = na(usdIdrClose) ? na : usdIdrClose / nz(usdIdrClose[1]) - 1
+float idrStdev = ta.stdev(idrDailyRet, 63)
+idrVol = na(idrDailyRet) ? na : idrStdev * math.sqrt(252) * 100
+
+// IDR 3M trend: positif = IDR melemah (bullish untuk eksportir)
+idrTrend3M = na(usdIdrClose) ? na : (usdIdrClose / nz(usdIdrClose[63]) - 1) * 100
+
+// BARU V2 — deteksi sektor (best-effort, lihat catatan di grupSektor).
+// syminfo.sector/industry tidak selalu terisi untuk semua feed data IDX;
+// jika kosong, sistem jatuh ke override manual pengguna.
+[sektorRaw, industriRaw] = request.security(sym, "D", [syminfo.sector, syminfo.industry], ignore_invalid_symbol = true)
+
+var bankListIDX = array.from(
+     "BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS",
+     "ARTO", "BBKP", "BNGA", "MEGA", "PNBN", "AGRO", "BABP", "BCIC", "BINA",
+     "BNBA", "BSIM", "DNAR", "INPC", "MAYA", "NISP", "SDRA", "BGTG", "BEKS")
+// Daftar per 2026-07. Review setiap 6 bulan (bank baru IPO, merger, delisting).
+// Sumber acuan: https://www.idx.co.id/id/perusahaan-tercatat/sektor-keuangan
+
+tickerOnly = syminfo.ticker
+
+isBankTicker = array.includes(bankListIDX, tickerOnly)
+
+// FIX V2 (Build 002, revisi) — Bank/Asuransi/Sekuritas kini kelas
+// eksplisit terpisah (sebelumnya ketiganya "menumpang" jadi satu
+// isFinancialSector generik — benar secara hasil skor tapi tidak benar
+// secara semantik/penamaan, lih. BACKLOG Build 002 sebelumnya).
+//
+// PENTING — batas sprint: untuk dimensi VALUASI, file1 TIDAK memberi
+// bobot valuasi yang berbeda antara Bank vs Asuransi vs Sekuritas
+// (ketiganya sama-sama memprioritaskan ROE/PBV/PER — perbedaan file1
+// baru muncul di dimensi Financial Health, yaitu perlakuan Current
+// Ratio/Quick Ratio/Cash Position, yang di luar scope sprint ini).
+// Karena itu ketiga flag di bawah tetap DIGABUNG jadi isFinancialSector
+// untuk keperluan bobot Valuasi (baris weighting TIDAK berubah dari
+// revisi sebelumnya) — pemecahan ini murni menyiapkan detseksi yang
+// benar untuk sprint Financial Health berikutnya, BUKAN mengubah skor
+// Valuasi saat ini. Lihat kritik & analisis dampak di chat.
+isFinancialLegacyMode = modeSektor == "Finansial (Bank/Asuransi)"
+
+isBankSektor = modeSektor == "Bank" or
+     (modeSektor == "Otomatis" and (isBankTicker or
+       (not na(industriRaw) and str.contains(industriRaw, "Bank"))))
+
+isAsuransiSektor = modeSektor == "Asuransi" or
+     (modeSektor == "Otomatis" and not na(industriRaw) and str.contains(industriRaw, "Insuran"))
+
+// CATATAN: emiten sekuritas IDX sering tidak konsisten mengisi field
+// syminfo.industry (kadang "Diversified Financial Services", kadang
+// kosong) — deteksi otomatis untuk kategori ini PALING LEMAH di antara
+// semua kategori sektor. Override manual "Sekuritas" sangat disarankan
+// dipakai langsung, jangan mengandalkan "Otomatis".
+isSekuritasSektor = modeSektor == "Sekuritas" or
+     (modeSektor == "Otomatis" and not na(industriRaw) and
+       (str.contains(industriRaw, "Securities") or str.contains(industriRaw, "Capital Markets") or str.contains(industriRaw, "Investment Services")))
+
+// FIX BUG (ditemukan saat review revisi ini): Build 001 punya fallback
+// generik "sektorRaw contains 'Financ'" untuk menangkap emiten finansial
+// yang TIDAK cocok kata kunci industri spesifik manapun (mis. holding
+// company finansial, atau field industriRaw kosong tapi sektorRaw
+// terisi). Saat memecah isFinancialSector jadi Bank/Asuransi/Sekuritas,
+// fallback ini sempat HILANG tanpa sengaja — akibatnya emiten yang
+// sebelumnya terdeteksi Finansial di Build 001 bisa jatuh ke
+// "Non-Finansial Umum" di Otomatis (regresi diam-diam). Dikembalikan
+// di sini sebagai kelas fallback eksplisit, BUKAN digabung lagi ke
+// Bank/Asuransi/Sekuritas.
+isFinancialGenericAuto = modeSektor == "Otomatis" and not isBankSektor and not isAsuransiSektor and not isSekuritasSektor and
+     not na(sektorRaw) and str.contains(sektorRaw, "Financ")
+
+isFinancialSector = isBankSektor or isAsuransiSektor or isSekuritasSektor or isFinancialLegacyMode or isFinancialGenericAuto
+
+isSiklikalSektor = modeSektor == "Siklikal (Komoditas/Energi)" or
+     (modeSektor == "Otomatis" and toleransiSiklikal and
+       ((not na(sektorRaw) and (str.contains(sektorRaw, "Energy") or str.contains(sektorRaw, "Materials"))) or
+        (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil") or str.contains(industriRaw, "Metal") or str.contains(industriRaw, "Palm")))))
+
+// REVISI V2 (Build 002) — 4 kategori berikut kini BISA di-override
+// manual (sebelumnya hanya auto-detect di mode "Otomatis"). Tidak ada
+// perubahan pada logika deteksi otomatisnya sendiri, hanya ditambah
+// jalur "modeSektor == <label>" seperti kategori lain.
+isPropertySektor = modeSektor == "Properti" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Real Estate")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Real Estate") or str.contains(industriRaw, "Property") or str.contains(industriRaw, "REIT")))))
+
+isInfrastrukturSektor = modeSektor == "Infrastruktur" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Utilities")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Utilit") or str.contains(industriRaw, "Infrastructure") or str.contains(industriRaw, "Toll") or str.contains(industriRaw, "Telecom")))))
+
+isTechnologySektor = modeSektor == "Teknologi" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Technology")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Software") or str.contains(industriRaw, "Internet") or str.contains(industriRaw, "E-Commerce")))))
+
+isTransportasiSektor = modeSektor == "Transportasi" or
+     (modeSektor == "Otomatis" and
+       ((not na(sektorRaw) and str.contains(sektorRaw, "Transportation")) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Airlines") or str.contains(industriRaw, "Shipping") or str.contains(industriRaw, "Transport") or str.contains(industriRaw, "Logistics")))))
+
+// Urutan prioritas label SENGAJA sama dengan urutan prioritas pada
+// blok bobot valuasi di scoring engine (isFinancialSector dicek
+// duluan, dst) — supaya label yang ditampilkan selalu konsisten
+// dengan bobot yang benar-benar dipakai jika kategori tumpang tindih
+// (mis. industriRaw memuat kata kunci >1 kategori sekaligus).
+sektorLabel = isBankSektor ? "Finansial — Bank" :
+     isAsuransiSektor ? "Finansial — Asuransi" :
+     isSekuritasSektor ? "Finansial — Sekuritas" :
+     isFinancialLegacyMode ? "Finansial (Bank/Asuransi)" :
+     isFinancialGenericAuto ? "Finansial (Umum)" :
+     isPropertySektor ? "Properti" :
+     isInfrastrukturSektor ? "Infrastruktur" :
+     isSiklikalSektor ? "Siklikal (Komoditas/Energi)" :
+     isTechnologySektor ? "Teknologi" :
+     isTransportasiSektor ? "Transportasi" :
+     "Non-Finansial Umum"
+
+//══════════════════════════════
+//
+// MODUL 05
+// MESIN KEUANGAN (FINANCIAL ENGINE)
+//
+//══════════════════════════════
+statPeriod = periodeLaporan == "TTM" ? "FQ" : periodeLaporan
+
+f_fin(id) =>
+    request.financial(sym, id, periodeLaporan, ignore_invalid_symbol = true)
+
+f_stat(id) =>
+    request.financial(sym, id, statPeriod, ignore_invalid_symbol = true)
+
+f_ttm(id) =>
+    request.financial(sym, id, "TTM", ignore_invalid_symbol = true)
+
+sharesOut       = f_stat("TOTAL_SHARES_OUTSTANDING")
+enterpriseValue = f_stat("ENTERPRISE_VALUE")
+
+epsTtm     = f_ttm("EARNINGS_PER_SHARE_DILUTED")
+bvps       = f_stat("BOOK_VALUE_PER_SHARE")
+revenueTtm = f_ttm("TOTAL_REVENUE")
+evEbitda   = f_stat("ENTERPRISE_VALUE_EBITDA")
+evSales    = f_stat("EV_REVENUE")
+
+roe       = f_stat("RETURN_ON_EQUITY")
+roa       = f_stat("RETURN_ON_ASSETS")
+roic      = f_stat("RETURN_ON_INVESTED_CAPITAL")
+grossM    = f_fin("GROSS_MARGIN")
+opM       = f_fin("OPERATING_MARGIN")
+netM      = f_fin("NET_MARGIN")
+ebitdaM   = f_fin("EBITDA_MARGIN")
+fcfMargin = f_fin("FREE_CASH_FLOW_MARGIN")
+piotroski = f_stat("PIOTROSKI_F_SCORE")
+
+revGrowth = f_fin("REVENUE_ONE_YEAR_GROWTH")
+epsGrowth = f_fin("EARNINGS_PER_SHARE_DILUTED_ONE_YEAR_GROWTH")
+sgr       = f_stat("SUSTAINABLE_GROWTH_RATE")
+
+// CATATAN V2 (fix bug #2): TIDAK ADA LAGI normalisasi berbasis tebakan
+// magnitude (math.abs(x) <= 5 ? x*100 : x). Field DEBT_TO_EQUITY dan
+// CASH_TO_DEBT dari request.financial TradingView adalah RASIO desimal
+// langsung (mis. 0.8 = 80%), bukan format campuran. Jika setelah
+// compile Anda menemukan skala yang tidak masuk akal untuk emiten IDX
+// tertentu, verifikasi field mentahnya dulu (jangan tebak lagi lewat
+// kode) — lihat architecture.md § Batasan Diketahui.
+debtEq        = f_stat("DEBT_TO_EQUITY")
+debtAsset     = f_stat("DEBT_TO_ASSET")
+debtEbitda    = f_stat("DEBT_TO_EBITDA")
+netDebtEbitda = f_stat("NET_DEBT_TO_EBITDA")
+cashDebt      = f_stat("CASH_TO_DEBT")
+currRatio     = f_stat("CURRENT_RATIO")
+quickRatio    = f_stat("QUICK_RATIO")
+interestCover = f_stat("INTERST_COVER")
+altmanZ       = f_stat("ALTMAN_Z_SCORE")
+ocf           = f_fin("CASH_F_OPERATING_ACTIVITIES")
+fcf           = f_fin("FREE_CASH_FLOW")
+
+divYield     = f_stat("DIVIDENDS_YIELD")
+payout       = f_fin("DIVIDEND_PAYOUT_RATIO")
+dps          = f_fin("DPS_COMMON_STOCK_PRIM_ISSUE")
+

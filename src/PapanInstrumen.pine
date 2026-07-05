@@ -1,3 +1,4 @@
+// Built from modules/ — edit modules, not this file
 //@version=6
 // ═══════════════════════════════════════════════════════════════════
 //
@@ -540,6 +541,7 @@ f_categoryColor(string name, color fallback) =>
       str.contains(name, "Liquiditas") or str.contains(name, "Turnover") or str.contains(name, "Beta") or str.contains(name, "IDR") ? goldTxt :
       fallback
 
+
 //══════════════════════════════
 //
 // MODUL 04
@@ -797,6 +799,7 @@ divYield     = f_stat("DIVIDENDS_YIELD")
 payout       = f_fin("DIVIDEND_PAYOUT_RATIO")
 dps          = f_fin("DPS_COMMON_STOCK_PRIM_ISSUE")
 
+
 //══════════════════════════════
 //
 // MODUL 06
@@ -874,6 +877,7 @@ f_riskCard(int base, int row, string name, float score) =>
     f_cell(base + 1, row, pi_scoreText(score), bg, tc)
     f_cell(base + 2, row, pi_riskGrade(score), bg, tc)
     row + 1
+
 
 //══════════════════════════════
 //
@@ -1678,3 +1682,4 @@ if barstate.islast
 //     saat item-item di atas mulai dikerjakan.
 //
 //══════════════════════════════
+

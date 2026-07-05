@@ -1,0 +1,78 @@
+//══════════════════════════════
+//
+// MODUL 06
+// MESIN ANTARMUKA (UI ENGINE)
+//
+//══════════════════════════════
+const int ROWS = 90
+
+var table papan = table.new(posisiTabel, 6, ROWS,
+     bgcolor = tableBg, border_color = gridCol, border_width = 0,
+     frame_color = gridCol, frame_width = 2)
+
+f_cell(int col, int row, string txt, color bg, color tc) =>
+    if row < ROWS
+        table.cell(papan, col, row, txt, bgcolor = bg, text_color = tc, text_size = ukuranTeks)
+
+f_boldCell(int col, int row, string txt, color bg, color tc) =>
+    if row < ROWS
+        table.cell(papan, col, row, txt, bgcolor = bg, text_color = tc, text_size = ukuranTeks, text_formatting = text.format_bold)
+
+f_headerCell(int col, string txt, color bg, color tc) =>
+    table.cell(papan, col, 0, txt, bgcolor = bg, text_color = tc, text_size = ukuranTeks, text_formatting = text.format_bold)
+
+f_section(int base, int row, string title) =>
+    bg = f_sectionBg(title)
+    f_boldCell(base, row, title, bg, color.white)
+    f_boldCell(base + 1, row, "Nilai", bg, color.white)
+    f_boldCell(base + 2, row, "Skor", bg, color.white)
+    row + 1
+
+f_row(int base, int row, string name, string value, float score) =>
+    bg = f_rowBg(row)
+    scoreBg = tampilLatarSkor ? f_scoreBg(score) : bg
+    scoreTxt = pi_scoreText(score)
+    valTxtCol = na(score) ? mainTxt : isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
+    f_cell(base, row, name, bg, mutedTxt)
+    f_cell(base + 1, row, value, bg, valTxtCol)
+    f_cell(base + 2, row, scoreTxt, scoreBg, valTxtCol)
+    row + 1
+
+// BARU V2 — varian f_row dengan skema warna risiko terbalik
+f_riskRow(int base, int row, string name, string value, float score) =>
+    bg = f_rowBg(row)
+    scoreBg = tampilLatarSkor ? f_riskBg(score) : bg
+    scoreTxt = pi_scoreText(score)
+    valTxtCol = na(score) ? mainTxt : f_riskColor(score)
+    f_cell(base, row, name, bg, mutedTxt)
+    f_cell(base + 1, row, value, bg, valTxtCol)
+    f_cell(base + 2, row, scoreTxt, scoreBg, valTxtCol)
+    row + 1
+
+f_scoreCard(int base, int row, string name, float score) =>
+    bg = tampilLatarSkor ? f_scoreBg(score) : f_rowBg(row)
+    tc = isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
+    f_cell(base, row, name, bg, mainTxt)
+    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(base + 2, row, pi_grade(score), bg, tc)
+    row + 1
+
+// BARU V2 — kartu skor dengan indikator kelengkapan data (bug #6)
+f_scoreCardN(int base, int row, string name, float score, int nValid, int nTotal) =>
+    bg = tampilLatarSkor ? f_scoreBg(score) : f_rowBg(row)
+    tc = isDarkTheme ? f_scoreColor(score) : f_categoryColor(name, f_scoreColor(score))
+    label = tampilKelengkapan ? name + " (" + str.tostring(nValid) + "/" + str.tostring(nTotal) + ")" : name
+    f_cell(base, row, label, bg, mainTxt)
+    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(base + 2, row, pi_grade(score), bg, tc)
+    row + 1
+
+// BARU V2 — kartu untuk skor risiko (skema warna & grade terbalik)
+f_riskCard(int base, int row, string name, float score) =>
+    bg = tampilLatarSkor ? f_riskBg(score) : f_rowBg(row)
+    tc = f_riskColor(score)
+    f_cell(base, row, name, bg, mainTxt)
+    f_cell(base + 1, row, pi_scoreText(score), bg, tc)
+    f_cell(base + 2, row, pi_riskGrade(score), bg, tc)
+    row + 1
+
