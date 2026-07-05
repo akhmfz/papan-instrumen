@@ -93,6 +93,12 @@ tampilCompact      = input.bool(false, "Mode Ringkas (Compact Mode)", group = gr
        " detail valuasi, kualitas, growth, kesehatan, dividen, " +
        "momentum, dan Indonesia di kolom kanan. Default OFF — backward compatible.")
 
+bahasa = input.string("Indonesia", "Bahasa / Language",
+     options = ["Indonesia", "English"],
+     group = grupUtama,
+     tooltip = "Bahasa tampilan dashboard. Label teknis (ROE, P/E, P/B, dll.) " +
+       "tetap dalam bahasa Inggris karena bersifat universal.")
+
 tampilRingkasan    = input.bool(true, "Tampilkan Ringkasan", group = grupUtama)
 tampilValuasi      = input.bool(true, "Tampilkan Valuasi", group = grupUtama)
 tampilKualitas     = input.bool(true, "Tampilkan Kualitas", group = grupUtama)
@@ -457,28 +463,31 @@ pi_formatMoney(float v) =>
      str.tostring(v, "#.##")
 
 pi_grade(float s) =>
-    na(s) ? "N/A" :
-     s >= 85 ? "SANGAT BAIK" :
-     s >= 70 ? "BAIK" :
-     s >= 55 ? "CUKUP" :
-     s >= 40 ? "LEMAH" :
-     "RISIKO TINGGI"
+    isEN = bahasa == "English"
+    na(s) ? (isEN ? "N/A" : "N/A") :
+     s >= 85 ? (isEN ? "EXCELLENT" : "SANGAT BAIK") :
+     s >= 70 ? (isEN ? "GOOD" : "BAIK") :
+     s >= 55 ? (isEN ? "FAIR" : "CUKUP") :
+     s >= 40 ? (isEN ? "WEAK" : "LEMAH") :
+     (isEN ? "HIGH RISK" : "RISIKO TINGGI")
 
 pi_overallBadge(float s) =>
+    isEN = bahasa == "English"
     na(s) ? "N/A " :
-     s >= 85 ? "SANGAT BAIK " :
-     s >= 70 ? "BAIK " :
-     s >= 55 ? "CUKUP " :
-     s >= 40 ? "LEMAH " :
-     "RISIKO TINGGI "
+     s >= 85 ? (isEN ? "EXCELLENT " : "SANGAT BAIK ") :
+     s >= 70 ? (isEN ? "GOOD " : "BAIK ") :
+     s >= 55 ? (isEN ? "FAIR " : "CUKUP ") :
+     s >= 40 ? (isEN ? "WEAK " : "LEMAH ") :
+     (isEN ? "HIGH RISK " : "RISIKO TINGGI ")
 
 // BARU V2 — grade khusus untuk skor keamanan likuiditas (arah makna
 // terbalik dari grade fundamental: skor tinggi = risiko gorengan rendah).
 pi_riskGrade(float s) =>
+    isEN = bahasa == "English"
     na(s) ? "N/A" :
-     s >= 70 ? "RISIKO RENDAH" :
-     s >= 40 ? "RISIKO SEDANG" :
-     "RISIKO TINGGI — WASPADA"
+     s >= 70 ? (isEN ? "LOW RISK" : "RISIKO RENDAH") :
+     s >= 40 ? (isEN ? "MODERATE RISK" : "RISIKO SEDANG") :
+     (isEN ? "HIGH RISK — CAUTION" : "RISIKO TINGGI — WASPADA")
 
 pi_arrow(float v) =>
     not tampilSimbolStatus or na(v) ? "" : v > 0 ? "▲ " : v < 0 ? "▼ " : "■ "

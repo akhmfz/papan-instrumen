@@ -14,11 +14,17 @@ if barstate.islast
     pos52 = na(high52) or na(low52) or high52 == low52 ? na : (dClose - low52) / (high52 - low52) * 100
     dist52High = na(high52) ? na : (dClose / high52 - 1) * 100
 
-    maStatus = dClose > sma20 and dClose > sma50 and dClose > sma200 ? "Bullish" :
-         dClose > sma50 and dClose > sma200 ? "Kuat" :
-         dClose > sma200 ? "Neutral" :
-         dClose > sma50 ? "Lemah" :
-         "Bearish"
+    maStatus = bahasa == "English" ?
+         (dClose > sma20 and dClose > sma50 and dClose > sma200 ? "Bullish" :
+          dClose > sma50 and dClose > sma200 ? "Strong" :
+          dClose > sma200 ? "Neutral" :
+          dClose > sma50 ? "Weak" :
+          "Bearish") :
+         (dClose > sma20 and dClose > sma50 and dClose > sma200 ? "Bullish" :
+          dClose > sma50 and dClose > sma200 ? "Kuat" :
+          dClose > sma200 ? "Neutral" :
+          dClose > sma50 ? "Lemah" :
+          "Bearish")
 
     maScore =
          dClose > sma20 and dClose > sma50 and dClose > sma200 ? 100 :
@@ -598,7 +604,7 @@ if barstate.islast
     overallTxt = pi_overallBadge(overallScore) + pi_formatNumber(overallScore) +
          (tampilKelengkapan ? " (" + str.tostring(overallN) + (tampilIndonesia ? "/7)" : "/6)") : "")
 
-    f_headerCell(0, "PAPAN INSTRUMEN", headerBg, titleTxt)
+    f_headerCell(0, bahasa == "English" ? "INSTRUMENT PANEL" : "PAPAN INSTRUMEN", headerBg, titleTxt)
     f_headerCell(1, sym, headerBg, titleTxt)
     f_headerCell(2, periodeLaporan, headerBg, titleTxt)
     f_headerCell(3, "Sektor: " + sektorLabel, headerBg, titleTxt)
@@ -610,15 +616,15 @@ if barstate.islast
     // ── RENDER FUNCTIONS (closure over scoring variables) ──
     f_renderLeft(int base, int row) =>
         if noData
-            row := f_warningCell(base, row, "⚠ DATA TIDAK TERSEDIA")
-            row := f_warningCell(base, row, "Emiten ini belum memiliki data")
-            row := f_warningCell(base, row, "fundamental di TradingView.")
-            row := f_warningCell(base, row, "Coba timeframe Daily atau ganti")
-            row := f_warningCell(base, row, "simbol lain.")
+            row := f_warningCell(base, row, isEN ? "⚠ NO DATA" : "⚠ DATA TIDAK TERSEDIA")
+            row := f_warningCell(base, row, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
+            row := f_warningCell(base, row, isEN ? "data on TradingView." : "fundamental di TradingView.")
+            row := f_warningCell(base, row, isEN ? "Try Daily timeframe or switch" : "Coba timeframe Daily atau ganti")
+            row := f_warningCell(base, row, isEN ? "to another symbol." : "simbol lain.")
             row
         else
             row
-            row := f_section(base, row, "SKOR KESELURUHAN")
+            row := f_section(base, row, isEN ? "OVERALL SCORE" : "SKOR KESELURUHAN")
             row := f_scoreCardN(base, row, "Quality", qualityScore, qualityN, 9)
             row := f_scoreCardN(base, row, "Value", valueScore, valueN, 9)
             row := f_scoreCardN(base, row, "Growth", growthScore, growthN, 3)
@@ -628,16 +634,16 @@ if barstate.islast
             if tampilIndonesia
                 row := f_scoreCardN(base, row, "Indonesia", indonesiaScore, indonesiaN, 3)
             if tampilRisikoGorengan
-                row := f_section(base, row, "RISIKO LIKUIDITAS")
+                row := f_section(base, row, isEN ? "LIQUIDITY RISK" : "RISIKO LIKUIDITAS")
                 row := f_riskCard(base, row, "Keamanan Likuiditas", riskSafetyScore)
             if tampilRingkasan
-                row := f_section(base, row, "RINGKASAN")
+                row := f_section(base, row, isEN ? "SUMMARY" : "RINGKASAN")
                 row := f_row(base, row, "Price", pi_formatNumber(dClose), na)
                 row := f_row(base, row, "Market Cap", pi_formatMoney(mcap), na)
                 row := f_row(base, row, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
                 row := f_row(base, row, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
             if tampilRingkasan
-                row := f_section(base, row, "RINGKASAN")
+                row := f_section(base, row, isEN ? "SUMMARY" : "RINGKASAN")
                 row := f_row(base, row, "Price", pi_formatNumber(dClose), na)
                 row := f_row(base, row, "Market Cap", pi_formatMoney(mcap), na)
                 row := f_row(base, row, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
@@ -645,7 +651,7 @@ if barstate.islast
             if not tampilCompact
                 row
                 if tampilValuasi
-                    row := f_section(base, row, "VALUASI")
+                    row := f_section(base, row, isEN ? "VALUATION" : "VALUASI")
                     row := f_row(base, row, "P/E TTM", pi_formatNumber(pe), peScore)
                     row := f_row(base, row, "PEG Ratio", pi_formatNumber(peg), pegScore)
                     row := f_row(base, row, "P/S TTM", pi_formatNumber(ps), psScore)
@@ -659,7 +665,7 @@ if barstate.islast
                     row := f_row(base, row, "EPS TTM", pi_formatNumber(epsTtm), na)
                     row := f_row(base, row, "BVPS", pi_formatNumber(bvps), pbScore)
                 if tampilDividen
-                    row := f_section(base, row, "DIVIDEN & IMBAL HASIL")
+                    row := f_section(base, row, isEN ? "DIVIDEND & YIELD" : "DIVIDEN & IMBAL HASIL")
                     row := f_row(base, row, "Dividend Yield", pi_formatPercent(divYield), yieldScore)
                     row := f_row(base, row, "Payout Ratio", pi_formatPercent(payout), payoutScore)
                     row := f_row(base, row, "FCF Yield", pi_formatPercent(fcfYield), fcfYieldScore)
@@ -668,17 +674,17 @@ if barstate.islast
 
     f_renderRight(int base, int row) =>
         if noData
-            row := f_warningCell(base, row, "⚠ DATA TIDAK TERSEDIA")
-            row := f_warningCell(base, row, "Emiten ini belum memiliki data")
-            row := f_warningCell(base, row, "fundamental di TradingView.")
-            row := f_warningCell(base, row, "Coba timeframe Daily atau ganti")
-            row := f_warningCell(base, row, "simbol lain.")
+            row := f_warningCell(base, row, isEN ? "⚠ NO DATA" : "⚠ DATA TIDAK TERSEDIA")
+            row := f_warningCell(base, row, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
+            row := f_warningCell(base, row, isEN ? "data on TradingView." : "fundamental di TradingView.")
+            row := f_warningCell(base, row, isEN ? "Try Daily timeframe or switch" : "Coba timeframe Daily atau ganti")
+            row := f_warningCell(base, row, isEN ? "to another symbol." : "simbol lain.")
             row
         else
             row
             if not tampilCompact
                 if tampilKualitas
-                    row := f_section(base, row, "KUALITAS")
+                    row := f_section(base, row, isEN ? "QUALITY" : "KUALITAS")
                 if isBankSektor or isAsuransiSektor
                     row := f_row(base, row, "(Sektor Finansial: margin", "non-bank di-skip)", na)
                 row := f_row(base, row, "ROE", pi_formatPercent(roe), roeScore)
@@ -696,19 +702,19 @@ if barstate.islast
                 if wFcfM > 0
                     row := f_row(base, row, "FCF Margin", pi_formatPercent(fcfMargin), fcfMarginScore)
             if tampilPertumbuhan
-                row := f_section(base, row, "PERTUMBUHAN")
+                row := f_section(base, row, isEN ? "GROWTH" : "PERTUMBUHAN")
                 row := f_row(base, row, "Revenue Growth", pi_arrow(revGrowth) + pi_formatPercent(revGrowth), revScore)
                 row := f_row(base, row, "EPS Growth", pi_arrow(epsGrowth) + pi_formatPercent(epsGrowth), epsScore)
                 row := f_row(base, row, "Sustainable Growth", pi_arrow(sgr) + pi_formatPercent(sgr), sgrScore)
             if tampilIndonesia
-                row := f_section(base, row, "FAKTOR INDONESIA")
+                row := f_section(base, row, isEN ? "INDONESIA FACTOR" : "FAKTOR INDONESIA")
                 row := f_row(base, row, "Liquiditas", pi_formatMoney(valTradedAvg20), indoLiqScore)
                 row := f_row(base, row, "Turnover Harian", pi_formatPercent(turnoverPct), na)
                 row := f_row(base, row, "Beta vs IDX", pi_formatNumber(betaVal), indoBetaScore)
                 row := f_row(base, row, "IDR Volatility", pi_formatPercent(idrVol), indoIdrScore)
                 row := f_row(base, row, "IDR 3M Trend", pi_arrow(idrTrend3M) + pi_formatPercent(idrTrend3M), indoIdrTrend)
             if tampilKesehatan
-                row := f_section(base, row, "KESEHATAN KEUANGAN")
+                row := f_section(base, row, isEN ? "FINANCIAL HEALTH" : "KESEHATAN KEUANGAN")
                 if isBankSektor or isAsuransiSektor or isSekuritasSektor
                     row := f_row(base, row, "(Sektor Finansial: rasio", "terbatas — lihat skor)", na)
                 if wHDe > 0
@@ -732,7 +738,7 @@ if barstate.islast
                 row := f_row(base, row, "OCF", pi_formatMoney(ocf), ocfScore)
                 row := f_row(base, row, "FCF", pi_formatMoney(fcf), fcfScore)
             if tampilMomentum
-                row := f_section(base, row, "MOMENTUM PASAR")
+                row := f_section(base, row, isEN ? "MARKET MOMENTUM" : "MOMENTUM PASAR")
                 row := f_row(base, row, "RSI 14", pi_formatNumber(rsi14), rsiScore)
                 row := f_row(base, row, "1M Return", pi_arrow(ret1m) + pi_formatPercent(ret1m), na)
                 row := f_row(base, row, "3M Return", pi_arrow(ret3m) + pi_formatPercent(ret3m), na)
@@ -743,7 +749,7 @@ if barstate.islast
                 row := f_row(base, row, "Volatility", pi_formatPercent(volatility), volScore)
                 row := f_row(base, row, "MA 20/50/200", maStatus, maScore)
             if tampilRisikoGorengan
-                row := f_section(base, row, "DETAIL RISIKO GORENGAN")
+                row := f_section(base, row, isEN ? "PUMP & DUMP RISK" : "DETAIL RISIKO GORENGAN")
                 row := f_riskRow(base, row, "Market Cap", pi_formatMoney(mcap), mcapScore)
                 row := f_riskRow(base, row, "Nilai Transaksi 20D", pi_formatMoney(valTradedAvg20), liqScore)
                 row := f_riskRow(base, row, "Turnover Harian (20D)", pi_formatPercent(turnoverPct), na)
@@ -753,6 +759,7 @@ if barstate.islast
             row
 
     // ── MAIN RENDER ──
+    isEN = bahasa == "English"
     int l = 1
     int r = 1
     l := f_renderLeft(0, l)
