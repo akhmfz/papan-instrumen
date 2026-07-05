@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#0f1a2f"/>
+  <rect x="20" y="20" width="760" height="460" rx="8" fill="#081424" stroke="#1f3b62" stroke-width="1"/>
+  <text x="400" y="60" font-family="monospace" font-size="14" fill="#5ebeff" text-anchor="middle" font-weight="bold">PAPAN INSTRUMEN — BBCA</text>
+  <text x="400" y="85" font-family="monospace" font-size="11" fill="#5b6b8a" text-anchor="middle">Screenshot belum tersedia — ganti file ini dengan screenshot asli</text>
+  <rect x="30" y="110" width="360" height="30" rx="4" fill="#145737"/>
+  <text x="45" y="130" font-family="monospace" font-size="12" fill="#ffffff" font-weight="bold">SKOR KESELURUHAN</text>
+  <text x="200" y="130" font-family="monospace" font-size="12" fill="#ffffff">Nilai</text>
+  <text x="340" y="130" font-family="monospace" font-size="12" fill="#ffffff">Skor</text>
+  <rect x="30" y="145" width="360" height="25" rx="2" fill="#0e1a2e"/>
+  <text x="45" y="162" font-family="monospace" font-size="11" fill="#8e9eb6">Quality</text>
+  <text x="200" y="162" font-family="monospace" font-size="11" fill="#56ccff">█████ 72</text>
+  <text x="315" y="162" font-family="monospace" font-size="11" fill="#56ccff">BAIK</text>
+  <rect x="30" y="172" width="360" height="25" rx="2" fill="#0a1628"/>
+  <text x="45" y="189" font-family="monospace" font-size="11" fill="#8e9eb6">Value</text>
+  <text x="200" y="189" font-family="monospace" font-size="11" fill="#49dca5">██████ 85</text>
+  <text x="315" y="189" font-family="monospace" font-size="11" fill="#49dca5">SANGAT BAIK</text>
+  <rect x="30" y="199" width="360" height="25" rx="2" fill="#0e1a2e"/>
+  <text x="45" y="216" font-family="monospace" font-size="11" fill="#8e9eb6">Growth</text>
+  <text x="200" y="216" font-family="monospace" font-size="11" fill="#eecf5c">████ 55</text>
+  <text x="315" y="216" font-family="monospace" font-size="11" fill="#eecf5c">CUKUP</text>
+  <rect x="30" y="226" width="360" height="25" rx="2" fill="#0a1628"/>
+  <text x="45" y="243" font-family="monospace" font-size="11" fill="#8e9eb6">Health</text>
+  <text x="200" y="243" font-family="monospace" font-size="11" fill="#ff5c78">███ 45</text>
+  <text x="315" y="243" font-family="monospace" font-size="11" fill="#ff5c78">LEMAH</text>
+  <rect x="30" y="253" width="360" height="25" rx="2" fill="#0e1a2e"/>
+  <text x="45" y="270" font-family="monospace" font-size="11" fill="#8e9eb6">Income</text>
+  <text x="200" y="270" font-family="monospace" font-size="11" fill="#eecf5c">████ 58</text>
+  <text x="315" y="270" font-family="monospace" font-size="11" fill="#eecf5c">CUKUP</text>
+  <rect x="30" y="280" width="360" height="25" rx="2" fill="#0a1628"/>
+  <text x="45" y="297" font-family="monospace" font-size="11" fill="#8e9eb6">Momentum</text>
+  <text x="200" y="297" font-family="monospace" font-size="11" fill="#a087ff">█████ 68</text>
+  <text x="315" y="297" font-family="monospace" font-size="11" fill="#a087ff">BAIK</text>
+  <text x="45" y="330" font-family="monospace" font-size="10" fill="#3a4a6a">* Placeholder — ganti dengan screenshot asli dari TradingView</text>
+  <text x="45" y="460" font-family="monospace" font-size="11" fill="#5b6b8a">github.com/akhmfz/papan-instrumen</text>
+</svg>
