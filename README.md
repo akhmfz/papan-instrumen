@@ -25,7 +25,7 @@
 
 ## Screenshot
 
-![Dashboard Preview](assets/screenshot.svg)
+![Dashboard Preview](assets/screenshot.png)
 
 ---
 
