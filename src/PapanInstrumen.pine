@@ -106,15 +106,16 @@ tampilIndonesia    = input.bool(false, "Aktifkan Faktor Indonesia (7th Factor)",
 grupSektor = "Sektor & Adaptasi"
 
 modeSektor = input.string("Otomatis", "Deteksi Sektor",
-     options = ["Otomatis", "Finansial (Bank/Asuransi)", "Bank", "Asuransi", "Sekuritas",
-       "Non-Finansial Umum", "Siklikal (Komoditas/Energi)", "Properti", "Infrastruktur",
-       "Teknologi", "Transportasi"],
+     options = ["Otomatis",
+       "Finansial (Bank/Asuransi)", "Bank", "Asuransi", "Sekuritas",
+       "Konsumer (Makanan/Minuman)", "Industri (Manufaktur)", "Kesehatan (Farmasi)",
+       "Batubara", "CPO & Perkebunan",
+       "Siklikal (Komoditas/Energi)", "Properti", "Infrastruktur",
+       "Teknologi", "Transportasi", "Non-Finansial Umum"],
      group = grupSektor,
-     tooltip = "Otomatis: mencoba mendeteksi dari syminfo.sector/industry + daftar ticker bank utama IDX. " +
-       "'Finansial (Bank/Asuransi)' adalah override generik lama (Build 001) — tetap tersedia agar " +
-       "pengaturan lama tidak berubah. Opsi Bank/Asuransi/Sekuritas/Properti/Infrastruktur/Teknologi/" +
-       "Transportasi (BARU Build 002) memberi override lebih spesifik. Deteksi otomatis TIDAK lengkap " +
-       "— override manual jika salah deteksi.")
+     tooltip = "Otomatis: mendeteksi dari syminfo.sector/industry + daftar ticker. " +
+       "Override manual jika auto-detect salah. Kelas BARU Build 009: Konsumer, " +
+       "Industri, Kesehatan, Batubara, CPO.")
 
 toleransiSiklikal = input.bool(true, "Longgarkan Graham Number untuk Sektor Siklikal", group = grupSektor,
      tooltip = "Melebarkan pita skor Graham Number untuk saham komoditas/energi yang labanya naik-turun tajam. " +
@@ -630,13 +631,17 @@ idrTrend3M = na(usdIdrClose) ? na : (usdIdrClose / nz(usdIdrClose[63]) - 1) * 10
 f_watchlist(arr) =>
     array.includes(arr, syminfo.ticker)
 
-// Daftar ticker IDX per sektor.
+// Daftar ticker IDX per sektor — Build 009 (15 kelas).
 // Review setiap 6 bulan (IPO, merger, delisting).
 // Sumber: https://www.idx.co.id/id/perusahaan-tercatat
 tickerOnly = syminfo.ticker
 
 var bankListIDX     = array.from("BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS", "ARTO", "BBKP", "BNGA", "MEGA", "PNBN", "AGRO", "BABP", "BCIC", "BINA", "BNBA", "BSIM", "DNAR", "INPC", "MAYA", "NISP", "SDRA", "BGTG", "BEKS")
-var miningListIDX   = array.from("ADRO", "PTBA", "ITMG", "BUMI", "HRUM", "INDY", "ANTM", "MDKA", "TINS", "INCO", "BRMS", "PSAB", "DKFT", "SMMT", "ARTI", "PALM", "GEMS", "ADMR", "MYOH")
+var coalListIDX     = array.from("ADRO", "PTBA", "ITMG", "BUMI", "HRUM", "INDY", "BYAN", "GEMS", "ADMR", "DOID", "GTBO", "KKGI", "MBAP", "MYOH", "SMMT", "ARTI")
+var cpoListIDX      = array.from("AALI", "LSIP", "SIMP", "TBLA", "JAWA", "ANJT", "UNSP", "SSMS", "DSNG", "PALM", "GOLL", "PSGO", "MGRO", "SMAR", "SGRO")
+var consumerListIDX = array.from("ICBP", "UNVR", "MYOR", "INDF", "GGRM", "HMSP", "MLBI", "ULTJ", "SKLT", "CMRY", "KEJU", "DLTA", "BUDI", "ROTI", "CLEO", "PSDN", "STTP", "AISA", "ADES", "ALTO")
+var industriListIDX = array.from("ASII", "AUTO", "GJTL", "MPMX", "SMSM", "KBLM", "WTON", "SMGR", "INTP", "AMFG", "ARNA", "TOTO", "PTSN", "BRPT", "TPIA", "INKP", "SAIP", "BRNA", "AKRA", "CPIN")
+var healthcareListIDX = array.from("KLBF", "SIDO", "MIKA", "HEAL", "SOHO", "RSCH", "PRDA", "DVLA", "SILO", "BMHS", "IRRA", "PEHA", "PYFA", "MERK", "TSPC")
 var propertyListIDX = array.from("CTRA", "PWON", "LPKR", "SMRA", "BSDE", "PTPP", "WIKA", "ADHI", "TOTL", "BEST", "MAPI", "ASRI", "BKSL", "DILD", "LPCK", "NIRO", "GPRA", "RBMS", "RDTX", "MKPI")
 var infraListIDX    = array.from("JSMR", "TLKM", "EXCL", "ISAT", "TOWR", "TBIG", "MTEL", "FREN", "CENT", "PGAS", "PNSE", "TURI", "WIFI", "IBST", "KEEN")
 var techListIDX     = array.from("GOTO", "BUKA", "EMTK", "MTDL", "BLUE", "DMMX", "ASLI", "DCII", "MLPT", "MCAS", "HYGN", "KETR", "PURI", "SSTM", "KMDS", "NICE", "FORM", "MARK", "SAME", "RUNS")
@@ -692,7 +697,7 @@ isFinancialSector = isBankSektor or isAsuransiSektor or isSekuritasSektor or isF
 
 isSiklikalSektor = modeSektor == "Siklikal (Komoditas/Energi)" or
      (modeSektor == "Otomatis" and toleransiSiklikal and
-       (f_watchlist(miningListIDX) or
+       (f_watchlist(coalListIDX) or f_watchlist(cpoListIDX) or
         (not na(sektorRaw) and (str.contains(sektorRaw, "Energy") or str.contains(sektorRaw, "Materials"))) or
          (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil") or str.contains(industriRaw, "Metal") or str.contains(industriRaw, "Palm")))))
 
@@ -724,6 +729,37 @@ isTransportasiSektor = modeSektor == "Transportasi" or
         (not na(sektorRaw) and str.contains(sektorRaw, "Transportation")) or
          (not na(industriRaw) and (str.contains(industriRaw, "Airlines") or str.contains(industriRaw, "Shipping") or str.contains(industriRaw, "Transport") or str.contains(industriRaw, "Logistics")))))
 
+// BARU Build 009 — 5 kelas sektor tambahan:
+// Konsumer, Industri, Kesehatan (dari Non-Finansial Umum)
+// Batubara, CPO (dari Siklikal)
+
+isKonsumerSektor = modeSektor == "Konsumer (Makanan/Minuman)" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(consumerListIDX) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Food") or str.contains(industriRaw, "Beverage") or str.contains(industriRaw, "Tobacco") or str.contains(industriRaw, "Household")))))
+
+isIndustriSektor = modeSektor == "Industri (Manufaktur)" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(industriListIDX) or
+         (not na(sektorRaw) and str.contains(sektorRaw, "Industrials")) or
+          (not na(industriRaw) and (str.contains(industriRaw, "Automobile") or str.contains(industriRaw, "Cement") or str.contains(industriRaw, "Ceramics") or str.contains(industriRaw, "Chemical") or str.contains(industriRaw, "Tire") or str.contains(industriRaw, "Machinery")))))
+
+isKesehatanSektor = modeSektor == "Kesehatan (Farmasi)" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(healthcareListIDX) or
+         (not na(sektorRaw) and (str.contains(sektorRaw, "Healthcare") or str.contains(sektorRaw, "Health Care"))) or
+          (not na(industriRaw) and (str.contains(industriRaw, "Pharma") or str.contains(industriRaw, "Hospital") or str.contains(industriRaw, "Medical") or str.contains(industriRaw, "Health")))))
+
+isBatubaraSektor = modeSektor == "Batubara" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(coalListIDX) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil")))))
+
+isCPOSektor = modeSektor == "CPO & Perkebunan" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(cpoListIDX) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Palm") or str.contains(industriRaw, "Plantation")))))
+
 // Urutan prioritas label SENGAJA sama dengan urutan prioritas pada
 // blok bobot valuasi di scoring engine (isFinancialSector dicek
 // duluan, dst) — supaya label yang ditampilkan selalu konsisten
@@ -734,6 +770,11 @@ sektorLabel = isBankSektor ? "Finansial — Bank" :
      isSekuritasSektor ? "Finansial — Sekuritas" :
      isFinancialLegacyMode ? "Finansial (Bank/Asuransi)" :
      isFinancialGenericAuto ? "Finansial (Umum)" :
+     isBatubaraSektor ? "Tambang — Batubara" :
+     isCPOSektor ? "Perkebunan — CPO" :
+     isKonsumerSektor ? "Konsumer (Makanan/Minuman)" :
+     isIndustriSektor ? "Industri (Manufaktur)" :
+     isKesehatanSektor ? "Kesehatan (Farmasi)" :
      isPropertySektor ? "Properti" :
      isInfrastrukturSektor ? "Infrastruktur" :
      isSiklikalSektor ? "Siklikal (Komoditas/Energi)" :
@@ -895,6 +936,9 @@ f_riskCard(int base, int row, string name, float score) =>
 //
 //══════════════════════════════
 if barstate.islast
+    // Build 009 — helper: emiten batubara/CPO diperlakukan
+    // sebagai Siklikal untuk bobot scoring (siklus komoditas)
+    isSiklikalLike = isSiklikalSektor or isBatubaraSektor or isCPOSektor
     relStr6m  = ret6m - bench6m
     relStr12m = ret12m - bench12m
 
@@ -943,8 +987,8 @@ if barstate.islast
     opYieldScore   = f_scoreHigher(opEarnYield, 3, 15)
     // FIX V2 (bug #7, mitigasi): pita Graham dilebarkan untuk sektor
     // siklikal, karena EPS TTM mentah bisa berada di puncak/lembah siklus.
-    grahamLow  = isSiklikalSektor ? -50.0 : -30.0
-    grahamHigh = isSiklikalSektor ? 80.0 : 50.0
+    grahamLow  = isSiklikalLike ? -50.0 : -30.0
+    grahamHigh = isSiklikalLike ? 80.0 : 50.0
     grahamScore = f_scoreHigher(grahamUpside, grahamLow, grahamHigh)
 
     // FIX/ENHANCE V2 (Build 002) — mengacu pada file1 "Sector-Aware
@@ -997,7 +1041,7 @@ if barstate.islast
         // struktur permodalan (file1 §5).
         wPe  *= 0.4
         wEv  *= 1.3
-    else if isSiklikalSektor
+    else if isSiklikalLike
         // Batubara/CPO: EPS TTM bisa berada di puncak/lembah siklus
         // harga komoditas sehingga PEG (berbasis pertumbuhan EPS) tidak
         // andal. Earnings/Operating Yield & Graham (pita sudah
@@ -1087,7 +1131,7 @@ if barstate.islast
         wFcfM   *= 1.3
         wRoic   *= 1.2
         wRoe    *= 0.7
-    else if isSiklikalSektor
+    else if isSiklikalLike
         // Siklikal: EBITDA/FCF Margin prioritas (siklus harga
         // komoditas). Piotroski dinaikkan.
         wEbitda   *= 1.3
@@ -1153,7 +1197,7 @@ if barstate.islast
         wGRev *= 1.1
         wGEps *= 0.7
         wGSgr *= 1.1
-    else if isSiklikalSektor
+    else if isSiklikalLike
         // Siklikal: Rev growth = volume/price (paling bersih).
         // EPS & SGR semu karena siklus komoditas.
         wGRev *= 1.3
@@ -1345,7 +1389,7 @@ if barstate.islast
         currH := 6.0
         intBad := 5.0
         intGood := 25.0
-    else if isSiklikalSektor
+    else if isSiklikalLike
         // Siklikal: Interest Cover prioritas (trough safety).
         wHIC *= 1.3
         intBad := 3.0
@@ -1430,12 +1474,12 @@ if barstate.islast
     // Makro: IDR stability + sector-specific commodity proxy
     indoIdrScore = f_scoreLower(idrVol, 5, 20)
     indoIdrTrend = na(idrTrend3M) ? na :
-         isSiklikalSektor ? f_scoreHigher(idrTrend3M, -5, 15) :  // eksportir: IDR lemah = bullish
+         isSiklikalLike ? f_scoreHigher(idrTrend3M, -5, 15) :  // eksportir: IDR lemah = bullish
          f_scoreLower(idrTrend3M, -5, 5)                          // lain: IDR stabil = netral
     indoMacroScore = f_avg3(indoIdrScore, indoIdrTrend, na)
     // Bobot sector-aware untuk Faktor Indonesia
     wIndonesia = 1.0
-    if isSiklikalSektor
+    if isSiklikalLike
         wIndonesia := 1.3
     else if isTechnologySektor
         wIndonesia := 1.2

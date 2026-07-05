@@ -86,13 +86,17 @@ idrTrend3M = na(usdIdrClose) ? na : (usdIdrClose / nz(usdIdrClose[63]) - 1) * 10
 f_watchlist(arr) =>
     array.includes(arr, syminfo.ticker)
 
-// Daftar ticker IDX per sektor.
+// Daftar ticker IDX per sektor — Build 009 (15 kelas).
 // Review setiap 6 bulan (IPO, merger, delisting).
 // Sumber: https://www.idx.co.id/id/perusahaan-tercatat
 tickerOnly = syminfo.ticker
 
 var bankListIDX     = array.from("BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS", "ARTO", "BBKP", "BNGA", "MEGA", "PNBN", "AGRO", "BABP", "BCIC", "BINA", "BNBA", "BSIM", "DNAR", "INPC", "MAYA", "NISP", "SDRA", "BGTG", "BEKS")
-var miningListIDX   = array.from("ADRO", "PTBA", "ITMG", "BUMI", "HRUM", "INDY", "ANTM", "MDKA", "TINS", "INCO", "BRMS", "PSAB", "DKFT", "SMMT", "ARTI", "PALM", "GEMS", "ADMR", "MYOH")
+var coalListIDX     = array.from("ADRO", "PTBA", "ITMG", "BUMI", "HRUM", "INDY", "BYAN", "GEMS", "ADMR", "DOID", "GTBO", "KKGI", "MBAP", "MYOH", "SMMT", "ARTI")
+var cpoListIDX      = array.from("AALI", "LSIP", "SIMP", "TBLA", "JAWA", "ANJT", "UNSP", "SSMS", "DSNG", "PALM", "GOLL", "PSGO", "MGRO", "SMAR", "SGRO")
+var consumerListIDX = array.from("ICBP", "UNVR", "MYOR", "INDF", "GGRM", "HMSP", "MLBI", "ULTJ", "SKLT", "CMRY", "KEJU", "DLTA", "BUDI", "ROTI", "CLEO", "PSDN", "STTP", "AISA", "ADES", "ALTO")
+var industriListIDX = array.from("ASII", "AUTO", "GJTL", "MPMX", "SMSM", "KBLM", "WTON", "SMGR", "INTP", "AMFG", "ARNA", "TOTO", "PTSN", "BRPT", "TPIA", "INKP", "SAIP", "BRNA", "AKRA", "CPIN")
+var healthcareListIDX = array.from("KLBF", "SIDO", "MIKA", "HEAL", "SOHO", "RSCH", "PRDA", "DVLA", "SILO", "BMHS", "IRRA", "PEHA", "PYFA", "MERK", "TSPC")
 var propertyListIDX = array.from("CTRA", "PWON", "LPKR", "SMRA", "BSDE", "PTPP", "WIKA", "ADHI", "TOTL", "BEST", "MAPI", "ASRI", "BKSL", "DILD", "LPCK", "NIRO", "GPRA", "RBMS", "RDTX", "MKPI")
 var infraListIDX    = array.from("JSMR", "TLKM", "EXCL", "ISAT", "TOWR", "TBIG", "MTEL", "FREN", "CENT", "PGAS", "PNSE", "TURI", "WIFI", "IBST", "KEEN")
 var techListIDX     = array.from("GOTO", "BUKA", "EMTK", "MTDL", "BLUE", "DMMX", "ASLI", "DCII", "MLPT", "MCAS", "HYGN", "KETR", "PURI", "SSTM", "KMDS", "NICE", "FORM", "MARK", "SAME", "RUNS")
@@ -148,7 +152,7 @@ isFinancialSector = isBankSektor or isAsuransiSektor or isSekuritasSektor or isF
 
 isSiklikalSektor = modeSektor == "Siklikal (Komoditas/Energi)" or
      (modeSektor == "Otomatis" and toleransiSiklikal and
-       (f_watchlist(miningListIDX) or
+       (f_watchlist(coalListIDX) or f_watchlist(cpoListIDX) or
         (not na(sektorRaw) and (str.contains(sektorRaw, "Energy") or str.contains(sektorRaw, "Materials"))) or
          (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil") or str.contains(industriRaw, "Metal") or str.contains(industriRaw, "Palm")))))
 
@@ -180,6 +184,37 @@ isTransportasiSektor = modeSektor == "Transportasi" or
         (not na(sektorRaw) and str.contains(sektorRaw, "Transportation")) or
          (not na(industriRaw) and (str.contains(industriRaw, "Airlines") or str.contains(industriRaw, "Shipping") or str.contains(industriRaw, "Transport") or str.contains(industriRaw, "Logistics")))))
 
+// BARU Build 009 — 5 kelas sektor tambahan:
+// Konsumer, Industri, Kesehatan (dari Non-Finansial Umum)
+// Batubara, CPO (dari Siklikal)
+
+isKonsumerSektor = modeSektor == "Konsumer (Makanan/Minuman)" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(consumerListIDX) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Food") or str.contains(industriRaw, "Beverage") or str.contains(industriRaw, "Tobacco") or str.contains(industriRaw, "Household")))))
+
+isIndustriSektor = modeSektor == "Industri (Manufaktur)" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(industriListIDX) or
+         (not na(sektorRaw) and str.contains(sektorRaw, "Industrials")) or
+          (not na(industriRaw) and (str.contains(industriRaw, "Automobile") or str.contains(industriRaw, "Cement") or str.contains(industriRaw, "Ceramics") or str.contains(industriRaw, "Chemical") or str.contains(industriRaw, "Tire") or str.contains(industriRaw, "Machinery")))))
+
+isKesehatanSektor = modeSektor == "Kesehatan (Farmasi)" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(healthcareListIDX) or
+         (not na(sektorRaw) and (str.contains(sektorRaw, "Healthcare") or str.contains(sektorRaw, "Health Care"))) or
+          (not na(industriRaw) and (str.contains(industriRaw, "Pharma") or str.contains(industriRaw, "Hospital") or str.contains(industriRaw, "Medical") or str.contains(industriRaw, "Health")))))
+
+isBatubaraSektor = modeSektor == "Batubara" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(coalListIDX) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil")))))
+
+isCPOSektor = modeSektor == "CPO & Perkebunan" or
+     (modeSektor == "Otomatis" and
+       (f_watchlist(cpoListIDX) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Palm") or str.contains(industriRaw, "Plantation")))))
+
 // Urutan prioritas label SENGAJA sama dengan urutan prioritas pada
 // blok bobot valuasi di scoring engine (isFinancialSector dicek
 // duluan, dst) — supaya label yang ditampilkan selalu konsisten
@@ -190,6 +225,11 @@ sektorLabel = isBankSektor ? "Finansial — Bank" :
      isSekuritasSektor ? "Finansial — Sekuritas" :
      isFinancialLegacyMode ? "Finansial (Bank/Asuransi)" :
      isFinancialGenericAuto ? "Finansial (Umum)" :
+     isBatubaraSektor ? "Tambang — Batubara" :
+     isCPOSektor ? "Perkebunan — CPO" :
+     isKonsumerSektor ? "Konsumer (Makanan/Minuman)" :
+     isIndustriSektor ? "Industri (Manufaktur)" :
+     isKesehatanSektor ? "Kesehatan (Farmasi)" :
      isPropertySektor ? "Properti" :
      isInfrastrukturSektor ? "Infrastruktur" :
      isSiklikalSektor ? "Siklikal (Komoditas/Energi)" :

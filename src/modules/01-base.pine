@@ -105,15 +105,16 @@ tampilIndonesia    = input.bool(false, "Aktifkan Faktor Indonesia (7th Factor)",
 grupSektor = "Sektor & Adaptasi"
 
 modeSektor = input.string("Otomatis", "Deteksi Sektor",
-     options = ["Otomatis", "Finansial (Bank/Asuransi)", "Bank", "Asuransi", "Sekuritas",
-       "Non-Finansial Umum", "Siklikal (Komoditas/Energi)", "Properti", "Infrastruktur",
-       "Teknologi", "Transportasi"],
+     options = ["Otomatis",
+       "Finansial (Bank/Asuransi)", "Bank", "Asuransi", "Sekuritas",
+       "Konsumer (Makanan/Minuman)", "Industri (Manufaktur)", "Kesehatan (Farmasi)",
+       "Batubara", "CPO & Perkebunan",
+       "Siklikal (Komoditas/Energi)", "Properti", "Infrastruktur",
+       "Teknologi", "Transportasi", "Non-Finansial Umum"],
      group = grupSektor,
-     tooltip = "Otomatis: mencoba mendeteksi dari syminfo.sector/industry + daftar ticker bank utama IDX. " +
-       "'Finansial (Bank/Asuransi)' adalah override generik lama (Build 001) — tetap tersedia agar " +
-       "pengaturan lama tidak berubah. Opsi Bank/Asuransi/Sekuritas/Properti/Infrastruktur/Teknologi/" +
-       "Transportasi (BARU Build 002) memberi override lebih spesifik. Deteksi otomatis TIDAK lengkap " +
-       "— override manual jika salah deteksi.")
+     tooltip = "Otomatis: mendeteksi dari syminfo.sector/industry + daftar ticker. " +
+       "Override manual jika auto-detect salah. Kelas BARU Build 009: Konsumer, " +
+       "Industri, Kesehatan, Batubara, CPO.")
 
 toleransiSiklikal = input.bool(true, "Longgarkan Graham Number untuk Sektor Siklikal", group = grupSektor,
      tooltip = "Melebarkan pita skor Graham Number untuk saham komoditas/energi yang labanya naik-turun tajam. " +
