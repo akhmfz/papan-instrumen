@@ -88,6 +88,10 @@ barisSelangSeling  = input.bool(true, "Baris Berselang-seling Halus", group = gr
 headerBerwarna     = input.bool(true, "Header Bagian Berwarna", group = grupUtama)
 tampilSimbolStatus = input.bool(true, "Tampilkan Simbol ▲ ▼", group = grupUtama)
 tampilKelengkapan  = input.bool(true, "Tampilkan Indikator Kelengkapan Data (n/x)", group = grupUtama)
+tampilCompact      = input.bool(false, "Mode Ringkas (Compact Mode)", group = grupUtama,
+     tooltip = "Tampilkan hanya skor + risiko + ringkasan. Sembunyikan" +
+       " detail valuasi, kualitas, growth, kesehatan, dividen, " +
+       "momentum, dan Indonesia di kolom kanan. Default OFF — backward compatible.")
 
 tampilRingkasan    = input.bool(true, "Tampilkan Ringkasan", group = grupUtama)
 tampilValuasi      = input.bool(true, "Tampilkan Valuasi", group = grupUtama)

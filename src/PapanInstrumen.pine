@@ -89,6 +89,10 @@ barisSelangSeling  = input.bool(true, "Baris Berselang-seling Halus", group = gr
 headerBerwarna     = input.bool(true, "Header Bagian Berwarna", group = grupUtama)
 tampilSimbolStatus = input.bool(true, "Tampilkan Simbol ▲ ▼", group = grupUtama)
 tampilKelengkapan  = input.bool(true, "Tampilkan Indikator Kelengkapan Data (n/x)", group = grupUtama)
+tampilCompact      = input.bool(false, "Mode Ringkas (Compact Mode)", group = grupUtama,
+     tooltip = "Tampilkan hanya skor + risiko + ringkasan. Sembunyikan" +
+       " detail valuasi, kualitas, growth, kesehatan, dividen, " +
+       "momentum, dan Indonesia di kolom kanan. Default OFF — backward compatible.")
 
 tampilRingkasan    = input.bool(true, "Tampilkan Ringkasan", group = grupUtama)
 tampilValuasi      = input.bool(true, "Tampilkan Valuasi", group = grupUtama)
@@ -1567,26 +1571,34 @@ if barstate.islast
                 row := f_row(base, row, "Market Cap", pi_formatMoney(mcap), na)
                 row := f_row(base, row, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
                 row := f_row(base, row, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
-            if tampilValuasi
-                row := f_section(base, row, "VALUASI")
-                row := f_row(base, row, "P/E TTM", pi_formatNumber(pe), peScore)
-                row := f_row(base, row, "PEG Ratio", pi_formatNumber(peg), pegScore)
-                row := f_row(base, row, "P/S TTM", pi_formatNumber(ps), psScore)
-                row := f_row(base, row, "P/B", pi_formatNumber(pb), pbScore)
-                row := f_row(base, row, "EV/EBITDA", pi_formatNumber(evEbitda), evScore)
-                row := f_row(base, row, "EV/Sales", pi_formatNumber(evSales), evSalesScore)
-                row := f_row(base, row, "Earnings Yield", pi_formatPercent(earnYield), earnYieldScore)
-                row := f_row(base, row, "Operating Earn. Yield", pi_formatPercent(opEarnYield), opYieldScore)
-                row := f_row(base, row, "Graham Price", pi_formatNumber(grahamPrice), grahamScore)
-                row := f_row(base, row, "Graham No. Upside", pi_arrow(grahamUpside) + pi_formatPercent(grahamUpside), grahamScore)
-                row := f_row(base, row, "EPS TTM", pi_formatNumber(epsTtm), na)
-                row := f_row(base, row, "BVPS", pi_formatNumber(bvps), pbScore)
-            if tampilDividen
-                row := f_section(base, row, "DIVIDEN & IMBAL HASIL")
-                row := f_row(base, row, "Dividend Yield", pi_formatPercent(divYield), yieldScore)
-                row := f_row(base, row, "Payout Ratio", pi_formatPercent(payout), payoutScore)
-                row := f_row(base, row, "FCF Yield", pi_formatPercent(fcfYield), fcfYieldScore)
-                row := f_row(base, row, "DPS", pi_formatNumber(dpsEst), dpsScore)
+            if tampilRingkasan
+                row := f_section(base, row, "RINGKASAN")
+                row := f_row(base, row, "Price", pi_formatNumber(dClose), na)
+                row := f_row(base, row, "Market Cap", pi_formatMoney(mcap), na)
+                row := f_row(base, row, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
+                row := f_row(base, row, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
+            if not tampilCompact
+                row
+                if tampilValuasi
+                    row := f_section(base, row, "VALUASI")
+                    row := f_row(base, row, "P/E TTM", pi_formatNumber(pe), peScore)
+                    row := f_row(base, row, "PEG Ratio", pi_formatNumber(peg), pegScore)
+                    row := f_row(base, row, "P/S TTM", pi_formatNumber(ps), psScore)
+                    row := f_row(base, row, "P/B", pi_formatNumber(pb), pbScore)
+                    row := f_row(base, row, "EV/EBITDA", pi_formatNumber(evEbitda), evScore)
+                    row := f_row(base, row, "EV/Sales", pi_formatNumber(evSales), evSalesScore)
+                    row := f_row(base, row, "Earnings Yield", pi_formatPercent(earnYield), earnYieldScore)
+                    row := f_row(base, row, "Operating Earn. Yield", pi_formatPercent(opEarnYield), opYieldScore)
+                    row := f_row(base, row, "Graham Price", pi_formatNumber(grahamPrice), grahamScore)
+                    row := f_row(base, row, "Graham No. Upside", pi_arrow(grahamUpside) + pi_formatPercent(grahamUpside), grahamScore)
+                    row := f_row(base, row, "EPS TTM", pi_formatNumber(epsTtm), na)
+                    row := f_row(base, row, "BVPS", pi_formatNumber(bvps), pbScore)
+                if tampilDividen
+                    row := f_section(base, row, "DIVIDEN & IMBAL HASIL")
+                    row := f_row(base, row, "Dividend Yield", pi_formatPercent(divYield), yieldScore)
+                    row := f_row(base, row, "Payout Ratio", pi_formatPercent(payout), payoutScore)
+                    row := f_row(base, row, "FCF Yield", pi_formatPercent(fcfYield), fcfYieldScore)
+                    row := f_row(base, row, "DPS", pi_formatNumber(dpsEst), dpsScore)
             row
 
     f_renderRight(int base, int row) =>
@@ -1599,8 +1611,9 @@ if barstate.islast
             row
         else
             row
-            if tampilKualitas
-                row := f_section(base, row, "KUALITAS")
+            if not tampilCompact
+                if tampilKualitas
+                    row := f_section(base, row, "KUALITAS")
                 if isBankSektor or isAsuransiSektor
                     row := f_row(base, row, "(Sektor Finansial: margin", "non-bank di-skip)", na)
                 row := f_row(base, row, "ROE", pi_formatPercent(roe), roeScore)
