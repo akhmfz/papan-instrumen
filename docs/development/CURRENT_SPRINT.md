@@ -19,11 +19,11 @@ v0.1.0-alpha
 
 Build
 
-B005
+B006
 
 Sprint
 
-S004
+S005
 
 Status
 
@@ -31,7 +31,7 @@ Status
 
 Current Phase
 
-Financial Health Engine
+Indonesia Layer
 
 ---
 
@@ -39,25 +39,26 @@ Financial Health Engine
 
 Task ID
 
-HLT-001
+IDN-001
 
 Objective
 
-Implement sector-aware financial health engine with sub-category handling for Bank/Asuransi/Sekuritas.
+Implement Indonesia Layer sebagai 7th factor dalam overall scoring (opt-in via toggle).
 
 Scope
 
-- Sector-aware thresholds for D/E, D/EBITDA, CR, QR, IC, Altman Z
-- Weight matrix per sektor (Leverage, DebtService, Liquidity, AltmanZ, CashFlow)
-- Sub-kategori Bank vs Asuransi vs Sekuritas
-- Altman Z threshold Z"-Score EM (1.1-2.6)
+- Toggle tampilIndonesia (default OFF)
+- 3 komponen: Likuiditas IDX, Stabilitas Pasar (beta), Dukungan Makro (IDR)
+- bobotIndonesia input kustom
+- Sector-aware weight adjustment
+- Data baru: FX_IDC:USDIDR, ta.beta() vs IDX Composite
+- Rendering FAKTOR INDONESIA di kedua kolom
 
 Do Not
 
-- Change Valuation/Profitability/Growth Methodology
-- Change Dashboard Layout
-- Add New Financial Ratios
-- Modify Income/Momentum dimensions
+- Change existing 6-factor scoring when toggle is OFF
+- Add new request.financial() calls
+- Modify existing dashboard layout or color themes
 
 ---
 
@@ -111,45 +112,47 @@ Merge
 
 # Next Milestone
 
-Indonesia Layer (B006)
+Alpha Release (v0.1.0-alpha — Candidate Review)
 ---
 # Sprint Information
 Sprint Name
-Financial Health — Sector Thresholds
+Indonesia Layer — 7th Factor
 Sprint Number
-Sprint 004
+Sprint 005
 Status
 🟢 Active
 Priority
 High
 Current Build
-Build 005
+Build 006
 ---
 # Sprint Goal
-Menerapkan sector-aware thresholds + weight matrix untuk Financial Health Engine dengan sub-kategori Bank/Asuransi/Sekuritas.
+Menerapkan Indonesia Layer sebagai 7th factor (opt-in) — Likuiditas IDX + Stabilitas Pasar + Dukungan Makro.
 ---
 # Sprint Scope
 ## Included
-- Sector-aware thresholds for 7 health ratios
-- Weight matrix per sektor (f_wavgArr)
-- Sub-kategori Bank, Asuransi, Sekuritas
-- Altman Z threshold → Z"-Score EM (1.1-2.6)
-- Rendering per sub-kategori
+- Toggle tampilIndonesia (default OFF — backward compatible)
+- 3 komponen Faktor Indonesia
+- FX_IDC:USDIDR + ta.beta() data sources
+- Sector-aware weight adjustment (0.8-1.3x)
+- bobotIndonesia input kustom
+- Rendering FAKTOR INDONESIA
 ---
 ## Excluded
-- Valuation/Profitability/Growth Methodology Changes
-- Dashboard Layout Changes
-- New Financial Ratios
-- Income/Momentum dimensions
+- Existing 6-factor scoring unchanged when toggle OFF
+- request.financial() additions
+- Dashboard layout changes
+- New color themes
 ---
 # Current Tasks
 | ID | Task | Status | Priority |
 |----|------|--------|----------|
-| HLT-001 | Define sector-aware thresholds per sektor | ✅ Done | High |
-| HLT-002 | Implement weight matrix (f_wavgArr) for health | ✅ Done | High |
-| HLT-003 | Sub-kategori Bank/Asuransi/Sekuritas | ✅ Done | High |
-| HLT-004 | Update rendering per sub-kategori | ✅ Done | High |
-| HLT-005 | Update documentation | 🟡 In Progress | Medium |
+| IDN-001 | Add toggle + bobotIndonesia input | ✅ Done | High |
+| IDN-002 | Add FX_IDC:USDIDR + beta fetch | ✅ Done | High |
+| IDN-003 | Implement Indonesia scoring (3 komponen) | ✅ Done | High |
+| IDN-004 | Conditional f_avg6 vs f_avg7 overallScore | ✅ Done | High |
+| IDN-005 | Add FAKTOR INDONESIA rendering | ✅ Done | High |
+| IDN-006 | Update documentation | 🟡 In Progress | Medium |
 ---
 # Definition of Done
 Sprint dianggap selesai apabila:
@@ -184,27 +187,26 @@ Target akhir Sprint:
 # Progress
 Overall Progress
 ```
-Health Scoring   ██████████ 100%
+Indonesia Layer  ██████████ 100%
 Documentation    ████████░░ 80%
 Testing          ░░░░░░░░░░ 0%
 ```
 ---
 # Sprint Notes
 Catatan penting selama sprint:
-- Bank: hanya Interest Cover + OCF + FCF (CAR/NPL/LDR tidak tersedia).
-- Asuransi: sama seperti bank, Interest Cover bobot 1.0.
-- Sekuritas: Cash/Debt prioritas (×1.3), D/E & CR partially relevant.
-- Infrastruktur: D/E threshold 0-5 (BUMN normal 3-4x), D/EBITDA 0-8.
-- Properti: D/E 0-4, CR/QR threshold longgar (1.5 ideal), Cash Flow prioritas.
-- Teknologi: Cash/Debt prioritas (×1.5), D/E & leverage diturunkan (×0.3).
-- Siklikal: Interest Cover threshold 3-20 (trough safety).
-- Altman Z: threshold diubah ke 1.1-2.6 (Z"-Score untuk EM).
+- Toggle default OFF: backward compatible dengan Build 005.
+- Data baru: FX_IDC:USDIDR (ICE Data Services) + ta.beta() vs IDX Composite.
+- 3 komponen: Likuiditas (val+turn+mcap), Stabilitas (beta+RS+vol), Makro (IDR vol+trend).
+- Sector-aware weight: Siklikal 1.3x, Teknologi 1.2x, Bank/Asuransi/Infra 0.8x.
+- IDX sector indices sebagai fallback commodity proxy.
+- Skor Likuiditas positif (beda dari modul Risiko yang ukur bahaya).
 ---
 # Next Sprint Preview
 Sprint berikutnya direncanakan berfokus pada:
-- Indonesia Layer
-- Kategori "Indonesia Factor" pada Scoring Matrix
-Dokumen ini akan diperbarui setelah Sprint 004 selesai.
+- Alpha Release Candidate
+- Code review, testing, bug fixes
+- Finalisasi dokumentasi pengguna
+Dokumen ini akan diperbarui setelah Sprint 005 selesai.
 ---
 
 # AI Context

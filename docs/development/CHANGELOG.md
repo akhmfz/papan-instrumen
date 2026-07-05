@@ -177,6 +177,54 @@ Pending
 - Sumber: Altman Z (1968+1993), Piotroski F-Score (2000), Moody's/S&P, AQR (2019).
 - Threshold dilarikan dari credit rating agencies + OJK reg + IDX norms.
 ---
+# Build 006
+Status
+Current Development
+Sprint
+Sprint 005
+Date
+YYYY-MM-DD
+---
+## Objective
+Menerapkan Indonesia Layer sebagai 7th factor (opt-in via toggle) — Likuiditas IDX + Stabilitas Pasar + Dukungan Makro.
+---
+## Files Modified
+```
+PapanInstrumen.pine
+CURRENT_SPRINT.md
+CHANGELOG.md
+BACKLOG.md
+```
+---
+## Added
+- Toggle tampilIndonesia (default OFF — backward compatible)
+- bobotIndonesia input kustom (default 1.0 = ~14%, sector-aware 0.8-1.3x)
+- f_avg7, f_wavg7, f_countValid7 utility functions
+- secIndonesiaBg color + f_sectionBg wiring
+- FX_IDC:USDIDR fetch (exchange rate + volatility + trend)
+- ta.beta() vs IDX Composite computation
+- 3 komponen scoring: indoLiqScore, indoBetaScore, indoMacroScore
+- Conditional f_avg6 vs f_avg7 overallScore (based on toggle)
+- Rendering: score card + detail section in right column
+---
+## Changed
+- overallScore: supports 7th factor when toggle ON
+- overallTxt: dynamic n/6 or n/7 based on toggle
+- New build version 2.5.0
+---
+## Performance Impact
+Low.
+0 tambahan request.financial(). 1 tambahan request.security("FX_IDC:USDIDR").
+ta.beta() menggunakan data existing benchmark (tidak ada request baru).
+---
+## Breaking Change
+NO — toggle default OFF, backward compatible dengan Build 005.
+---
+## Engineering Notes
+- Data sources: FX_IDC:USDIDR (ICE Data Services, confirmed working).
+- Commodity proxy: IDX sector indices (IDX:IDXENERGY, IDX:IDXBASIC) fallback.
+- Sumber: Altman Z (1968), AQR Quality (2019), IDX market structure.
+---
 # Build 003
 Status
 Completed

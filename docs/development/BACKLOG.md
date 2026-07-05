@@ -76,7 +76,7 @@ Tidak menjadi prioritas sprint saat ini.
 | BL-007 | Sector | Consumer/Industri/Healthcare sebagai kelas sektor terpisah | P2 | Open |
 | BL-008 | Growth | Growth Engine hybrid (Build 004 + Rev 1) | P2 | ✅ Done |
 | BL-009 | Financial Health | Health Engine — sector thresholds + sub-kategori (Build 005) | P2 | ✅ Done |
-| BL-010 | Indonesia Layer | "Indonesia Factor" pada Scoring Matrix | P2 | Open |
+| BL-010 | Indonesia Layer | "Indonesia Factor" pada Scoring Matrix (Build 006) | P2 | ✅ Done |
 ---
 # Future Backlog
 ## Dashboard
