@@ -627,16 +627,20 @@ idrVol = na(idrDailyRet) ? na : idrStdev * math.sqrt(252) * 100
 
 idrTrend3M = na(usdIdrClose) ? na : (usdIdrClose / nz(usdIdrClose[63]) - 1) * 100
 
-var bankListIDX = array.from(
-     "BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS",
-     "ARTO", "BBKP", "BNGA", "MEGA", "PNBN", "AGRO", "BABP", "BCIC", "BINA",
-     "BNBA", "BSIM", "DNAR", "INPC", "MAYA", "NISP", "SDRA", "BGTG", "BEKS")
-// Daftar per 2026-07. Review setiap 6 bulan (bank baru IPO, merger, delisting).
-// Sumber acuan: https://www.idx.co.id/id/perusahaan-tercatat/sektor-keuangan
+f_watchlist(arr) =>
+    array.includes(arr, syminfo.ticker)
 
+// Daftar ticker IDX per sektor.
+// Review setiap 6 bulan (IPO, merger, delisting).
+// Sumber: https://www.idx.co.id/id/perusahaan-tercatat
 tickerOnly = syminfo.ticker
 
-isBankTicker = array.includes(bankListIDX, tickerOnly)
+var bankListIDX     = array.from("BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS", "ARTO", "BBKP", "BNGA", "MEGA", "PNBN", "AGRO", "BABP", "BCIC", "BINA", "BNBA", "BSIM", "DNAR", "INPC", "MAYA", "NISP", "SDRA", "BGTG", "BEKS")
+var miningListIDX   = array.from("ADRO", "PTBA", "ITMG", "BUMI", "HRUM", "INDY", "ANTM", "MDKA", "TINS", "INCO", "BRMS", "PSAB", "DKFT", "SMMT", "ARTI", "PALM", "GEMS", "ADMR", "MYOH")
+var propertyListIDX = array.from("CTRA", "PWON", "LPKR", "SMRA", "BSDE", "PTPP", "WIKA", "ADHI", "TOTL", "BEST", "MAPI", "ASRI", "BKSL", "DILD", "LPCK", "NIRO", "GPRA", "RBMS", "RDTX", "MKPI")
+var infraListIDX    = array.from("JSMR", "TLKM", "EXCL", "ISAT", "TOWR", "TBIG", "MTEL", "FREN", "CENT", "PGAS", "PNSE", "TURI", "WIFI", "IBST", "KEEN")
+var techListIDX     = array.from("GOTO", "BUKA", "EMTK", "MTDL", "BLUE", "DMMX", "ASLI", "DCII", "MLPT", "MCAS", "HYGN", "KETR", "PURI", "SSTM", "KMDS", "NICE", "FORM", "MARK", "SAME", "RUNS")
+var transportListIDX = array.from("ASSA", "BIRD", "SAFE", "TAXI", "GIAA", "CMPP", "BPTR", "SDMU", "TMAS", "WINS", "HITS", "BULL", "SUPR", "SMDR", "PPGL")
 
 // FIX V2 (Build 002, revisi) — Bank/Asuransi/Sekuritas kini kelas
 // eksplisit terpisah (sebelumnya ketiganya "menumpang" jadi satu
@@ -656,7 +660,7 @@ isBankTicker = array.includes(bankListIDX, tickerOnly)
 isFinancialLegacyMode = modeSektor == "Finansial (Bank/Asuransi)"
 
 isBankSektor = modeSektor == "Bank" or
-     (modeSektor == "Otomatis" and (isBankTicker or
+     (modeSektor == "Otomatis" and (f_watchlist(bankListIDX) or
        (not na(industriRaw) and str.contains(industriRaw, "Bank"))))
 
 isAsuransiSektor = modeSektor == "Asuransi" or
@@ -688,8 +692,9 @@ isFinancialSector = isBankSektor or isAsuransiSektor or isSekuritasSektor or isF
 
 isSiklikalSektor = modeSektor == "Siklikal (Komoditas/Energi)" or
      (modeSektor == "Otomatis" and toleransiSiklikal and
-       ((not na(sektorRaw) and (str.contains(sektorRaw, "Energy") or str.contains(sektorRaw, "Materials"))) or
-        (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil") or str.contains(industriRaw, "Metal") or str.contains(industriRaw, "Palm")))))
+       (f_watchlist(miningListIDX) or
+        (not na(sektorRaw) and (str.contains(sektorRaw, "Energy") or str.contains(sektorRaw, "Materials"))) or
+         (not na(industriRaw) and (str.contains(industriRaw, "Coal") or str.contains(industriRaw, "Mining") or str.contains(industriRaw, "Oil") or str.contains(industriRaw, "Metal") or str.contains(industriRaw, "Palm")))))
 
 // REVISI V2 (Build 002) — 4 kategori berikut kini BISA di-override
 // manual (sebelumnya hanya auto-detect di mode "Otomatis"). Tidak ada
@@ -697,22 +702,26 @@ isSiklikalSektor = modeSektor == "Siklikal (Komoditas/Energi)" or
 // jalur "modeSektor == <label>" seperti kategori lain.
 isPropertySektor = modeSektor == "Properti" or
      (modeSektor == "Otomatis" and
-       ((not na(sektorRaw) and str.contains(sektorRaw, "Real Estate")) or
+       (f_watchlist(propertyListIDX) or
+        (not na(sektorRaw) and str.contains(sektorRaw, "Real Estate")) or
          (not na(industriRaw) and (str.contains(industriRaw, "Real Estate") or str.contains(industriRaw, "Property") or str.contains(industriRaw, "REIT")))))
 
 isInfrastrukturSektor = modeSektor == "Infrastruktur" or
      (modeSektor == "Otomatis" and
-       ((not na(sektorRaw) and str.contains(sektorRaw, "Utilities")) or
+       (f_watchlist(infraListIDX) or
+        (not na(sektorRaw) and str.contains(sektorRaw, "Utilities")) or
          (not na(industriRaw) and (str.contains(industriRaw, "Utilit") or str.contains(industriRaw, "Infrastructure") or str.contains(industriRaw, "Toll") or str.contains(industriRaw, "Telecom")))))
 
 isTechnologySektor = modeSektor == "Teknologi" or
      (modeSektor == "Otomatis" and
-       ((not na(sektorRaw) and str.contains(sektorRaw, "Technology")) or
+       (f_watchlist(techListIDX) or
+        (not na(sektorRaw) and str.contains(sektorRaw, "Technology")) or
          (not na(industriRaw) and (str.contains(industriRaw, "Software") or str.contains(industriRaw, "Internet") or str.contains(industriRaw, "E-Commerce")))))
 
 isTransportasiSektor = modeSektor == "Transportasi" or
      (modeSektor == "Otomatis" and
-       ((not na(sektorRaw) and str.contains(sektorRaw, "Transportation")) or
+       (f_watchlist(transportListIDX) or
+        (not na(sektorRaw) and str.contains(sektorRaw, "Transportation")) or
          (not na(industriRaw) and (str.contains(industriRaw, "Airlines") or str.contains(industriRaw, "Shipping") or str.contains(industriRaw, "Transport") or str.contains(industriRaw, "Logistics")))))
 
 // Urutan prioritas label SENGAJA sama dengan urutan prioritas pada
