@@ -225,6 +225,38 @@ NO — toggle default OFF, backward compatible dengan Build 005.
 - Commodity proxy: IDX sector indices (IDX:IDXENERGY, IDX:IDXBASIC) fallback.
 - Sumber: Altman Z (1968), AQR Quality (2019), IDX market structure.
 ---
+# Build 007
+Status
+Current
+Sprint
+Sprint 006
+Date
+2026-07
+---
+## Objective
+Alpha Fix & Polish — hide rows by weight, fix Interest Cover threshold.
+---
+## Files Modified
+```
+PapanInstrumen.pine
+CURRENT_SPRINT.md
+CHANGELOG.md
+BACKLOG.md
+```
+---
+## Changed
+- Quality render: margin rows di-hide jika bobot ≤ 0 (Finansial skip)
+- Health render: leverage/liquidity rows di-hide jika bobot ≤ 0
+- Interest Cover threshold: 2-20 → 5-30
+---
+## Breaking Change
+Minimal.
+Interest Cover threshold berubah → skor IC sedikit lebih rendah.
+---
+## Performance Impact
+None.
+Tidak ada perubahan request.*() calls.
+---
 # Build 003
 Status
 Completed

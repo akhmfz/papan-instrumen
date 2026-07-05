@@ -2,7 +2,7 @@
 // ═══════════════════════════════════════════════════════════════════
 //
 //   SAHAM: PAPAN INSTRUMEN BY. AKHMFZ
-//   Versi 2.5.0 — Build 006 (Sprint: Indonesia Layer — 7th Factor)
+//   Versi 2.5.1 — Build 007 (Sprint: Alpha Fix & Polish)
 //
 //   CHANGELOG BUILD 006 (ringkas)
 //   ✓ FITUR BARU: FAKTOR INDONESIA — dimensi ke-7 dalam skor keseluruhan.
@@ -15,6 +15,12 @@
 //   ✓ UI: tampilIndonesia toggle, bobotIndonesia input kustom.
 //   ✓ Performance: 0 tambahan request.financial(), 1 tambahan
 //     request.security("FX_IDC:USDIDR").
+//
+//   CHANGELOG BUILD 007 (ringkas)
+//   ✓ Render rows di-hide berdasarkan weight scoring (bukan hardcode sektor)
+//     — Quality: margin hanya tampil jika wGross/wOp/wNet/wEbitda/wFcfM > 0.
+//     — Health: leverage/liquidity hanya tampil jika wHDe/wHCR/wHAltman > 0.
+//   ✓ Interest Cover threshold dinaikkan: 2-20 → 5-30 (kurangi skor 100).
 //
 //   CHANGELOG BUILD 001 (ringkas — detail lengkap di changelog.md)
 //   ✓ Guard ekuitas negatif, hapus normalisasi magnitude, f_avg6,
@@ -1172,7 +1178,7 @@ if barstate.islast
     float netDebtEbitdaG = 0.0, netDebtEbitdaB = 5.0
     float currL = 0.5, currI = 2.0, currH = 5.0
     float quickL = 0.3, quickI = 1.5, quickH = 4.0
-    float intBad = 2.0, intGood = 20.0
+    float intBad = 5.0, intGood = 30.0
     float altmanBad = 1.1, altmanGood = 2.6
 
     wHDe = 1.0
@@ -1488,15 +1494,22 @@ if barstate.islast
 
     if tampilKualitas
         r := f_section(3, r, "KUALITAS")
+        if isBankSektor or isAsuransiSektor
+            r := f_row(3, r, "(Sektor Finansial: margin", "non-bank di-skip)", na)
         r := f_row(3, r, "ROE", pi_formatPercent(roe), roeScore)
         r := f_row(3, r, "Asset Return / ROA", pi_formatPercent(roa), roaScore)
         r := f_row(3, r, "ROIC", pi_formatPercent(roic), roicScore)
         r := f_row(3, r, "Piotroski F-Score", pi_formatNumber(piotroski), piotroskiScore)
-        r := f_row(3, r, "Gross Margin", pi_formatPercent(grossM), grossScore)
-        r := f_row(3, r, "Operating Margin", pi_formatPercent(opM), opScore)
-        r := f_row(3, r, "Net Margin", pi_formatPercent(netM), netScore)
-        r := f_row(3, r, "EBITDA Margin", pi_formatPercent(ebitdaM), ebitdaScore)
-        r := f_row(3, r, "FCF Margin", pi_formatPercent(fcfMargin), fcfMarginScore)
+        if wGross > 0
+            r := f_row(3, r, "Gross Margin", pi_formatPercent(grossM), grossScore)
+        if wOp > 0
+            r := f_row(3, r, "Operating Margin", pi_formatPercent(opM), opScore)
+        if wNet > 0
+            r := f_row(3, r, "Net Margin", pi_formatPercent(netM), netScore)
+        if wEbitda > 0
+            r := f_row(3, r, "EBITDA Margin", pi_formatPercent(ebitdaM), ebitdaScore)
+        if wFcfM > 0
+            r := f_row(3, r, "FCF Margin", pi_formatPercent(fcfMargin), fcfMarginScore)
 
     if tampilPertumbuhan
         r := f_section(3, r, "PERTUMBUHAN")
@@ -1514,22 +1527,26 @@ if barstate.islast
 
     if tampilKesehatan
         r := f_section(3, r, "KESEHATAN KEUANGAN")
-        isFinSub = isBankSektor or isAsuransiSektor or isSekuritasSektor
-        if isBankSektor
-            r := f_row(3, r, "(Bank: rasio leverage", "non-bank di-skip)", na)
-        if isAsuransiSektor
-            r := f_row(3, r, "(Asuransi: rasio", "non-asuransi di-skip)", na)
-        if isSekuritasSektor
-            r := f_row(3, r, "(Sekuritas: rasio", "terbatas)", na)
-        r := f_row(3, r, "Debt / Equity", pi_formatNumber(debtEq), isFinSub ? na : debtEqScore)
-        r := f_row(3, r, "Debt / Assets", pi_formatNumber(debtAsset), isFinSub ? na : debtAssetScore)
-        r := f_row(3, r, "Debt / EBITDA", pi_formatNumber(debtEbitda), isBankSektor or isAsuransiSektor ? na : debtEbitdaScore)
-        r := f_row(3, r, "Net Debt / EBITDA", pi_formatNumber(netDebtEbitda), isFinSub ? na : netDebtEbitdaScore)
-        r := f_row(3, r, "Cash / Debt", pi_formatNumber(cashDebt), isBankSektor or isAsuransiSektor ? na : cashDebtScore)
-        r := f_row(3, r, "Current Ratio", pi_formatNumber(currRatio), isBankSektor or isAsuransiSektor ? na : currScore)
-        r := f_row(3, r, "Quick Ratio", pi_formatNumber(quickRatio), isBankSektor or isAsuransiSektor ? na : quickScore)
-        r := f_row(3, r, "Interest Cover", pi_formatNumber(interestCover), interestScore)
-        r := f_row(3, r, "Altman Z-Score", pi_formatNumber(altmanZ), isFinSub ? na : altmanScore)
+        if isBankSektor or isAsuransiSektor or isSekuritasSektor
+            r := f_row(3, r, "(Sektor Finansial: rasio", "terbatas — lihat skor)", na)
+        if wHDe > 0
+            r := f_row(3, r, "Debt / Equity", pi_formatNumber(debtEq), debtEqScore)
+        if wHDa > 0
+            r := f_row(3, r, "Debt / Assets", pi_formatNumber(debtAsset), debtAssetScore)
+        if wHDeB > 0
+            r := f_row(3, r, "Debt / EBITDA", pi_formatNumber(debtEbitda), debtEbitdaScore)
+        if wHNetD > 0
+            r := f_row(3, r, "Net Debt / EBITDA", pi_formatNumber(netDebtEbitda), netDebtEbitdaScore)
+        if wHCash > 0
+            r := f_row(3, r, "Cash / Debt", pi_formatNumber(cashDebt), cashDebtScore)
+        if wHIC > 0
+            r := f_row(3, r, "Interest Cover", pi_formatNumber(interestCover), interestScore)
+        if wHCR > 0
+            r := f_row(3, r, "Current Ratio", pi_formatNumber(currRatio), currScore)
+        if wHQR > 0
+            r := f_row(3, r, "Quick Ratio", pi_formatNumber(quickRatio), quickScore)
+        if wHAltman > 0
+            r := f_row(3, r, "Altman Z-Score", pi_formatNumber(altmanZ), altmanScore)
         r := f_row(3, r, "OCF", pi_formatMoney(ocf), ocfScore)
         r := f_row(3, r, "FCF", pi_formatMoney(fcf), fcfScore)
 

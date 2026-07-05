@@ -19,11 +19,11 @@ v0.1.0-alpha
 
 Build
 
-B006
+B007
 
 Sprint
 
-S005
+S006
 
 Status
 
@@ -31,7 +31,7 @@ Status
 
 Current Phase
 
-Indonesia Layer
+Alpha Fix & Polish
 
 ---
 
@@ -39,26 +39,23 @@ Indonesia Layer
 
 Task ID
 
-IDN-001
+ALPHA-001
 
 Objective
 
-Implement Indonesia Layer sebagai 7th factor dalam overall scoring (opt-in via toggle).
+Alpha Fix & Polish — hide irrelevant rows, fix scoring thresholds, testing.
 
 Scope
 
-- Toggle tampilIndonesia (default OFF)
-- 3 komponen: Likuiditas IDX, Stabilitas Pasar (beta), Dukungan Makro (IDR)
-- bobotIndonesia input kustom
-- Sector-aware weight adjustment
-- Data baru: FX_IDC:USDIDR, ta.beta() vs IDX Composite
-- Rendering FAKTOR INDONESIA di kedua kolom
+- Hide render rows where weight = 0 (Quality margin + Health leverage/liquidity)
+- Fix Interest Cover threshold (5-30)
+- Hide non-relevant rows for all sectors (check weight)
 
 Do Not
 
-- Change existing 6-factor scoring when toggle is OFF
+- Change scoring methodology or weights
 - Add new request.financial() calls
-- Modify existing dashboard layout or color themes
+- Add new features or dimensions
 
 ---
 
@@ -71,6 +68,8 @@ src/PapanInstrumen.pine
 Supporting
 
 docs/development/CURRENT_SPRINT.md
+docs/development/CHANGELOG.md
+docs/development/BACKLOG.md
 
 ---
 
@@ -82,15 +81,15 @@ Architecture
 
 Implementation
 
-✅ Completed
+🟡 In Progress
 
 Testing
 
-🟡 In Progress
+⬜ Pending
 
 Documentation
 
-🟡 In Progress
+⬜ Pending
 
 Review
 
@@ -107,52 +106,49 @@ Merge
 - Securities auto detection requires further validation.
 - TradingView industry classification may be inconsistent.
 - Consumer/Industri/Healthcare belum dipisah sebagai kelas sektor.
+- Banyak field TradingView tidak terisi untuk emiten IDX tertentu.
 
 ---
 
 # Next Milestone
 
-Alpha Release (v0.1.0-alpha — Candidate Review)
+Beta Release
 ---
 # Sprint Information
 Sprint Name
-Indonesia Layer — 7th Factor
+Alpha Fix & Polish
 Sprint Number
-Sprint 005
+Sprint 006
 Status
 🟢 Active
 Priority
 High
 Current Build
-Build 006
+Build 007
 ---
 # Sprint Goal
-Menerapkan Indonesia Layer sebagai 7th factor (opt-in) — Likuiditas IDX + Stabilitas Pasar + Dukungan Makro.
+Menyelesaikan issue-issue alpha: hide rows tidak relevan, fix threshold scoring, testing dasar.
 ---
 # Sprint Scope
 ## Included
-- Toggle tampilIndonesia (default OFF — backward compatible)
-- 3 komponen Faktor Indonesia
-- FX_IDC:USDIDR + ta.beta() data sources
-- Sector-aware weight adjustment (0.8-1.3x)
-- bobotIndonesia input kustom
-- Rendering FAKTOR INDONESIA
+- Hide render rows by weight (Quality + Health)
+- Interest Cover threshold adjustment
+- Testing BBCA + ADRO + TLKM
 ---
 ## Excluded
-- Existing 6-factor scoring unchanged when toggle OFF
+- New features or dimensions
 - request.financial() additions
 - Dashboard layout changes
-- New color themes
+- Perubahan metodologi scoring
 ---
 # Current Tasks
 | ID | Task | Status | Priority |
 |----|------|--------|----------|
-| IDN-001 | Add toggle + bobotIndonesia input | ✅ Done | High |
-| IDN-002 | Add FX_IDC:USDIDR + beta fetch | ✅ Done | High |
-| IDN-003 | Implement Indonesia scoring (3 komponen) | ✅ Done | High |
-| IDN-004 | Conditional f_avg6 vs f_avg7 overallScore | ✅ Done | High |
-| IDN-005 | Add FAKTOR INDONESIA rendering | ✅ Done | High |
-| IDN-006 | Update documentation | 🟡 In Progress | Medium |
+| ALPHA-001 | Hide rows by weight in Quality render | ✅ Done | High |
+| ALPHA-002 | Hide rows by weight in Health render | ✅ Done | High |
+| ALPHA-003 | Fix Interest Cover threshold (5-30) | ✅ Done | High |
+| ALPHA-004 | Testing (BBCA, ADRO, TLKM) | ⬜ Pending | High |
+| ALPHA-005 | Update documentation | 🟡 In Progress | Medium |
 ---
 # Definition of Done
 Sprint dianggap selesai apabila:
@@ -187,26 +183,26 @@ Target akhir Sprint:
 # Progress
 Overall Progress
 ```
-Indonesia Layer  ██████████ 100%
-Documentation    ████████░░ 80%
-Testing          ░░░░░░░░░░ 0%
+Hide Rows       ██████████ 100%
+Threshold Fix   ██████████ 100%
+Testing         ░░░░░░░░░░ 0%
+Documentation   ░░░░░░░░░░ 0%
 ```
 ---
 # Sprint Notes
 Catatan penting selama sprint:
-- Toggle default OFF: backward compatible dengan Build 005.
-- Data baru: FX_IDC:USDIDR (ICE Data Services) + ta.beta() vs IDX Composite.
-- 3 komponen: Likuiditas (val+turn+mcap), Stabilitas (beta+RS+vol), Makro (IDR vol+trend).
-- Sector-aware weight: Siklikal 1.3x, Teknologi 1.2x, Bank/Asuransi/Infra 0.8x.
-- IDX sector indices sebagai fallback commodity proxy.
-- Skor Likuiditas positif (beda dari modul Risiko yang ukur bahaya).
+- Render rows di-hide berdasarkan weight scoring (bukan hardcode per sektor).
+- Quality margin rows hanya muncul jika `wGross/wOp/wNet/wEbitda/wFcfM > 0`.
+- Health leverage/liquidity rows hanya muncul jika `wHDe/wHCR/wHAltman > 0`.
+- Interest Cover threshold dinaikkan dari 2-20 ke 5-30.
+- `f_scorePositive` tetap binary — fungsi cek positif/negatif memang seharusnya binary.
 ---
 # Next Sprint Preview
 Sprint berikutnya direncanakan berfokus pada:
-- Alpha Release Candidate
-- Code review, testing, bug fixes
-- Finalisasi dokumentasi pengguna
-Dokumen ini akan diperbarui setelah Sprint 005 selesai.
+- Beta Release
+- User documentation final
+- Feedback collection
+Dokumen ini akan diperbarui setelah Sprint 006 selesai.
 ---
 
 # AI Context
