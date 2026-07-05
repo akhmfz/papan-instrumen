@@ -131,6 +131,17 @@ Compact mode, quality score, capital allocation, earnings quality, economic moat
 - **[DSP Techniques](https://www.pinecoders.com/techniques/dsp/)** — Digital Signal Processing di Pine
 - **[awesome-pinescript](https://github.com/pAulseperformance/awesome-pinescript)** — Direktori curated lengkap
 
+### Benchmark
+Gunakan **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-Stopwatch-PineCoders-FAQ/)** untuk mengukur performa:
+1. Copy Script Stopwatch ke Pine Editor
+2. Bungkus logika utama indikator dengan `start/stop` calls
+3. Target: < 2 detik load time untuk 90-row table
+4. Jika > 2 detik, optimasi paling efektif:
+   - Kurangi `request.financial()` calls (cek ulang redundancy)
+   - Pindahkan kalkulasi ke luar `barstate.islast` jika memungkinkan
+   - Gunakan `var` untuk menyimpan hasil yang tidak berubah per bar
+5. Run benchmark setiap major release
+
 ### Automation (future)
 - **[TradersPost](https://traderspost.io/)** — Webhook → stocks/options/futures
 - **[Pine Connector](https://www.pineconnector.com/)** — TradingView → MT4/MT5

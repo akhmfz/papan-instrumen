@@ -24,8 +24,11 @@ jobs:
           echo "✅ src/PapanInstrumen.pine — $LINES lines"
       - name: Check module consistency
         run: |
-          # rebuild and verify no changes (idempotent)
           bash build.sh
           git diff --exit-code src/PapanInstrumen.pine && echo "✅ Build idempotent" || {
             echo "❌ Build not idempotent — commit the updated build"; exit 1
           }
+      - name: Syntax check (pinets-cli transpile)
+        run: |
+          npm i -g pinets-cli --quiet 2>/dev/null
+          bash tests/transpile.sh
