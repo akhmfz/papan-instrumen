@@ -2,7 +2,7 @@
 // ═══════════════════════════════════════════════════════════════════
 //
 //   SAHAM: PAPAN INSTRUMEN BY. AKHMFZ
-//   Versi 2.5.1 — Build 007 (Sprint: Alpha Fix & Polish)
+//   Versi 2.5.2 — Build 007 Rev 2 (Sprint: Alpha Fix & Polish)
 //
 //   CHANGELOG BUILD 006 (ringkas)
 //   ✓ FITUR BARU: FAKTOR INDONESIA — dimensi ke-7 dalam skor keseluruhan.
@@ -24,6 +24,11 @@
 //   ✓ Dividend Yield threshold: 0-5 → 3-8 (patokan BI Rate ~6%).
 //   ✓ Hapus 3 field jarang terisi IDX: Forward P/E, Buyback Yield/Ratio
 //     (hemat 3 request → total ~37 calls, safety margin terpenuhi).
+//   ✓ Fix multi-variable float declarations (split 7→16 baris).
+//   ✓ f_scoreLowerSafe: guard untuk rasio negatif (P/E, P/B, EV/EBITDA, dll).
+//   ✓ debtAssetScore threshold: 80% skala persen → 0.8 desimal.
+//   ✓ n/x denominators disinkronkan dengan ukuran array sungguhan.
+//   ✓ Income: f_avg5 (dengan na) → f_avg4 (4 komponen eksplisit).
 //
 //   CHANGELOG BUILD 001 (ringkas — detail lengkap di changelog.md)
 //   ✓ Guard ekuitas negatif, hapus normalisasi magnitude, f_avg6,
@@ -241,6 +246,12 @@ f_scoreHigher(float v, float bad, float good) =>
 f_scoreLower(float v, float good, float bad) =>
     na(v) ? na : f_clamp((bad - v) / (bad - good) * 100, 0, 100)
 
+// Build 007 — guard untuk rasio yang penyebutnya bisa negatif
+// (P/E, P/B, PEG, EV/EBITDA dll). Jika v <= 0, return 0
+// (risiko tinggi), bukan skor 100 karena rumus linear pecah.
+f_scoreLowerSafe(float v, float good, float bad) =>
+    na(v) ? na : v <= 0 ? 0.0 : f_scoreLower(v, good, bad)
+
 f_scoreMid(float v, float loVal, float ideal, float hiVal) =>
     na(v) ? na : v <= ideal ? f_clamp((v - loVal) / (ideal - loVal) * 100, 0, 100) : f_clamp((hiVal - v) / (hiVal - ideal) * 100, 0, 100)
 
@@ -269,6 +280,13 @@ f_avg5(float a, float b, float c, float d, float e) =>
 
 f_avg3(float a, float b, float c) =>
     f_avg5(a, b, c, na, na)
+
+// BARU V2 (Build 007) — rata-rata 4 komponen (Income)
+f_avg4(float a, float b, float c, float d) =>
+    f_avg5(a, b, c, d, na)
+
+f_countValid4(float a, float b, float c, float d) =>
+    f_countValid5(a, b, c, d, na)
 
 // BARU V2 — pengganti eksplisit untuk kasus 6-faktor yang di V1
 // "ditumpangkan" ke dalam f_avg5 (lihat critique bug #4).
@@ -615,6 +633,8 @@ var bankListIDX = array.from(
      "BBCA", "BBRI", "BBNI", "BMRI", "BBTN", "BJBR", "BJTM", "BRIS", "BTPS",
      "ARTO", "BBKP", "BNGA", "MEGA", "PNBN", "AGRO", "BABP", "BCIC", "BINA",
      "BNBA", "BSIM", "DNAR", "INPC", "MAYA", "NISP", "SDRA", "BGTG", "BEKS")
+// Daftar per 2026-07. Review setiap 6 bulan (bank baru IPO, merger, delisting).
+// Sumber acuan: https://www.idx.co.id/id/perusahaan-tercatat/sektor-keuangan
 
 tickerOnly = syminfo.ticker
 
@@ -900,12 +920,12 @@ if barstate.islast
     dpsEst = na(dps) and not na(divYield) and not na(dClose) ? dClose * divYield / 100 : dps
 
     // ── SKOR VALUASI ──
-    peScore        = f_scoreLower(pe, 8, 45)
-    psScore        = f_scoreLower(ps, 1, 15)
-    pbScore        = f_scoreLower(pb, 1, 12)
-    pegScore       = f_scoreLower(peg, 0.5, 3.5)
-    evScore        = f_scoreLower(evEbitda, 5, 30)
-    evSalesScore   = f_scoreLower(evSales, 1, 15)
+    peScore        = f_scoreLowerSafe(pe, 8, 45)
+    psScore        = f_scoreLowerSafe(ps, 1, 15)
+    pbScore        = f_scoreLowerSafe(pb, 1, 12)
+    pegScore       = f_scoreLowerSafe(peg, 0.5, 3.5)
+    evScore        = f_scoreLowerSafe(evEbitda, 5, 30)
+    evSalesScore   = f_scoreLowerSafe(evSales, 1, 15)
     earnYieldScore = f_scoreHigher(earnYield, 2, 12)
     opYieldScore   = f_scoreHigher(opEarnYield, 3, 15)
     // FIX V2 (bug #7, mitigasi): pita Graham dilebarkan untuk sektor
@@ -921,11 +941,13 @@ if barstate.islast
     //
     // Bobot dasar (wPe..wGraham) di bawah ini SENGAJA direplikasi dari
     // struktur pengelompokan Build 001 (f_avg3 di dalam f_avg5), supaya
-    // untuk emiten "Non-Finansial Umum" (tanpa penyesuaian sektor) hasil
-    // valueScore IDENTIK dengan Build 001 — bukan regresi metodologi,
-    // murni refactor + ekstensi. Cara replikasinya: tiap grup 3-anggota
-    // (PE/FPE/PEG dan PS/PB/EV) diberi bobot 1 per anggota (kontribusi
-    // grup = 3), sedangkan anggota tunggal/grup 2-anggota (EV-Sales,
+    // untuk emiten "Non-Finansial Umum" hasil valueScore mendekati
+    // Build 001 — identik hanya jika semua 10 komponen tersedia.
+    // Bila ada komponen na, f_wavgArr mendistribusi ulang secara
+    // proporsional ke semua komponen lain (berbeda dari nested f_avg3
+    // yang hanya redistribusi dalam grup). Bukan regresi — metodologi
+    // yang berbeda untuk kebutuhan sector-aware weighting.
+    // Cara replikasinya: tiap grup 3-anggota (PE/PEG dan PS/PB/EV)
     // Graham, dan Earn/Op Yield) diberi bobot setara 3 atau 1.5 supaya
     // kontribusi total grupnya tetap sebanding (3) dengan dua grup lain.
     wPe        = 1.0
@@ -989,7 +1011,15 @@ if barstate.islast
     valueWts  = array.from(wPe, wPeg, wPs, wPb, wEv, wEvSales, wEarnYield, wOpYield, wGraham)
 
     valueScore = f_wavgArr(valueVals, valueWts)
-    valueN     = f_countValidArr(valueVals)
+    valueN     = (na(peScore) or wPe <= 0 ? 0 : 1) +
+         (na(pegScore) or wPeg <= 0 ? 0 : 1) +
+         (na(psScore) or wPs <= 0 ? 0 : 1) +
+         (na(pbScore) or wPb <= 0 ? 0 : 1) +
+         (na(evScore) or wEv <= 0 ? 0 : 1) +
+         (na(evSalesScore) or wEvSales <= 0 ? 0 : 1) +
+         (na(earnYieldScore) or wEarnYield <= 0 ? 0 : 1) +
+         (na(opYieldScore) or wOpYield <= 0 ? 0 : 1) +
+         (na(grahamScore) or wGraham <= 0 ? 0 : 1)
 
     // ── SKOR KUALITAS ──
     roeScore       = f_scoreHigher(roe, 5, 25)
@@ -1019,7 +1049,9 @@ if barstate.islast
     wPiotroski = 3.0
 
     if isFinancialSector
-        // Finansial: ROE/ROA adalah metrik profitabilitas inti.
+        // Finansial (Bank/Asuransi/Sekuritas digabung — keputusan sadar):
+        // ROE/ROA adalah metrik profitabilitas inti untuk ketiganya,
+        // tidak ada perbedaan bobot yang signifikan antar sub-kategori.
         // Margin tradisional tidak relevan (NIM-based) — di-skip.
         wRoe      *= 1.5
         wRoa      *= 1.3
@@ -1067,7 +1099,15 @@ if barstate.islast
     qualityWts  = array.from(wRoe, wRoa, wRoic, wGross, wOp, wNet, wEbitda, wFcfM, wPiotroski)
 
     qualityScore = f_wavgArr(qualityVals, qualityWts)
-    qualityN     = f_countValidArr(qualityVals)
+    qualityN     = (na(roeScore) or wRoe <= 0 ? 0 : 1) +
+         (na(roaScore) or wRoa <= 0 ? 0 : 1) +
+         (na(roicScore) or wRoic <= 0 ? 0 : 1) +
+         (na(grossScore) or wGross <= 0 ? 0 : 1) +
+         (na(opScore) or wOp <= 0 ? 0 : 1) +
+         (na(netScore) or wNet <= 0 ? 0 : 1) +
+         (na(ebitdaScore) or wEbitda <= 0 ? 0 : 1) +
+         (na(fcfMarginScore) or wFcfM <= 0 ? 0 : 1) +
+         (na(piotroskiScore) or wPiotroski <= 0 ? 0 : 1)
 
     // ── SKOR PERTUMBUHAN ──
     // ENHANCE V2 (Build 004) — Hybrid 2-Layer approach:
@@ -1126,8 +1166,9 @@ if barstate.islast
     growthBaseScore = f_wavgArr(growthVals, growthWts)
 
     // Layer 2: Multi-Factor Growth Quality Modifier
-    // Berdasarkan riset: Piotroski F-Score (point 4: OCF > NI) +
-    // AQR Quality Factor (earnings quality check).
+    // Terinspirasi oleh konsep Piotroski F-Score (point 4: OCF > NI)
+    // dan AQR Quality Factor — diimplementasikan sebagai heuristik
+    // sendiri, bukan replikasi rumus aslinya.
     //
     // Faktor 1 — Rev-EPS Spread (progresif, max -40%):
     // Spread negatif = margin compression. Semakin parah, semakin besar
@@ -1167,13 +1208,22 @@ if barstate.islast
     // Weight matrix mereplikasi f_avg5 untuk Non-Finansial (identik
     // Build 003). 5 grup setara: Leverage, DebtService, Liquidity,
     // AltmanZ, CashFlow.
-    float debtEqG = 0.0, debtEqB = 2.5
-    float debtEbitdaG = 0.0, debtEbitdaB = 6.0
-    float netDebtEbitdaG = 0.0, netDebtEbitdaB = 5.0
-    float currL = 0.5, currI = 2.0, currH = 5.0
-    float quickL = 0.3, quickI = 1.5, quickH = 4.0
-    float intBad = 5.0, intGood = 50.0
-    float altmanBad = 1.1, altmanGood = 2.6
+    float debtEqG = 0.0
+    float debtEqB = 2.5
+    float debtEbitdaG = 0.0
+    float debtEbitdaB = 6.0
+    float netDebtEbitdaG = 0.0
+    float netDebtEbitdaB = 5.0
+    float currL = 0.5
+    float currI = 2.0
+    float currH = 5.0
+    float quickL = 0.3
+    float quickI = 1.5
+    float quickH = 4.0
+    float intBad = 5.0
+    float intGood = 50.0
+    float altmanBad = 1.1
+    float altmanGood = 2.6
 
     wHDe = 1.0
     wHDa = 1.0
@@ -1291,8 +1341,8 @@ if barstate.islast
     // Guard ekuitas negatif: beri skor 0 langsung
     debtEqScore = na(debtEq) ? na :
          debtEq < 0 ? 0.0 : f_scoreLower(debtEq, debtEqG, debtEqB)
-    debtAssetScore     = f_scoreLower(debtAsset, 0, 80)
-    debtEbitdaScore    = f_scoreLower(debtEbitda, debtEbitdaG, debtEbitdaB)
+    debtAssetScore     = f_scoreLowerSafe(debtAsset, 0, 0.8)
+    debtEbitdaScore    = f_scoreLowerSafe(debtEbitda, debtEbitdaG, debtEbitdaB)
     netDebtEbitdaScore = f_scoreLower(netDebtEbitda, netDebtEbitdaG, netDebtEbitdaB)
     cashDebtScore      = f_scoreHigher(cashDebt, 0, 1.5)
     currScore          = f_scoreMid(currRatio, currL, currI, currH)
@@ -1327,14 +1377,9 @@ if barstate.islast
     fcfYieldScore     = f_scoreHigher(fcfYield, 0, 8)
     dpsScore          = f_scorePositive(dpsEst)
 
-    incomeScore = f_avg5(
-         yieldScore,
-         payoutScore,
-         fcfYieldScore,
-         dpsScore,
-         na)
-    incomeN = f_countValid5(yieldScore, payoutScore, fcfYieldScore,
-         dpsScore, na)
+    incomeScore = f_avg4(yieldScore, payoutScore, fcfYieldScore, dpsScore)
+
+    incomeN = f_countValid4(yieldScore, payoutScore, fcfYieldScore, dpsScore)
 
     // ── SKOR MOMENTUM ──
     rsiScore  = f_scoreMid(rsi14, 30, 60, 85)
@@ -1438,11 +1483,11 @@ if barstate.islast
     int r = 1
 
     l := f_section(0, l, "SKOR KESELURUHAN")
-    l := f_scoreCardN(0, l, "Quality", qualityScore, qualityN, 5)
-    l := f_scoreCardN(0, l, "Value", valueScore, valueN, 5)
-    l := f_scoreCardN(0, l, "Growth", growthScore, growthN, 5)
-    l := f_scoreCardN(0, l, "Health", healthScore, healthN, 5)
-    l := f_scoreCardN(0, l, "Income", incomeScore, incomeN, 5)
+    l := f_scoreCardN(0, l, "Quality", qualityScore, qualityN, 9)
+    l := f_scoreCardN(0, l, "Value", valueScore, valueN, 9)
+    l := f_scoreCardN(0, l, "Growth", growthScore, growthN, 3)
+    l := f_scoreCardN(0, l, "Health", healthScore, healthN, 11)
+    l := f_scoreCardN(0, l, "Income", incomeScore, incomeN, 4)
     l := f_scoreCardN(0, l, "Momentum", momentumScore, momentumN, 5)
     if tampilIndonesia
         l := f_scoreCardN(0, l, "Indonesia", indonesiaScore, indonesiaN, 3)

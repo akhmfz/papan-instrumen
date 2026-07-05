@@ -234,7 +234,11 @@ Date
 2026-07
 ---
 ## Objective
-Alpha Fix & Polish — hide rows by weight, fix Interest Cover threshold.
+Alpha Fix & Polish — fix critical bugs from audit (K1-K4), sync docs.
+---
+## Added
+- f_scoreLowerSafe — guard untuk rasio yang penyebutnya bisa negatif
+- f_avg4, f_countValid4 — utility untuk Income 4 komponen
 ---
 ## Files Modified
 ```
@@ -245,13 +249,22 @@ BACKLOG.md
 ```
 ---
 ## Changed
-- Quality render: margin rows di-hide jika bobot ≤ 0 (Finansial skip)
-- Health render: leverage/liquidity rows di-hide jika bobot ≤ 0
-- Interest Cover threshold: 2-20 → 5-30
+- Fix K1: multi-var float declarations split (7 → 16 baris)
+- Fix K2: 7 Valuasi + debtEbitdaScore → f_scoreLowerSafe (negatif = 0)
+- Fix K3: debtAssetScore threshold 80 → 0.8 desimal
+- Fix K4: n/x denominators disinkronkan dengan ukuran array aktual
+- Fix M1: valueN/qualityN → weight-aware counting
+- Fix M2: Income f_avg5 (dengan na) → f_avg4 eksplisit
+- S1: komentar "identik" → "mendekati, identik hanya jika semua data tersedia"
+- S2: komentar Quality/Finansial — grouping sadar, bukan belum dikerjakan
+- S3: bankListIDX — tambah tanggal & source URL maintenance
+- S4: Growth Modifier disclaimer — "terinspirasi, bukan replikasi"
 ---
 ## Breaking Change
 Minimal.
-Interest Cover threshold berubah → skor IC sedikit lebih rendah.
+- Interest Cover threshold 5-30 → 5-50 → skor IC sedikit lebih rendah
+- Dividend Yield threshold 0-5 → 3-8 → yield rendah skor lebih rendah
+- f_scoreLowerSafe → emiten rugi (negatif P/E, P/B, dll) skor = 0, bukan 100
 ---
 ## Performance Impact
 None.
