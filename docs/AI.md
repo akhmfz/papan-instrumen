@@ -14,7 +14,7 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Alpha
 | Bahasa | Pine Script v6 |
 | Market | Indonesia Stock Exchange (IDX) |
 | Target | TradingView |
-| Status | Alpha Development (v0.1.0-alpha) |
+| Status | Beta Development (v0.3.0-beta) |
 
 ## Product Philosophy
 

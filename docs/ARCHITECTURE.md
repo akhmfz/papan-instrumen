@@ -114,8 +114,8 @@ Dashboard ini **bukan** stock screener, signal generator, atau sistem rekomendas
 | 3. Sector Intelligence | 📅 | Sector mapping, weight, override |
 | 4. Dashboard Experience | 📅 | Layout, color, compact, mobile |
 | 5. Optimization | 📅 | Performa, memory, rendering |
-| 6. Alpha Release | ✅ | v0.1.0-alpha — kode selesai |
-| 7. Beta Release | 📅 | Pengujian publik |
+| 6. Alpha Release | ✅ | v0.1.0-alpha |
+| 7. Beta Release | ✅ | v0.3.0-beta — Phase A+B complete (15 sektor, compact, i18n, presets, 89 tests) |
 | 8. Stable Release | 📅 | v1.0.0 |
 
 ### Versioning
