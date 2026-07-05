@@ -19,11 +19,11 @@ v0.1.0-alpha
 
 Build
 
-B004
+B005
 
 Sprint
 
-S003
+S004
 
 Status
 
@@ -31,7 +31,7 @@ Status
 
 Current Phase
 
-Growth Engine
+Financial Health Engine
 
 ---
 
@@ -39,24 +39,25 @@ Growth Engine
 
 Task ID
 
-GRO-001
+HLT-001
 
 Objective
 
-Implement hybrid Growth Engine with sector-aware weighting (Layer 1) and Growth Quality Modifier (Layer 2).
+Implement sector-aware financial health engine with sub-category handling for Bank/Asuransi/Sekuritas.
 
 Scope
 
-- Rev/EPS/SGR sector weights (Layer 1)
-- Growth Quality Modifier based on Rev vs EPS spread (Layer 2)
-- Financial/Siklikal/Properti/Teknologi/Infrastruktur/Transportasi weights
+- Sector-aware thresholds for D/E, D/EBITDA, CR, QR, IC, Altman Z
+- Weight matrix per sektor (Leverage, DebtService, Liquidity, AltmanZ, CashFlow)
+- Sub-kategori Bank vs Asuransi vs Sekuritas
+- Altman Z threshold Z"-Score EM (1.1-2.6)
 
 Do Not
 
-- Change Valuation/Profitability Methodology
+- Change Valuation/Profitability/Growth Methodology
 - Change Dashboard Layout
 - Add New Financial Ratios
-- Modify Health/Income dimensions
+- Modify Income/Momentum dimensions
 
 ---
 
@@ -110,43 +111,45 @@ Merge
 
 # Next Milestone
 
-Financial Health Engine (B005)
+Indonesia Layer (B006)
 ---
 # Sprint Information
 Sprint Name
-Growth — Hybrid Quality Approach
+Financial Health — Sector Thresholds
 Sprint Number
-Sprint 003
+Sprint 004
 Status
 🟢 Active
 Priority
 High
 Current Build
-Build 004
+Build 005
 ---
 # Sprint Goal
-Menerapkan hybrid 2-layer Growth Engine: sector-aware weighting (Layer 1) + Growth Quality Modifier berdasarkan spread Rev vs EPS (Layer 2).
+Menerapkan sector-aware thresholds + weight matrix untuk Financial Health Engine dengan sub-kategori Bank/Asuransi/Sekuritas.
 ---
 # Sprint Scope
 ## Included
-- Growth Score Sector Weights
-- Growth Quality Modifier
-- Documentation Update
+- Sector-aware thresholds for 7 health ratios
+- Weight matrix per sektor (f_wavgArr)
+- Sub-kategori Bank, Asuransi, Sekuritas
+- Altman Z threshold → Z"-Score EM (1.1-2.6)
+- Rendering per sub-kategori
 ---
 ## Excluded
-- Valuation/Profitability Methodology Changes
-- Health/Income Dimensions
+- Valuation/Profitability/Growth Methodology Changes
 - Dashboard Layout Changes
 - New Financial Ratios
+- Income/Momentum dimensions
 ---
 # Current Tasks
 | ID | Task | Status | Priority |
 |----|------|--------|----------|
-| GRO-001 | Define sector weights for Rev/EPS/SGR | ✅ Done | High |
-| GRO-002 | Implement f_wavgArr for Growth score | ✅ Done | High |
-| GRO-003 | Implement Growth Quality Modifier | ✅ Done | High |
-| GRO-004 | Update documentation | 🟡 In Progress | Medium |
-| GRO-005 | Code review & testing | ⬜ Pending | High |
+| HLT-001 | Define sector-aware thresholds per sektor | ✅ Done | High |
+| HLT-002 | Implement weight matrix (f_wavgArr) for health | ✅ Done | High |
+| HLT-003 | Sub-kategori Bank/Asuransi/Sekuritas | ✅ Done | High |
+| HLT-004 | Update rendering per sub-kategori | ✅ Done | High |
+| HLT-005 | Update documentation | 🟡 In Progress | Medium |
 ---
 # Definition of Done
 Sprint dianggap selesai apabila:
@@ -181,24 +184,27 @@ Target akhir Sprint:
 # Progress
 Overall Progress
 ```
-Growth Scoring   ██████████ 100%
+Health Scoring   ██████████ 100%
 Documentation    ████████░░ 80%
 Testing          ░░░░░░░░░░ 0%
 ```
 ---
 # Sprint Notes
 Catatan penting selama sprint:
-- Layer 1 (f_wavgArr): Non-Finansial Umum ± identik Build 003.
-- Layer 2: Spread modifier progresif (max -40%, multiplier 0.6) + Earnings Quality (OCF check, Piotroski proxy).
-- Finansial Rev 1: SGR ×1.7 (↑ dari ×1.5), EPS ×1.0 (↓ dari ×1.3) — EPS bank manipulable.
-- Teknologi Rev 1: SGR di-skip (w=0), Rev ×1.7 (↑ dari ×1.5).
-- Sumber riset: Piotroski F-Score, AQR Quality Minus Junk, Higgins SGR.
+- Bank: hanya Interest Cover + OCF + FCF (CAR/NPL/LDR tidak tersedia).
+- Asuransi: sama seperti bank, Interest Cover bobot 1.0.
+- Sekuritas: Cash/Debt prioritas (×1.3), D/E & CR partially relevant.
+- Infrastruktur: D/E threshold 0-5 (BUMN normal 3-4x), D/EBITDA 0-8.
+- Properti: D/E 0-4, CR/QR threshold longgar (1.5 ideal), Cash Flow prioritas.
+- Teknologi: Cash/Debt prioritas (×1.5), D/E & leverage diturunkan (×0.3).
+- Siklikal: Interest Cover threshold 3-20 (trough safety).
+- Altman Z: threshold diubah ke 1.1-2.6 (Z"-Score untuk EM).
 ---
 # Next Sprint Preview
 Sprint berikutnya direncanakan berfokus pada:
-- Financial Health Engine
-- Perlakuan terpisah untuk Bank/Asuransi/Sekuritas di Health
-Dokumen ini akan diperbarui setelah Sprint 003 selesai.
+- Indonesia Layer
+- Kategori "Indonesia Factor" pada Scoring Matrix
+Dokumen ini akan diperbarui setelah Sprint 004 selesai.
 ---
 
 # AI Context

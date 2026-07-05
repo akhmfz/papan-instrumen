@@ -124,6 +124,59 @@ Tidak ada penambahan request.financial().
   AQR Quality Factor (earnings quality), dan Higgins SGR (1977).
 - Sumber rujukan: Piotroski (2000), Asness/Frazzini/Pedersen (2019).
 ---
+# Build 005
+Status
+Current Development
+Sprint
+Sprint 004
+Date
+YYYY-MM-DD
+---
+## Objective
+Menerapkan sector-aware thresholds + weight matrix + sub-kategori Bank/Asuransi/Sekuritas pada Financial Health Engine.
+---
+## Files Modified
+```
+PapanInstrumen.pine
+CURRENT_SPRINT.md
+CHANGELOG.md
+BACKLOG.md
+```
+---
+## Added
+- Threshold parameters per sektor: debtEqG/B, debtEbitdaG/B, currL/I/H, intBad/Good, altmanBad/Good
+- Weight matrix: wHDe, wHDa, wHDeB, wHNetD, wHCash, wHIC, wHCR, wHQR, wHAltman, wHOCF, wHFCF
+- Sub-kategori Bank, Asuransi, Sekuritas dengan penanganan berbeda
+---
+## Changed
+- HealthScore dari f_avg5/3 menjadi f_wavgArr (11 rasio, sector-aware)
+- Altman Z threshold dari 1.8-3.5 (US) → 1.1-2.6 (Z"-Score EM)
+- Rendering: sub-kategori menampilkan rasio yang relevan saja
+---
+## Fixed
+- Bank/Asuransi/Sekuritas tidak lagi digabung sebagai isFinancialSector
+---
+## Performance Impact
+Low
+Tidak ada penambahan request.financial().
+---
+## Breaking Change
+Minimal.
+Non-Finansial Umum hasil healthScore identik Build 003.
+Altman Z threshold berubah → skor Altman untuk IDX lebih akurat.
+---
+## Testing
+Manual Testing
+Lintas sektor IDX.
+Compile Test
+Pending
+Regression Test
+Pending
+---
+## Engineering Notes
+- Sumber: Altman Z (1968+1993), Piotroski F-Score (2000), Moody's/S&P, AQR (2019).
+- Threshold dilarikan dari credit rating agencies + OJK reg + IDX norms.
+---
 # Build 003
 Status
 Completed
