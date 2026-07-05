@@ -7,6 +7,7 @@
 [![Build](https://img.shields.io/badge/build-B010-orange)]()
 [![Market](https://img.shields.io/badge/Market-IDX-red)]()
 [![Tests](https://img.shields.io/badge/tests-96%20passed-brightgreen)]()
+[![TradingView](https://img.shields.io/badge/TradingView-Published-2962FF)](https://www.tradingview.com/script/s4Bjqc7S-Saham-Papan-Instrumen-By-Akhmfz/)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 ---
@@ -18,6 +19,8 @@
 2. Copy src/PapanInstrumen.pine → Paste → Add to Chart
 3. Sesuaikan sektor via Settings jika auto-detect salah
 ```
+
+Atau langsung dari **[TradingView Public Library](https://www.tradingview.com/script/s4Bjqc7S-Saham-Papan-Instrumen-By-Akhmfz/)** → klik **Add to Chart**.
 
 📖 **[Panduan Pengguna (Bahasa Indonesia)](docs/README.id.md)**
 

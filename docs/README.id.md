@@ -35,6 +35,10 @@ https://github.com/akhmfz/papan-instrumen/blob/main/src/PapanInstrumen.pine
 
 **Syarat:** Timeframe **Daily** (D / 1D) — IDX hanya menyediakan data fundamental di Daily.
 
+### Install via TradingView Public Library
+📥 **[Klik link ini → Add to Chart](https://www.tradingview.com/script/s4Bjqc7S-Saham-Papan-Instrumen-By-Akhmfz/)**
+Langsung jalan tanpa copy-paste kode.
+
 ---
 
 ## 7 Dimensi Scoring

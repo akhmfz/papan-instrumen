@@ -5,29 +5,20 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Beta
 
 ---
 
-## Current Sprint (S007 — Phase A: Beta Readiness → A3)
+## Current Sprint (S008 — Published on TradingView 🎉)
 
 | Item | Status |
 |------|--------|
-| **Milestone**: Phase A → v0.3.0-beta | ✅ Completed |
-| **Sprint**: A4 — Benchmark performa 90-row table |
-| **Target**: TradingView (Script Stopwatch) |
-| **Ref**: GitHub Issue #4 |
+| **Link TV**: https://www.tradingview.com/script/s4Bjqc7S-Saham-Papan-Instrumen-By-Akhmfz/ | ✅ Live |
+| **Fase 0-2 + P3-1 + P4-1**: All backlog items from 3 audit agents | ✅ Closed |
+| **96 tests passing**: Utility + 7 scoring + regression + source match | ✅ 96/96 |
 
-### Completed Tasks
-| ID | Sprint | Task | Status |
-|----|--------|------|--------|
-| A1-ALL | A1 | GitHub Issues: 15 issues + 13 labels | ✅ Done |
-| A2-ALL | A2 | Scoring audit: 89 tests via PineTS | ✅ Done |
-| A3-ALL | A3 | 15 kelas sektor (175+ ticker, 5 baru) | ✅ Done |
-
-### Active Tasks
-| ID | Task | Status |
-|----|------|--------|
-| A4-001 | Install Script Stopwatch di chart TV | ⏳ Manual (butuh TradingView) |
-| A4-002 | Ukur end-to-end load time (target < 2s) | ⏳ Manual |
-| A4-003 | Profiling: identifikasi bottleneck | ⏳ Manual |
-| A4-004 | Optimasi jika > 2s | ⏳ Manual |
+### Semua backlog dari 3 audit agents closed
+| Sumber | Item | Status |
+|--------|------|--------|
+| Agent 1 (9 saran) | Semua selesai | ✅ |
+| Agent 2 (P0..P4) | Fase 0-2 + testing + docs | ✅ |
+| Agent 3 (P0..P4) | Same + CAR/NPL/LDR | ✅ |
 
 ### Known Issues
 - Securities auto detection perlu validasi lanjutan
@@ -207,11 +198,14 @@ Wajib sebelum setiap `git tag` + `gh release create`:
 ## Changelog
 
 ### Build 010 (Current)
-**Screenshot + Polish + PineForge**
-- EV/EBITDA & PEG: hide rows when data unavailable (common IDX gap)
-- Screenshot: real BBCA + Papan Instrumen (477x468px)
-- External refs: PineForge engine compiled (78/78 tests), pinets-cli E2E OK
-- Docs: CONTRIBUTING.md, semua konsisten v0.3.0-beta
+**Publish ke TradingView + Polish**
+- 📢 Dipublikasikan ke TradingView Public Library: [TV script link](https://www.tradingview.com/script/s4Bjqc7S-Saham-Papan-Instrumen-By-Akhmfz/)
+- Fase 0-2 selesai (P0-1..P0-7, P1-1..P2-4, P3-1, P4-1)
+- CAR/NPL/LDR manual inputs untuk Bank
+- f_scoreCashFlow graded (bukan biner 0/100)
+- Source match verification test (5 assertions)
+- CATATAN.md — lessons learned & anti-patterns
+- Cleanup: 70 baris backlog usang dihapus
 
 ### Build 009
 **15 Sektor + Compact Mode + i18n + Presets**
