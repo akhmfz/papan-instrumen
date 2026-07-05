@@ -232,8 +232,8 @@ f_scoreHigher(float v, float bad, float good) =>
 f_scoreLower(float v, float good, float bad) =>
     na(v) ? na : f_clamp((bad - v) / (bad - good) * 100, 0, 100)
 
-f_scoreMid(float v, float low, float ideal, float high) =>
-    na(v) ? na : v <= ideal ? f_clamp((v - low) / (ideal - low) * 100, 0, 100) : f_clamp((high - v) / (high - ideal) * 100, 0, 100)
+f_scoreMid(float v, float loVal, float ideal, float hiVal) =>
+    na(v) ? na : v <= ideal ? f_clamp((v - loVal) / (ideal - loVal) * 100, 0, 100) : f_clamp((hiVal - v) / (hiVal - ideal) * 100, 0, 100)
 
 f_scorePositive(float v) =>
     na(v) ? na : v > 0 ? 100 : 0
@@ -585,11 +585,15 @@ araHits        = na(dataPasar) ? na : dataPasar.araHits
 // USD/IDR untuk macro stability + commodity proxy via sektor index
 usdIdrClose = request.security("FX_IDC:USDIDR", "D", close, ignore_invalid_symbol = true)
 benchClose  = request.security(indeksAcuan, "D", close, ignore_invalid_symbol = true)
-betaVal     = ta.beta(close, benchClose, 252)
+// Beta dihitung manual: correlation × (stdev stock / stdev benchmark)
+float stockDailyRet = close / nz(close[1]) - 1
+float benchDailyRet = benchClose / nz(benchClose[1]) - 1
+float betaVal = ta.correlation(stockDailyRet, benchDailyRet, 252) * ta.stdev(stockDailyRet, 252) / ta.stdev(benchDailyRet, 252)
 
 // IDR volatility: stdev harian dalam 63 hari, annualized
 idrDailyRet = na(usdIdrClose) ? na : usdIdrClose / nz(usdIdrClose[1]) - 1
-idrVol      = na(idrDailyRet) ? na : ta.stdev(idrDailyRet, 63) * math.sqrt(252) * 100
+float idrStdev = ta.stdev(idrDailyRet, 63)
+idrVol = na(idrDailyRet) ? na : idrStdev * math.sqrt(252) * 100
 
 // IDR 3M trend: positif = IDR melemah (bullish untuk eksportir)
 idrTrend3M = na(usdIdrClose) ? na : (usdIdrClose / nz(usdIdrClose[63]) - 1) * 100
