@@ -5,23 +5,30 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Alpha
 
 ---
 
-## Current Sprint (S007 — Phase A: Beta Readiness)
+## Current Sprint (S007 — Phase A: Beta Readiness → A3)
 
 | Item | Status |
 |------|--------|
 | **Milestone**: Phase A → v0.3.0-beta | 🟡 In Progress |
-| **Sprint**: A1 — Backlog Migration | 🟡 In Progress |
-| **Target files**: `.github/`, `scripts/gh-sync.sh`, `docs/` |
-| **Scope**: Migrate backlog → GitHub Issues + labels + templates |
-| **Next**: A2 — Sector Classification (Consumer/Industri/Healthcare) |
+| **Sprint**: A3 — Sector Classification (Consumer/Industri/Healthcare + Batubara/CPO) |
+| **Target**: `src/modules/02-data.pine`, `src/modules/04-scoring.pine` |
+| **Ref**: GitHub Issues #1 (A1), #2 (A2) |
+
+### Completed Tasks
+| ID | Sprint | Task | Status |
+|----|--------|------|--------|
+| A1-ALL | A1 | GitHub Issues: 15 issues + 13 labels | ✅ Done |
+| A2-ALL | A2 | Scoring audit: 89 tests via PineTS | ✅ Done |
+| A2-START | A2 | `npm run test:all` — 7 dimensi verified | ✅ Done |
 
 ### Active Tasks
 | ID | Task | Status |
 |----|------|--------|
-| A1-001 | GitHub Issues: backlog → issues + labels | ✅ Done |
-| A1-002 | Issue templates (feature, bug) | ✅ Done |
-| A1-003 | gh-sync.sh auto-create script | ✅ Done |
-| A1-004 | User run `bash scripts/gh-sync.sh` | ⏳ After `gh auth login` |
+| A3-001 | Consumer/Industri/Healthcare detection + ticker lists | ⬜ Pending |
+| A3-002 | Batubara vs CPO detection + ticker lists | ⬜ Pending |
+| A3-003 | Override manual di dropdown sektor | ⬜ Pending |
+| A3-004 | Bobot scoring per dimensi untuk 3+2 kelas baru | ⬜ Pending |
+| A3-005 | Update scoring audit tests | ⬜ Pending |
 
 ### Known Issues
 - Securities auto detection perlu validasi lanjutan
