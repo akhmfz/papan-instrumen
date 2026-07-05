@@ -59,6 +59,8 @@ carInput = input.float(-1.0, "CAR (%)", minval = -1.0, ...)
 ```
 
 ### 6. Error Cascade — fix error PERTAMA dulu
+
+### 7. Unicode characters + line breaks in ternary — fatal\n```pine\n// ❌ ERROR (CE10156) — ternary broken across lines + Unicode → in comment\nf_scoreCashFlow(float cf, float mcapVal) =>\n    na(cf) ? na :\n    f_scoreHigher(cf / mcapVal * 100, -2, 5)\n\n// ✅ CORRECT — single line + ASCII only\nf_scoreCashFlow(float cf, float mcapVal) =>\n    na(cf) or na(mcapVal) or mcapVal == 0 ? na : f_scoreHigher(cf / mcapVal * 100, -2, 5)\n```
 Satu error `input.float(na)` bisa memunculkan error palsu di baris berikutnya (`end of line without line continuation` padahal barisnya valid). Selalu fix error pertama, lalu compile ulang.
 
 ---
