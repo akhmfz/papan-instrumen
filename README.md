@@ -6,7 +6,7 @@
 [![Pine Script](https://img.shields.io/badge/Pine%20Script-v6-green)](https://www.tradingview.com/pine-script-docs/en/v6/)
 [![Build](https://img.shields.io/badge/build-B010-orange)]()
 [![Market](https://img.shields.io/badge/Market-IDX-red)]()
-[![Tests](https://img.shields.io/badge/tests-89%20passed-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-96%20passed-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 ---
@@ -169,7 +169,8 @@ Edit `src/modules/*.pine`, run `bash build.sh`, copy `src/PapanInstrumen.pine` â
 | Income (Dividend) | 10 |
 | Momentum | 11 |
 | Overall Score | 3 |
-| **Total** | **89** |
+| Regression (P0-1/2/4) | 7 |
+| **Total** | **96** |
 
 ```bash
 npm run test:all    # âœ… 89/89 passed

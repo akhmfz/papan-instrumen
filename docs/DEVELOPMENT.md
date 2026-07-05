@@ -159,6 +159,31 @@ Gunakan **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-
 - **[AutoView](https://autoview.with.pink/)** — Chrome extension TV alerts → exchange
 
 ### New Discoveries (Build 011)
+
+---
+
+## Sector-Aware Coverage Matrix
+
+Status per Fase 0 (P0-2 fixed). ✅ = bobot berbeda dari Non-Finansial Umum, ⬜ = belum implementasi.
+
+| Sektor (15) | Value | Quality | Growth | Health | Income | Momentum | Indonesia |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Bank | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| Asuransi | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| Sekuritas | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| **Konsumer** | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| **Industri** | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| **Kesehatan** | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Batubara | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| CPO | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| Properti | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Infrastruktur | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| Teknologi | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| Transportasi | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Siklikal | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
+| Non-Finansial | default | default | default | default | — | — | — |
+
+Keterangan: Income, Momentum, Indonesia tidak sector-aware (menggunakan formula universal).
 - **[PyneCore](https://github.com/PyneSys/pynecore)** (160⭐) — Pine Script → Python via AST transform. Alternative to PineTS for scoring tests. v6.5.4 installed.
 - **[everget/unit-testing](https://github.com/everget/tradingview-pinescript-indicators)** (857⭐) — Pine Script unit testing framework: `_describe()`, `_it()`, `_isEqual()`. Bisa test scoring langsung di TradingView chart.
 - **[TradingGoose Studio](https://github.com/TradingGoose/TradingGoose-Studio)** (115⭐) — AI trading workflow platform. Next.js + shadcn/ui + Lightweight Charts. Inspirasi UI untuk web dashboard.
