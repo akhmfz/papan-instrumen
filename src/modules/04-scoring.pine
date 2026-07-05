@@ -612,158 +612,149 @@ if barstate.islast
     f_headerCell(5, overallTxt, headerBg, f_scoreColor(overallScore))
 
     noData = na(epsTtm) and na(bvps) and na(roe) and na(debtEq) and na(divYield)
-
-    // ── RENDER FUNCTIONS (closure over scoring variables) ──
-    f_renderLeft(col, row) =>
-        if noData
-            row := f_warningCell(col, row, isEN ? "⚠ NO DATA" : "⚠ DATA TIDAK TERSEDIA")
-            row := f_warningCell(col, row, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
-            row := f_warningCell(col, row, isEN ? "data on TradingView." : "fundamental di TradingView.")
-            row := f_warningCell(col, row, isEN ? "Try Daily timeframe or switch" : "Coba timeframe Daily atau ganti")
-            row := f_warningCell(col, row, isEN ? "to another symbol." : "simbol lain.")
-            row
-        else
-            row
-            row := f_section(col, row, isEN ? "OVERALL SCORE" : "SKOR KESELURUHAN")
-            row := f_scoreCardN(col, row, "Quality", qualityScore, qualityN, 9)
-            row := f_scoreCardN(col, row, "Value", valueScore, valueN, 9)
-            row := f_scoreCardN(col, row, "Growth", growthScore, growthN, 3)
-            row := f_scoreCardN(col, row, "Health", healthScore, healthN, 11)
-            row := f_scoreCardN(col, row, "Income", incomeScore, incomeN, 4)
-            row := f_scoreCardN(col, row, "Momentum", momentumScore, momentumN, 5)
-            if tampilIndonesia
-                row := f_scoreCardN(col, row, "Indonesia", indonesiaScore, indonesiaN, 3)
-            if tampilRisikoGorengan
-                row := f_section(col, row, isEN ? "LIQUIDITY RISK" : "RISIKO LIKUIDITAS")
-                row := f_riskCard(col, row, "Keamanan Likuiditas", riskSafetyScore)
-            if tampilRingkasan
-                row := f_section(col, row, isEN ? "SUMMARY" : "RINGKASAN")
-                row := f_row(col, row, "Price", pi_formatNumber(dClose), na)
-                row := f_row(col, row, "Market Cap", pi_formatMoney(mcap), na)
-                row := f_row(col, row, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
-                row := f_row(col, row, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
-            if tampilRingkasan
-                row := f_section(col, row, isEN ? "SUMMARY" : "RINGKASAN")
-                row := f_row(col, row, "Price", pi_formatNumber(dClose), na)
-                row := f_row(col, row, "Market Cap", pi_formatMoney(mcap), na)
-                row := f_row(col, row, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
-                row := f_row(col, row, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
-            if not tampilCompact
-                row
-                if tampilValuasi
-                    row := f_section(col, row, isEN ? "VALUATION" : "VALUASI")
-                    row := f_row(col, row, "P/E TTM", pi_formatNumber(pe), peScore)
-                    row := f_row(col, row, "PEG Ratio", pi_formatNumber(peg), pegScore)
-                    row := f_row(col, row, "P/S TTM", pi_formatNumber(ps), psScore)
-                    row := f_row(col, row, "P/B", pi_formatNumber(pb), pbScore)
-                    row := f_row(col, row, "EV/EBITDA", pi_formatNumber(evEbitda), evScore)
-                    row := f_row(col, row, "EV/Sales", pi_formatNumber(evSales), evSalesScore)
-                    row := f_row(col, row, "Earnings Yield", pi_formatPercent(earnYield), earnYieldScore)
-                    row := f_row(col, row, "Operating Earn. Yield", pi_formatPercent(opEarnYield), opYieldScore)
-                    row := f_row(col, row, "Graham Price", pi_formatNumber(grahamPrice), grahamScore)
-                    row := f_row(col, row, "Graham No. Upside", pi_arrow(grahamUpside) + pi_formatPercent(grahamUpside), grahamScore)
-                    row := f_row(col, row, "EPS TTM", pi_formatNumber(epsTtm), na)
-                    row := f_row(col, row, "BVPS", pi_formatNumber(bvps), pbScore)
-                if tampilDividen
-                    row := f_section(col, row, isEN ? "DIVIDEND & YIELD" : "DIVIDEN & IMBAL HASIL")
-                    row := f_row(col, row, "Dividend Yield", pi_formatPercent(divYield), yieldScore)
-                    row := f_row(col, row, "Payout Ratio", pi_formatPercent(payout), payoutScore)
-                    row := f_row(col, row, "FCF Yield", pi_formatPercent(fcfYield), fcfYieldScore)
-                    row := f_row(col, row, "DPS", pi_formatNumber(dpsEst), dpsScore)
-            row
-
-    f_renderRight(col, row) =>
-        if noData
-            row := f_warningCell(col, row, isEN ? "⚠ NO DATA" : "⚠ DATA TIDAK TERSEDIA")
-            row := f_warningCell(col, row, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
-            row := f_warningCell(col, row, isEN ? "data on TradingView." : "fundamental di TradingView.")
-            row := f_warningCell(col, row, isEN ? "Try Daily timeframe or switch" : "Coba timeframe Daily atau ganti")
-            row := f_warningCell(col, row, isEN ? "to another symbol." : "simbol lain.")
-            row
-        else
-            row
-            if not tampilCompact
-                if tampilKualitas
-                    row := f_section(col, row, isEN ? "QUALITY" : "KUALITAS")
-                if isBankSektor or isAsuransiSektor
-                    row := f_row(col, row, "(Sektor Finansial: margin", "non-bank di-skip)", na)
-                row := f_row(col, row, "ROE", pi_formatPercent(roe), roeScore)
-                row := f_row(col, row, "Asset Return / ROA", pi_formatPercent(roa), roaScore)
-                row := f_row(col, row, "ROIC", pi_formatPercent(roic), roicScore)
-                row := f_row(col, row, "Piotroski F-Score", pi_formatNumber(piotroski), piotroskiScore)
-                if wGross > 0
-                    row := f_row(col, row, "Gross Margin", pi_formatPercent(grossM), grossScore)
-                if wOp > 0
-                    row := f_row(col, row, "Operating Margin", pi_formatPercent(opM), opScore)
-                if wNet > 0
-                    row := f_row(col, row, "Net Margin", pi_formatPercent(netM), netScore)
-                if wEbitda > 0
-                    row := f_row(col, row, "EBITDA Margin", pi_formatPercent(ebitdaM), ebitdaScore)
-                if wFcfM > 0
-                    row := f_row(col, row, "FCF Margin", pi_formatPercent(fcfMargin), fcfMarginScore)
-            if tampilPertumbuhan
-                row := f_section(col, row, isEN ? "GROWTH" : "PERTUMBUHAN")
-                row := f_row(col, row, "Revenue Growth", pi_arrow(revGrowth) + pi_formatPercent(revGrowth), revScore)
-                row := f_row(col, row, "EPS Growth", pi_arrow(epsGrowth) + pi_formatPercent(epsGrowth), epsScore)
-                row := f_row(col, row, "Sustainable Growth", pi_arrow(sgr) + pi_formatPercent(sgr), sgrScore)
-            if tampilIndonesia
-                row := f_section(col, row, isEN ? "INDONESIA FACTOR" : "FAKTOR INDONESIA")
-                row := f_row(col, row, "Liquiditas", pi_formatMoney(valTradedAvg20), indoLiqScore)
-                row := f_row(col, row, "Turnover Harian", pi_formatPercent(turnoverPct), na)
-                row := f_row(col, row, "Beta vs IDX", pi_formatNumber(betaVal), indoBetaScore)
-                row := f_row(col, row, "IDR Volatility", pi_formatPercent(idrVol), indoIdrScore)
-                row := f_row(col, row, "IDR 3M Trend", pi_arrow(idrTrend3M) + pi_formatPercent(idrTrend3M), indoIdrTrend)
-            if tampilKesehatan
-                row := f_section(col, row, isEN ? "FINANCIAL HEALTH" : "KESEHATAN KEUANGAN")
-                if isBankSektor or isAsuransiSektor or isSekuritasSektor
-                    row := f_row(col, row, "(Sektor Finansial: rasio", "terbatas — lihat skor)", na)
-                if wHDe > 0
-                    row := f_row(col, row, "Debt / Equity", pi_formatNumber(debtEq), debtEqScore)
-                if wHDa > 0
-                    row := f_row(col, row, "Debt / Assets", pi_formatNumber(debtAsset), debtAssetScore)
-                if wHDeB > 0
-                    row := f_row(col, row, "Debt / EBITDA", pi_formatNumber(debtEbitda), debtEbitdaScore)
-                if wHNetD > 0
-                    row := f_row(col, row, "Net Debt / EBITDA", pi_formatNumber(netDebtEbitda), netDebtEbitdaScore)
-                if wHCash > 0
-                    row := f_row(col, row, "Cash / Debt", pi_formatNumber(cashDebt), cashDebtScore)
-                if wHIC > 0
-                    row := f_row(col, row, "Interest Cover", pi_formatNumber(interestCover), interestScore)
-                if wHCR > 0
-                    row := f_row(col, row, "Current Ratio", pi_formatNumber(currRatio), currScore)
-                if wHQR > 0
-                    row := f_row(col, row, "Quick Ratio", pi_formatNumber(quickRatio), quickScore)
-                if wHAltman > 0
-                    row := f_row(col, row, "Altman Z-Score", pi_formatNumber(altmanZ), altmanScore)
-                row := f_row(col, row, "OCF", pi_formatMoney(ocf), ocfScore)
-                row := f_row(col, row, "FCF", pi_formatMoney(fcf), fcfScore)
-            if tampilMomentum
-                row := f_section(col, row, isEN ? "MARKET MOMENTUM" : "MOMENTUM PASAR")
-                row := f_row(col, row, "RSI 14", pi_formatNumber(rsi14), rsiScore)
-                row := f_row(col, row, "1M Return", pi_arrow(ret1m) + pi_formatPercent(ret1m), na)
-                row := f_row(col, row, "3M Return", pi_arrow(ret3m) + pi_formatPercent(ret3m), na)
-                row := f_row(col, row, "6M Return", pi_arrow(ret6m) + pi_formatPercent(ret6m), na)
-                row := f_row(col, row, "12M Return", pi_arrow(ret12m) + pi_formatPercent(ret12m), na)
-                row := f_row(col, row, "6M RS vs Index", pi_arrow(relStr6m) + pi_formatPercent(relStr6m), rs6Score)
-                row := f_row(col, row, "12M RS vs Index", pi_arrow(relStr12m) + pi_formatPercent(relStr12m), rs12Score)
-                row := f_row(col, row, "Volatility", pi_formatPercent(volatility), volScore)
-                row := f_row(col, row, "MA 20/50/200", maStatus, maScore)
-            if tampilRisikoGorengan
-                row := f_section(col, row, isEN ? "PUMP & DUMP RISK" : "DETAIL RISIKO GORENGAN")
-                row := f_riskRow(col, row, "Market Cap", pi_formatMoney(mcap), mcapScore)
-                row := f_riskRow(col, row, "Nilai Transaksi 20D", pi_formatMoney(valTradedAvg20), liqScore)
-                row := f_riskRow(col, row, "Turnover Harian (20D)", pi_formatPercent(turnoverPct), na)
-                row := f_riskRow(col, row, "Volatilitas Tahunan", pi_formatPercent(volatility), volRiskScore)
-                row := f_riskRow(col, row, "Hari Kena/Dekat ARA-ARB", str.tostring(araHits, "#") + "/" + str.tostring(lookbackARA), araRiskScore)
-                row := f_riskRow(col, row, "Tingkat Harga", pi_formatNumber(dClose), priceTierScore)
-            row
-
-    // ── MAIN RENDER ──
     isEN = bahasa == "English"
+
     int l = 1
     int r = 1
-    l := f_renderLeft(0, l)
-    r := f_renderRight(3, r)
+
+    // ── LEFT COLUMN ──
+    if noData
+        l := f_warningCell(0, l, isEN ? "NO DATA" : "DATA TIDAK TERSEDIA")
+        l := f_warningCell(0, l, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
+        l := f_warningCell(0, l, isEN ? "data on TradingView." : "fundamental di TradingView.")
+        l := f_warningCell(0, l, isEN ? "Try Daily timeframe or switch" : "Coba timeframe Daily atau ganti")
+        l := f_warningCell(0, l, isEN ? "to another symbol." : "simbol lain.")
+
+    if not noData
+        l := f_section(0, l, isEN ? "OVERALL SCORE" : "SKOR KESELURUHAN")
+    l := f_scoreCardN(0, l, "Quality", qualityScore, qualityN, 9)
+    l := f_scoreCardN(0, l, "Value", valueScore, valueN, 9)
+    l := f_scoreCardN(0, l, "Growth", growthScore, growthN, 3)
+    l := f_scoreCardN(0, l, "Health", healthScore, healthN, 11)
+    l := f_scoreCardN(0, l, "Income", incomeScore, incomeN, 4)
+    l := f_scoreCardN(0, l, "Momentum", momentumScore, momentumN, 5)
+    if tampilIndonesia
+        l := f_scoreCardN(0, l, "Indonesia", indonesiaScore, indonesiaN, 3)
+
+    if tampilRisikoGorengan
+        l := f_section(0, l, isEN ? "LIQUIDITY RISK" : "RISIKO LIKUIDITAS")
+        l := f_riskCard(0, l, isEN ? "Liquidity Safety" : "Keamanan Likuiditas", riskSafetyScore)
+
+    if tampilRingkasan
+        l := f_section(0, l, isEN ? "SUMMARY" : "RINGKASAN")
+        l := f_row(0, l, "Price", pi_formatNumber(dClose), na)
+        l := f_row(0, l, "Market Cap", pi_formatMoney(mcap), na)
+        l := f_row(0, l, "52W Position", pi_arrow(pos52 - 50) + pi_formatPercent(pos52), posScore)
+        l := f_row(0, l, "Dist. From 52W High", pi_arrow(dist52High) + pi_formatPercent(dist52High), posScore)
+
+    if tampilValuasi and not tampilCompact
+        l := f_section(0, l, isEN ? "VALUATION" : "VALUASI")
+        l := f_row(0, l, "P/E TTM", pi_formatNumber(pe), peScore)
+        l := f_row(0, l, "PEG Ratio", pi_formatNumber(peg), pegScore)
+        l := f_row(0, l, "P/S TTM", pi_formatNumber(ps), psScore)
+        l := f_row(0, l, "P/B", pi_formatNumber(pb), pbScore)
+        l := f_row(0, l, "EV/EBITDA", pi_formatNumber(evEbitda), evScore)
+        l := f_row(0, l, "EV/Sales", pi_formatNumber(evSales), evSalesScore)
+        l := f_row(0, l, "Earnings Yield", pi_formatPercent(earnYield), earnYieldScore)
+        l := f_row(0, l, "Operating Earn. Yield", pi_formatPercent(opEarnYield), opYieldScore)
+        l := f_row(0, l, "Graham Price", pi_formatNumber(grahamPrice), grahamScore)
+        l := f_row(0, l, "Graham No. Upside", pi_arrow(grahamUpside) + pi_formatPercent(grahamUpside), grahamScore)
+        l := f_row(0, l, "EPS TTM", pi_formatNumber(epsTtm), na)
+        l := f_row(0, l, "BVPS", pi_formatNumber(bvps), pbScore)
+
+    if tampilDividen and not tampilCompact
+        l := f_section(0, l, isEN ? "DIVIDEND & YIELD" : "DIVIDEN & IMBAL HASIL")
+        l := f_row(0, l, "Dividend Yield", pi_formatPercent(divYield), yieldScore)
+        l := f_row(0, l, "Payout Ratio", pi_formatPercent(payout), payoutScore)
+        l := f_row(0, l, "FCF Yield", pi_formatPercent(fcfYield), fcfYieldScore)
+        l := f_row(0, l, "DPS", pi_formatNumber(dpsEst), dpsScore)
+
+    // ── RIGHT COLUMN ──
+    if noData
+        r := f_warningCell(3, r, isEN ? "NO DATA" : "DATA TIDAK TERSEDIA")
+        r := f_warningCell(3, r, isEN ? "This issuer has no fundamental" : "Emiten ini belum memiliki data")
+        r := f_warningCell(3, r, isEN ? "data on TradingView." : "fundamental di TradingView.")
+        r := f_warningCell(3, r, isEN ? "Try Daily timeframe or switch" : "Coba timeframe Daily atau ganti")
+        r := f_warningCell(3, r, isEN ? "to another symbol." : "simbol lain.")
+
+    if tampilKualitas and not tampilCompact
+        r := f_section(3, r, isEN ? "QUALITY" : "KUALITAS")
+        if isBankSektor or isAsuransiSektor
+            r := f_row(3, r, "(Sektor Finansial: margin", "non-bank di-skip)", na)
+        r := f_row(3, r, "ROE", pi_formatPercent(roe), roeScore)
+        r := f_row(3, r, "Asset Return / ROA", pi_formatPercent(roa), roaScore)
+        r := f_row(3, r, "ROIC", pi_formatPercent(roic), roicScore)
+        r := f_row(3, r, "Piotroski F-Score", pi_formatNumber(piotroski), piotroskiScore)
+        if wGross > 0
+            r := f_row(3, r, "Gross Margin", pi_formatPercent(grossM), grossScore)
+        if wOp > 0
+            r := f_row(3, r, "Operating Margin", pi_formatPercent(opM), opScore)
+        if wNet > 0
+            r := f_row(3, r, "Net Margin", pi_formatPercent(netM), netScore)
+        if wEbitda > 0
+            r := f_row(3, r, "EBITDA Margin", pi_formatPercent(ebitdaM), ebitdaScore)
+        if wFcfM > 0
+            r := f_row(3, r, "FCF Margin", pi_formatPercent(fcfMargin), fcfMarginScore)
+
+    if tampilPertumbuhan and not tampilCompact
+        r := f_section(3, r, isEN ? "GROWTH" : "PERTUMBUHAN")
+        r := f_row(3, r, "Revenue Growth", pi_arrow(revGrowth) + pi_formatPercent(revGrowth), revScore)
+        r := f_row(3, r, "EPS Growth", pi_arrow(epsGrowth) + pi_formatPercent(epsGrowth), epsScore)
+        r := f_row(3, r, "Sustainable Growth", pi_arrow(sgr) + pi_formatPercent(sgr), sgrScore)
+
+    if tampilIndonesia and not tampilCompact
+        r := f_section(3, r, isEN ? "INDONESIA FACTOR" : "FAKTOR INDONESIA")
+        r := f_row(3, r, "Liquiditas", pi_formatMoney(valTradedAvg20), indoLiqScore)
+        r := f_row(3, r, "Turnover Harian", pi_formatPercent(turnoverPct), na)
+        r := f_row(3, r, "Beta vs IDX", pi_formatNumber(betaVal), indoBetaScore)
+        r := f_row(3, r, "IDR Volatility", pi_formatPercent(idrVol), indoIdrScore)
+        r := f_row(3, r, "IDR 3M Trend", pi_arrow(idrTrend3M) + pi_formatPercent(idrTrend3M), indoIdrTrend)
+
+    if tampilKesehatan and not tampilCompact
+        r := f_section(3, r, isEN ? "FINANCIAL HEALTH" : "KESEHATAN KEUANGAN")
+        if isBankSektor or isAsuransiSektor or isSekuritasSektor
+            r := f_row(3, r, "(Sektor Finansial: rasio", "terbatas — lihat skor)", na)
+        if wHDe > 0
+            r := f_row(3, r, "Debt / Equity", pi_formatNumber(debtEq), debtEqScore)
+        if wHDa > 0
+            r := f_row(3, r, "Debt / Assets", pi_formatNumber(debtAsset), debtAssetScore)
+        if wHDeB > 0
+            r := f_row(3, r, "Debt / EBITDA", pi_formatNumber(debtEbitda), debtEbitdaScore)
+        if wHNetD > 0
+            r := f_row(3, r, "Net Debt / EBITDA", pi_formatNumber(netDebtEbitda), netDebtEbitdaScore)
+        if wHCash > 0
+            r := f_row(3, r, "Cash / Debt", pi_formatNumber(cashDebt), cashDebtScore)
+        if wHIC > 0
+            r := f_row(3, r, "Interest Cover", pi_formatNumber(interestCover), interestScore)
+        if wHCR > 0
+            r := f_row(3, r, "Current Ratio", pi_formatNumber(currRatio), currScore)
+        if wHQR > 0
+            r := f_row(3, r, "Quick Ratio", pi_formatNumber(quickRatio), quickScore)
+        if wHAltman > 0
+            r := f_row(3, r, "Altman Z-Score", pi_formatNumber(altmanZ), altmanScore)
+        r := f_row(3, r, "OCF", pi_formatMoney(ocf), ocfScore)
+        r := f_row(3, r, "FCF", pi_formatMoney(fcf), fcfScore)
+
+    if tampilMomentum and not tampilCompact
+        r := f_section(3, r, isEN ? "MARKET MOMENTUM" : "MOMENTUM PASAR")
+        r := f_row(3, r, "RSI 14", pi_formatNumber(rsi14), rsiScore)
+        r := f_row(3, r, "1M Return", pi_arrow(ret1m) + pi_formatPercent(ret1m), na)
+        r := f_row(3, r, "3M Return", pi_arrow(ret3m) + pi_formatPercent(ret3m), na)
+        r := f_row(3, r, "6M Return", pi_arrow(ret6m) + pi_formatPercent(ret6m), na)
+        r := f_row(3, r, "12M Return", pi_arrow(ret12m) + pi_formatPercent(ret12m), na)
+        r := f_row(3, r, "6M RS vs Index", pi_arrow(relStr6m) + pi_formatPercent(relStr6m), rs6Score)
+        r := f_row(3, r, "12M RS vs Index", pi_arrow(relStr12m) + pi_formatPercent(relStr12m), rs12Score)
+        r := f_row(3, r, "Volatility", pi_formatPercent(volatility), volScore)
+        r := f_row(3, r, "MA 20/50/200", maStatus, maScore)
+
+    if tampilRisikoGorengan and not tampilCompact
+        r := f_section(3, r, isEN ? "PUMP & DUMP RISK" : "DETAIL RISIKO GORENGAN")
+        r := f_riskRow(3, r, "Market Cap", pi_formatMoney(mcap), mcapScore)
+        r := f_riskRow(3, r, "Nilai Transaksi 20D", pi_formatMoney(valTradedAvg20), liqScore)
+        r := f_riskRow(3, r, "Turnover Harian (20D)", pi_formatPercent(turnoverPct), na)
+        r := f_riskRow(3, r, "Volatilitas Tahunan", pi_formatPercent(volatility), volRiskScore)
+        r := f_riskRow(3, r, "Hari Kena/Dekat ARA-ARB", str.tostring(araHits, "#") + "/" + str.tostring(lookbackARA), araRiskScore)
+        r := f_riskRow(3, r, "Tingkat Harga", pi_formatNumber(dClose), priceTierScore)
 
 //══════════════════════════════
 //
