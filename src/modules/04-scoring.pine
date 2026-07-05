@@ -602,10 +602,27 @@ if barstate.islast
     f_headerCell(4, indeksAcuan, headerBg, titleTxt)
     f_headerCell(5, overallTxt, headerBg, f_scoreColor(overallScore))
 
+    // guard: jika data fundamental inti tidak tersedia, tampilkan pesan
+    // alih-alih tabel penuh "—"
+    noData = na(epsTtm) and na(bvps) and na(roe) and na(debtEq) and na(divYield)
+
     int l = 1
     int r = 1
 
-    l := f_section(0, l, "SKOR KESELURUHAN")
+    if noData
+        l := f_warningCell(0, l, "⚠ DATA TIDAK TERSEDIA")
+        l := f_warningCell(0, l, "Emiten ini belum memiliki data")
+        l := f_warningCell(0, l, "fundamental di TradingView.")
+        l := f_warningCell(0, l, "Coba timeframe Daily atau ganti")
+        l := f_warningCell(0, l, "simbol lain.")
+        r := f_warningCell(3, r, "⚠ DATA TIDAK TERSEDIA")
+        r := f_warningCell(3, r, "Emiten ini belum memiliki data")
+        r := f_warningCell(3, r, "fundamental di TradingView.")
+        r := f_warningCell(3, r, "Coba timeframe Daily atau ganti")
+        r := f_warningCell(3, r, "simbol lain.")
+
+    if not noData
+        l := f_section(0, l, "SKOR KESELURUHAN")
     l := f_scoreCardN(0, l, "Quality", qualityScore, qualityN, 9)
     l := f_scoreCardN(0, l, "Value", valueScore, valueN, 9)
     l := f_scoreCardN(0, l, "Growth", growthScore, growthN, 3)

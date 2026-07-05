@@ -67,7 +67,12 @@ f_scoreCardN(int base, int row, string name, float score, int nValid, int nTotal
     f_cell(base + 2, row, pi_grade(score), bg, tc)
     row + 1
 
-// BARU V2 — kartu untuk skor risiko (skema warna & grade terbalik)
+f_warningCell(int base, int row, string msg) =>
+    f_cell(base, row, msg, secRiskBg, color.white)
+    f_cell(base + 1, row, "", tableBg, mainTxt)
+    f_cell(base + 2, row, "", tableBg, mainTxt)
+    row + 1
+
 f_riskCard(int base, int row, string name, float score) =>
     bg = tampilLatarSkor ? f_riskBg(score) : f_rowBg(row)
     tc = f_riskColor(score)
