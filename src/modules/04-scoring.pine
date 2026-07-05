@@ -787,74 +787,7 @@ if barstate.islast
 
 //══════════════════════════════
 //
-// BACKLOG (Build 003+)
-// Sengaja BELUM diimplementasikan — di luar scope sprint Valuasi saat
-// ini. Sesuai roadmap Build 002 (Valuation → Profitability → Growth →
-// Financial Health → Indonesia Layer), item berikut dari proposal
-// "Sector-Aware Fundamental Engine" (file1) dipindah ke backlog supaya
-// tidak menyela development sprint yang sedang berjalan:
-//
-// [x] ~~Sprint Financial Health: skip juga untuk Asuransi & Sekuritas
-//     sebagai kelas eksplisit~~ — DETEKSI-nya sudah selesai (Build 002
-//     Revisi 2: isBankSektor/isAsuransiSektor/isSekuritasSektor). YANG
-//     BELUM: healthScore di scoring engine MASIH memakai isFinancialSector
-//     generik (skip Current/Quick Ratio dkk untuk ketiganya secara sama).
-//     file1 sebenarnya membedakan: Asuransi mengurangi Current/Quick
-//     Ratio, Sekuritas mengurangi Current Ratio & Debt Ratio tapi
-//     MEMPERHITUNGKAN Cash Position lebih besar. Ini tetap masuk sprint
-//     Financial Health berikutnya, BUKAN sprint Valuasi saat ini.
-// [x] ~~Business Model Engine dropdown manual eksplisit~~ — SEBAGIAN
-//     selesai (Build 002 Revisi 2): Bank/Asuransi/Sekuritas/Properti/
-//     Infrastruktur/Teknologi/Transportasi kini bisa di-override manual.
-//     BELUM ada override manual untuk Batubara vs CPO (keduanya masih
-//     digabung sebagai "Siklikal (Komoditas/Energi)"), dan untuk
-//     Consumer/Industri/Healthcare (belum ada bobot berbeda sama sekali
-//     di dimensi manapun, sesuai file1 yang menyebut ketiganya "Normal").
-//
-// [x] ~~Sprint Profitability/Quality: bobot ROE/ROA/ROIC/Margin per
-//     sektor (mis. Consumer/Industri/Healthcare menekankan Net Margin
-//     & EPS Growth lebih tinggi; Bank menekankan ROE).~~ — SELESAI
-//     (Build 003). Bank/Asuransi/Sekuritas: ROE/ROA prioritas, margin
-//     di-skip. Properti: ROIC prioritas. Infrastruktur: EBITDA/FCF
-//     Margin prioritas. Siklikal: EBITDA/FCF Margin, Piotroski. Teknologi:
-//     Gross/Op/Net Margin prioritas. Transportasi: ROA, EBITDA/FCF Margin.
-//     YANG BELUM: Consumer/Industri/Healthcare sebagai kelas terpisah
-//     (masih di Non-Finansial Umum — perlu deteksi sektor otomatis &
-//     manual tambahan di MODUL 04).
-// [x] ~~Sprint Growth: bobot Revenue/EPS Growth diturunkan untuk sektor
-//     siklikal (Batubara, CPO) & properti — sudah disebut di file1
-//     tapi belum ada di kode.~~ — SELESAI (Build 004 + Rev 1) dengan
-//     hybrid 2-layer: f_wavgArr sector-aware + Growth Quality Modifier
-//     multi-faktor (spread + earnings quality). Koreksi Rev 1: Finansial
-//     SGR ×1.7, EPS ×1.0. Teknologi SGR skip. Rev progressive max -40%.
-//     Earnings quality check via OCF.
-// [x] ~~Sprint Financial Health: DER/Current Ratio/Quick Ratio/Altman Z
-//     saat ini di-skip untuk isFinancialSector (Bank+Asuransi+Sekuritas
-//     digabung, sama seperti Build 001). Perlu dipecah per sub-kategori
-//     sesuai file1 (lih. catatan di atas).~~ — SELESAI (Build 005).
-//     Bank/Asuransi/Sekuritas dipisah. Threshold sektor-aware untuk
-//     Non-Finansial, Infrastruktur, Properti, Teknologi, Siklikal.
-//     Altman Z threshold diubah ke Z"-Score EM (1.1-2.6).
-// [x] ~~Sprint Indonesia Layer: kategori "Indonesia Factor" pada Scoring
-//     Matrix file1 (bobot 10-20% tergantung sektor) belum punya padanan
-//     di kode sama sekali — perlu didefinisikan dulu rasio/proxy apa
-//     yang dimaksud sebelum bisa diimplementasikan.~~ — SELESAI (Build 006).
-//     Toggle opt-in (default OFF). 3 komponen: Likuiditas (val/turn/mcap),
-//     Stabilitas (beta/RS/vol), Makro (IDR vol+trend). Bobot sector-aware
-//     via wIndonesia (0.8-1.3x). FX_IDC:USDIDR + ta.beta() untuk data.
-// [ ] Threshold interpretasi per sektor (mis. ROE 15% = "Bagus" untuk
-//     Bank, tapi "Normal" untuk Teknologi) — ini mengubah fungsi
-//     pi_grade/skor per kategori, bukan hanya bobot; berdampak besar
-//     pada semua dimensi, bukan hanya Valuasi. Butuh desain terpisah.
-// [ ] Batubara vs CPO sebagai kelas terpisah (saat ini digabung jadi
-//     "Siklikal (Komoditas/Energi)") — file1 memperlakukan keduanya
-//     mirip untuk Valuasi, jadi belum ada urgensi, tapi untuk Growth/
-//     Health nanti mungkin perlu dipisah.
-// [ ] Rule Engine generik (isX → disable/reweight rasio Y) yang
-//     dideskripsikan file1 saat ini masih hardcoded per kategori di
-//     dalam blok if/else-if scoring engine. Untuk 12 kategori penuh
-//     lintas 5 dimensi, pola if/else-if akan sulit dirawat — layak
-//     dipertimbangkan struktur data (mis. matrix bobot per kategori)
-//     saat item-item di atas mulai dikerjakan.
+// BACKLOG → GitHub Issues: https://github.com/akhmfz/papan-instrumen/issues
+// Detail: docs/DEVELOPMENT.md § Backlog
 //
 //══════════════════════════════
