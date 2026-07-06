@@ -73,7 +73,7 @@ industriRaw    = na(dataPasar) ? na : dataPasar.industriRaw
      ignore_invalid_symbol = true)
 
 usdIdrClose = request.security("FX_IDC:USDIDR", "D", close, ignore_invalid_symbol = true)
-float stockDailyRet = close / nz(close[1]) - 1
+float stockDailyRet = dClose / nz(dClose[1]) - 1
 float benchDailyRet = benchClose / nz(benchClose[1]) - 1
 float betaVal = ta.correlation(stockDailyRet, benchDailyRet, 252) * ta.stdev(stockDailyRet, 252) / ta.stdev(benchDailyRet, 252)
 

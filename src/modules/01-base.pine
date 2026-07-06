@@ -55,7 +55,6 @@ indicator(
      title             = "Saham: Papan Instrumen By. Akhmfz",
      shorttitle        = "PnInstrum",
      overlay           = true,
-     max_labels_count  = 50,
      calc_bars_count   = 300)
 
 //══════════════════════════════
@@ -66,50 +65,53 @@ indicator(
 //══════════════════════════════
 grupUtama = "Pengaturan Utama"
 
-simbolInput = input.symbol("", "Simbol Saham", group = grupUtama)
+simbolInput = input.symbol("", "Simbol Saham", group = grupUtama, display = display.data_window)
 sym         = simbolInput == "" ? syminfo.tickerid : simbolInput
 
-indeksAcuan   = input.symbol("IDX:COMPOSITE", "Indeks Acuan / Benchmark", group = grupUtama)
-periodeLaporan = input.string("FQ", "Periode Laporan Keuangan", options = ["FQ", "FY", "TTM"], group = grupUtama)
+indeksAcuan   = input.symbol("IDX:COMPOSITE", "Indeks Acuan / Benchmark", group = grupUtama, display = display.data_window)
+periodeLaporan = input.string("FQ", "Periode Laporan Keuangan", options = ["FQ", "FY", "TTM"], group = grupUtama, display = display.data_window)
 
 posisiInput = input.string("Kanan Atas", "Posisi Tabel",
-     options = ["Kanan Atas", "Kiri Atas", "Kanan Bawah", "Kiri Bawah"], group = grupUtama)
+     options = ["Kanan Atas", "Kiri Atas", "Kanan Bawah", "Kiri Bawah"], group = grupUtama, display = display.data_window)
 
 ukuranTeksInput = input.string("Kecil Sekali", "Ukuran Teks",
-     options = ["Kecil Sekali", "Kecil", "Normal"], group = grupUtama)
+     options = ["Kecil Sekali", "Kecil", "Normal"], group = grupUtama, display = display.data_window)
 
 warnaTema = input.string("Profesional Gelap", "Tema Warna",
      options = ["Profesional Gelap", "Profesional Terang", "Bursa Hijau", "Biru Nusantara", "Emas Premium"],
-     group = grupUtama)
+     group = grupUtama, display = display.data_window)
 
-tampilLatarSkor    = input.bool(true, "Gunakan Latar Skor Berwarna", group = grupUtama)
-tampilBarSkor      = input.bool(true, "Tampilkan Bar Skor", group = grupUtama)
-barisSelangSeling  = input.bool(true, "Baris Berselang-seling Halus", group = grupUtama)
-headerBerwarna     = input.bool(true, "Header Bagian Berwarna", group = grupUtama)
-tampilSimbolStatus = input.bool(true, "Tampilkan Simbol ▲ ▼", group = grupUtama)
-tampilKelengkapan  = input.bool(true, "Tampilkan Indikator Kelengkapan Data (n/x)", group = grupUtama)
-tampilCompact      = input.bool(false, "Mode Ringkas (Compact Mode)", group = grupUtama,
+tampilLatarSkor    = input.bool(true, "Gunakan Latar Skor Berwarna", group = grupUtama, display = display.data_window)
+tampilBarSkor      = input.bool(true, "Tampilkan Bar Skor", group = grupUtama, display = display.data_window)
+barisSelangSeling  = input.bool(true, "Baris Berselang-seling Halus", group = grupUtama, display = display.data_window)
+headerBerwarna     = input.bool(true, "Header Bagian Berwarna", group = grupUtama, display = display.data_window)
+tampilSimbolStatus = input.bool(true, "Tampilkan Simbol ▲ ▼", group = grupUtama, display = display.data_window)
+tampilKelengkapan  = input.bool(true, "Tampilkan Indikator Kelengkapan Data (n/x)", group = grupUtama, display = display.data_window)
+tampilCompact = input.bool(false, "Mode Ringkas (Compact Mode)", group = grupUtama,
      tooltip = "Tampilkan hanya skor + risiko + ringkasan. Sembunyikan" +
        " detail valuasi, kualitas, growth, kesehatan, dividen, " +
-       "momentum, dan Indonesia di kolom kanan. Default OFF — backward compatible.")
+       "momentum, dan Indonesia di kolom kanan. Default OFF — backward compatible.",
+     display = display.data_window)
 
 bahasa = input.string("Indonesia", "Bahasa / Language",
      options = ["Indonesia", "English"],
      group = grupUtama,
      tooltip = "Bahasa tampilan dashboard. Label teknis (ROE, P/E, P/B, dll.) " +
-       "tetap dalam bahasa Inggris karena bersifat universal.")
+        "tetap dalam bahasa Inggris karena bersifat universal.",
+     display = display.data_window)
 
-tampilRingkasan    = input.bool(true, "Tampilkan Ringkasan", group = grupUtama)
-tampilValuasi      = input.bool(true, "Tampilkan Valuasi", group = grupUtama)
-tampilKualitas     = input.bool(true, "Tampilkan Kualitas", group = grupUtama)
-tampilPertumbuhan  = input.bool(true, "Tampilkan Pertumbuhan", group = grupUtama)
-tampilKesehatan    = input.bool(true, "Tampilkan Kesehatan Keuangan", group = grupUtama)
-tampilDividen      = input.bool(true, "Tampilkan Dividen & Imbal Hasil", group = grupUtama)
-tampilMomentum     = input.bool(true, "Tampilkan Momentum", group = grupUtama)
-tampilIndonesia    = input.bool(false, "Aktifkan Faktor Indonesia (7th Factor)", group = grupUtama,
+tampilRingkasan    = input.bool(true, "Tampilkan Ringkasan", group = grupUtama, display = display.data_window)
+tampilValuasi      = input.bool(true, "Tampilkan Valuasi", group = grupUtama, display = display.data_window)
+tampilKualitas     = input.bool(true, "Tampilkan Kualitas", group = grupUtama, display = display.data_window)
+tampilPertumbuhan  = input.bool(true, "Tampilkan Pertumbuhan", group = grupUtama, display = display.data_window)
+tampilKesehatan    = input.bool(true, "Tampilkan Kesehatan Keuangan", group = grupUtama, display = display.data_window)
+tampilDividen      = input.bool(true, "Tampilkan Dividen & Imbal Hasil", group = grupUtama, display = display.data_window)
+tampilMomentum     = input.bool(true, "Tampilkan Momentum", group = grupUtama, display = display.data_window)
+tampilIndonesia = input.bool(false, "Aktifkan Faktor Indonesia (7th Factor)", group = grupUtama,
      tooltip = "Menambahkan Faktor Indonesia sebagai dimensi ke-7 dalam skor " +
-       "keseluruhan. Mencakup Likuiditas IDX, Stabilitas Pasar (beta/vol), " +
-       "dan Dukungan Makro (IDR/komoditas). Default OFF — backward compatible.")
+        "keseluruhan. Mencakup Likuiditas IDX, Stabilitas Pasar (beta/vol), " +
+        "dan Dukungan Makro (IDR/komoditas). Default OFF — backward compatible.",
+     display = display.data_window)
 
 // ── Sektor & Adaptasi (BARU di V2) ──
 grupSektor = "Sektor & Adaptasi"
@@ -124,32 +126,36 @@ modeSektor = input.string("Otomatis", "Deteksi Sektor",
      group = grupSektor,
      tooltip = "Otomatis: mendeteksi dari syminfo.sector/industry + daftar ticker. " +
        "Override manual jika auto-detect salah. Kelas BARU Build 009: Konsumer, " +
-       "Industri, Kesehatan, Batubara, CPO.")
+       "Industri, Kesehatan, Batubara, CPO.",
+     display = display.data_window)
 
 toleransiSiklikal = input.bool(true, "Longgarkan Graham Number untuk Sektor Siklikal", group = grupSektor,
      tooltip = "Melebarkan pita skor Graham Number untuk saham komoditas/energi yang labanya naik-turun tajam. " +
-       "Ini BUKAN normalisasi EPS multi-tahun sungguhan — lihat architecture.md.")
+       "Ini BUKAN normalisasi EPS multi-tahun sungguhan — lihat architecture.md.",
+     display = display.data_window)
 
 // ── Bobot Skor Keseluruhan (BARU di V2) ──
 grupBobot = "Bobot Skor Keseluruhan"
 
-gunakanBobotKustom = input.bool(false, "Gunakan Bobot Kustom (default: 6 faktor sama rata)", group = grupBobot)
+gunakanBobotKustom = input.bool(false, "Gunakan Bobot Kustom (default: 6 faktor sama rata)", group = grupBobot, display = display.data_window)
 presetBobot = input.string("Custom", "Preset Bobot",
      options = ["Custom", "Equal Weight", "Value-biased", "Quality-biased",
        "Growth-biased", "Conservative"],
      group = grupBobot,
-     tooltip = "Preset mengisi bobot otomatis. Pilih 'Custom' untuk mengatur manual.")
+     tooltip = "Preset mengisi bobot otomatis. Pilih 'Custom' untuk mengatur manual.",
+     display = display.data_window)
 
 // Apply preset (overrides slider defaults)
-bobotValue     = input.float(1.0, "Bobot Value", minval = 0, step = 0.1, group = grupBobot)
-bobotQuality   = input.float(1.0, "Bobot Quality", minval = 0, step = 0.1, group = grupBobot)
-bobotGrowth    = input.float(1.0, "Bobot Growth", minval = 0, step = 0.1, group = grupBobot)
-bobotHealth    = input.float(1.0, "Bobot Health", minval = 0, step = 0.1, group = grupBobot)
-bobotMomentum  = input.float(1.0, "Bobot Momentum", minval = 0, step = 0.1, group = grupBobot)
-bobotIncome    = input.float(1.0, "Bobot Income", minval = 0, step = 0.1, group = grupBobot)
+bobotValue     = input.float(1.0, "Bobot Value", minval = 0, step = 0.1, group = grupBobot, display = display.data_window)
+bobotQuality   = input.float(1.0, "Bobot Quality", minval = 0, step = 0.1, group = grupBobot, display = display.data_window)
+bobotGrowth    = input.float(1.0, "Bobot Growth", minval = 0, step = 0.1, group = grupBobot, display = display.data_window)
+bobotHealth    = input.float(1.0, "Bobot Health", minval = 0, step = 0.1, group = grupBobot, display = display.data_window)
+bobotMomentum  = input.float(1.0, "Bobot Momentum", minval = 0, step = 0.1, group = grupBobot, display = display.data_window)
+bobotIncome    = input.float(1.0, "Bobot Income", minval = 0, step = 0.1, group = grupBobot, display = display.data_window)
 bobotIndonesia = input.float(1.0, "Bobot Indonesia Factor", minval = 0, step = 0.1, group = grupBobot,
      tooltip = "Bobot untuk Faktor Indonesia (aktif hanya jika toggle ON). " +
-       "Default 1.0 = ~14%. Naikkan ke 1.5 = ~20%, turunkan ke 0.7 = ~10%.")
+       "Default 1.0 = ~14%. Naikkan ke 1.5 = ~20%, turunkan ke 0.7 = ~10%.",
+     display = display.data_window)
 
 
 // Preset bobot otomatis (override slider jika bukan Custom)
@@ -193,31 +199,35 @@ pakaiBobotTertimbang = gunakanBobotKustom or presetBobot != "Custom"
 // ── Risiko Likuiditas & Gorengan (BARU di V2) ──
 grupRisiko = "Risiko Likuiditas & Gorengan"
 
-tampilRisikoGorengan = input.bool(true, "Tampilkan Modul Risiko Likuiditas", group = grupRisiko)
+tampilRisikoGorengan = input.bool(true, "Tampilkan Modul Risiko Likuiditas", group = grupRisiko, display = display.data_window)
 ambangARA        = input.float(24.0, "Ambang Deteksi ARA/ARB (%)", minval = 1, group = grupRisiko,
      tooltip = "Persentase perubahan harga harian yang dianggap 'mendekati/kena batas ARA-ARB'. " +
        "Aturan ARA/ARB IDX bertingkat menurut harga & pernah berubah — sesuaikan sendiri sesuai " +
-       "aturan yang berlaku saat ini. Ini adalah proxy, bukan aturan resmi bursa.")
-lookbackARA       = input.int(20, "Lookback Hari untuk Hitung ARA/ARB", minval = 5, maxval = 60, group = grupRisiko)
-kapKecilMiliar    = input.float(1000, "Ambang Kapitalisasi 'Kecil' (Miliar Rp)", group = grupRisiko)
-kapBesarMiliar    = input.float(10000, "Ambang Kapitalisasi 'Besar' (Miliar Rp)", group = grupRisiko)
-likuiditasRendahJt = input.float(500, "Ambang Nilai Transaksi Harian 'Rendah' (Juta Rp, avg 20D)", group = grupRisiko)
-likuiditasTinggiJt = input.float(20000, "Ambang Nilai Transaksi Harian 'Tinggi' (Juta Rp, avg 20D)", group = grupRisiko)
-hargaRecehan      = input.float(50, "Ambang Harga 'Recehan' (Rp)", group = grupRisiko)
+       "aturan yang berlaku saat ini. Ini adalah proxy, bukan aturan resmi bursa.",
+     display = display.data_window)
+lookbackARA       = input.int(20, "Lookback Hari untuk Hitung ARA/ARB", minval = 5, maxval = 60, group = grupRisiko, display = display.data_window)
+kapKecilMiliar    = input.float(1000, "Ambang Kapitalisasi 'Kecil' (Miliar Rp)", group = grupRisiko, display = display.data_window)
+kapBesarMiliar    = input.float(10000, "Ambang Kapitalisasi 'Besar' (Miliar Rp)", group = grupRisiko, display = display.data_window)
+likuiditasRendahJt = input.float(500, "Ambang Nilai Transaksi Harian 'Rendah' (Juta Rp, avg 20D)", group = grupRisiko, display = display.data_window)
+likuiditasTinggiJt = input.float(20000, "Ambang Nilai Transaksi Harian 'Tinggi' (Juta Rp, avg 20D)", group = grupRisiko, display = display.data_window)
+hargaRecehan      = input.float(50, "Ambang Harga 'Recehan' (Rp)", group = grupRisiko, display = display.data_window)
 
 // ── Kesehatan Bank (P3-1) ──
 grupBank = "Kesehatan Bank (Data Manual)"
 carInput = input.float(-1.0, "CAR (%) — Rasio Kecukupan Modal", minval = -1.0, step = 0.1, group = grupBank,
      tooltip = "Capital Adequacy Ratio. Isi manual — tidak tersedia dari TV. " +
-       "Data dari laporan keuangan bank. ≥ 12% = sehat. Nilai -1 = abaikan.")
+       "Data dari laporan keuangan bank. ≥ 12% = sehat. Nilai -1 = abaikan.",
+     display = display.data_window)
 
 nplInput = input.float(-1.0, "NPL Gross (%) — Non-Performing Loan", minval = -1.0, step = 0.1, group = grupBank,
      tooltip = "Non-Performing Loan ratio gross. Isi manual — tidak tersedia dari TV. " +
-       "Data dari laporan keuangan bank. ≤ 3% = sehat. Nilai -1 = abaikan.")
+       "Data dari laporan keuangan bank. ≤ 3% = sehat. Nilai -1 = abaikan.",
+     display = display.data_window)
 
 ldrInput = input.float(-1.0, "LDR (%) — Loan-to-Deposit Ratio", minval = -1.0, step = 0.1, group = grupBank,
      tooltip = "Loan to Deposit Ratio. Isi manual — tidak tersedia dari TV. " +
-       "Data dari laporan keuangan bank. 78-92% range ideal. Nilai -1 = abaikan.")
+       "Data dari laporan keuangan bank. 78-92% range ideal. Nilai -1 = abaikan.",
+     display = display.data_window)
 
 posisiTabel = switch posisiInput
     "Kiri Atas"    => position.top_left

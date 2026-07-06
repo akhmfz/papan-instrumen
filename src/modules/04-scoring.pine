@@ -571,7 +571,7 @@ if barstate.islast
     indoIdrScore = f_scoreLower(idrVol, 5, 20)
     indoIdrTrend = na(idrTrend3M) ? na :
          isSiklikalLike ? f_scoreHigher(idrTrend3M, -5, 15) :  // eksportir: IDR lemah = bullish
-         f_scoreLower(idrTrend3M, -5, 5)                          // lain: IDR stabil = netral
+         f_scoreLower(idrTrend3M, -5, 5)                          // lain: IDR menguat = skor tinggi (f_scoreLower, good=-5)
     indoMacroScore = f_avg3(indoIdrScore, indoIdrTrend, na)
     // Bobot sector-aware untuk Faktor Indonesia
     wIndonesia = 1.0
@@ -583,6 +583,7 @@ if barstate.islast
         wIndonesia := 0.8
     indonesiaScore = f_avg3(indoLiqScore, indoBetaScore, indoMacroScore)
     indonesiaN = (na(indoLiqScore) ? 0 : 1) + (na(indoBetaScore) ? 0 : 1) + (na(indoMacroScore) ? 0 : 1)
+    effectiveBobotIndonesia = bobotIndonesia * wIndonesia
 
     // ── SKOR KESELURUHAN ──
     // FIX V2 (bug #4): f_avg6 eksplisit, 6 faktor benar-benar setara.
@@ -592,7 +593,7 @@ if barstate.islast
     overallScore = tampilIndonesia ?
          (pakaiBobotTertimbang ?
               f_wavg7(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore, indonesiaScore,
-                   bobotValue, bobotQuality, bobotGrowth, bobotHealth, bobotMomentum, bobotIncome, bobotIndonesia) :
+                   bobotValue, bobotQuality, bobotGrowth, bobotHealth, bobotMomentum, bobotIncome, effectiveBobotIndonesia) :
               f_avg7(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore, indonesiaScore)) :
          (pakaiBobotTertimbang ?
               f_wavg6(valueScore, qualityScore, growthScore, healthScore, momentumScore, incomeScore,
@@ -648,14 +649,14 @@ if barstate.islast
 
     if not noData
         l := f_section(0, l, isEN ? "OVERALL SCORE" : "SKOR KESELURUHAN")
-    l := f_scoreCardN(0, l, "Quality", qualityScore, qualityN, 9)
-    l := f_scoreCardN(0, l, "Value", valueScore, valueN, 9)
-    l := f_scoreCardN(0, l, "Growth", growthScore, growthN, 3)
-    l := f_scoreCardN(0, l, "Health", healthScore, healthN, 11)
-    l := f_scoreCardN(0, l, "Income", incomeScore, incomeN, 4)
-    l := f_scoreCardN(0, l, "Momentum", momentumScore, momentumN, 5)
-    if tampilIndonesia
-        l := f_scoreCardN(0, l, "Indonesia", indonesiaScore, indonesiaN, 3)
+        l := f_scoreCardN(0, l, "Quality", qualityScore, qualityN, 9)
+        l := f_scoreCardN(0, l, "Value", valueScore, valueN, 9)
+        l := f_scoreCardN(0, l, "Growth", growthScore, growthN, 3)
+        l := f_scoreCardN(0, l, "Health", healthScore, healthN, 11)
+        l := f_scoreCardN(0, l, "Income", incomeScore, incomeN, 4)
+        l := f_scoreCardN(0, l, "Momentum", momentumScore, momentumN, 5)
+        if tampilIndonesia
+            l := f_scoreCardN(0, l, "Indonesia", indonesiaScore, indonesiaN, 3)
 
     if tampilRisikoGorengan
         l := f_section(0, l, isEN ? "LIQUIDITY RISK" : "RISIKO LIKUIDITAS")

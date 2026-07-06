@@ -25,9 +25,10 @@ BARE=$(grep 'security(' "$PINE" 2>/dev/null | grep -cv 'request\.security' 2>/de
 # deprecated
 ! grep -q 'study(' "$PINE" && ok "no deprecated study()" || err "Found deprecated study() — use indicator()"
 
-# budget
+# budget — hard limit 40, safety warning at 36+
 REQ=$(grep -cE 'request\.(financial|security)\b' "$PINE" 2>/dev/null) || REQ=0
 [ "$REQ" -le 40 ] && ok "request budget: $REQ/40" || err "request budget exceeded: $REQ > 40"
+[ "$REQ" -ge 36 ] && echo "  ⚠️  WARNING: $REQ/40 requests used — only 4-5 slots left for new fields"
 
 echo ""
 if [ "$ERR" -eq 0 ]; then
