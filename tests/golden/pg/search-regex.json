@@ -1,0 +1,139 @@
+{
+  "pattern": "score|f_.*",
+  "mode": "regex",
+  "total": 22,
+  "results": [
+    {
+      "name": "f_choppiness",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_choppiness()"
+    },
+    {
+      "name": "f_colorScore",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_colorScore()"
+    },
+    {
+      "name": "f_confStr",
+      "type": "function",
+      "module": "04-ui",
+      "label": "f_confStr()"
+    },
+    {
+      "name": "f_getFontSize",
+      "type": "function",
+      "module": "04-ui",
+      "label": "f_getFontSize()"
+    },
+    {
+      "name": "f_getPosition",
+      "type": "function",
+      "module": "04-ui",
+      "label": "f_getPosition()"
+    },
+    {
+      "name": "f_isBodyVolume",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_isBodyVolume()"
+    },
+    {
+      "name": "f_momentumScore",
+      "type": "function",
+      "module": "03-scoring",
+      "label": "f_momentumScore()"
+    },
+    {
+      "name": "f_narrative",
+      "type": "function",
+      "module": "03-scoring",
+      "label": "f_narrative()"
+    },
+    {
+      "name": "f_netVolume",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_netVolume()"
+    },
+    {
+      "name": "f_scoreHigher",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreHigher()"
+    },
+    {
+      "name": "f_scoreLower",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreLower()"
+    },
+    {
+      "name": "f_scoreRange",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreRange()"
+    },
+    {
+      "name": "f_secure",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_secure()"
+    },
+    {
+      "name": "f_signalText",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_signalText()"
+    },
+    {
+      "name": "f_smartMoneyDetect",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_smartMoneyDetect()"
+    },
+    {
+      "name": "f_smartMoneyScore",
+      "type": "function",
+      "module": "03-scoring",
+      "label": "f_smartMoneyScore()"
+    },
+    {
+      "name": "f_trendScore",
+      "type": "function",
+      "module": "03-scoring",
+      "label": "f_trendScore()"
+    },
+    {
+      "name": "f_volatilityScore",
+      "type": "function",
+      "module": "03-scoring",
+      "label": "f_volatilityScore()"
+    },
+    {
+      "name": "f_volumeScore",
+      "type": "function",
+      "module": "03-scoring",
+      "label": "f_volumeScore()"
+    },
+    {
+      "name": "f_webhookMsg",
+      "type": "function",
+      "module": "04-ui",
+      "label": "f_webhookMsg()"
+    },
+    {
+      "name": "scoreColor",
+      "type": "variable",
+      "module": "01-base",
+      "label": "scoreColor"
+    },
+    {
+      "name": "scoreSum",
+      "type": "variable",
+      "module": "03-scoring",
+      "label": "scoreSum"
+    }
+  ]
+}

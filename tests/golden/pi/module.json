@@ -1,0 +1,93 @@
+{
+  "name": "04-scoring",
+  "found": true,
+  "file": "/home/Akhmfz/papan-instrumen/src/modules/04-scoring.pine",
+  "size_lines": 794,
+  "functions": 0,
+  "variables": 0,
+  "depends_on": [
+    "01-base",
+    "02-data",
+    "03-ui"
+  ],
+  "depended_by": [],
+  "functions_list": [],
+  "entry_callees": [
+    {
+      "target": "src_modules_01base_f_avg3",
+      "label": "f_avg3(float a, float b, float c)",
+      "count": 5
+    },
+    {
+      "target": "src_modules_01base_f_avg4",
+      "label": "f_avg4(float a, float b, float c, float d)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_avg5",
+      "label": "f_avg5(float a, float b, float c, float d, float e)",
+      "count": 3
+    },
+    {
+      "target": "src_modules_01base_f_avg6",
+      "label": "f_avg6(float a, float b, float c, float d, float e, float f)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_avg7",
+      "label": "f_avg7(a,b,c,d,e,f,g)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_clamp",
+      "label": "f_clamp(float x, float lo, float hi)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_countValid4",
+      "label": "f_countValid4(a,b,c,d)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_countValid5",
+      "label": "f_countValid5(a,b,c,d,e)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_countValid6",
+      "label": "f_countValid6(a,b,c,d,e,f)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_countValid7",
+      "label": "f_countValid7(a,b,c,d,e,f,g)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_safeDiv",
+      "label": "f_safeDiv(float a, float b)",
+      "count": 4
+    },
+    {
+      "target": "src_modules_01base_f_scoreCashFlow",
+      "label": "f_scoreCashFlow(float cf, float mcapVal)",
+      "count": 2
+    },
+    {
+      "target": "src_modules_01base_f_scoreColor",
+      "label": "f_scoreColor(float s)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_scoreHigher",
+      "label": "f_scoreHigher(float v, float bad, float good)",
+      "count": 31
+    },
+    {
+      "target": "src_modules_01base_f_scoreLower",
+      "label": "f_scoreLower(float v, float good, float bad)",
+      "count": 7
+    }
+  ],
+  "entry_call_count": 266
+}

@@ -1,0 +1,13 @@
+{
+  "pattern": "alert",
+  "mode": "substring",
+  "total": 1,
+  "results": [
+    {
+      "name": "alert",
+      "type": "builtin",
+      "module": "pine-v6",
+      "label": "alert"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "file": "/home/Akhmfz/papan-gerak/src/modules/01-base.pine",
+  "line": 225,
+  "params": [
+    "val",
+    "min",
+    "max"
+  ],
+  "calls": [],
+  "called_by": [
+    {
+      "source": "src_modules_03scoring_f_trendScore",
+      "relation": "calls",
+      "count": 1,
+      "label": "f_trendScore()"
+    },
+    {
+      "source": "src_modules_03scoring_f_momentumScore",
+      "relation": "calls",
+      "count": 1,
+      "label": "f_momentumScore()"
+    },
+    {
+      "source": "module::PapanGerakStrategy::entry",
+      "relation": "calls",
+      "count": 3,
+      "label": "entry::PapanGerakStrategy"
+    }
+  ],
+  "reads": [],
+  "writes": []
+}

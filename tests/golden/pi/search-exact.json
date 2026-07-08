@@ -1,0 +1,13 @@
+{
+  "pattern": "f_scoreHigher",
+  "mode": "exact",
+  "total": 1,
+  "results": [
+    {
+      "name": "f_scoreHigher",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreHigher()"
+    }
+  ]
+}

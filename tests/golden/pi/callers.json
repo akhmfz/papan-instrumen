@@ -1,0 +1,18 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "callers": [
+    {
+      "caller": "src_modules_01base_f_scoreCashFlow",
+      "count": 1,
+      "label": "f_scoreCashFlow(float cf, float mcapVal)"
+    },
+    {
+      "caller": "module::04-scoring::entry",
+      "count": 31,
+      "label": "entry::04-scoring"
+    }
+  ],
+  "total": 2
+}

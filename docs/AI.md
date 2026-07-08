@@ -33,15 +33,19 @@ Platform: TradingView Pine Script v6 | Market: IDX | Status: Beta
 | **AI Architect** | ChatGPT | Arsitektur, metodologi, sprint planning, technical review |
 | **AI Developer** | Claude | Implementasi kode, refactoring, bug fixing, optimasi |
 | **AI Reviewer** | ChatGPT/Claude | Code review, regression review, performance review |
-| **AI Documentation** | — | Update CHANGELOG, sprint, backlog, jaga sinkronisasi dokumen |
+| **AI Documentation** | Claude | Update CHANGELOG, sprint, backlog, jaga sinkronisasi dokumen |
 
 ## Context Loading Order (wajib dilakukan setiap AI sebelum bekerja)
 
-1. `docs/DEVELOPMENT.md` — cari `# Current Sprint`
-2. File source target
-3. `docs/DEVELOPMENT.md` — cari `# Changelog` (jika review perubahan sebelumnya)
-4. `docs/DEVELOPMENT.md` — cari `# Backlog` (jika merencanakan pekerjaan baru)
-5. `docs/ARCHITECTURE.md` (hanya jika metodologi terlibat)
+1. `graphify-out/GRAPH_REPORT.md` — baca state graph terkini
+2. `CATATAN.md` — baca lessons learned & anti-patterns
+3. `docs/DEVELOPMENT.md` — cari `# Current Sprint`
+4. File source target
+5. `docs/DEVELOPMENT.md` — cari `# Changelog` (jika review perubahan sebelumnya)
+6. `docs/DEVELOPMENT.md` — cari `# Backlog` (jika merencanakan pekerjaan baru)
+7. `docs/ARCHITECTURE.md` (hanya jika metodologi terlibat)
+
+> Lihat `AGENTS.md` bagian 9 untuk alur kerja sesi lengkap.
 
 ## Golden Rules
 

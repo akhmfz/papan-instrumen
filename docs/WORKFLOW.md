@@ -846,13 +846,13 @@ Gaya komunikasi agent selama sesi — diadopsi dari Claude Code Fable 5:
 - **Report outcomes faithfully**: Kalau test fail, bilang "test fail". Kalau step dilewati, bilang dilewati. Selesai dan terverifikasi → state plainly tanpa "seharusnya" atau "semoga."
 - **Evidence before action**: Jangan ubah system state tanpa verifikasi bahwa bukti mendukung aksi spesifik itu. Sinyal yang pattern-match ke failure known mungkin punya penyebab berbeda.
 
-> Prinsip ini juga terdaftar di `AGENTS.md` bagian 12.
+> Prinsip ini juga terdaftar di `AGENTS.md` bagian 11.
 
 ---
 
 ## 11. Cheat Sheet
 
-### 10.1 Perintah Cepat
+### 11.1 Perintah Cepat
 
 ```bash
 # ===== GRAPHIFY =====
@@ -880,7 +880,7 @@ git pull
 git add -A && git commit -m "msg" && git push
 ```
 
-### 10.2 Flow Sesi Singkat
+### 11.2 Flow Sesi Singkat
 
 ```
 1. Mulai → baca GRAPH_REPORT.md + catatan Obsidian
@@ -896,7 +896,7 @@ git add -A && git commit -m "msg" && git push
 10. Vault auto push (dalam 10 menit)
 ```
 
-### 10.3 File Penting
+### 11.3 File Penting
 
 | File | Isi |
 |---|---|
@@ -910,7 +910,7 @@ git add -A && git commit -m "msg" && git push
 | `.opencode/plugins/graphify.js` | Plugin OpenCode untuk Graphify |
 | `.obsidian/plugins/obsidian-git/data.json` | Konfigurasi auto sync vault |
 
-### 10.4 Label Prioritas Issue
+### 11.4 Label Prioritas Issue
 
 | Label | Warna | Arti |
 |---|---|---|

@@ -1,0 +1,61 @@
+{
+  "name": "momentum_variable",
+  "profile": "implementation",
+  "task": "Tambah indikator momentum untuk sektor energi",
+  "context": {
+    "task": {
+      "profile": "implementation",
+      "budget": 8192
+    },
+    "entities": [],
+    "modules": {},
+    "total_tokens": 0,
+    "entity_count": 0,
+    "module_count": 0
+  },
+  "trace": [
+    {
+      "phase": "intent",
+      "intent": {
+        "verbs": [
+          "create"
+        ],
+        "objects": [
+          "indicator"
+        ],
+        "domains": [
+          "momentum"
+        ],
+        "filters": [
+          "sektor_energi"
+        ]
+      }
+    },
+    {
+      "phase": "select",
+      "candidates": 10
+    },
+    {
+      "phase": "expand",
+      "expanded": 0
+    },
+    {
+      "phase": "rank",
+      "ranked": 0,
+      "top": []
+    },
+    {
+      "phase": "budget",
+      "profile": "implementation",
+      "budget_tokens": 8192,
+      "used_tokens": 0,
+      "selected": 0,
+      "dropped": []
+    },
+    {
+      "phase": "build",
+      "total_tokens": 0,
+      "entities": 0
+    }
+  ]
+}

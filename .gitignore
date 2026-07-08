@@ -4,3 +4,5 @@ __pycache__/
 .DS_Store
 *.swp
 *.swo
+.pine-validate/
+graphify-out/graph.html

@@ -1,0 +1,61 @@
+{
+  "name": "review_alert",
+  "profile": "review",
+  "task": "Review alert function di modul momentum",
+  "context": {
+    "task": {
+      "profile": "review",
+      "budget": 4096
+    },
+    "entities": [],
+    "modules": {},
+    "total_tokens": 0,
+    "entity_count": 0,
+    "module_count": 0
+  },
+  "trace": [
+    {
+      "phase": "intent",
+      "intent": {
+        "verbs": [],
+        "objects": [
+          "alert",
+          "function",
+          "module"
+        ],
+        "domains": [
+          "momentum"
+        ],
+        "filters": [
+          "review"
+        ]
+      }
+    },
+    {
+      "phase": "select",
+      "candidates": 5
+    },
+    {
+      "phase": "expand",
+      "expanded": 0
+    },
+    {
+      "phase": "rank",
+      "ranked": 0,
+      "top": []
+    },
+    {
+      "phase": "budget",
+      "profile": "review",
+      "budget_tokens": 4096,
+      "used_tokens": 0,
+      "selected": 0,
+      "dropped": []
+    },
+    {
+      "phase": "build",
+      "total_tokens": 0,
+      "entities": 0
+    }
+  ]
+}

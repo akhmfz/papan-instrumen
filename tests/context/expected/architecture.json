@@ -1,0 +1,60 @@
+{
+  "name": "architecture",
+  "profile": "architecture",
+  "task": "Show architecture of momentum module",
+  "context": {
+    "task": {
+      "profile": "architecture",
+      "budget": 12288
+    },
+    "entities": [],
+    "modules": {},
+    "total_tokens": 0,
+    "entity_count": 0,
+    "module_count": 0
+  },
+  "trace": [
+    {
+      "phase": "intent",
+      "intent": {
+        "verbs": [],
+        "objects": [
+          "module"
+        ],
+        "domains": [
+          "momentum"
+        ],
+        "filters": [
+          "show",
+          "architecture"
+        ]
+      }
+    },
+    {
+      "phase": "select",
+      "candidates": 5
+    },
+    {
+      "phase": "expand",
+      "expanded": 0
+    },
+    {
+      "phase": "rank",
+      "ranked": 0,
+      "top": []
+    },
+    {
+      "phase": "budget",
+      "profile": "architecture",
+      "budget_tokens": 12288,
+      "used_tokens": 0,
+      "selected": 0,
+      "dropped": []
+    },
+    {
+      "phase": "build",
+      "total_tokens": 0,
+      "entities": 0
+    }
+  ]
+}

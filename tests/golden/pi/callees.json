@@ -1,0 +1,13 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "callees": [
+    {
+      "callee": "src_modules_01base_f_clamp",
+      "count": 1,
+      "label": "f_clamp(float x, float lo, float hi)"
+    }
+  ],
+  "total": 1
+}

@@ -1,0 +1,24 @@
+{
+  "name": "grupUtama",
+  "found": true,
+  "module": "01-base",
+  "file": "/home/Akhmfz/papan-instrumen/src/modules/01-base.pine",
+  "line": 66,
+  "is_global": false,
+  "read_by": [
+    {
+      "caller": "module::01-base::entry",
+      "relation": "reads",
+      "label": "entry::01-base",
+      "module": "01-base"
+    }
+  ],
+  "written_by": [
+    {
+      "caller": "module::01-base::entry",
+      "relation": "writes",
+      "label": "entry::01-base",
+      "module": "01-base"
+    }
+  ]
+}

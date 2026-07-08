@@ -1,0 +1,42 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "file": "/home/Akhmfz/papan-instrumen/src/modules/01-base.pine",
+  "line": 324,
+  "params": [
+    "v",
+    "bad",
+    "good"
+  ],
+  "calls": [
+    {
+      "target": "src_modules_01base_f_clamp",
+      "relation": "calls",
+      "count": 1,
+      "label": "f_clamp(float x, float lo, float hi)"
+    }
+  ],
+  "called_by": [
+    {
+      "source": "src_modules_01base_f_scoreCashFlow",
+      "relation": "calls",
+      "count": 1,
+      "label": "f_scoreCashFlow(float cf, float mcapVal)"
+    },
+    {
+      "source": "module::04-scoring::entry",
+      "relation": "calls",
+      "count": 31,
+      "label": "entry::04-scoring"
+    }
+  ],
+  "reads": [
+    {
+      "variable": "src_modules_01base_f_clamp",
+      "count": 1,
+      "label": "f_clamp(float x, float lo, float hi)"
+    }
+  ],
+  "writes": []
+}

@@ -1,0 +1,829 @@
+{
+  "communities": {
+    "0": [
+      "src_modules_01base",
+      "src_modules_01base_ambangARA",
+      "src_modules_01base_bahasa",
+      "src_modules_01base_barisSelangSeling",
+      "src_modules_01base_bobotGrowth",
+      "src_modules_01base_bobotHealth",
+      "src_modules_01base_bobotIncome",
+      "src_modules_01base_bobotIndonesia",
+      "src_modules_01base_bobotMomentum",
+      "src_modules_01base_bobotQuality",
+      "src_modules_01base_bobotValue",
+      "src_modules_01base_carInput",
+      "src_modules_01base_gunakanBobotKustom",
+      "src_modules_01base_hargaRecehan",
+      "src_modules_01base_headerBerwarna",
+      "src_modules_01base_indeksAcuan",
+      "src_modules_01base_kapBesarMiliar",
+      "src_modules_01base_kapKecilMiliar",
+      "src_modules_01base_ldrInput",
+      "src_modules_01base_likuiditasRendahJt",
+      "src_modules_01base_likuiditasTinggiJt",
+      "src_modules_01base_lookbackARA",
+      "src_modules_01base_modeSektor",
+      "src_modules_01base_nplInput",
+      "src_modules_01base_periodeLaporan",
+      "src_modules_01base_posisiInput",
+      "src_modules_01base_presetBobot",
+      "src_modules_01base_simbolInput",
+      "src_modules_01base_tampilBarSkor",
+      "src_modules_01base_tampilCompact",
+      "src_modules_01base_tampilDividen",
+      "src_modules_01base_tampilIndonesia",
+      "src_modules_01base_tampilKelengkapan",
+      "src_modules_01base_tampilKesehatan",
+      "src_modules_01base_tampilKualitas",
+      "src_modules_01base_tampilLatarSkor",
+      "src_modules_01base_tampilMomentum",
+      "src_modules_01base_tampilPertumbuhan",
+      "src_modules_01base_tampilRingkasan",
+      "src_modules_01base_tampilRisikoGorengan",
+      "src_modules_01base_tampilSimbolStatus",
+      "src_modules_01base_tampilValuasi",
+      "src_modules_01base_toleransiSiklikal",
+      "src_modules_01base_ukuranTeksInput",
+      "src_modules_01base_warnaTema"
+    ],
+    "1": [
+      "catatan_backlog",
+      "catatan_inputfloatna",
+      "catatan_nolocalfunctions",
+      "catatan_reservedkeywords",
+      "contributing_development",
+      "docs_ai_airoles",
+      "docs_ai_contextloadingorder",
+      "docs_architecture_7layerarchitecture",
+      "docs_architecture_requestbudget",
+      "docs_architecture_roadmap",
+      "docs_development_6leveltesting",
+      "docs_development_changelog",
+      "docs_development_sectorawarematrix",
+      "docs_development_spints008",
+      "docs_readme_id_overallscore",
+      "github_issuetemplate_bug",
+      "github_issuetemplate_feature",
+      "github_workflows_build",
+      "readme_15kelassektor",
+      "readme_89automatedtests",
+      "readme_idxsaham",
+      "readme_papaninstrumen",
+      "readme_screenshotpreview",
+      "readme_sectoraware"
+    ],
+    "2": [
+      "tests_scoring_runner",
+      "tests_scoring_runner_assert",
+      "tests_scoring_runner_dummycandles",
+      "tests_scoring_runner_lastval",
+      "tests_scoring_runner_runtest",
+      "tests_scoring_runner_summary",
+      "tests_scoring_test_growth",
+      "tests_scoring_test_growth_t",
+      "tests_scoring_test_health",
+      "tests_scoring_test_health_t",
+      "tests_scoring_test_income",
+      "tests_scoring_test_income_t",
+      "tests_scoring_test_momentum",
+      "tests_scoring_test_momentum_t",
+      "tests_scoring_test_overall",
+      "tests_scoring_test_overall_t",
+      "tests_scoring_test_quality",
+      "tests_scoring_test_quality_t",
+      "tests_scoring_test_regression",
+      "tests_scoring_test_regression_t",
+      "tests_scoring_test_value",
+      "tests_scoring_test_value_t"
+    ],
+    "3": [
+      "src_modules_02data_bvps",
+      "src_modules_02data_debtAsset",
+      "src_modules_02data_debtEq",
+      "src_modules_02data_ebitdaM",
+      "src_modules_02data_epsGrowth",
+      "src_modules_02data_epsTtm",
+      "src_modules_02data_evEbitda",
+      "src_modules_02data_evSales",
+      "src_modules_02data_f_stat",
+      "src_modules_02data_fcfMargin",
+      "src_modules_02data_grossM",
+      "src_modules_02data_netM",
+      "src_modules_02data_opM",
+      "src_modules_02data_piotroski",
+      "src_modules_02data_revGrowth",
+      "src_modules_02data_revenueTtm",
+      "src_modules_02data_roa",
+      "src_modules_02data_roe",
+      "src_modules_02data_roic",
+      "src_modules_02data_sgr",
+      "src_modules_02data_sharesOut"
+    ],
+    "4": [
+      "package",
+      "package_description",
+      "package_devdependencies",
+      "package_devdependencies_pinets",
+      "package_license",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_ci",
+      "package_scripts_lint",
+      "package_scripts_test",
+      "package_scripts_test_all",
+      "package_scripts_transpile",
+      "package_version"
+    ],
+    "5": [
+      "docs_ai_productphilosophy",
+      "docs_architecture_5pilars",
+      "docs_architecture_scoringprinciples",
+      "docs_development_p0bugs",
+      "docs_readme_id_growth",
+      "docs_readme_id_health",
+      "docs_readme_id_income",
+      "docs_readme_id_indonesiafactor",
+      "docs_readme_id_momentum",
+      "docs_readme_id_quality",
+      "docs_readme_id_value",
+      "readme_5presetbobot",
+      "readme_7dimensiscoring",
+      "readme_riskmodule"
+    ],
+    "6": [
+      "src_modules_02data_altmanZ",
+      "src_modules_02data_cashDebt",
+      "src_modules_02data_currRatio",
+      "src_modules_02data_debtEbitda",
+      "src_modules_02data_divYield",
+      "src_modules_02data_dps",
+      "src_modules_02data_f_fin",
+      "src_modules_02data_fcf",
+      "src_modules_02data_interestCover",
+      "src_modules_02data_netDebtEbitda",
+      "src_modules_02data_ocf",
+      "src_modules_02data_payout",
+      "src_modules_02data_quickRatio"
+    ],
+    "7": [
+      "tests_scoring_test_source_match",
+      "tests_scoring_test_source_match_actualsource",
+      "tests_scoring_test_source_match_allpassed",
+      "tests_scoring_test_source_match_checks",
+      "tests_scoring_test_source_match_hasconsumerweights",
+      "tests_scoring_test_source_match_hasfsafelower",
+      "tests_scoring_test_source_match_hasfsafelowersafe",
+      "tests_scoring_test_source_match_hassekuritasquality",
+      "tests_scoring_test_source_match_testfiles"
+    ],
+    "8": [
+      "scripts_lint",
+      "scripts_lint_err",
+      "scripts_lint_ok",
+      "scripts_lint_sh__entry"
+    ],
+    "9": [
+      "scripts_gh_sync",
+      "scripts_gh_sync_create_issue",
+      "scripts_gh_sync_sh__entry"
+    ],
+    "10": [
+      "src_modules_02data",
+      "src_modules_03ui",
+      "src_modules_04scoring"
+    ],
+    "11": [
+      "build",
+      "build_sh__entry"
+    ],
+    "12": [
+      "tests_pinets_verify",
+      "tests_pinets_verify_candles"
+    ],
+    "13": [
+      "tests_transpile",
+      "tests_transpile_sh__entry"
+    ],
+    "14": [
+      "catatan_devtools"
+    ],
+    "15": [
+      "catatan_enginecomparison"
+    ],
+    "16": [
+      "catatan_errorcascade"
+    ],
+    "17": [
+      "catatan_goldenrule"
+    ],
+    "18": [
+      "catatan_pinetslimitations"
+    ],
+    "19": [
+      "contributing_prprocess"
+    ],
+    "20": [
+      "docs_ai_goldenrules"
+    ],
+    "21": [
+      "docs_development_codingstandard"
+    ],
+    "22": [
+      "docs_development_releasechecklist"
+    ],
+    "23": [
+      "readme_5colorthemes"
+    ],
+    "24": [
+      "readme_bilingual"
+    ],
+    "25": [
+      "readme_compactmode"
+    ],
+    "26": [
+      "src_modules_01base_altBg"
+    ],
+    "27": [
+      "src_modules_01base_bearTxt"
+    ],
+    "28": [
+      "src_modules_01base_bullTxt"
+    ],
+    "29": [
+      "src_modules_01base_cyanTxt"
+    ],
+    "30": [
+      "src_modules_01base_f_avg3"
+    ],
+    "31": [
+      "src_modules_01base_f_avg4"
+    ],
+    "32": [
+      "src_modules_01base_f_avg5"
+    ],
+    "33": [
+      "src_modules_01base_f_avg6"
+    ],
+    "34": [
+      "src_modules_01base_f_avg7"
+    ],
+    "35": [
+      "src_modules_01base_f_categoryColor"
+    ],
+    "36": [
+      "src_modules_01base_f_clamp"
+    ],
+    "37": [
+      "src_modules_01base_f_countValid4"
+    ],
+    "38": [
+      "src_modules_01base_f_countValid5"
+    ],
+    "39": [
+      "src_modules_01base_f_countValid6"
+    ],
+    "40": [
+      "src_modules_01base_f_countValid7"
+    ],
+    "41": [
+      "src_modules_01base_f_countValidArr"
+    ],
+    "42": [
+      "src_modules_01base_f_riskBg"
+    ],
+    "43": [
+      "src_modules_01base_f_riskColor"
+    ],
+    "44": [
+      "src_modules_01base_f_rowBg"
+    ],
+    "45": [
+      "src_modules_01base_f_safeDiv"
+    ],
+    "46": [
+      "src_modules_01base_f_scoreBg"
+    ],
+    "47": [
+      "src_modules_01base_f_scoreCashFlow"
+    ],
+    "48": [
+      "src_modules_01base_f_scoreColor"
+    ],
+    "49": [
+      "src_modules_01base_f_scoreHigher"
+    ],
+    "50": [
+      "src_modules_01base_f_scoreLower"
+    ],
+    "51": [
+      "src_modules_01base_f_scoreLowerSafe"
+    ],
+    "52": [
+      "src_modules_01base_f_scoreMid"
+    ],
+    "53": [
+      "src_modules_01base_f_scorePositive"
+    ],
+    "54": [
+      "src_modules_01base_f_sectionBg"
+    ],
+    "55": [
+      "src_modules_01base_f_wavg6"
+    ],
+    "56": [
+      "src_modules_01base_f_wavg7"
+    ],
+    "57": [
+      "src_modules_01base_f_wavgArr"
+    ],
+    "58": [
+      "src_modules_01base_goldTxt"
+    ],
+    "59": [
+      "src_modules_01base_gridCol"
+    ],
+    "60": [
+      "src_modules_01base_grupBank"
+    ],
+    "61": [
+      "src_modules_01base_grupBobot"
+    ],
+    "62": [
+      "src_modules_01base_grupRisiko"
+    ],
+    "63": [
+      "src_modules_01base_grupSektor"
+    ],
+    "64": [
+      "src_modules_01base_grupUtama"
+    ],
+    "65": [
+      "src_modules_01base_headerBg"
+    ],
+    "66": [
+      "src_modules_01base_isAmber"
+    ],
+    "67": [
+      "src_modules_01base_isDarkTheme"
+    ],
+    "68": [
+      "src_modules_01base_isEmerald"
+    ],
+    "69": [
+      "src_modules_01base_isLightTheme"
+    ],
+    "70": [
+      "src_modules_01base_isRoyal"
+    ],
+    "71": [
+      "src_modules_01base_mainTxt"
+    ],
+    "72": [
+      "src_modules_01base_mutedTxt"
+    ],
+    "73": [
+      "src_modules_01base_neutralTxt"
+    ],
+    "74": [
+      "src_modules_01base_pi_arrow"
+    ],
+    "75": [
+      "src_modules_01base_pi_formatMoney"
+    ],
+    "76": [
+      "src_modules_01base_pi_formatNumber"
+    ],
+    "77": [
+      "src_modules_01base_pi_formatPercent"
+    ],
+    "78": [
+      "src_modules_01base_pi_grade"
+    ],
+    "79": [
+      "src_modules_01base_pi_overallBadge"
+    ],
+    "80": [
+      "src_modules_01base_pi_riskGrade"
+    ],
+    "81": [
+      "src_modules_01base_pi_scoreText"
+    ],
+    "82": [
+      "src_modules_01base_purpleTxt"
+    ],
+    "83": [
+      "src_modules_01base_sectionBg"
+    ],
+    "84": [
+      "src_modules_01base_tableBg"
+    ],
+    "85": [
+      "src_modules_01base_titleTxt"
+    ],
+    "86": [
+      "src_modules_02data_bankListIDX"
+    ],
+    "87": [
+      "src_modules_02data_coalListIDX"
+    ],
+    "88": [
+      "src_modules_02data_consumerListIDX"
+    ],
+    "89": [
+      "src_modules_02data_cpoListIDX"
+    ],
+    "90": [
+      "src_modules_02data_f_ttm"
+    ],
+    "91": [
+      "src_modules_02data_f_watchlist"
+    ],
+    "92": [
+      "src_modules_02data_getMarketData"
+    ],
+    "93": [
+      "src_modules_02data_healthcareListIDX"
+    ],
+    "94": [
+      "src_modules_02data_industriListIDX"
+    ],
+    "95": [
+      "src_modules_02data_infraListIDX"
+    ],
+    "96": [
+      "src_modules_02data_isAsuransiSektor"
+    ],
+    "97": [
+      "src_modules_02data_isBankSektor"
+    ],
+    "98": [
+      "src_modules_02data_isBatubaraSektor"
+    ],
+    "99": [
+      "src_modules_02data_isCPOSektor"
+    ],
+    "100": [
+      "src_modules_02data_isFinancialGenericAuto"
+    ],
+    "101": [
+      "src_modules_02data_isFinancialLegacyMode"
+    ],
+    "102": [
+      "src_modules_02data_isFinancialSector"
+    ],
+    "103": [
+      "src_modules_02data_isIndustriSektor"
+    ],
+    "104": [
+      "src_modules_02data_isInfrastrukturSektor"
+    ],
+    "105": [
+      "src_modules_02data_isKesehatanSektor"
+    ],
+    "106": [
+      "src_modules_02data_isKonsumerSektor"
+    ],
+    "107": [
+      "src_modules_02data_isPropertySektor"
+    ],
+    "108": [
+      "src_modules_02data_isSekuritasSektor"
+    ],
+    "109": [
+      "src_modules_02data_isSiklikalLike"
+    ],
+    "110": [
+      "src_modules_02data_isSiklikalSektor"
+    ],
+    "111": [
+      "src_modules_02data_isTechnologySektor"
+    ],
+    "112": [
+      "src_modules_02data_isTransportasiSektor"
+    ],
+    "113": [
+      "src_modules_02data_propertyListIDX"
+    ],
+    "114": [
+      "src_modules_02data_sektorLabel"
+    ],
+    "115": [
+      "src_modules_02data_techListIDX"
+    ],
+    "116": [
+      "src_modules_02data_transportListIDX"
+    ],
+    "117": [
+      "src_modules_02data_type_MarketData"
+    ],
+    "118": [
+      "src_modules_03ui_f_boldCell"
+    ],
+    "119": [
+      "src_modules_03ui_f_cell"
+    ],
+    "120": [
+      "src_modules_03ui_f_headerCell"
+    ],
+    "121": [
+      "src_modules_03ui_f_riskCard"
+    ],
+    "122": [
+      "src_modules_03ui_f_riskRow"
+    ],
+    "123": [
+      "src_modules_03ui_f_row"
+    ],
+    "124": [
+      "src_modules_03ui_f_scoreCard"
+    ],
+    "125": [
+      "src_modules_03ui_f_scoreCardN"
+    ],
+    "126": [
+      "src_modules_03ui_f_section"
+    ],
+    "127": [
+      "src_modules_03ui_f_warningCell"
+    ]
+  },
+  "cohesion": {
+    "0": 0.044444444444444446,
+    "1": 0.08695652173913043,
+    "2": 0.23376623376623376,
+    "3": 0.09523809523809523,
+    "4": 0.13333333333333333,
+    "5": 0.14285714285714285,
+    "6": 0.15384615384615385,
+    "7": 0.2222222222222222,
+    "8": 0.8333333333333334,
+    "9": 1.0,
+    "10": 0.6666666666666666,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0
+  },
+  "gods": [
+    {
+      "id": "readme_papaninstrumen",
+      "label": "Papan Instrumen — Fundamental Dashboard",
+      "degree": 20
+    },
+    {
+      "id": "src_modules_02data_f_stat",
+      "label": "f_stat(string id)",
+      "degree": 20
+    },
+    {
+      "id": "readme_7dimensiscoring",
+      "label": "7 Dimensi Scoring",
+      "degree": 12
+    },
+    {
+      "id": "src_modules_02data_f_fin",
+      "label": "f_fin(string id)",
+      "degree": 12
+    },
+    {
+      "id": "tests_scoring_runner_runtest",
+      "label": "runTest()",
+      "degree": 11
+    },
+    {
+      "id": "tests_scoring_runner_lastval",
+      "label": "lastVal()",
+      "degree": 10
+    },
+    {
+      "id": "tests_scoring_runner_assert",
+      "label": "assert()",
+      "degree": 10
+    },
+    {
+      "id": "tests_scoring_runner_summary",
+      "label": "summary()",
+      "degree": 10
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "scripts_lint_sh__entry",
+      "label": "lint.sh script",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Papan Instrumen — Fundamental Dashboard",
+      "target": "Dashboard Screenshot Preview",
+      "source_files": [
+        "README.md",
+        "assets/screenshot.png"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (doc ↔ image); connects across different repos/directories; peripheral node `Dashboard Screenshot Preview` unexpectedly reaches hub `Papan Instrumen — Fundamental Dashboard`"
+    },
+    {
+      "source": "No Local Functions Inside if Blocks",
+      "target": "Papan Instrumen — Fundamental Dashboard",
+      "source_files": [
+        "CATATAN.md",
+        "README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "why": "connects across different repos/directories; peripheral node `No Local Functions Inside if Blocks` unexpectedly reaches hub `Papan Instrumen — Fundamental Dashboard`"
+    },
+    {
+      "source": "Pine Script v6 Reserved Keywords",
+      "target": "Papan Instrumen — Fundamental Dashboard",
+      "source_files": [
+        "CATATAN.md",
+        "README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "conceptually_related_to",
+      "why": "connects across different repos/directories; peripheral node `Pine Script v6 Reserved Keywords` unexpectedly reaches hub `Papan Instrumen — Fundamental Dashboard`"
+    },
+    {
+      "source": "Development Setup Guide",
+      "target": "Papan Instrumen — Fundamental Dashboard",
+      "source_files": [
+        "CONTRIBUTING.md",
+        "README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "conceptually_related_to",
+      "why": "connects across different repos/directories; peripheral node `Development Setup Guide` unexpectedly reaches hub `Papan Instrumen — Fundamental Dashboard`"
+    },
+    {
+      "source": "AI Roles: PO, Architect, Developer, Reviewer",
+      "target": "Papan Instrumen — Fundamental Dashboard",
+      "source_files": [
+        "docs/AI.md",
+        "README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "conceptually_related_to",
+      "why": "connects across different repos/directories; peripheral node `AI Roles: PO, Architect, Developer, Reviewer` unexpectedly reaches hub `Papan Instrumen — Fundamental Dashboard`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Papan Instrumen — Fundamental Dashboard` connect `Papan Instrumen — Fundamental Dashboard` to `7 Dimensi Scoring`?",
+      "why": "High betweenness centrality (0.014) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `7 Dimensi Scoring` connect `7 Dimensi Scoring` to `Papan Instrumen — Fundamental Dashboard`?",
+      "why": "High betweenness centrality (0.008) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `build.sh script`, `name`, `version` to the rest of the system?",
+      "why": "247 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `01-base.pine` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Papan Instrumen — Fundamental Dashboard` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `f_stat(string id)` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `package.json` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

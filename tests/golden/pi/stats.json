@@ -1,0 +1,23 @@
+{
+  "project": "papan-instrumen",
+  "nodes": {
+    "total": 297,
+    "isolated": 13,
+    "isolated_pct": 4.4
+  },
+  "edges": {
+    "total": 480,
+    "calls": 90,
+    "reads": 262,
+    "writes": 128
+  },
+  "symbols": {
+    "functions": 51,
+    "variables": 353,
+    "modules": 4
+  },
+  "builtins": {
+    "total": 56,
+    "unresolved_calls": 4
+  }
+}

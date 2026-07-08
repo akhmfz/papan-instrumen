@@ -1,0 +1,63 @@
+{
+  "name": "bugfix_variable",
+  "profile": "bugfix",
+  "task": "Fix bug on volume variable read chain",
+  "context": {
+    "task": {
+      "profile": "bugfix",
+      "budget": 6144
+    },
+    "entities": [],
+    "modules": {},
+    "total_tokens": 0,
+    "entity_count": 0,
+    "module_count": 0
+  },
+  "trace": [
+    {
+      "phase": "intent",
+      "intent": {
+        "verbs": [
+          "fix",
+          "fix"
+        ],
+        "objects": [
+          "variable"
+        ],
+        "domains": [
+          "volume"
+        ],
+        "filters": [
+          "read",
+          "chain"
+        ]
+      }
+    },
+    {
+      "phase": "select",
+      "candidates": 2
+    },
+    {
+      "phase": "expand",
+      "expanded": 0
+    },
+    {
+      "phase": "rank",
+      "ranked": 0,
+      "top": []
+    },
+    {
+      "phase": "budget",
+      "profile": "bugfix",
+      "budget_tokens": 6144,
+      "used_tokens": 0,
+      "selected": 0,
+      "dropped": []
+    },
+    {
+      "phase": "build",
+      "total_tokens": 0,
+      "entities": 0
+    }
+  ]
+}

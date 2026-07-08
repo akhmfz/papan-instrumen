@@ -1,0 +1,36 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "file": "/home/Akhmfz/papan-instrumen/src/modules/01-base.pine",
+  "line": 324,
+  "signature": "f_scoreHigher(v, bad, good)",
+  "source": "f_scoreHigher(float v, float bad, float good) =>\n    na(v) ? na : f_clamp((v - bad) / (good - bad) * 100, 0, 100)\n\nf_scoreLower(float v, float good, float bad) =>",
+  "called_by": [
+    {
+      "source": "src_modules_01base_f_scoreCashFlow",
+      "label": "f_scoreCashFlow(float cf, float mcapVal)"
+    },
+    {
+      "source": "module::04-scoring::entry",
+      "label": "entry::04-scoring"
+    }
+  ],
+  "calls": [
+    {
+      "target": "src_modules_01base_f_clamp",
+      "label": "f_clamp(float x, float lo, float hi)"
+    }
+  ],
+  "reads": [
+    {
+      "variable": "src_modules_01base_f_clamp",
+      "label": "f_clamp(float x, float lo, float hi)"
+    }
+  ],
+  "writes": [],
+  "affected_modules": [
+    "04-scoring"
+  ],
+  "compact": true
+}

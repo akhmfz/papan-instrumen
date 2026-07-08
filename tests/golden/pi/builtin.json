@@ -1,0 +1,9 @@
+{
+  "name": "ta.rsi",
+  "found": true,
+  "category": "indicator",
+  "returns": "float",
+  "description": "relative strength index",
+  "used_by_modules": [],
+  "usage_count": 0
+}

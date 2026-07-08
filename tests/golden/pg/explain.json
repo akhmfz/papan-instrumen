@@ -1,0 +1,19 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "file": "/home/Akhmfz/papan-gerak/src/modules/01-base.pine",
+  "line": 225,
+  "params": [
+    "val",
+    "min",
+    "max"
+  ],
+  "direct_calls": 0,
+  "called_by": 3,
+  "reads_count": 0,
+  "writes_count": 0,
+  "variables_total": 0,
+  "total_call_count": 0,
+  "unique_callers": 3
+}

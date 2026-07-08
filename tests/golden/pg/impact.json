@@ -1,0 +1,40 @@
+{
+  "name": "f_scoreHigher",
+  "node_id": "src_modules_01base_f_scoreHigher",
+  "found": true,
+  "direct_callers": [
+    {
+      "caller": "src_modules_03scoring_f_trendScore",
+      "count": 1,
+      "label": "f_trendScore()"
+    },
+    {
+      "caller": "src_modules_03scoring_f_momentumScore",
+      "count": 1,
+      "label": "f_momentumScore()"
+    },
+    {
+      "caller": "module::PapanGerakStrategy::entry",
+      "count": 3,
+      "label": "entry::PapanGerakStrategy"
+    }
+  ],
+  "transitive_callers_count": 8,
+  "transitive_callers": [
+    "src_modules_03scoring_f_trendScore",
+    "src_modules_03scoring_trendScore",
+    "module::03-scoring::entry",
+    "module::04-ui::entry",
+    "module::PapanGerakStrategy::entry",
+    "src_modules_03scoring_f_narrative",
+    "src_modules_03scoring_f_momentumScore",
+    "src_modules_03scoring_momentumScore"
+  ],
+  "affected_modules": [
+    "03-scoring",
+    "04-ui",
+    "PapanGerakStrategy"
+  ],
+  "affected_tables": [],
+  "affected_alerts": []
+}

@@ -1,0 +1,19 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "file": "/home/Akhmfz/papan-instrumen/src/modules/01-base.pine",
+  "line": 324,
+  "params": [
+    "v",
+    "bad",
+    "good"
+  ],
+  "direct_calls": 1,
+  "called_by": 2,
+  "reads_count": 1,
+  "writes_count": 0,
+  "variables_total": 1,
+  "total_call_count": 1,
+  "unique_callers": 2
+}

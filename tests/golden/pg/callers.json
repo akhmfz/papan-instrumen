@@ -1,0 +1,23 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "callers": [
+    {
+      "caller": "src_modules_03scoring_f_trendScore",
+      "count": 1,
+      "label": "f_trendScore()"
+    },
+    {
+      "caller": "src_modules_03scoring_f_momentumScore",
+      "count": 1,
+      "label": "f_momentumScore()"
+    },
+    {
+      "caller": "module::PapanGerakStrategy::entry",
+      "count": 3,
+      "label": "entry::PapanGerakStrategy"
+    }
+  ],
+  "total": 3
+}

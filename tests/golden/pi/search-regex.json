@@ -1,0 +1,277 @@
+{
+  "pattern": "score|f_.*",
+  "mode": "regex",
+  "total": 45,
+  "results": [
+    {
+      "name": "f_avg3",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_avg3()"
+    },
+    {
+      "name": "f_avg4",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_avg4()"
+    },
+    {
+      "name": "f_avg5",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_avg5()"
+    },
+    {
+      "name": "f_avg6",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_avg6()"
+    },
+    {
+      "name": "f_avg7",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_avg7()"
+    },
+    {
+      "name": "f_boldCell",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_boldCell()"
+    },
+    {
+      "name": "f_categoryColor",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_categoryColor()"
+    },
+    {
+      "name": "f_cell",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_cell()"
+    },
+    {
+      "name": "f_clamp",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_clamp()"
+    },
+    {
+      "name": "f_countValid4",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_countValid4()"
+    },
+    {
+      "name": "f_countValid5",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_countValid5()"
+    },
+    {
+      "name": "f_countValid6",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_countValid6()"
+    },
+    {
+      "name": "f_countValid7",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_countValid7()"
+    },
+    {
+      "name": "f_countValidArr",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_countValidArr()"
+    },
+    {
+      "name": "f_fin",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_fin()"
+    },
+    {
+      "name": "f_headerCell",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_headerCell()"
+    },
+    {
+      "name": "f_riskBg",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_riskBg()"
+    },
+    {
+      "name": "f_riskCard",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_riskCard()"
+    },
+    {
+      "name": "f_riskColor",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_riskColor()"
+    },
+    {
+      "name": "f_riskRow",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_riskRow()"
+    },
+    {
+      "name": "f_row",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_row()"
+    },
+    {
+      "name": "f_rowBg",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_rowBg()"
+    },
+    {
+      "name": "f_safeDiv",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_safeDiv()"
+    },
+    {
+      "name": "f_scoreBg",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreBg()"
+    },
+    {
+      "name": "f_scoreCard",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_scoreCard()"
+    },
+    {
+      "name": "f_scoreCardN",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_scoreCardN()"
+    },
+    {
+      "name": "f_scoreCashFlow",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreCashFlow()"
+    },
+    {
+      "name": "f_scoreColor",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreColor()"
+    },
+    {
+      "name": "f_scoreHigher",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreHigher()"
+    },
+    {
+      "name": "f_scoreLower",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreLower()"
+    },
+    {
+      "name": "f_scoreLowerSafe",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreLowerSafe()"
+    },
+    {
+      "name": "f_scoreMid",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreMid()"
+    },
+    {
+      "name": "f_scorePositive",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scorePositive()"
+    },
+    {
+      "name": "f_section",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_section()"
+    },
+    {
+      "name": "f_sectionBg",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_sectionBg()"
+    },
+    {
+      "name": "f_stat",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_stat()"
+    },
+    {
+      "name": "f_ttm",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_ttm()"
+    },
+    {
+      "name": "f_warningCell",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_warningCell()"
+    },
+    {
+      "name": "f_watchlist",
+      "type": "function",
+      "module": "02-data",
+      "label": "f_watchlist()"
+    },
+    {
+      "name": "f_wavg6",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_wavg6()"
+    },
+    {
+      "name": "f_wavg7",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_wavg7()"
+    },
+    {
+      "name": "f_wavgArr",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_wavgArr()"
+    },
+    {
+      "name": "pi_scoreText",
+      "type": "function",
+      "module": "01-base",
+      "label": "pi_scoreText()"
+    },
+    {
+      "name": "scoreBg",
+      "type": "variable",
+      "module": "03-ui",
+      "label": "scoreBg"
+    },
+    {
+      "name": "scoreTxt",
+      "type": "variable",
+      "module": "03-ui",
+      "label": "scoreTxt"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "risk_low_no_changes",
+  "result": {
+    "score": 0.0,
+    "level": "LOW",
+    "reasons": []
+  }
+}

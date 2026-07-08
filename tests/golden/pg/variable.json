@@ -1,0 +1,48 @@
+{
+  "name": "trendScore",
+  "found": true,
+  "module": "03-scoring",
+  "file": "/home/Akhmfz/papan-gerak/src/modules/03-scoring.pine",
+  "line": 204,
+  "is_global": false,
+  "read_by": [
+    {
+      "caller": "module::03-scoring::entry",
+      "relation": "reads",
+      "label": "entry::03-scoring",
+      "module": "03-scoring"
+    },
+    {
+      "caller": "src_modules_03scoring_f_narrative",
+      "relation": "reads",
+      "label": "f_narrative()",
+      "module": "03-scoring"
+    },
+    {
+      "caller": "module::04-ui::entry",
+      "relation": "reads",
+      "label": "entry::04-ui",
+      "module": "04-ui"
+    },
+    {
+      "caller": "module::PapanGerakStrategy::entry",
+      "relation": "reads",
+      "label": "entry::PapanGerakStrategy",
+      "module": "PapanGerakStrategy"
+    }
+  ],
+  "written_by": [
+    {
+      "caller": "module::03-scoring::entry",
+      "relation": "writes",
+      "label": "entry::03-scoring",
+      "module": "03-scoring"
+    },
+    {
+      "caller": "module::PapanGerakStrategy::entry",
+      "relation": "writes",
+      "label": "entry::PapanGerakStrategy",
+      "module": "PapanGerakStrategy"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "project": "papan-gerak",
+  "nodes": {
+    "total": 303,
+    "isolated": 14,
+    "isolated_pct": 4.6
+  },
+  "edges": {
+    "total": 543,
+    "calls": 27,
+    "reads": 311,
+    "writes": 205
+  },
+  "symbols": {
+    "functions": 20,
+    "variables": 305,
+    "modules": 5
+  },
+  "builtins": {
+    "total": 56,
+    "unresolved_calls": 0
+  }
+}

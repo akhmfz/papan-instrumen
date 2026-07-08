@@ -89,7 +89,7 @@ Dashboard ini **bukan** stock screener, signal generator, atau sistem rekomendas
 
 ### Sector Classification
 
-10 sektor dengan perlakuan scoring berbeda: Bank, Asuransi, Sekuritas, Properti, Infrastruktur, Teknologi, Transportasi, Siklikal (Komoditas/Energi), Non-Finansial Umum.
+14 sektor dengan perlakuan scoring berbeda: Bank, Asuransi, Sekuritas, Konsumer, Industri, Kesehatan, Batubara, CPO, Properti, Infrastruktur, Teknologi, Transportasi, Siklikal (Komoditas/Energi), Non-Finansial Umum.
 
 ### Scoring Principles
 

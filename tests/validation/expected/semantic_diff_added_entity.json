@@ -1,0 +1,78 @@
+{
+  "name": "semantic_diff_added_entity",
+  "result": {
+    "added": [
+      {
+        "called_by_count": 0,
+        "calls_count": 0,
+        "lines": 5,
+        "name": "f_new",
+        "params": [],
+        "returns": "float",
+        "module": "01base"
+      }
+    ],
+    "removed": [],
+    "modified": [],
+    "unchanged": [
+      {
+        "name": "function::f_momentum",
+        "entity": {
+          "called_by_count": 2,
+          "calls_count": 1,
+          "lines": 15,
+          "name": "f_momentum",
+          "params": [
+            "src"
+          ],
+          "returns": "float",
+          "module": "01base"
+        }
+      },
+      {
+        "name": "function::f_volume",
+        "entity": {
+          "called_by_count": 3,
+          "calls_count": 2,
+          "lines": 20,
+          "name": "f_volume",
+          "params": [
+            "src"
+          ],
+          "returns": "int",
+          "module": "01base"
+        }
+      },
+      {
+        "name": "variable::v_momentum",
+        "entity": {
+          "name": "v_momentum",
+          "scope": "module",
+          "type": "float",
+          "module": "01base"
+        }
+      },
+      {
+        "name": "variable::v_volume",
+        "entity": {
+          "name": "v_volume",
+          "scope": "module",
+          "type": "int",
+          "module": "01base"
+        }
+      }
+    ],
+    "modules": {
+      "added": [],
+      "removed": []
+    },
+    "stats": {
+      "added": 1,
+      "removed": 0,
+      "modified": 0,
+      "unchanged": 4,
+      "modules_added": 0,
+      "modules_removed": 0
+    }
+  }
+}

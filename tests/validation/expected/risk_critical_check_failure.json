@@ -1,0 +1,11 @@
+{
+  "name": "risk_critical_check_failure",
+  "result": {
+    "score": 1.0,
+    "level": "CRITICAL",
+    "reasons": [
+      "check_failed:parser",
+      "check_failed:golden"
+    ]
+  }
+}

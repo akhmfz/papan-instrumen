@@ -1,0 +1,32 @@
+{
+  "name": "f_scoreHigher",
+  "found": true,
+  "module": "01-base",
+  "file": "/home/Akhmfz/papan-gerak/src/modules/01-base.pine",
+  "line": 225,
+  "signature": "f_scoreHigher(val, min, max)",
+  "source": "f_scoreHigher(float val, float min, float max) =>\n    na(val) ? na : math.max(0, math.min(100, (val - min) / (max - min) * 100))\n\nf_scoreLower(float val, float min, float max) =>",
+  "called_by": [
+    {
+      "source": "src_modules_03scoring_f_trendScore",
+      "label": "f_trendScore()"
+    },
+    {
+      "source": "src_modules_03scoring_f_momentumScore",
+      "label": "f_momentumScore()"
+    },
+    {
+      "source": "module::PapanGerakStrategy::entry",
+      "label": "entry::PapanGerakStrategy"
+    }
+  ],
+  "calls": [],
+  "reads": [],
+  "writes": [],
+  "affected_modules": [
+    "03-scoring",
+    "04-ui",
+    "PapanGerakStrategy"
+  ],
+  "compact": true
+}

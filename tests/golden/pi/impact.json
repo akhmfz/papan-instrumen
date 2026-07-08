@@ -1,0 +1,27 @@
+{
+  "name": "f_scoreHigher",
+  "node_id": "src_modules_01base_f_scoreHigher",
+  "found": true,
+  "direct_callers": [
+    {
+      "caller": "src_modules_01base_f_scoreCashFlow",
+      "count": 1,
+      "label": "f_scoreCashFlow(float cf, float mcapVal)"
+    },
+    {
+      "caller": "module::04-scoring::entry",
+      "count": 31,
+      "label": "entry::04-scoring"
+    }
+  ],
+  "transitive_callers_count": 2,
+  "transitive_callers": [
+    "src_modules_01base_f_scoreCashFlow",
+    "module::04-scoring::entry"
+  ],
+  "affected_modules": [
+    "04-scoring"
+  ],
+  "affected_tables": [],
+  "affected_alerts": []
+}

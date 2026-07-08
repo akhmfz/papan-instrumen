@@ -1,0 +1,307 @@
+{
+  "pattern": "score",
+  "mode": "substring",
+  "total": 77,
+  "results": [
+    {
+      "name": "f_scoreBg",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreBg()"
+    },
+    {
+      "name": "f_scoreCard",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_scoreCard()"
+    },
+    {
+      "name": "f_scoreCardN",
+      "type": "function",
+      "module": "03-ui",
+      "label": "f_scoreCardN()"
+    },
+    {
+      "name": "f_scoreCashFlow",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreCashFlow()"
+    },
+    {
+      "name": "f_scoreColor",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreColor()"
+    },
+    {
+      "name": "f_scoreHigher",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreHigher()"
+    },
+    {
+      "name": "f_scoreLower",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreLower()"
+    },
+    {
+      "name": "f_scoreLowerSafe",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreLowerSafe()"
+    },
+    {
+      "name": "f_scoreMid",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scoreMid()"
+    },
+    {
+      "name": "f_scorePositive",
+      "type": "function",
+      "module": "01-base",
+      "label": "f_scorePositive()"
+    },
+    {
+      "name": "pi_scoreText",
+      "type": "function",
+      "module": "01-base",
+      "label": "pi_scoreText()"
+    },
+    {
+      "name": "altmanScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "altmanScore"
+    },
+    {
+      "name": "araRiskScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "araRiskScore"
+    },
+    {
+      "name": "carScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "carScore"
+    },
+    {
+      "name": "cashDebtScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "cashDebtScore"
+    },
+    {
+      "name": "currScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "currScore"
+    },
+    {
+      "name": "debtAssetScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "debtAssetScore"
+    },
+    {
+      "name": "debtEbitdaScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "debtEbitdaScore"
+    },
+    {
+      "name": "debtEqScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "debtEqScore"
+    },
+    {
+      "name": "dpsScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "dpsScore"
+    },
+    {
+      "name": "earnYieldScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "earnYieldScore"
+    },
+    {
+      "name": "ebitdaScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "ebitdaScore"
+    },
+    {
+      "name": "epsScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "epsScore"
+    },
+    {
+      "name": "evSalesScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "evSalesScore"
+    },
+    {
+      "name": "evScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "evScore"
+    },
+    {
+      "name": "fcfMarginScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "fcfMarginScore"
+    },
+    {
+      "name": "fcfScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "fcfScore"
+    },
+    {
+      "name": "fcfYieldScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "fcfYieldScore"
+    },
+    {
+      "name": "grahamScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "grahamScore"
+    },
+    {
+      "name": "grossScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "grossScore"
+    },
+    {
+      "name": "growthBaseScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "growthBaseScore"
+    },
+    {
+      "name": "growthScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "growthScore"
+    },
+    {
+      "name": "healthScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "healthScore"
+    },
+    {
+      "name": "incomeScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "incomeScore"
+    },
+    {
+      "name": "indoBetaScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "indoBetaScore"
+    },
+    {
+      "name": "indoIdrScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "indoIdrScore"
+    },
+    {
+      "name": "indoLiqScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "indoLiqScore"
+    },
+    {
+      "name": "indoMacroScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "indoMacroScore"
+    },
+    {
+      "name": "indonesiaScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "indonesiaScore"
+    },
+    {
+      "name": "interestScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "interestScore"
+    },
+    {
+      "name": "ldrScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "ldrScore"
+    },
+    {
+      "name": "liqScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "liqScore"
+    },
+    {
+      "name": "maScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "maScore"
+    },
+    {
+      "name": "mcapScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "mcapScore"
+    },
+    {
+      "name": "momentumScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "momentumScore"
+    },
+    {
+      "name": "netDebtEbitdaScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "netDebtEbitdaScore"
+    },
+    {
+      "name": "netScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "netScore"
+    },
+    {
+      "name": "nplScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "nplScore"
+    },
+    {
+      "name": "ocfScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "ocfScore"
+    },
+    {
+      "name": "opScore",
+      "type": "variable",
+      "module": "04-scoring",
+      "label": "opScore"
+    }
+  ]
+}

@@ -157,7 +157,7 @@ Gunakan **[Script Stopwatch](https://www.tradingview.com/script/rRmrkRDr-Script-
 
 Status per Fase 0 (P0-2 fixed). ✅ = bobot berbeda dari Non-Finansial Umum, ⬜ = belum implementasi.
 
-| Sektor (15) | Value | Quality | Growth | Health | Income | Momentum | Indonesia |
+| Sektor (14) | Value | Quality | Growth | Health | Income | Momentum | Indonesia |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Bank | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
 | Asuransi | ✅ | ✅ | ✅ | ✅ | — | — | ⬜ |
@@ -196,6 +196,15 @@ Wajib sebelum setiap `git tag` + `gh release create`:
 ---
 
 ## Changelog
+
+### v1.1.0 — Semantic Platform: Inject2 Pipeline (2026-07-08)
+- **Semantic Platform**: extract_ast.py (pynescript ANTLR parser),
+  inject_graph.py (calls/reads/writes injector), pine_query.py (query engine),
+  pine_context.py (context assembly), pine_validate.py (validation engine)
+- **graph.json enriched**: 210→480 edges, 0→90 calls edges, isolated 78%→4.4%
+- **New docs**: RELEASE-v1.1.md, docs/architecture-overview.md
+- **Verification**: 4/4 validation PASS, 99 golden tests PASS, 5 context tests PASS
+- **Tag**: `v1.1.0`
 
 ### Build 010 (Current)
 **Publish ke TradingView + Polish**

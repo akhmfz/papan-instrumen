@@ -1,0 +1,85 @@
+{
+  "name": "03-scoring",
+  "found": true,
+  "file": "/home/Akhmfz/papan-gerak/src/modules/03-scoring.pine",
+  "size_lines": 621,
+  "functions": 6,
+  "variables": 0,
+  "depends_on": [],
+  "depended_by": [],
+  "functions_list": [
+    {
+      "node_id": "src_modules_03scoring_f_trendScore",
+      "label": "f_trendScore()",
+      "callee_count": 2
+    },
+    {
+      "node_id": "src_modules_03scoring_f_momentumScore",
+      "label": "f_momentumScore()",
+      "callee_count": 2
+    },
+    {
+      "node_id": "src_modules_03scoring_f_volatilityScore",
+      "label": "f_volatilityScore()",
+      "callee_count": 2
+    },
+    {
+      "node_id": "src_modules_03scoring_f_volumeScore",
+      "label": "f_volumeScore()",
+      "callee_count": 2
+    },
+    {
+      "node_id": "src_modules_03scoring_f_smartMoneyScore",
+      "label": "f_smartMoneyScore()",
+      "callee_count": 2
+    },
+    {
+      "node_id": "src_modules_03scoring_f_narrative",
+      "label": "f_narrative()",
+      "callee_count": 1
+    }
+  ],
+  "entry_callees": [
+    {
+      "target": "src_modules_01base_f_colorScore",
+      "label": "f_colorScore(float score)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_01base_f_signalText",
+      "label": "f_signalText(float score, string lang)",
+      "count": 1
+    },
+    {
+      "target": "src_modules_03scoring_f_momentumScore",
+      "label": "f_momentumScore()",
+      "count": 1
+    },
+    {
+      "target": "src_modules_03scoring_f_narrative",
+      "label": "f_narrative()",
+      "count": 1
+    },
+    {
+      "target": "src_modules_03scoring_f_smartMoneyScore",
+      "label": "f_smartMoneyScore()",
+      "count": 1
+    },
+    {
+      "target": "src_modules_03scoring_f_trendScore",
+      "label": "f_trendScore()",
+      "count": 1
+    },
+    {
+      "target": "src_modules_03scoring_f_volatilityScore",
+      "label": "f_volatilityScore()",
+      "count": 1
+    },
+    {
+      "target": "src_modules_03scoring_f_volumeScore",
+      "label": "f_volumeScore()",
+      "count": 1
+    }
+  ],
+  "entry_call_count": 8
+}
