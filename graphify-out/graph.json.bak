@@ -1,0 +1,2417 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "hy_7dimensiscoring_set",
+        "label": "7 Dimensi Scoring",
+        "nodes": [
+          "docs_readme_id_value",
+          "docs_readme_id_quality",
+          "docs_readme_id_growth",
+          "docs_readme_id_health",
+          "docs_readme_id_income",
+          "docs_readme_id_momentum",
+          "docs_readme_id_indonesiafactor"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docs/README.id.md"
+      },
+      {
+        "id": "hy_docs_set",
+        "label": "Documentation Files",
+        "nodes": [
+          "docs_architecture_7layerarchitecture",
+          "docs_architecture_scoringprinciples",
+          "docs_ai_airoles",
+          "docs_development_codingstandard",
+          "docs_development_changelog",
+          "catatan_reservedkeywords"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "CATATAN.md"
+      },
+      {
+        "id": "hy_ci_pipeline",
+        "label": "GitHub CI Pipeline",
+        "nodes": [
+          "github_workflows_build"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": ".github/workflows/build.yml"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "build.sh",
+      "file_type": "code",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "build",
+      "community": 7,
+      "norm_label": "build.sh"
+    },
+    {
+      "label": "build.sh script",
+      "file_type": "code",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "build_sh__entry",
+      "community": 7,
+      "norm_label": "build.sh script"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "package",
+      "community": 2,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "package_name",
+      "community": 2,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "package_version",
+      "community": 2,
+      "norm_label": "version"
+    },
+    {
+      "label": "description",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "package_description",
+      "community": 2,
+      "norm_label": "description"
+    },
+    {
+      "label": "private",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "package_private",
+      "community": 2,
+      "norm_label": "private"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "package_scripts",
+      "community": 2,
+      "norm_label": "scripts"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "package_scripts_build",
+      "community": 2,
+      "norm_label": "build"
+    },
+    {
+      "label": "lint",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "package_scripts_lint",
+      "community": 2,
+      "norm_label": "lint"
+    },
+    {
+      "label": "test",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "package_scripts_test",
+      "community": 2,
+      "norm_label": "test"
+    },
+    {
+      "label": "test:all",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "package_scripts_test_all",
+      "community": 2,
+      "norm_label": "test:all"
+    },
+    {
+      "label": "transpile",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "package_scripts_transpile",
+      "community": 2,
+      "norm_label": "transpile"
+    },
+    {
+      "label": "ci",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "package_scripts_ci",
+      "community": 2,
+      "norm_label": "ci"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "package_devdependencies",
+      "community": 2,
+      "norm_label": "devdependencies"
+    },
+    {
+      "label": "pinets",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "package_devdependencies_pinets",
+      "community": 2,
+      "norm_label": "pinets"
+    },
+    {
+      "label": "license",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "package_license",
+      "community": 2,
+      "norm_label": "license"
+    },
+    {
+      "label": "gh-sync.sh",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "scripts_gh_sync",
+      "community": 6,
+      "norm_label": "gh-sync.sh"
+    },
+    {
+      "label": "gh-sync.sh script",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "scripts_gh_sync_sh__entry",
+      "community": 6,
+      "norm_label": "gh-sync.sh script"
+    },
+    {
+      "label": "create_issue()",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L35",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "scripts_gh_sync_create_issue",
+      "community": 6,
+      "norm_label": "create_issue()"
+    },
+    {
+      "label": "lint.sh",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint",
+      "community": 5,
+      "norm_label": "lint.sh"
+    },
+    {
+      "label": "lint.sh script",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint_sh__entry",
+      "community": 5,
+      "norm_label": "lint.sh script"
+    },
+    {
+      "label": "ok()",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L8",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint_ok",
+      "community": 5,
+      "norm_label": "ok()"
+    },
+    {
+      "label": "err()",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L9",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint_err",
+      "community": 5,
+      "norm_label": "err()"
+    },
+    {
+      "label": "pinets-verify.mjs",
+      "file_type": "code",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_pinets_verify",
+      "community": 8,
+      "norm_label": "pinets-verify.mjs"
+    },
+    {
+      "label": "candles",
+      "file_type": "code",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tests_pinets_verify_candles",
+      "community": 8,
+      "norm_label": "candles"
+    },
+    {
+      "label": "runner.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_runner",
+      "community": 1,
+      "norm_label": "runner.mjs"
+    },
+    {
+      "label": "dummyCandles()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_dummycandles",
+      "community": 1,
+      "norm_label": "dummycandles()"
+    },
+    {
+      "label": "runTest()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_runtest",
+      "community": 1,
+      "norm_label": "runtest()"
+    },
+    {
+      "label": "lastVal()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_lastval",
+      "community": 1,
+      "norm_label": "lastval()"
+    },
+    {
+      "label": "assert()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_assert",
+      "community": 1,
+      "norm_label": "assert()"
+    },
+    {
+      "label": "summary()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L145",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_summary",
+      "community": 1,
+      "norm_label": "summary()"
+    },
+    {
+      "label": "test-growth.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_growth",
+      "community": 1,
+      "norm_label": "test-growth.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "tests_scoring_test_growth_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-health.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_health",
+      "community": 1,
+      "norm_label": "test-health.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "tests_scoring_test_health_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-income.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_income",
+      "community": 1,
+      "norm_label": "test-income.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "tests_scoring_test_income_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-momentum.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_momentum",
+      "community": 1,
+      "norm_label": "test-momentum.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "tests_scoring_test_momentum_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-overall.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_overall",
+      "community": 1,
+      "norm_label": "test-overall.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "tests_scoring_test_overall_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-quality.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_quality",
+      "community": 1,
+      "norm_label": "test-quality.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "tests_scoring_test_quality_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-regression.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_regression",
+      "community": 1,
+      "norm_label": "test-regression.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "tests_scoring_test_regression_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-source-match.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match",
+      "community": 4,
+      "norm_label": "test-source-match.mjs"
+    },
+    {
+      "label": "actualSource",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_actualsource",
+      "community": 4,
+      "norm_label": "actualsource"
+    },
+    {
+      "label": "hasFSafeLower",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hasfsafelower",
+      "community": 4,
+      "norm_label": "hasfsafelower"
+    },
+    {
+      "label": "hasFSafeLowerSafe",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hasfsafelowersafe",
+      "community": 4,
+      "norm_label": "hasfsafelowersafe"
+    },
+    {
+      "label": "hasConsumerWeights",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hasconsumerweights",
+      "community": 4,
+      "norm_label": "hasconsumerweights"
+    },
+    {
+      "label": "hasSekuritasQuality",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hassekuritasquality",
+      "community": 4,
+      "norm_label": "hassekuritasquality"
+    },
+    {
+      "label": "checks",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_checks",
+      "community": 4,
+      "norm_label": "checks"
+    },
+    {
+      "label": "allPassed",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_allpassed",
+      "community": 4,
+      "norm_label": "allpassed"
+    },
+    {
+      "label": "testFiles",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_testfiles",
+      "community": 4,
+      "norm_label": "testfiles"
+    },
+    {
+      "label": "test-value.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_value",
+      "community": 1,
+      "norm_label": "test-value.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "tests_scoring_test_value_t",
+      "community": 1,
+      "norm_label": "t"
+    },
+    {
+      "label": "transpile.sh",
+      "file_type": "code",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "tests_transpile",
+      "community": 9,
+      "norm_label": "transpile.sh"
+    },
+    {
+      "label": "transpile.sh script",
+      "file_type": "code",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "tests_transpile_sh__entry",
+      "community": 9,
+      "norm_label": "transpile.sh script"
+    },
+    {
+      "label": "Papan Instrumen \u2014 Fundamental Dashboard",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_papaninstrumen",
+      "community": 0,
+      "norm_label": "papan instrumen \u2014 fundamental dashboard"
+    },
+    {
+      "label": "7 Dimensi Scoring",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_7dimensiscoring",
+      "community": 3,
+      "norm_label": "7 dimensi scoring"
+    },
+    {
+      "label": "15 Kelas Sektor",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_15kelassektor",
+      "community": 0,
+      "norm_label": "15 kelas sektor"
+    },
+    {
+      "label": "Sector-Aware Scoring",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_sectoraware",
+      "community": 0,
+      "norm_label": "sector-aware scoring"
+    },
+    {
+      "label": "Risk Module \u2014 Likuiditas",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_riskmodule",
+      "community": 3,
+      "norm_label": "risk module \u2014 likuiditas"
+    },
+    {
+      "label": "5 Preset Bobot",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_5presetbobot",
+      "community": 3,
+      "norm_label": "5 preset bobot"
+    },
+    {
+      "label": "5 Color Themes",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_5colorthemes",
+      "community": 19,
+      "norm_label": "5 color themes"
+    },
+    {
+      "label": "Compact Mode",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_compactmode",
+      "community": 21,
+      "norm_label": "compact mode"
+    },
+    {
+      "label": "Bilingual (ID/EN)",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_bilingual",
+      "community": 20,
+      "norm_label": "bilingual (id/en)"
+    },
+    {
+      "label": "IDX \u2014 Indonesia Stock Exchange",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_idxsaham",
+      "community": 0,
+      "norm_label": "idx \u2014 indonesia stock exchange"
+    },
+    {
+      "label": "89 Automated Tests via PineTS",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "id": "readme_89automatedtests",
+      "community": 0,
+      "norm_label": "89 automated tests via pinets"
+    },
+    {
+      "label": "Dashboard Screenshot Preview",
+      "file_type": "image",
+      "source_file": "assets/screenshot.png",
+      "id": "readme_screenshotpreview",
+      "community": 0,
+      "norm_label": "dashboard screenshot preview"
+    },
+    {
+      "label": "Value Dimension (Valuasi)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_value",
+      "community": 3,
+      "norm_label": "value dimension (valuasi)"
+    },
+    {
+      "label": "Quality Dimension (Profitability)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_quality",
+      "community": 3,
+      "norm_label": "quality dimension (profitability)"
+    },
+    {
+      "label": "Growth Dimension",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_growth",
+      "community": 3,
+      "norm_label": "growth dimension"
+    },
+    {
+      "label": "Health Dimension (Financial)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_health",
+      "community": 3,
+      "norm_label": "health dimension (financial)"
+    },
+    {
+      "label": "Income Dimension (Dividend)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_income",
+      "community": 3,
+      "norm_label": "income dimension (dividend)"
+    },
+    {
+      "label": "Momentum Dimension",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_momentum",
+      "community": 3,
+      "norm_label": "momentum dimension"
+    },
+    {
+      "label": "Indonesia Factor (7th Dimension)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_indonesiafactor",
+      "community": 3,
+      "norm_label": "indonesia factor (7th dimension)"
+    },
+    {
+      "label": "Overall Score (0-100)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "id": "docs_readme_id_overallscore",
+      "community": 0,
+      "norm_label": "overall score (0-100)"
+    },
+    {
+      "label": "7-Layer Architecture",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "id": "docs_architecture_7layerarchitecture",
+      "community": 0,
+      "norm_label": "7-layer architecture"
+    },
+    {
+      "label": "Request Budget \u2014 35 calls total",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "id": "docs_architecture_requestbudget",
+      "community": 0,
+      "norm_label": "request budget \u2014 35 calls total"
+    },
+    {
+      "label": "5 Pilar Analisis Fundamental",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "id": "docs_architecture_5pilars",
+      "community": 3,
+      "norm_label": "5 pilar analisis fundamental"
+    },
+    {
+      "label": "Scoring Principles",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "id": "docs_architecture_scoringprinciples",
+      "community": 3,
+      "norm_label": "scoring principles"
+    },
+    {
+      "label": "Roadmap (Phase 1-8)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "id": "docs_architecture_roadmap",
+      "community": 0,
+      "norm_label": "roadmap (phase 1-8)"
+    },
+    {
+      "label": "Coding Standard",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "id": "docs_development_codingstandard",
+      "community": 17,
+      "norm_label": "coding standard"
+    },
+    {
+      "label": "6-Level Testing",
+      "file_type": "concept",
+      "source_file": "docs/DEVELOPMENT.md",
+      "id": "docs_development_6leveltesting",
+      "community": 0,
+      "norm_label": "6-level testing"
+    },
+    {
+      "label": "Sprint S008 \u2014 Published on TV",
+      "file_type": "concept",
+      "source_file": "docs/DEVELOPMENT.md",
+      "id": "docs_development_spints008",
+      "community": 0,
+      "norm_label": "sprint s008 \u2014 published on tv"
+    },
+    {
+      "label": "P0 Historical Bugs",
+      "file_type": "concept",
+      "source_file": "docs/DEVELOPMENT.md",
+      "id": "docs_development_p0bugs",
+      "community": 3,
+      "norm_label": "p0 historical bugs"
+    },
+    {
+      "label": "Changelog (Build 001-010)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "id": "docs_development_changelog",
+      "community": 0,
+      "norm_label": "changelog (build 001-010)"
+    },
+    {
+      "label": "Sector-Aware Coverage Matrix",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "id": "docs_development_sectorawarematrix",
+      "community": 0,
+      "norm_label": "sector-aware coverage matrix"
+    },
+    {
+      "label": "Release Checklist (P4-1)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "id": "docs_development_releasechecklist",
+      "community": 18,
+      "norm_label": "release checklist (p4-1)"
+    },
+    {
+      "label": "AI Roles: PO, Architect, Developer, Reviewer",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "id": "docs_ai_airoles",
+      "community": 0,
+      "norm_label": "ai roles: po, architect, developer, reviewer"
+    },
+    {
+      "label": "Context Loading Order",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "id": "docs_ai_contextloadingorder",
+      "community": 0,
+      "norm_label": "context loading order"
+    },
+    {
+      "label": "AI Golden Rules",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "id": "docs_ai_goldenrules",
+      "community": 16,
+      "norm_label": "ai golden rules"
+    },
+    {
+      "label": "Product Philosophy (6 Principles)",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "id": "docs_ai_productphilosophy",
+      "community": 3,
+      "norm_label": "product philosophy (6 principles)"
+    },
+    {
+      "label": "Pine Script v6 Reserved Keywords",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "id": "catatan_reservedkeywords",
+      "community": 0,
+      "norm_label": "pine script v6 reserved keywords"
+    },
+    {
+      "label": "No Local Functions Inside if Blocks",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "id": "catatan_nolocalfunctions",
+      "community": 0,
+      "norm_label": "no local functions inside if blocks"
+    },
+    {
+      "label": "input.float() Cannot Default to na",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "id": "catatan_inputfloatna",
+      "community": 0,
+      "norm_label": "input.float() cannot default to na"
+    },
+    {
+      "label": "Error Cascade \u2014 Fix First Error First",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "id": "catatan_errorcascade",
+      "community": 12,
+      "norm_label": "error cascade \u2014 fix first error first"
+    },
+    {
+      "label": "Engine Comparison: PineTS, PineForge, PyneCore",
+      "file_type": "concept",
+      "source_file": "CATATAN.md",
+      "id": "catatan_enginecomparison",
+      "community": 11,
+      "norm_label": "engine comparison: pinets, pineforge, pynecore"
+    },
+    {
+      "label": "PineTS Limitations",
+      "file_type": "concept",
+      "source_file": "CATATAN.md",
+      "id": "catatan_pinetslimitations",
+      "community": 14,
+      "norm_label": "pinets limitations"
+    },
+    {
+      "label": "Dev Tools Installed",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "id": "catatan_devtools",
+      "community": 10,
+      "norm_label": "dev tools installed"
+    },
+    {
+      "label": "Active Backlog (P1-P4)",
+      "file_type": "concept",
+      "source_file": "CATATAN.md",
+      "id": "catatan_backlog",
+      "community": 0,
+      "norm_label": "active backlog (p1-p4)"
+    },
+    {
+      "label": "Golden Rule: No Features on Unverified Foundation",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "id": "catatan_goldenrule",
+      "community": 13,
+      "norm_label": "golden rule: no features on unverified foundation"
+    },
+    {
+      "label": "Development Setup Guide",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "id": "contributing_development",
+      "community": 0,
+      "norm_label": "development setup guide"
+    },
+    {
+      "label": "PR Process & Commit Convention",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "id": "contributing_prprocess",
+      "community": 15,
+      "norm_label": "pr process & commit convention"
+    },
+    {
+      "label": "GitHub Actions CI Pipeline",
+      "file_type": "document",
+      "source_file": ".github/workflows/build.yml",
+      "id": "github_workflows_build",
+      "community": 0,
+      "norm_label": "github actions ci pipeline"
+    },
+    {
+      "label": "Bug Report Issue Template",
+      "file_type": "document",
+      "source_file": ".github/ISSUE_TEMPLATE/bug.yml",
+      "id": "github_issuetemplate_bug",
+      "community": 0,
+      "norm_label": "bug report issue template"
+    },
+    {
+      "label": "Feature Request Issue Template",
+      "file_type": "document",
+      "source_file": ".github/ISSUE_TEMPLATE/feature.yml",
+      "id": "github_issuetemplate_feature",
+      "community": 0,
+      "norm_label": "feature request issue template"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "build",
+      "target": "build_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_private",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_ci",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_lint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test_all",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_transpile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_pinets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "scripts_gh_sync",
+      "target": "scripts_gh_sync_create_issue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_gh_sync",
+      "target": "scripts_gh_sync_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L53",
+      "weight": 1.0,
+      "context": "call",
+      "source": "scripts_gh_sync_sh__entry",
+      "target": "scripts_gh_sync_create_issue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_ok",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "call",
+      "source": "scripts_lint_sh__entry",
+      "target": "scripts_lint_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "call",
+      "source": "scripts_lint_sh__entry",
+      "target": "scripts_lint_ok",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_pinets_verify",
+      "target": "tests_pinets_verify_candles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_dummycandles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "tests_scoring_runner_runtest",
+      "target": "tests_scoring_runner_dummycandles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_test_growth_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_test_health_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_test_income_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_test_momentum_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_test_overall_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_test_quality_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_test_regression_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_actualsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_allpassed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasconsumerweights",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasfsafelower",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasfsafelowersafe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hassekuritasquality",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_testfiles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_test_value_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_transpile",
+      "target": "tests_transpile_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_nolocalfunctions",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_reservedkeywords",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CONTRIBUTING.md",
+      "source": "contributing_development",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI.md",
+      "source": "docs_ai_airoles",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_7layerarchitecture",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_requestbudget",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_roadmap",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_changelog",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_spints008",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/ISSUE_TEMPLATE/bug.yml",
+      "source": "github_issuetemplate_bug",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/ISSUE_TEMPLATE/feature.yml",
+      "source": "github_issuetemplate_feature",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/build.yml",
+      "source": "github_workflows_build",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "docs_readme_id_overallscore"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_15kelassektor"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_89automatedtests"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_idxsaham"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_riskmodule"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_screenshotpreview"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_sectoraware"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_5pilars",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_scoringprinciples",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_p0bugs",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_5presetbobot",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_growth"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_health"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_income"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_indonesiafactor"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_momentum"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_quality"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_value"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "readme_sectoraware",
+      "target": "docs_development_sectorawarematrix"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "README.md",
+      "source": "readme_riskmodule",
+      "target": "docs_readme_id_indonesiafactor"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_6leveltesting",
+      "target": "readme_89automatedtests"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/build.yml",
+      "source": "github_workflows_build",
+      "target": "readme_89automatedtests"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI.md",
+      "source": "docs_ai_contextloadingorder",
+      "target": "docs_architecture_7layerarchitecture"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_inputfloatna",
+      "target": "docs_architecture_requestbudget"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI.md",
+      "source": "docs_ai_productphilosophy",
+      "target": "docs_architecture_scoringprinciples"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_backlog",
+      "target": "docs_development_spints008"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "hy_7dimensiscoring_set",
+      "label": "7 Dimensi Scoring",
+      "nodes": [
+        "docs_readme_id_value",
+        "docs_readme_id_quality",
+        "docs_readme_id_growth",
+        "docs_readme_id_health",
+        "docs_readme_id_income",
+        "docs_readme_id_momentum",
+        "docs_readme_id_indonesiafactor"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md"
+    },
+    {
+      "id": "hy_docs_set",
+      "label": "Documentation Files",
+      "nodes": [
+        "docs_architecture_7layerarchitecture",
+        "docs_architecture_scoringprinciples",
+        "docs_ai_airoles",
+        "docs_development_codingstandard",
+        "docs_development_changelog",
+        "catatan_reservedkeywords"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "CATATAN.md"
+    },
+    {
+      "id": "hy_ci_pipeline",
+      "label": "GitHub CI Pipeline",
+      "nodes": [
+        "github_workflows_build"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/build.yml"
+    }
+  ]
+}

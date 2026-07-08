@@ -1721,7 +1721,7 @@ if barstate.islast
         r := f_warningCell(3, r, isEN ? "Try Daily timeframe or switch" : "Coba timeframe Daily atau ganti")
         r := f_warningCell(3, r, isEN ? "to another symbol." : "simbol lain.")
 
-    if tampilKualitas and not tampilCompact
+    if not noData and tampilKualitas and not tampilCompact
         r := f_section(3, r, isEN ? "QUALITY" : "KUALITAS")
         if isBankSektor or isAsuransiSektor or isSekuritasSektor
             r := f_row(3, r, "(Sektor Finansial: margin", "non-bank di-skip)", na)
@@ -1740,13 +1740,13 @@ if barstate.islast
         if wFcfM > 0
             r := f_row(3, r, "FCF Margin", pi_formatPercent(fcfMargin), fcfMarginScore)
 
-    if tampilPertumbuhan and not tampilCompact
+    if not noData and tampilPertumbuhan and not tampilCompact
         r := f_section(3, r, isEN ? "GROWTH" : "PERTUMBUHAN")
         r := f_row(3, r, "Revenue Growth", pi_arrow(revGrowth) + pi_formatPercent(revGrowth), revScore)
         r := f_row(3, r, "EPS Growth", pi_arrow(epsGrowth) + pi_formatPercent(epsGrowth), epsScore)
         r := f_row(3, r, "Sustainable Growth", pi_arrow(sgr) + pi_formatPercent(sgr), sgrScore)
 
-    if tampilIndonesia and not tampilCompact
+    if not noData and tampilIndonesia and not tampilCompact
         r := f_section(3, r, isEN ? "INDONESIA FACTOR" : "FAKTOR INDONESIA")
         r := f_row(3, r, "Liquiditas", pi_formatMoney(valTradedAvg20), indoLiqScore)
         r := f_row(3, r, "Turnover Harian", pi_formatPercent(turnoverPct), na)
@@ -1754,7 +1754,7 @@ if barstate.islast
         r := f_row(3, r, "IDR Volatility", pi_formatPercent(idrVol), indoIdrScore)
         r := f_row(3, r, "IDR 3M Trend", pi_arrow(idrTrend3M) + pi_formatPercent(idrTrend3M), indoIdrTrend)
 
-    if tampilKesehatan and not tampilCompact
+    if not noData and tampilKesehatan and not tampilCompact
         r := f_section(3, r, isEN ? "FINANCIAL HEALTH" : "KESEHATAN KEUANGAN")
         if isBankSektor or isAsuransiSektor or isSekuritasSektor
             r := f_row(3, r, "(Sektor Finansial: rasio", "terbatas — lihat skor)", na)
@@ -1785,7 +1785,7 @@ if barstate.islast
         r := f_row(3, r, "OCF", pi_formatMoney(ocf), ocfScore)
         r := f_row(3, r, "FCF", pi_formatMoney(fcf), fcfScore)
 
-    if tampilMomentum and not tampilCompact
+    if not noData and tampilMomentum and not tampilCompact
         r := f_section(3, r, isEN ? "MARKET MOMENTUM" : "MOMENTUM PASAR")
         r := f_row(3, r, "RSI 14", pi_formatNumber(rsi14), rsiScore)
         r := f_row(3, r, "1M Return", pi_arrow(ret1m) + pi_formatPercent(ret1m), na)
@@ -1797,7 +1797,7 @@ if barstate.islast
         r := f_row(3, r, "Volatility", pi_formatPercent(volatility), volScore)
         r := f_row(3, r, "MA 20/50/200", maStatus, maScore)
 
-    if tampilRisikoGorengan and not tampilCompact
+    if not noData and tampilRisikoGorengan and not tampilCompact
         r := f_section(3, r, isEN ? "PUMP & DUMP RISK" : "DETAIL RISIKO GORENGAN")
         r := f_riskRow(3, r, "Market Cap", pi_formatMoney(mcap), mcapScore)
         r := f_riskRow(3, r, "Nilai Transaksi 20D", pi_formatMoney(valTradedAvg20), liqScore)

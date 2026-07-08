@@ -1,0 +1,4809 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "node_count": 223,
+    "edge_count": 254
+  },
+  "nodes": [
+    {
+      "label": "build.sh",
+      "file_type": "code",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "build",
+      "community": 13,
+      "norm_label": "build.sh"
+    },
+    {
+      "label": "build.sh script",
+      "file_type": "code",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "build_sh__entry",
+      "community": 13,
+      "norm_label": "build.sh script"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "package",
+      "community": 6,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "package_name",
+      "community": 6,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "package_version",
+      "community": 6,
+      "norm_label": "version"
+    },
+    {
+      "label": "description",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "package_description",
+      "community": 6,
+      "norm_label": "description"
+    },
+    {
+      "label": "private",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "package_private",
+      "community": 6,
+      "norm_label": "private"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "package_scripts",
+      "community": 6,
+      "norm_label": "scripts"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "package_scripts_build",
+      "community": 6,
+      "norm_label": "build"
+    },
+    {
+      "label": "lint",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "package_scripts_lint",
+      "community": 6,
+      "norm_label": "lint"
+    },
+    {
+      "label": "test",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "package_scripts_test",
+      "community": 6,
+      "norm_label": "test"
+    },
+    {
+      "label": "test:all",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "package_scripts_test_all",
+      "community": 6,
+      "norm_label": "test:all"
+    },
+    {
+      "label": "transpile",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "package_scripts_transpile",
+      "community": 6,
+      "norm_label": "transpile"
+    },
+    {
+      "label": "ci",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "package_scripts_ci",
+      "community": 6,
+      "norm_label": "ci"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "package_devdependencies",
+      "community": 6,
+      "norm_label": "devdependencies"
+    },
+    {
+      "label": "pinets",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "package_devdependencies_pinets",
+      "community": 6,
+      "norm_label": "pinets"
+    },
+    {
+      "label": "license",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "package_license",
+      "community": 6,
+      "norm_label": "license"
+    },
+    {
+      "label": "gh-sync.sh",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "scripts_gh_sync",
+      "community": 12,
+      "norm_label": "gh-sync.sh"
+    },
+    {
+      "label": "gh-sync.sh script",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "scripts_gh_sync_sh__entry",
+      "community": 12,
+      "norm_label": "gh-sync.sh script"
+    },
+    {
+      "label": "create_issue()",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L35",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "scripts_gh_sync_create_issue",
+      "community": 12,
+      "norm_label": "create_issue()"
+    },
+    {
+      "label": "lint.sh",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint",
+      "community": 11,
+      "norm_label": "lint.sh"
+    },
+    {
+      "label": "lint.sh script",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint_sh__entry",
+      "community": 11,
+      "norm_label": "lint.sh script"
+    },
+    {
+      "label": "ok()",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L8",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint_ok",
+      "community": 11,
+      "norm_label": "ok()"
+    },
+    {
+      "label": "err()",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L9",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "scripts_lint_err",
+      "community": 11,
+      "norm_label": "err()"
+    },
+    {
+      "label": "pinets-verify.mjs",
+      "file_type": "code",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_pinets_verify",
+      "community": 14,
+      "norm_label": "pinets-verify.mjs"
+    },
+    {
+      "label": "candles",
+      "file_type": "code",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tests_pinets_verify_candles",
+      "community": 14,
+      "norm_label": "candles"
+    },
+    {
+      "label": "runner.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_runner",
+      "community": 3,
+      "norm_label": "runner.mjs"
+    },
+    {
+      "label": "dummyCandles()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_dummycandles",
+      "community": 3,
+      "norm_label": "dummycandles()"
+    },
+    {
+      "label": "runTest()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_runtest",
+      "community": 3,
+      "norm_label": "runtest()"
+    },
+    {
+      "label": "lastVal()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_lastval",
+      "community": 3,
+      "norm_label": "lastval()"
+    },
+    {
+      "label": "assert()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_assert",
+      "community": 3,
+      "norm_label": "assert()"
+    },
+    {
+      "label": "summary()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L145",
+      "_origin": "ast",
+      "id": "tests_scoring_runner_summary",
+      "community": 3,
+      "norm_label": "summary()"
+    },
+    {
+      "label": "test-growth.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_growth",
+      "community": 3,
+      "norm_label": "test-growth.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "tests_scoring_test_growth_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-health.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_health",
+      "community": 3,
+      "norm_label": "test-health.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "tests_scoring_test_health_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-income.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_income",
+      "community": 3,
+      "norm_label": "test-income.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "tests_scoring_test_income_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-momentum.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_momentum",
+      "community": 3,
+      "norm_label": "test-momentum.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "tests_scoring_test_momentum_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-overall.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_overall",
+      "community": 3,
+      "norm_label": "test-overall.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "tests_scoring_test_overall_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-quality.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_quality",
+      "community": 3,
+      "norm_label": "test-quality.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "tests_scoring_test_quality_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-regression.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_regression",
+      "community": 3,
+      "norm_label": "test-regression.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "tests_scoring_test_regression_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "test-source-match.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match",
+      "community": 10,
+      "norm_label": "test-source-match.mjs"
+    },
+    {
+      "label": "actualSource",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_actualsource",
+      "community": 10,
+      "norm_label": "actualsource"
+    },
+    {
+      "label": "hasFSafeLower",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hasfsafelower",
+      "community": 10,
+      "norm_label": "hasfsafelower"
+    },
+    {
+      "label": "hasFSafeLowerSafe",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hasfsafelowersafe",
+      "community": 10,
+      "norm_label": "hasfsafelowersafe"
+    },
+    {
+      "label": "hasConsumerWeights",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hasconsumerweights",
+      "community": 10,
+      "norm_label": "hasconsumerweights"
+    },
+    {
+      "label": "hasSekuritasQuality",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_hassekuritasquality",
+      "community": 10,
+      "norm_label": "hassekuritasquality"
+    },
+    {
+      "label": "checks",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_checks",
+      "community": 10,
+      "norm_label": "checks"
+    },
+    {
+      "label": "allPassed",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_allpassed",
+      "community": 10,
+      "norm_label": "allpassed"
+    },
+    {
+      "label": "testFiles",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "tests_scoring_test_source_match_testfiles",
+      "community": 10,
+      "norm_label": "testfiles"
+    },
+    {
+      "label": "test-value.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_scoring_test_value",
+      "community": 3,
+      "norm_label": "test-value.mjs"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "tests_scoring_test_value_t",
+      "community": 3,
+      "norm_label": "t"
+    },
+    {
+      "label": "transpile.sh",
+      "file_type": "code",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "tests_transpile",
+      "community": 15,
+      "norm_label": "transpile.sh"
+    },
+    {
+      "label": "transpile.sh script",
+      "file_type": "code",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "tests_transpile_sh__entry",
+      "community": 15,
+      "norm_label": "transpile.sh script"
+    },
+    {
+      "label": "CATATAN.md",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "catatan",
+      "community": 2,
+      "norm_label": "catatan.md"
+    },
+    {
+      "label": "CATATAN PENGEMBANGAN \u2014 Lessons Learned",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "catatan_catatan_pengembangan_lessons_learned",
+      "community": 2,
+      "norm_label": "catatan pengembangan \u2014 lessons learned"
+    },
+    {
+      "label": "\u26d4 Pine Script v6 \u2014 Jebakan & Anti-Pattern",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "community": 2,
+      "norm_label": "\u26d4 pine script v6 \u2014 jebakan & anti-pattern"
+    },
+    {
+      "label": "1. Reserved Keywords",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "catatan_1_reserved_keywords",
+      "community": 2,
+      "norm_label": "1. reserved keywords"
+    },
+    {
+      "label": "2. NO Local Functions Inside `if` Blocks",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "catatan_2_no_local_functions_inside_if_blocks",
+      "community": 2,
+      "norm_label": "2. no local functions inside `if` blocks"
+    },
+    {
+      "label": "3. Type Annotations pada Parameter",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "catatan_3_type_annotations_pada_parameter",
+      "community": 2,
+      "norm_label": "3. type annotations pada parameter"
+    },
+    {
+      "label": "4. Semicolons di `if` Blocks",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "catatan_4_semicolons_di_if_blocks",
+      "community": 2,
+      "norm_label": "4. semicolons di `if` blocks"
+    },
+    {
+      "label": "5. `input.float()` tidak bisa default `na`",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "catatan_5_input_float_tidak_bisa_default_na",
+      "community": 2,
+      "norm_label": "5. `input.float()` tidak bisa default `na`"
+    },
+    {
+      "label": "6. Error Cascade \u2014 fix error PERTAMA dulu",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "catatan_6_error_cascade_fix_error_pertama_dulu",
+      "community": 2,
+      "norm_label": "6. error cascade \u2014 fix error pertama dulu"
+    },
+    {
+      "label": "7. Unicode characters + line breaks in ternary \u2014 fatal\\n```pine\\n// \u274c ERROR (CE10156) \u2014 ternary broken across lines + Unicode \u2192 in comment\\nf_scoreCashFlow(float cf, float mcapVal) =>\\n    na(cf) ? na :\\n    f_scoreHigher(cf / mcapVal * 100, -2, 5)\\n\\n// \u2705 CORRECT \u2014 single line + ASCII only\\nf_scoreCashFlow(float cf, float mcapVal) =>\\n    na(cf) or na(mcapVal) or mcapVal == 0 ? na : f_scoreHigher(cf / mcapVal * 100, -2, 5)\\n```",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "catatan_7_unicode_characters_line_breaks_in_ternary_fatal_n_pine_n_error_ce10156_ternary_broken_across_lines_unicode_in_comment_nf_scorecashflow_float_cf_float_mcapval_n_na_cf_na_n_f_scorehigher_cf_mcapval_100_2_5_n_n_correct_single_line_ascii_only_nf_scorecashflow_float_cf_float_mcapval_n_na_cf_or_na_mcapval_or_mcapval_0_na_f_scorehigher_cf_mcapval_100_2_5_n",
+      "community": 2,
+      "norm_label": "7. unicode characters + line breaks in ternary \u2014 fatal\\n```pine\\n// \u274c error (ce10156) \u2014 ternary broken across lines + unicode \u2192 in comment\\nf_scorecashflow(float cf, float mcapval) =>\\n    na(cf) ? na :\\n    f_scorehigher(cf / mcapval * 100, -2, 5)\\n\\n// \u2705 correct \u2014 single line + ascii only\\nf_scorecashflow(float cf, float mcapval) =>\\n    na(cf) or na(mcapval) or mcapval == 0 ? na : f_scorehigher(cf / mcapval * 100, -2, 5)\\n```"
+    },
+    {
+      "label": "\ud83d\udc1b Bug yang Pernah Ada (Fase 0)",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "catatan_bug_yang_pernah_ada_fase_0",
+      "community": 2,
+      "norm_label": "\ud83d\udc1b bug yang pernah ada (fase 0)"
+    },
+    {
+      "label": "\ud83e\uddea Testing \u2014 Pelajaran",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "id": "catatan_testing_pelajaran",
+      "community": 2,
+      "norm_label": "\ud83e\uddea testing \u2014 pelajaran"
+    },
+    {
+      "label": "PineTS Limitations",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "catatan_pinets_limitations",
+      "community": 2,
+      "norm_label": "pinets limitations"
+    },
+    {
+      "label": "Test vs Production Gap",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "catatan_test_vs_production_gap",
+      "community": 2,
+      "norm_label": "test vs production gap"
+    },
+    {
+      "label": "Test Count History",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L98",
+      "_origin": "ast",
+      "id": "catatan_test_count_history",
+      "community": 2,
+      "norm_label": "test count history"
+    },
+    {
+      "label": "\ud83d\udccb Process \u2014 Pelajaran",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "catatan_process_pelajaran",
+      "community": 2,
+      "norm_label": "\ud83d\udccb process \u2014 pelajaran"
+    },
+    {
+      "label": "Rilis Harus Diverifikasi",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "catatan_rilis_harus_diverifikasi",
+      "community": 2,
+      "norm_label": "rilis harus diverifikasi"
+    },
+    {
+      "label": "No Silent Changes",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "catatan_no_silent_changes",
+      "community": 2,
+      "norm_label": "no silent changes"
+    },
+    {
+      "label": "Commit Convention",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "catatan_commit_convention",
+      "community": 2,
+      "norm_label": "commit convention"
+    },
+    {
+      "label": "\ud83d\udd27 Dev Tools \u2014 Yang Sudah Terpasang",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "catatan_dev_tools_yang_sudah_terpasang",
+      "community": 2,
+      "norm_label": "\ud83d\udd27 dev tools \u2014 yang sudah terpasang"
+    },
+    {
+      "label": "\ud83d\udcca Engine Comparison \u2014 Yang Sudah Dipelajari",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L147",
+      "_origin": "ast",
+      "id": "catatan_engine_comparison_yang_sudah_dipelajari",
+      "community": 2,
+      "norm_label": "\ud83d\udcca engine comparison \u2014 yang sudah dipelajari"
+    },
+    {
+      "label": "\ud83d\udcc1 File Structure \u2014 Yang Ada Sekarang",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L159",
+      "_origin": "ast",
+      "id": "catatan_file_structure_yang_ada_sekarang",
+      "community": 2,
+      "norm_label": "\ud83d\udcc1 file structure \u2014 yang ada sekarang"
+    },
+    {
+      "label": "\u23f3 Yang Belum Selesai (Backlog Aktif)",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "source_location": "L203",
+      "_origin": "ast",
+      "id": "catatan_yang_belum_selesai_backlog_aktif",
+      "community": 2,
+      "norm_label": "\u23f3 yang belum selesai (backlog aktif)"
+    },
+    {
+      "label": "CONTRIBUTING.md",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "contributing",
+      "community": 7,
+      "norm_label": "contributing.md"
+    },
+    {
+      "label": "Contributing to Papan Instrumen",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "contributing_contributing_to_papan_instrumen",
+      "community": 7,
+      "norm_label": "contributing to papan instrumen"
+    },
+    {
+      "label": "Cara Berkontribusi",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "contributing_cara_berkontribusi",
+      "community": 7,
+      "norm_label": "cara berkontribusi"
+    },
+    {
+      "label": "1. Laporkan Bug",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "contributing_1_laporkan_bug",
+      "community": 7,
+      "norm_label": "1. laporkan bug"
+    },
+    {
+      "label": "2. Usulkan Fitur",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "contributing_2_usulkan_fitur",
+      "community": 7,
+      "norm_label": "2. usulkan fitur"
+    },
+    {
+      "label": "3. Pull Request",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "contributing_3_pull_request",
+      "community": 7,
+      "norm_label": "3. pull request"
+    },
+    {
+      "label": "Development Setup",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "contributing_development_setup",
+      "community": 7,
+      "norm_label": "development setup"
+    },
+    {
+      "label": "Struktur Source",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "contributing_struktur_source",
+      "community": 7,
+      "norm_label": "struktur source"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "contributing_testing",
+      "community": 7,
+      "norm_label": "testing"
+    },
+    {
+      "label": "Coding Standard",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "contributing_coding_standard",
+      "community": 7,
+      "norm_label": "coding standard"
+    },
+    {
+      "label": "Ngecek di TradingView",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "contributing_ngecek_di_tradingview",
+      "community": 7,
+      "norm_label": "ngecek di tradingview"
+    },
+    {
+      "label": "Keterbatasan",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "contributing_keterbatasan",
+      "community": 7,
+      "norm_label": "keterbatasan"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 7,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Saham: Papan Instrumen By. Akhmfz",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_saham_papan_instrumen_by_akhmfz",
+      "community": 5,
+      "norm_label": "saham: papan instrumen by. akhmfz"
+    },
+    {
+      "label": "Quick Start",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "readme_quick_start",
+      "community": 5,
+      "norm_label": "quick start"
+    },
+    {
+      "label": "Screenshot",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "readme_screenshot",
+      "community": 5,
+      "norm_label": "screenshot"
+    },
+    {
+      "label": "Overview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "readme_overview",
+      "community": 5,
+      "norm_label": "overview"
+    },
+    {
+      "label": "Fitur Unggulan",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "readme_fitur_unggulan",
+      "community": 5,
+      "norm_label": "fitur unggulan"
+    },
+    {
+      "label": "Sector Classification (15 Kelas)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "readme_sector_classification_15_kelas",
+      "community": 5,
+      "norm_label": "sector classification (15 kelas)"
+    },
+    {
+      "label": "Sector-Aware Coverage",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "readme_sector_aware_coverage",
+      "community": 5,
+      "norm_label": "sector-aware coverage"
+    },
+    {
+      "label": "Known Limitations",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "readme_known_limitations",
+      "community": 5,
+      "norm_label": "known limitations"
+    },
+    {
+      "label": "Customization",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L104",
+      "_origin": "ast",
+      "id": "readme_customization",
+      "community": 5,
+      "norm_label": "customization"
+    },
+    {
+      "label": "Repository Structure",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "readme_repository_structure",
+      "community": 5,
+      "norm_label": "repository structure"
+    },
+    {
+      "label": "Development",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L153",
+      "_origin": "ast",
+      "id": "readme_development",
+      "community": 5,
+      "norm_label": "development"
+    },
+    {
+      "label": "Tech Stack",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L172",
+      "_origin": "ast",
+      "id": "readme_tech_stack",
+      "community": 5,
+      "norm_label": "tech stack"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L184",
+      "_origin": "ast",
+      "id": "readme_testing",
+      "community": 5,
+      "norm_label": "testing"
+    },
+    {
+      "label": "Disclaimer",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L207",
+      "_origin": "ast",
+      "id": "readme_disclaimer",
+      "community": 5,
+      "norm_label": "disclaimer"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L213",
+      "_origin": "ast",
+      "id": "readme_license",
+      "community": 5,
+      "norm_label": "license"
+    },
+    {
+      "label": "Author",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L219",
+      "_origin": "ast",
+      "id": "readme_author",
+      "community": 5,
+      "norm_label": "author"
+    },
+    {
+      "label": "AI.md",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_ai",
+      "community": 9,
+      "norm_label": "ai.md"
+    },
+    {
+      "label": "AI.md \u2014 AI Collaboration Context",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_ai_ai_md_ai_collaboration_context",
+      "community": 9,
+      "norm_label": "ai.md \u2014 ai collaboration context"
+    },
+    {
+      "label": "Project Identity",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docs_ai_project_identity",
+      "community": 9,
+      "norm_label": "project identity"
+    },
+    {
+      "label": "Product Philosophy",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "docs_ai_product_philosophy",
+      "community": 9,
+      "norm_label": "product philosophy"
+    },
+    {
+      "label": "AI Roles",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "docs_ai_ai_roles",
+      "community": 9,
+      "norm_label": "ai roles"
+    },
+    {
+      "label": "Context Loading Order (wajib dilakukan setiap AI sebelum bekerja)",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "docs_ai_context_loading_order_wajib_dilakukan_setiap_ai_sebelum_bekerja",
+      "community": 9,
+      "norm_label": "context loading order (wajib dilakukan setiap ai sebelum bekerja)"
+    },
+    {
+      "label": "Golden Rules",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "docs_ai_golden_rules",
+      "community": 9,
+      "norm_label": "golden rules"
+    },
+    {
+      "label": "Delivery Requirements",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "docs_ai_delivery_requirements",
+      "community": 9,
+      "norm_label": "delivery requirements"
+    },
+    {
+      "label": "Standard Development Flow",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_ai_standard_development_flow",
+      "community": 9,
+      "norm_label": "standard development flow"
+    },
+    {
+      "label": "Constraints",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "docs_ai_constraints",
+      "community": 9,
+      "norm_label": "constraints"
+    },
+    {
+      "label": "ARCHITECTURE.md",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_architecture",
+      "community": 4,
+      "norm_label": "architecture.md"
+    },
+    {
+      "label": "ARCHITECTURE.md \u2014 Arsitektur, Metodologi & Roadmap",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_architecture_architecture_md_arsitektur_metodologi_roadmap",
+      "community": 4,
+      "norm_label": "architecture.md \u2014 arsitektur, metodologi & roadmap"
+    },
+    {
+      "label": "Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docs_architecture_executive_summary",
+      "community": 4,
+      "norm_label": "executive summary"
+    },
+    {
+      "label": "Problem Statement",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "docs_architecture_problem_statement",
+      "community": 4,
+      "norm_label": "problem statement"
+    },
+    {
+      "label": "Target Users",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "docs_architecture_target_users",
+      "community": 4,
+      "norm_label": "target users"
+    },
+    {
+      "label": "Arsitektur Teknis",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "docs_architecture_arsitektur_teknis",
+      "community": 4,
+      "norm_label": "arsitektur teknis"
+    },
+    {
+      "label": "7-Layer Architecture",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "docs_architecture_7_layer_architecture",
+      "community": 4,
+      "norm_label": "7-layer architecture"
+    },
+    {
+      "label": "Source Code Structure (urutan wajib)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "docs_architecture_source_code_structure_urutan_wajib",
+      "community": 4,
+      "norm_label": "source code structure (urutan wajib)"
+    },
+    {
+      "label": "Module Dependency (tidak boleh ada dependency terbalik)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "docs_architecture_module_dependency_tidak_boleh_ada_dependency_terbalik",
+      "community": 4,
+      "norm_label": "module dependency (tidak boleh ada dependency terbalik)"
+    },
+    {
+      "label": "Request Budget",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "docs_architecture_request_budget",
+      "community": 4,
+      "norm_label": "request budget"
+    },
+    {
+      "label": "Metodologi Scoring",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "docs_architecture_metodologi_scoring",
+      "community": 4,
+      "norm_label": "metodologi scoring"
+    },
+    {
+      "label": "5 Pilar Analisis",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "docs_architecture_5_pilar_analisis",
+      "community": 4,
+      "norm_label": "5 pilar analisis"
+    },
+    {
+      "label": "7 Dimensi Scoring",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "docs_architecture_7_dimensi_scoring",
+      "community": 4,
+      "norm_label": "7 dimensi scoring"
+    },
+    {
+      "label": "Sector Classification",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L90",
+      "_origin": "ast",
+      "id": "docs_architecture_sector_classification",
+      "community": 4,
+      "norm_label": "sector classification"
+    },
+    {
+      "label": "Scoring Principles",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "docs_architecture_scoring_principles",
+      "community": 4,
+      "norm_label": "scoring principles"
+    },
+    {
+      "label": "Limitations",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L100",
+      "_origin": "ast",
+      "id": "docs_architecture_limitations",
+      "community": 4,
+      "norm_label": "limitations"
+    },
+    {
+      "label": "Roadmap",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L108",
+      "_origin": "ast",
+      "id": "docs_architecture_roadmap",
+      "community": 4,
+      "norm_label": "roadmap"
+    },
+    {
+      "label": "Versioning",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "docs_architecture_versioning",
+      "community": 4,
+      "norm_label": "versioning"
+    },
+    {
+      "label": "DEVELOPMENT.md",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_development",
+      "community": 0,
+      "norm_label": "development.md"
+    },
+    {
+      "label": "DEVELOPMENT.md \u2014 Panduan Pengembangan",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_development_development_md_panduan_pengembangan",
+      "community": 0,
+      "norm_label": "development.md \u2014 panduan pengembangan"
+    },
+    {
+      "label": "Current Sprint (S008 \u2014 Published on TradingView \ud83c\udf89)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docs_development_current_sprint_s008_published_on_tradingview",
+      "community": 0,
+      "norm_label": "current sprint (s008 \u2014 published on tradingview \ud83c\udf89)"
+    },
+    {
+      "label": "Semua backlog dari 3 audit agents closed",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "docs_development_semua_backlog_dari_3_audit_agents_closed",
+      "community": 0,
+      "norm_label": "semua backlog dari 3 audit agents closed"
+    },
+    {
+      "label": "Known Issues",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "docs_development_known_issues",
+      "community": 0,
+      "norm_label": "known issues"
+    },
+    {
+      "label": "Coding Standard",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "docs_development_coding_standard",
+      "community": 0,
+      "norm_label": "coding standard"
+    },
+    {
+      "label": "Naming Conventions",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "docs_development_naming_conventions",
+      "community": 0,
+      "norm_label": "naming conventions"
+    },
+    {
+      "label": "File Structure (urutan wajib)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "docs_development_file_structure_urutan_wajib",
+      "community": 0,
+      "norm_label": "file structure (urutan wajib)"
+    },
+    {
+      "label": "Function Rules",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_development_function_rules",
+      "community": 0,
+      "norm_label": "function rules"
+    },
+    {
+      "label": "Anti-Patterns",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "docs_development_anti_patterns",
+      "community": 0,
+      "norm_label": "anti-patterns"
+    },
+    {
+      "label": "Commit Convention",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "docs_development_commit_convention",
+      "community": 0,
+      "norm_label": "commit convention"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "docs_development_testing",
+      "community": 0,
+      "norm_label": "testing"
+    },
+    {
+      "label": "6-Level Testing",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_development_6_level_testing",
+      "community": 0,
+      "norm_label": "6-level testing"
+    },
+    {
+      "label": "Manual Test Matrix (12 emiten lintas sektor)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "docs_development_manual_test_matrix_12_emiten_lintas_sektor",
+      "community": 0,
+      "norm_label": "manual test matrix (12 emiten lintas sektor)"
+    },
+    {
+      "label": "Bug Classification",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "docs_development_bug_classification",
+      "community": 0,
+      "norm_label": "bug classification"
+    },
+    {
+      "label": "Backlog",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "docs_development_backlog",
+      "community": 0,
+      "norm_label": "backlog"
+    },
+    {
+      "label": "Issue Labels",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "docs_development_issue_labels",
+      "community": 0,
+      "norm_label": "issue labels"
+    },
+    {
+      "label": "External Resources",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "docs_development_external_resources",
+      "community": 0,
+      "norm_label": "external resources"
+    },
+    {
+      "label": "Reference",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "docs_development_reference",
+      "community": 0,
+      "norm_label": "reference"
+    },
+    {
+      "label": "Tools",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L114",
+      "_origin": "ast",
+      "id": "docs_development_tools",
+      "community": 0,
+      "norm_label": "tools"
+    },
+    {
+      "label": "Advanced",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "docs_development_advanced",
+      "community": 0,
+      "norm_label": "advanced"
+    },
+    {
+      "label": "PineTS Testing",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L128",
+      "_origin": "ast",
+      "id": "docs_development_pinets_testing",
+      "community": 0,
+      "norm_label": "pinets testing"
+    },
+    {
+      "label": "Benchmark",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L136",
+      "_origin": "ast",
+      "id": "docs_development_benchmark",
+      "community": 0,
+      "norm_label": "benchmark"
+    },
+    {
+      "label": "Automation (future)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L147",
+      "_origin": "ast",
+      "id": "docs_development_automation_future",
+      "community": 0,
+      "norm_label": "automation (future)"
+    },
+    {
+      "label": "New Discoveries (Build 011)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L152",
+      "_origin": "ast",
+      "id": "docs_development_new_discoveries_build_011",
+      "community": 0,
+      "norm_label": "new discoveries (build 011)"
+    },
+    {
+      "label": "Sector-Aware Coverage Matrix",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "docs_development_sector_aware_coverage_matrix",
+      "community": 0,
+      "norm_label": "sector-aware coverage matrix"
+    },
+    {
+      "label": "Release Checklist (P4-1)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L184",
+      "_origin": "ast",
+      "id": "docs_development_release_checklist_p4_1",
+      "community": 0,
+      "norm_label": "release checklist (p4-1)"
+    },
+    {
+      "label": "Changelog",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L198",
+      "_origin": "ast",
+      "id": "docs_development_changelog",
+      "community": 8,
+      "norm_label": "changelog"
+    },
+    {
+      "label": "Build 010 (Current)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L200",
+      "_origin": "ast",
+      "id": "docs_development_build_010_current",
+      "community": 8,
+      "norm_label": "build 010 (current)"
+    },
+    {
+      "label": "Build 009",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L210",
+      "_origin": "ast",
+      "id": "docs_development_build_009",
+      "community": 8,
+      "norm_label": "build 009"
+    },
+    {
+      "label": "Build 008",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L218",
+      "_origin": "ast",
+      "id": "docs_development_build_008",
+      "community": 8,
+      "norm_label": "build 008"
+    },
+    {
+      "label": "Build 007 (Previous)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L228",
+      "_origin": "ast",
+      "id": "docs_development_build_007_previous",
+      "community": 8,
+      "norm_label": "build 007 (previous)"
+    },
+    {
+      "label": "Build 006",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L239",
+      "_origin": "ast",
+      "id": "docs_development_build_006",
+      "community": 8,
+      "norm_label": "build 006"
+    },
+    {
+      "label": "Build 005",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L247",
+      "_origin": "ast",
+      "id": "docs_development_build_005",
+      "community": 8,
+      "norm_label": "build 005"
+    },
+    {
+      "label": "Build 004",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L253",
+      "_origin": "ast",
+      "id": "docs_development_build_004",
+      "community": 8,
+      "norm_label": "build 004"
+    },
+    {
+      "label": "Build 004 Rev 1",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L258",
+      "_origin": "ast",
+      "id": "docs_development_build_004_rev_1",
+      "community": 8,
+      "norm_label": "build 004 rev 1"
+    },
+    {
+      "label": "Build 003",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L264",
+      "_origin": "ast",
+      "id": "docs_development_build_003",
+      "community": 8,
+      "norm_label": "build 003"
+    },
+    {
+      "label": "Build 002",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L268",
+      "_origin": "ast",
+      "id": "docs_development_build_002",
+      "community": 8,
+      "norm_label": "build 002"
+    },
+    {
+      "label": "Build 001",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L273",
+      "_origin": "ast",
+      "id": "docs_development_build_001",
+      "community": 8,
+      "norm_label": "build 001"
+    },
+    {
+      "label": "README.id.md",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_readme_id",
+      "community": 7,
+      "norm_label": "readme.id.md"
+    },
+    {
+      "label": "Panduan Pengguna \u2014 Papan Instrumen",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "community": 1,
+      "norm_label": "panduan pengguna \u2014 papan instrumen"
+    },
+    {
+      "label": "Apa itu Papan Instrumen?",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "docs_readme_id_apa_itu_papan_instrumen",
+      "community": 1,
+      "norm_label": "apa itu papan instrumen?"
+    },
+    {
+      "label": "Cara Install",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "docs_readme_id_cara_install",
+      "community": 1,
+      "norm_label": "cara install"
+    },
+    {
+      "label": "Install via TradingView Public Library",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "docs_readme_id_install_via_tradingview_public_library",
+      "community": 1,
+      "norm_label": "install via tradingview public library"
+    },
+    {
+      "label": "7 Dimensi Scoring",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "docs_readme_id_7_dimensi_scoring",
+      "community": 1,
+      "norm_label": "7 dimensi scoring"
+    },
+    {
+      "label": "Skor Keseluruhan",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "docs_readme_id_skor_keseluruhan",
+      "community": 1,
+      "norm_label": "skor keseluruhan"
+    },
+    {
+      "label": "Cara Membaca Dashboard",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "docs_readme_id_cara_membaca_dashboard",
+      "community": 1,
+      "norm_label": "cara membaca dashboard"
+    },
+    {
+      "label": "Layout",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "docs_readme_id_layout",
+      "community": 1,
+      "norm_label": "layout"
+    },
+    {
+      "label": "Arti Warna",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L82",
+      "_origin": "ast",
+      "id": "docs_readme_id_arti_warna",
+      "community": 1,
+      "norm_label": "arti warna"
+    },
+    {
+      "label": "Indikator Kelengkapan (n/x)",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "docs_readme_id_indikator_kelengkapan_n_x",
+      "community": 1,
+      "norm_label": "indikator kelengkapan (n/x)"
+    },
+    {
+      "label": "Pengaturan Penting",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "docs_readme_id_pengaturan_penting",
+      "community": 1,
+      "norm_label": "pengaturan penting"
+    },
+    {
+      "label": "1. Deteksi Sektor",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "docs_readme_id_1_deteksi_sektor",
+      "community": 1,
+      "norm_label": "1. deteksi sektor"
+    },
+    {
+      "label": "2. Faktor Indonesia",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "docs_readme_id_2_faktor_indonesia",
+      "community": 1,
+      "norm_label": "2. faktor indonesia"
+    },
+    {
+      "label": "3. Bobot Kustom",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L132",
+      "_origin": "ast",
+      "id": "docs_readme_id_3_bobot_kustom",
+      "community": 1,
+      "norm_label": "3. bobot kustom"
+    },
+    {
+      "label": "4. Tema Warna",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L141",
+      "_origin": "ast",
+      "id": "docs_readme_id_4_tema_warna",
+      "community": 1,
+      "norm_label": "4. tema warna"
+    },
+    {
+      "label": "5. Tampilan",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L145",
+      "_origin": "ast",
+      "id": "docs_readme_id_5_tampilan",
+      "community": 1,
+      "norm_label": "5. tampilan"
+    },
+    {
+      "label": "Modul Risiko Likuiditas",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L152",
+      "_origin": "ast",
+      "id": "docs_readme_id_modul_risiko_likuiditas",
+      "community": 1,
+      "norm_label": "modul risiko likuiditas"
+    },
+    {
+      "label": "Tips",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L169",
+      "_origin": "ast",
+      "id": "docs_readme_id_tips",
+      "community": 1,
+      "norm_label": "tips"
+    },
+    {
+      "label": "Emiten Baru IPO",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L171",
+      "_origin": "ast",
+      "id": "docs_readme_id_emiten_baru_ipo",
+      "community": 1,
+      "norm_label": "emiten baru ipo"
+    },
+    {
+      "label": "Sektor Salah Deteksi",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L174",
+      "_origin": "ast",
+      "id": "docs_readme_id_sektor_salah_deteksi",
+      "community": 1,
+      "norm_label": "sektor salah deteksi"
+    },
+    {
+      "label": "Skor Tidak Berubah",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L177",
+      "_origin": "ast",
+      "id": "docs_readme_id_skor_tidak_berubah",
+      "community": 1,
+      "norm_label": "skor tidak berubah"
+    },
+    {
+      "label": "Backward Compatibility",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L180",
+      "_origin": "ast",
+      "id": "docs_readme_id_backward_compatibility",
+      "community": 1,
+      "norm_label": "backward compatibility"
+    },
+    {
+      "label": "FAQ",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L185",
+      "_origin": "ast",
+      "id": "docs_readme_id_faq",
+      "community": 1,
+      "norm_label": "faq"
+    },
+    {
+      "label": "Disclaimer",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L201",
+      "_origin": "ast",
+      "id": "docs_readme_id_disclaimer",
+      "community": 1,
+      "norm_label": "disclaimer"
+    },
+    {
+      "label": "Author",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "source_location": "L209",
+      "_origin": "ast",
+      "id": "docs_readme_id_author",
+      "community": 1,
+      "norm_label": "author"
+    },
+    {
+      "id": "doc:panduan-pengguna",
+      "label": "Panduan Pengguna \u2014 Papan Instrumen",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "metadata": {
+        "kind": "doc"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:7-dimensi",
+      "label": "7 Dimensi Scoring",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:value",
+      "label": "Value (Valuasi)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:quality",
+      "label": "Quality (Profitability)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:growth",
+      "label": "Growth",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:health",
+      "label": "Financial Health",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:income",
+      "label": "Income (Dividend)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:momentum",
+      "label": "Momentum",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:indonesia-faktor",
+      "label": "Indonesia Factor",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:sector-engine",
+      "label": "Sector Engine (15 classes)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:7-layer",
+      "label": "7-Layer Architecture",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:cara-install",
+      "label": "Cara Install (TradingView)",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:sector-matrix",
+      "label": "Sector-Aware Coverage Matrix",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:request-budget",
+      "label": "Request Budget (35 calls)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:methodology",
+      "label": "Metodologi Scoring",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:scoring-principles",
+      "label": "Scoring Principles",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:risk-liquidity",
+      "label": "Modul Risiko Likuiditas",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:custom-weights",
+      "label": "Bobot Kustom",
+      "file_type": "document",
+      "source_file": "docs/README.id.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    },
+    {
+      "id": "doc:ai-collaboration",
+      "label": "AI Collaboration Guidelines",
+      "file_type": "document",
+      "source_file": "docs/AI.md",
+      "metadata": {
+        "kind": "concept"
+      },
+      "_origin": "ai",
+      "community": null
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "build",
+      "target": "build_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_private",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_ci",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_lint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test_all",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_transpile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_pinets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "scripts_gh_sync",
+      "target": "scripts_gh_sync_create_issue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_gh_sync",
+      "target": "scripts_gh_sync_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L53",
+      "weight": 1.0,
+      "context": "call",
+      "source": "scripts_gh_sync_sh__entry",
+      "target": "scripts_gh_sync_create_issue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_ok",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "call",
+      "source": "scripts_lint_sh__entry",
+      "target": "scripts_lint_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "call",
+      "source": "scripts_lint_sh__entry",
+      "target": "scripts_lint_ok",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_pinets_verify",
+      "target": "tests_pinets_verify_candles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_dummycandles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "tests_scoring_runner_runtest",
+      "target": "tests_scoring_runner_dummycandles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_runtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_lastval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_test_growth_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_test_health_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_test_income_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_test_momentum_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_test_overall_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_test_quality_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_test_regression_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_actualsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_allpassed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasconsumerweights",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasfsafelower",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasfsafelowersafe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hassekuritasquality",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_testfiles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_test_value_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_transpile",
+      "target": "tests_transpile_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "catatan",
+      "target": "catatan_catatan_pengembangan_lessons_learned",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_bug_yang_pernah_ada_fase_0",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_dev_tools_yang_sudah_terpasang",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_engine_comparison_yang_sudah_dipelajari",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_file_structure_yang_ada_sekarang",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_process_pelajaran",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_testing_pelajaran",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L203",
+      "weight": 1.0,
+      "source": "catatan_catatan_pengembangan_lessons_learned",
+      "target": "catatan_yang_belum_selesai_backlog_aktif",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "target": "catatan_1_reserved_keywords",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "target": "catatan_2_no_local_functions_inside_if_blocks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "target": "catatan_3_type_annotations_pada_parameter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "target": "catatan_4_semicolons_di_if_blocks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "target": "catatan_5_input_float_tidak_bisa_default_na",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "target": "catatan_6_error_cascade_fix_error_pertama_dulu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "catatan_pine_script_v6_jebakan_anti_pattern",
+      "target": "catatan_7_unicode_characters_line_breaks_in_ternary_fatal_n_pine_n_error_ce10156_ternary_broken_across_lines_unicode_in_comment_nf_scorecashflow_float_cf_float_mcapval_n_na_cf_na_n_f_scorehigher_cf_mcapval_100_2_5_n_n_correct_single_line_ascii_only_nf_scorecashflow_float_cf_float_mcapval_n_na_cf_or_na_mcapval_or_mcapval_0_na_f_scorehigher_cf_mcapval_100_2_5_n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "catatan_testing_pelajaran",
+      "target": "catatan_pinets_limitations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "catatan_testing_pelajaran",
+      "target": "catatan_test_count_history",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "catatan_testing_pelajaran",
+      "target": "catatan_test_vs_production_gap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "catatan_process_pelajaran",
+      "target": "catatan_commit_convention",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "catatan_process_pelajaran",
+      "target": "catatan_no_silent_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CATATAN.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "catatan_process_pelajaran",
+      "target": "catatan_rilis_harus_diverifikasi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "contributing",
+      "target": "contributing_contributing_to_papan_instrumen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "contributing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "contributing_contributing_to_papan_instrumen",
+      "target": "contributing_cara_berkontribusi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_1_laporkan_bug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_2_usulkan_fitur",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_3_pull_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_coding_standard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_development_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_keterbatasan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_ngecek_di_tradingview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_struktur_source",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CONTRIBUTING.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "contributing_cara_berkontribusi",
+      "target": "contributing_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_readme_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_saham_papan_instrumen_by_akhmfz",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L219",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_author",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_customization",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_development",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L207",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_disclaimer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L213",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_quick_start",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_repository_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_screenshot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_sector_classification_15_kelas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L172",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_tech_stack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L184",
+      "weight": 1.0,
+      "source": "readme_saham_papan_instrumen_by_akhmfz",
+      "target": "readme_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "readme_overview",
+      "target": "readme_fitur_unggulan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "readme_sector_classification_15_kelas",
+      "target": "readme_known_limitations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "readme_sector_classification_15_kelas",
+      "target": "readme_sector_aware_coverage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_ai",
+      "target": "docs_ai_ai_md_ai_collaboration_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_ai_roles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_context_loading_order_wajib_dilakukan_setiap_ai_sebelum_bekerja",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_delivery_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_golden_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_product_philosophy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_project_identity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "docs_ai_ai_md_ai_collaboration_context",
+      "target": "docs_ai_standard_development_flow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_architecture",
+      "target": "docs_architecture_architecture_md_arsitektur_metodologi_roadmap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture_md_arsitektur_metodologi_roadmap",
+      "target": "docs_architecture_arsitektur_teknis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture_md_arsitektur_metodologi_roadmap",
+      "target": "docs_architecture_executive_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture_md_arsitektur_metodologi_roadmap",
+      "target": "docs_architecture_metodologi_scoring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "docs_architecture_architecture_md_arsitektur_metodologi_roadmap",
+      "target": "docs_architecture_roadmap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "docs_architecture_executive_summary",
+      "target": "docs_architecture_problem_statement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "docs_architecture_executive_summary",
+      "target": "docs_architecture_target_users",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "docs_architecture_arsitektur_teknis",
+      "target": "docs_architecture_7_layer_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "docs_architecture_arsitektur_teknis",
+      "target": "docs_architecture_module_dependency_tidak_boleh_ada_dependency_terbalik",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "docs_architecture_arsitektur_teknis",
+      "target": "docs_architecture_request_budget",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "docs_architecture_arsitektur_teknis",
+      "target": "docs_architecture_source_code_structure_urutan_wajib",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "docs_architecture_metodologi_scoring",
+      "target": "docs_architecture_5_pilar_analisis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "docs_architecture_metodologi_scoring",
+      "target": "docs_architecture_7_dimensi_scoring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "docs_architecture_metodologi_scoring",
+      "target": "docs_architecture_limitations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "docs_architecture_metodologi_scoring",
+      "target": "docs_architecture_scoring_principles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "docs_architecture_metodologi_scoring",
+      "target": "docs_architecture_sector_classification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "docs_architecture_roadmap",
+      "target": "docs_architecture_versioning",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_development",
+      "target": "docs_development_development_md_panduan_pengembangan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_backlog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_changelog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_coding_standard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_current_sprint_s008_published_on_tradingview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_external_resources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L184",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_release_checklist_p4_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_sector_aware_coverage_matrix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "docs_development_development_md_panduan_pengembangan",
+      "target": "docs_development_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "docs_development_current_sprint_s008_published_on_tradingview",
+      "target": "docs_development_known_issues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "docs_development_current_sprint_s008_published_on_tradingview",
+      "target": "docs_development_semua_backlog_dari_3_audit_agents_closed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "docs_development_coding_standard",
+      "target": "docs_development_anti_patterns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "docs_development_coding_standard",
+      "target": "docs_development_commit_convention",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "docs_development_coding_standard",
+      "target": "docs_development_file_structure_urutan_wajib",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_development_coding_standard",
+      "target": "docs_development_function_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "docs_development_coding_standard",
+      "target": "docs_development_naming_conventions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "docs_development_testing",
+      "target": "docs_development_6_level_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "docs_development_testing",
+      "target": "docs_development_bug_classification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "docs_development_testing",
+      "target": "docs_development_manual_test_matrix_12_emiten_lintas_sektor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "docs_development_backlog",
+      "target": "docs_development_issue_labels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "docs_development_external_resources",
+      "target": "docs_development_advanced",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "docs_development_external_resources",
+      "target": "docs_development_automation_future",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "docs_development_external_resources",
+      "target": "docs_development_benchmark",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "docs_development_external_resources",
+      "target": "docs_development_new_discoveries_build_011",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "docs_development_external_resources",
+      "target": "docs_development_pinets_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "docs_development_external_resources",
+      "target": "docs_development_reference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "docs_development_external_resources",
+      "target": "docs_development_tools",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L273",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_001",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L268",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_002",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L264",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_003",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L253",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_004",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L258",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_004_rev_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L247",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_005",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L239",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_006",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L228",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_007_previous",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_008",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L210",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_009",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DEVELOPMENT.md",
+      "source_location": "L200",
+      "weight": 1.0,
+      "source": "docs_development_changelog",
+      "target": "docs_development_build_010_current",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_readme_id",
+      "target": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_7_dimensi_scoring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_apa_itu_papan_instrumen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L209",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_author",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_cara_install",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_cara_membaca_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L201",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_disclaimer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L185",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_faq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_modul_risiko_likuiditas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_pengaturan_penting",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "docs_readme_id_panduan_pengguna_papan_instrumen",
+      "target": "docs_readme_id_tips",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "docs_readme_id_cara_install",
+      "target": "docs_readme_id_install_via_tradingview_public_library",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "docs_readme_id_7_dimensi_scoring",
+      "target": "docs_readme_id_skor_keseluruhan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "docs_readme_id_cara_membaca_dashboard",
+      "target": "docs_readme_id_arti_warna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "docs_readme_id_cara_membaca_dashboard",
+      "target": "docs_readme_id_indikator_kelengkapan_n_x",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "docs_readme_id_cara_membaca_dashboard",
+      "target": "docs_readme_id_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "docs_readme_id_pengaturan_penting",
+      "target": "docs_readme_id_1_deteksi_sektor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "docs_readme_id_pengaturan_penting",
+      "target": "docs_readme_id_2_faktor_indonesia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "docs_readme_id_pengaturan_penting",
+      "target": "docs_readme_id_3_bobot_kustom",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "docs_readme_id_pengaturan_penting",
+      "target": "docs_readme_id_4_tema_warna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "docs_readme_id_pengaturan_penting",
+      "target": "docs_readme_id_5_tampilan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "docs_readme_id_tips",
+      "target": "docs_readme_id_backward_compatibility",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "docs_readme_id_tips",
+      "target": "docs_readme_id_emiten_baru_ipo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L174",
+      "weight": 1.0,
+      "source": "docs_readme_id_tips",
+      "target": "docs_readme_id_sektor_salah_deteksi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.id.md",
+      "source_location": "L177",
+      "weight": 1.0,
+      "source": "docs_readme_id_tips",
+      "target": "docs_readme_id_skor_tidak_berubah",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "doc:panduan-pengguna",
+      "target": "doc:7-dimensi",
+      "relation": "describes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-dimensi",
+      "target": "doc:value",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-dimensi",
+      "target": "doc:quality",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-dimensi",
+      "target": "doc:growth",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-dimensi",
+      "target": "doc:health",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-dimensi",
+      "target": "doc:income",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-dimensi",
+      "target": "doc:momentum",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-dimensi",
+      "target": "doc:indonesia-faktor",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:7-layer",
+      "target": "doc:sector-engine",
+      "relation": "includes",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:methodology",
+      "target": "doc:scoring-principles",
+      "relation": "defines",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:methodology",
+      "target": "doc:7-dimensi",
+      "relation": "defines",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:methodology",
+      "target": "doc:7-layer",
+      "relation": "references",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:sector-matrix",
+      "target": "doc:sector-engine",
+      "relation": "details",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:request-budget",
+      "target": "doc:7-layer",
+      "relation": "constrains",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:risk-liquidity",
+      "target": "doc:panduan-pengguna",
+      "relation": "part_of",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:custom-weights",
+      "target": "doc:panduan-pengguna",
+      "relation": "part_of",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:cara-install",
+      "target": "doc:panduan-pengguna",
+      "relation": "part_of",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "doc:ai-collaboration",
+      "target": "doc:7-layer",
+      "relation": "references",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "docs_architecture_metodologi_scoring",
+      "target": "doc:methodology",
+      "relation": "documented_in",
+      "confidence": "INFERRED"
+    },
+    {
+      "source": "docs_architecture_7_dimensi_scoring",
+      "target": "doc:7-dimensi",
+      "relation": "documented_in",
+      "confidence": "INFERRED"
+    },
+    {
+      "source": "docs_architecture_7_layer_architecture",
+      "target": "doc:7-layer",
+      "relation": "documented_in",
+      "confidence": "INFERRED"
+    },
+    {
+      "source": "docs_architecture_sector_classification",
+      "target": "doc:sector-engine",
+      "relation": "documented_in",
+      "confidence": "INFERRED"
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "3c92fce04a539ed03a51a341737bbeb55c55e814",
+  "_augmented_by": "ai-semantic"
+}

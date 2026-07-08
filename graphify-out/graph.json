@@ -1,0 +1,4522 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "hy_7dimensiscoring_set",
+        "label": "7 Dimensi Scoring",
+        "nodes": [
+          "docs_readme_id_value",
+          "docs_readme_id_quality",
+          "docs_readme_id_growth",
+          "docs_readme_id_health",
+          "docs_readme_id_income",
+          "docs_readme_id_momentum",
+          "docs_readme_id_indonesiafactor"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docs/README.id.md"
+      },
+      {
+        "id": "hy_docs_set",
+        "label": "Documentation Files",
+        "nodes": [
+          "docs_architecture_7layerarchitecture",
+          "docs_architecture_scoringprinciples",
+          "docs_ai_airoles",
+          "docs_development_codingstandard",
+          "docs_development_changelog",
+          "catatan_reservedkeywords"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "CATATAN.md"
+      },
+      {
+        "id": "hy_ci_pipeline",
+        "label": "GitHub CI Pipeline",
+        "nodes": [
+          "github_workflows_build"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": ".github/workflows/build.yml"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "build.sh",
+      "file_type": "code",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "community": 11,
+      "norm_label": "build.sh",
+      "id": "build"
+    },
+    {
+      "label": "build.sh script",
+      "file_type": "code",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "community": 11,
+      "norm_label": "build.sh script",
+      "id": "build_sh__entry"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "package.json",
+      "id": "package"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "name",
+      "id": "package_name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "version",
+      "id": "package_version"
+    },
+    {
+      "label": "description",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "description",
+      "id": "package_description"
+    },
+    {
+      "label": "private",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "private",
+      "id": "package_private"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "scripts",
+      "id": "package_scripts"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "build",
+      "id": "package_scripts_build"
+    },
+    {
+      "label": "lint",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "lint",
+      "id": "package_scripts_lint"
+    },
+    {
+      "label": "test",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "test",
+      "id": "package_scripts_test"
+    },
+    {
+      "label": "test:all",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "test:all",
+      "id": "package_scripts_test_all"
+    },
+    {
+      "label": "transpile",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "transpile",
+      "id": "package_scripts_transpile"
+    },
+    {
+      "label": "ci",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "ci",
+      "id": "package_scripts_ci"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "devdependencies",
+      "id": "package_devdependencies"
+    },
+    {
+      "label": "pinets",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "pinets",
+      "id": "package_devdependencies_pinets"
+    },
+    {
+      "label": "license",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "license",
+      "id": "package_license"
+    },
+    {
+      "label": "gh-sync.sh",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "gh-sync.sh",
+      "id": "scripts_gh_sync"
+    },
+    {
+      "label": "gh-sync.sh script",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "gh-sync.sh script",
+      "id": "scripts_gh_sync_sh__entry"
+    },
+    {
+      "label": "create_issue()",
+      "file_type": "code",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L35",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "create_issue()",
+      "id": "scripts_gh_sync_create_issue"
+    },
+    {
+      "label": "lint.sh",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "community": 8,
+      "norm_label": "lint.sh",
+      "id": "scripts_lint"
+    },
+    {
+      "label": "lint.sh script",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "community": 8,
+      "norm_label": "lint.sh script",
+      "id": "scripts_lint_sh__entry"
+    },
+    {
+      "label": "ok()",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L8",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "community": 8,
+      "norm_label": "ok()",
+      "id": "scripts_lint_ok"
+    },
+    {
+      "label": "err()",
+      "file_type": "code",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L9",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "community": 8,
+      "norm_label": "err()",
+      "id": "scripts_lint_err"
+    },
+    {
+      "label": "pinets-verify.mjs",
+      "file_type": "code",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 12,
+      "norm_label": "pinets-verify.mjs",
+      "id": "tests_pinets_verify"
+    },
+    {
+      "label": "candles",
+      "file_type": "code",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 12,
+      "norm_label": "candles",
+      "id": "tests_pinets_verify_candles"
+    },
+    {
+      "label": "runner.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "runner.mjs",
+      "id": "tests_scoring_runner"
+    },
+    {
+      "label": "dummyCandles()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "dummycandles()",
+      "id": "tests_scoring_runner_dummycandles"
+    },
+    {
+      "label": "runTest()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L116",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "runtest()",
+      "id": "tests_scoring_runner_runtest"
+    },
+    {
+      "label": "lastVal()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L127",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "lastval()",
+      "id": "tests_scoring_runner_lastval"
+    },
+    {
+      "label": "assert()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L134",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "assert()",
+      "id": "tests_scoring_runner_assert"
+    },
+    {
+      "label": "summary()",
+      "file_type": "code",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L145",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "summary()",
+      "id": "tests_scoring_runner_summary"
+    },
+    {
+      "label": "test-growth.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-growth.mjs",
+      "id": "tests_scoring_test_growth"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L64",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_growth_t"
+    },
+    {
+      "label": "test-health.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-health.mjs",
+      "id": "tests_scoring_test_health"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L84",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_health_t"
+    },
+    {
+      "label": "test-income.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-income.mjs",
+      "id": "tests_scoring_test_income"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L40",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_income_t"
+    },
+    {
+      "label": "test-momentum.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-momentum.mjs",
+      "id": "tests_scoring_test_momentum"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L44",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_momentum_t"
+    },
+    {
+      "label": "test-overall.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-overall.mjs",
+      "id": "tests_scoring_test_overall"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L60",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_overall_t"
+    },
+    {
+      "label": "test-quality.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-quality.mjs",
+      "id": "tests_scoring_test_quality"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L61",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_quality_t"
+    },
+    {
+      "label": "test-regression.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-regression.mjs",
+      "id": "tests_scoring_test_regression"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L53",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_regression_t"
+    },
+    {
+      "label": "test-source-match.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "test-source-match.mjs",
+      "id": "tests_scoring_test_source_match"
+    },
+    {
+      "label": "actualSource",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L8",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "actualsource",
+      "id": "tests_scoring_test_source_match_actualsource"
+    },
+    {
+      "label": "hasFSafeLower",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L11",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "hasfsafelower",
+      "id": "tests_scoring_test_source_match_hasfsafelower"
+    },
+    {
+      "label": "hasFSafeLowerSafe",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L12",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "hasfsafelowersafe",
+      "id": "tests_scoring_test_source_match_hasfsafelowersafe"
+    },
+    {
+      "label": "hasConsumerWeights",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L16",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "hasconsumerweights",
+      "id": "tests_scoring_test_source_match_hasconsumerweights"
+    },
+    {
+      "label": "hasSekuritasQuality",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L17",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "hassekuritasquality",
+      "id": "tests_scoring_test_source_match_hassekuritasquality"
+    },
+    {
+      "label": "checks",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L28",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "checks",
+      "id": "tests_scoring_test_source_match_checks"
+    },
+    {
+      "label": "allPassed",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L36",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "allpassed",
+      "id": "tests_scoring_test_source_match_allpassed"
+    },
+    {
+      "label": "testFiles",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L40",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "testfiles",
+      "id": "tests_scoring_test_source_match_testfiles"
+    },
+    {
+      "label": "test-value.mjs",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "test-value.mjs",
+      "id": "tests_scoring_test_value"
+    },
+    {
+      "label": "t",
+      "file_type": "code",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L60",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "t",
+      "id": "tests_scoring_test_value_t"
+    },
+    {
+      "label": "transpile.sh",
+      "file_type": "code",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "community": 13,
+      "norm_label": "transpile.sh",
+      "id": "tests_transpile"
+    },
+    {
+      "label": "transpile.sh script",
+      "file_type": "code",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "community": 13,
+      "norm_label": "transpile.sh script",
+      "id": "tests_transpile_sh__entry"
+    },
+    {
+      "label": "Papan Instrumen \u2014 Fundamental Dashboard",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 1,
+      "norm_label": "papan instrumen \u2014 fundamental dashboard",
+      "id": "readme_papaninstrumen"
+    },
+    {
+      "label": "7 Dimensi Scoring",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 5,
+      "norm_label": "7 dimensi scoring",
+      "id": "readme_7dimensiscoring"
+    },
+    {
+      "label": "15 Kelas Sektor",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 1,
+      "norm_label": "15 kelas sektor",
+      "id": "readme_15kelassektor"
+    },
+    {
+      "label": "Sector-Aware Scoring",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 1,
+      "norm_label": "sector-aware scoring",
+      "id": "readme_sectoraware"
+    },
+    {
+      "label": "Risk Module \u2014 Likuiditas",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 5,
+      "norm_label": "risk module \u2014 likuiditas",
+      "id": "readme_riskmodule"
+    },
+    {
+      "label": "5 Preset Bobot",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 5,
+      "norm_label": "5 preset bobot",
+      "id": "readme_5presetbobot"
+    },
+    {
+      "label": "5 Color Themes",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 23,
+      "norm_label": "5 color themes",
+      "id": "readme_5colorthemes"
+    },
+    {
+      "label": "Compact Mode",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 25,
+      "norm_label": "compact mode",
+      "id": "readme_compactmode"
+    },
+    {
+      "label": "Bilingual (ID/EN)",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 24,
+      "norm_label": "bilingual (id/en)",
+      "id": "readme_bilingual"
+    },
+    {
+      "label": "IDX \u2014 Indonesia Stock Exchange",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 1,
+      "norm_label": "idx \u2014 indonesia stock exchange",
+      "id": "readme_idxsaham"
+    },
+    {
+      "label": "89 Automated Tests via PineTS",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "community": 1,
+      "norm_label": "89 automated tests via pinets",
+      "id": "readme_89automatedtests"
+    },
+    {
+      "label": "Dashboard Screenshot Preview",
+      "file_type": "image",
+      "source_file": "assets/screenshot.png",
+      "community": 1,
+      "norm_label": "dashboard screenshot preview",
+      "id": "readme_screenshotpreview"
+    },
+    {
+      "label": "Value Dimension (Valuasi)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 5,
+      "norm_label": "value dimension (valuasi)",
+      "id": "docs_readme_id_value"
+    },
+    {
+      "label": "Quality Dimension (Profitability)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 5,
+      "norm_label": "quality dimension (profitability)",
+      "id": "docs_readme_id_quality"
+    },
+    {
+      "label": "Growth Dimension",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 5,
+      "norm_label": "growth dimension",
+      "id": "docs_readme_id_growth"
+    },
+    {
+      "label": "Health Dimension (Financial)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 5,
+      "norm_label": "health dimension (financial)",
+      "id": "docs_readme_id_health"
+    },
+    {
+      "label": "Income Dimension (Dividend)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 5,
+      "norm_label": "income dimension (dividend)",
+      "id": "docs_readme_id_income"
+    },
+    {
+      "label": "Momentum Dimension",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 5,
+      "norm_label": "momentum dimension",
+      "id": "docs_readme_id_momentum"
+    },
+    {
+      "label": "Indonesia Factor (7th Dimension)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 5,
+      "norm_label": "indonesia factor (7th dimension)",
+      "id": "docs_readme_id_indonesiafactor"
+    },
+    {
+      "label": "Overall Score (0-100)",
+      "file_type": "rationale",
+      "source_file": "docs/README.id.md",
+      "community": 1,
+      "norm_label": "overall score (0-100)",
+      "id": "docs_readme_id_overallscore"
+    },
+    {
+      "label": "7-Layer Architecture",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "community": 1,
+      "norm_label": "7-layer architecture",
+      "id": "docs_architecture_7layerarchitecture"
+    },
+    {
+      "label": "Request Budget \u2014 35 calls total",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "community": 1,
+      "norm_label": "request budget \u2014 35 calls total",
+      "id": "docs_architecture_requestbudget"
+    },
+    {
+      "label": "5 Pilar Analisis Fundamental",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "community": 5,
+      "norm_label": "5 pilar analisis fundamental",
+      "id": "docs_architecture_5pilars"
+    },
+    {
+      "label": "Scoring Principles",
+      "file_type": "rationale",
+      "source_file": "docs/ARCHITECTURE.md",
+      "community": 5,
+      "norm_label": "scoring principles",
+      "id": "docs_architecture_scoringprinciples"
+    },
+    {
+      "label": "Roadmap (Phase 1-8)",
+      "file_type": "document",
+      "source_file": "docs/ARCHITECTURE.md",
+      "community": 1,
+      "norm_label": "roadmap (phase 1-8)",
+      "id": "docs_architecture_roadmap"
+    },
+    {
+      "label": "Coding Standard",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "community": 21,
+      "norm_label": "coding standard",
+      "id": "docs_development_codingstandard"
+    },
+    {
+      "label": "6-Level Testing",
+      "file_type": "concept",
+      "source_file": "docs/DEVELOPMENT.md",
+      "community": 1,
+      "norm_label": "6-level testing",
+      "id": "docs_development_6leveltesting"
+    },
+    {
+      "label": "Sprint S008 \u2014 Published on TV",
+      "file_type": "concept",
+      "source_file": "docs/DEVELOPMENT.md",
+      "community": 1,
+      "norm_label": "sprint s008 \u2014 published on tv",
+      "id": "docs_development_spints008"
+    },
+    {
+      "label": "P0 Historical Bugs",
+      "file_type": "concept",
+      "source_file": "docs/DEVELOPMENT.md",
+      "community": 5,
+      "norm_label": "p0 historical bugs",
+      "id": "docs_development_p0bugs"
+    },
+    {
+      "label": "Changelog (Build 001-010)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "community": 1,
+      "norm_label": "changelog (build 001-010)",
+      "id": "docs_development_changelog"
+    },
+    {
+      "label": "Sector-Aware Coverage Matrix",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "community": 1,
+      "norm_label": "sector-aware coverage matrix",
+      "id": "docs_development_sectorawarematrix"
+    },
+    {
+      "label": "Release Checklist (P4-1)",
+      "file_type": "document",
+      "source_file": "docs/DEVELOPMENT.md",
+      "community": 22,
+      "norm_label": "release checklist (p4-1)",
+      "id": "docs_development_releasechecklist"
+    },
+    {
+      "label": "AI Roles: PO, Architect, Developer, Reviewer",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "community": 1,
+      "norm_label": "ai roles: po, architect, developer, reviewer",
+      "id": "docs_ai_airoles"
+    },
+    {
+      "label": "Context Loading Order",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "community": 1,
+      "norm_label": "context loading order",
+      "id": "docs_ai_contextloadingorder"
+    },
+    {
+      "label": "AI Golden Rules",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "community": 20,
+      "norm_label": "ai golden rules",
+      "id": "docs_ai_goldenrules"
+    },
+    {
+      "label": "Product Philosophy (6 Principles)",
+      "file_type": "rationale",
+      "source_file": "docs/AI.md",
+      "community": 5,
+      "norm_label": "product philosophy (6 principles)",
+      "id": "docs_ai_productphilosophy"
+    },
+    {
+      "label": "Pine Script v6 Reserved Keywords",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "community": 1,
+      "norm_label": "pine script v6 reserved keywords",
+      "id": "catatan_reservedkeywords"
+    },
+    {
+      "label": "No Local Functions Inside if Blocks",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "community": 1,
+      "norm_label": "no local functions inside if blocks",
+      "id": "catatan_nolocalfunctions"
+    },
+    {
+      "label": "input.float() Cannot Default to na",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "community": 1,
+      "norm_label": "input.float() cannot default to na",
+      "id": "catatan_inputfloatna"
+    },
+    {
+      "label": "Error Cascade \u2014 Fix First Error First",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "community": 16,
+      "norm_label": "error cascade \u2014 fix first error first",
+      "id": "catatan_errorcascade"
+    },
+    {
+      "label": "Engine Comparison: PineTS, PineForge, PyneCore",
+      "file_type": "concept",
+      "source_file": "CATATAN.md",
+      "community": 15,
+      "norm_label": "engine comparison: pinets, pineforge, pynecore",
+      "id": "catatan_enginecomparison"
+    },
+    {
+      "label": "PineTS Limitations",
+      "file_type": "concept",
+      "source_file": "CATATAN.md",
+      "community": 18,
+      "norm_label": "pinets limitations",
+      "id": "catatan_pinetslimitations"
+    },
+    {
+      "label": "Dev Tools Installed",
+      "file_type": "document",
+      "source_file": "CATATAN.md",
+      "community": 14,
+      "norm_label": "dev tools installed",
+      "id": "catatan_devtools"
+    },
+    {
+      "label": "Active Backlog (P1-P4)",
+      "file_type": "concept",
+      "source_file": "CATATAN.md",
+      "community": 1,
+      "norm_label": "active backlog (p1-p4)",
+      "id": "catatan_backlog"
+    },
+    {
+      "label": "Golden Rule: No Features on Unverified Foundation",
+      "file_type": "rationale",
+      "source_file": "CATATAN.md",
+      "community": 17,
+      "norm_label": "golden rule: no features on unverified foundation",
+      "id": "catatan_goldenrule"
+    },
+    {
+      "label": "Development Setup Guide",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "community": 1,
+      "norm_label": "development setup guide",
+      "id": "contributing_development"
+    },
+    {
+      "label": "PR Process & Commit Convention",
+      "file_type": "document",
+      "source_file": "CONTRIBUTING.md",
+      "community": 19,
+      "norm_label": "pr process & commit convention",
+      "id": "contributing_prprocess"
+    },
+    {
+      "label": "GitHub Actions CI Pipeline",
+      "file_type": "document",
+      "source_file": ".github/workflows/build.yml",
+      "community": 1,
+      "norm_label": "github actions ci pipeline",
+      "id": "github_workflows_build"
+    },
+    {
+      "label": "Bug Report Issue Template",
+      "file_type": "document",
+      "source_file": ".github/ISSUE_TEMPLATE/bug.yml",
+      "community": 1,
+      "norm_label": "bug report issue template",
+      "id": "github_issuetemplate_bug"
+    },
+    {
+      "label": "Feature Request Issue Template",
+      "file_type": "document",
+      "source_file": ".github/ISSUE_TEMPLATE/feature.yml",
+      "community": 1,
+      "norm_label": "feature request issue template",
+      "id": "github_issuetemplate_feature"
+    },
+    {
+      "label": "01-base.pine",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base",
+      "community": 0,
+      "norm_label": "01-base.pine"
+    },
+    {
+      "label": "02-data.pine",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data",
+      "community": 10,
+      "norm_label": "02-data.pine"
+    },
+    {
+      "label": "03-ui.pine",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui",
+      "community": 10,
+      "norm_label": "03-ui.pine"
+    },
+    {
+      "label": "04-scoring.pine",
+      "file_type": "code",
+      "source_file": "src/modules/04-scoring.pine",
+      "id": "src_modules_04scoring",
+      "community": 10,
+      "norm_label": "04-scoring.pine"
+    },
+    {
+      "label": "f_clamp(float x, float lo, float hi)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_clamp",
+      "community": 36,
+      "norm_label": "f_clamp(float x, float lo, float hi)"
+    },
+    {
+      "label": "f_safeDiv(float a, float b)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_safeDiv",
+      "community": 45,
+      "norm_label": "f_safediv(float a, float b)"
+    },
+    {
+      "label": "f_scoreHigher(float v, float bad, float good)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scoreHigher",
+      "community": 49,
+      "norm_label": "f_scorehigher(float v, float bad, float good)"
+    },
+    {
+      "label": "f_scoreLower(float v, float good, float bad)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scoreLower",
+      "community": 50,
+      "norm_label": "f_scorelower(float v, float good, float bad)"
+    },
+    {
+      "label": "f_scoreLowerSafe(float v, float good, float bad)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scoreLowerSafe",
+      "community": 51,
+      "norm_label": "f_scorelowersafe(float v, float good, float bad)"
+    },
+    {
+      "label": "f_scoreMid(float v, float loVal, float ideal, float hiVal)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scoreMid",
+      "community": 52,
+      "norm_label": "f_scoremid(float v, float loval, float ideal, float hival)"
+    },
+    {
+      "label": "f_scorePositive(float v)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scorePositive",
+      "community": 53,
+      "norm_label": "f_scorepositive(float v)"
+    },
+    {
+      "label": "f_scoreCashFlow(float cf, float mcapVal)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scoreCashFlow",
+      "community": 47,
+      "norm_label": "f_scorecashflow(float cf, float mcapval)"
+    },
+    {
+      "label": "f_avg5(float a, float b, float c, float d, float e)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_avg5",
+      "community": 32,
+      "norm_label": "f_avg5(float a, float b, float c, float d, float e)"
+    },
+    {
+      "label": "f_avg3(float a, float b, float c)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_avg3",
+      "community": 30,
+      "norm_label": "f_avg3(float a, float b, float c)"
+    },
+    {
+      "label": "f_avg4(float a, float b, float c, float d)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_avg4",
+      "community": 31,
+      "norm_label": "f_avg4(float a, float b, float c, float d)"
+    },
+    {
+      "label": "f_avg6(float a, float b, float c, float d, float e, float f)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_avg6",
+      "community": 33,
+      "norm_label": "f_avg6(float a, float b, float c, float d, float e, float f)"
+    },
+    {
+      "label": "f_wavg6(a,b,c,d,e,f,wa,wb,wc,wd,we,wf)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_wavg6",
+      "community": 55,
+      "norm_label": "f_wavg6(a,b,c,d,e,f,wa,wb,wc,wd,we,wf)"
+    },
+    {
+      "label": "f_countValid5(a,b,c,d,e)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_countValid5",
+      "community": 38,
+      "norm_label": "f_countvalid5(a,b,c,d,e)"
+    },
+    {
+      "label": "f_countValid4(a,b,c,d)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_countValid4",
+      "community": 37,
+      "norm_label": "f_countvalid4(a,b,c,d)"
+    },
+    {
+      "label": "f_countValid6(a,b,c,d,e,f)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_countValid6",
+      "community": 39,
+      "norm_label": "f_countvalid6(a,b,c,d,e,f)"
+    },
+    {
+      "label": "f_avg7(a,b,c,d,e,f,g)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_avg7",
+      "community": 34,
+      "norm_label": "f_avg7(a,b,c,d,e,f,g)"
+    },
+    {
+      "label": "f_wavg7(a,b,c,d,e,f,g,wa,wb,wc,wd,we,wf,wg)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_wavg7",
+      "community": 56,
+      "norm_label": "f_wavg7(a,b,c,d,e,f,g,wa,wb,wc,wd,we,wf,wg)"
+    },
+    {
+      "label": "f_countValid7(a,b,c,d,e,f,g)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_countValid7",
+      "community": 40,
+      "norm_label": "f_countvalid7(a,b,c,d,e,f,g)"
+    },
+    {
+      "label": "f_wavgArr(array<float> vals, array<float> wts)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_wavgArr",
+      "community": 57,
+      "norm_label": "f_wavgarr(array<float> vals, array<float> wts)"
+    },
+    {
+      "label": "f_countValidArr(array<float> vals)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_countValidArr",
+      "community": 41,
+      "norm_label": "f_countvalidarr(array<float> vals)"
+    },
+    {
+      "label": "pi_formatNumber(float v)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_formatNumber",
+      "community": 76,
+      "norm_label": "pi_formatnumber(float v)"
+    },
+    {
+      "label": "pi_formatPercent(float v)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_formatPercent",
+      "community": 77,
+      "norm_label": "pi_formatpercent(float v)"
+    },
+    {
+      "label": "pi_formatMoney(float v)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_formatMoney",
+      "community": 75,
+      "norm_label": "pi_formatmoney(float v)"
+    },
+    {
+      "label": "pi_grade(float s)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_grade",
+      "community": 78,
+      "norm_label": "pi_grade(float s)"
+    },
+    {
+      "label": "pi_overallBadge(float s)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_overallBadge",
+      "community": 79,
+      "norm_label": "pi_overallbadge(float s)"
+    },
+    {
+      "label": "pi_riskGrade(float s)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_riskGrade",
+      "community": 80,
+      "norm_label": "pi_riskgrade(float s)"
+    },
+    {
+      "label": "pi_arrow(float v)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_arrow",
+      "community": 74,
+      "norm_label": "pi_arrow(float v)"
+    },
+    {
+      "label": "pi_scoreText(float score)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_pi_scoreText",
+      "community": 81,
+      "norm_label": "pi_scoretext(float score)"
+    },
+    {
+      "label": "f_rowBg(int row)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_rowBg",
+      "community": 44,
+      "norm_label": "f_rowbg(int row)"
+    },
+    {
+      "label": "f_scoreColor(float s)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scoreColor",
+      "community": 48,
+      "norm_label": "f_scorecolor(float s)"
+    },
+    {
+      "label": "f_riskColor(float s)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_riskColor",
+      "community": 43,
+      "norm_label": "f_riskcolor(float s)"
+    },
+    {
+      "label": "f_scoreBg(float s)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_scoreBg",
+      "community": 46,
+      "norm_label": "f_scorebg(float s)"
+    },
+    {
+      "label": "f_riskBg(float s)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_riskBg",
+      "community": 42,
+      "norm_label": "f_riskbg(float s)"
+    },
+    {
+      "label": "f_sectionBg(string title)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_sectionBg",
+      "community": 54,
+      "norm_label": "f_sectionbg(string title)"
+    },
+    {
+      "label": "f_categoryColor(string name, color fallback)",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_f_categoryColor",
+      "community": 35,
+      "norm_label": "f_categorycolor(string name, color fallback)"
+    },
+    {
+      "label": "f_cell(col, row, txt, bg, tc)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_cell",
+      "community": 119,
+      "norm_label": "f_cell(col, row, txt, bg, tc)"
+    },
+    {
+      "label": "f_boldCell(col, row, txt, bg, tc)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_boldCell",
+      "community": 118,
+      "norm_label": "f_boldcell(col, row, txt, bg, tc)"
+    },
+    {
+      "label": "f_headerCell(col, txt, bg, tc)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_headerCell",
+      "community": 120,
+      "norm_label": "f_headercell(col, txt, bg, tc)"
+    },
+    {
+      "label": "f_section(col, row, title)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_section",
+      "community": 126,
+      "norm_label": "f_section(col, row, title)"
+    },
+    {
+      "label": "f_row(col, row, name, value, score)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_row",
+      "community": 123,
+      "norm_label": "f_row(col, row, name, value, score)"
+    },
+    {
+      "label": "f_riskRow(col, row, name, value, score)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_riskRow",
+      "community": 122,
+      "norm_label": "f_riskrow(col, row, name, value, score)"
+    },
+    {
+      "label": "f_scoreCard(col, row, name, score)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_scoreCard",
+      "community": 124,
+      "norm_label": "f_scorecard(col, row, name, score)"
+    },
+    {
+      "label": "f_scoreCardN(col, row, name, score, nValid, nTotal)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_scoreCardN",
+      "community": 125,
+      "norm_label": "f_scorecardn(col, row, name, score, nvalid, ntotal)"
+    },
+    {
+      "label": "f_warningCell(col, row, msg)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_warningCell",
+      "community": 127,
+      "norm_label": "f_warningcell(col, row, msg)"
+    },
+    {
+      "label": "f_riskCard(col, row, name, score)",
+      "file_type": "code",
+      "source_file": "src/modules/03-ui.pine",
+      "id": "src_modules_03ui_f_riskCard",
+      "community": 121,
+      "norm_label": "f_riskcard(col, row, name, score)"
+    },
+    {
+      "label": "type MarketData",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_type_MarketData",
+      "community": 117,
+      "norm_label": "type marketdata"
+    },
+    {
+      "label": "getMarketData()",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_getMarketData",
+      "community": 92,
+      "norm_label": "getmarketdata()"
+    },
+    {
+      "label": "f_fin(string id)",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_f_fin",
+      "community": 6,
+      "norm_label": "f_fin(string id)"
+    },
+    {
+      "label": "f_stat(string id)",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_f_stat",
+      "community": 3,
+      "norm_label": "f_stat(string id)"
+    },
+    {
+      "label": "f_ttm(string id)",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_f_ttm",
+      "community": 90,
+      "norm_label": "f_ttm(string id)"
+    },
+    {
+      "label": "f_watchlist(array arr)",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_f_watchlist",
+      "community": 91,
+      "norm_label": "f_watchlist(array arr)"
+    },
+    {
+      "label": "input: simbolInput",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_simbolInput",
+      "community": 0,
+      "norm_label": "input: simbolinput"
+    },
+    {
+      "label": "input: indeksAcuan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_indeksAcuan",
+      "community": 0,
+      "norm_label": "input: indeksacuan"
+    },
+    {
+      "label": "input: periodeLaporan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_periodeLaporan",
+      "community": 0,
+      "norm_label": "input: periodelaporan"
+    },
+    {
+      "label": "input: posisiInput",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_posisiInput",
+      "community": 0,
+      "norm_label": "input: posisiinput"
+    },
+    {
+      "label": "input: ukuranTeksInput",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_ukuranTeksInput",
+      "community": 0,
+      "norm_label": "input: ukuranteksinput"
+    },
+    {
+      "label": "input: warnaTema",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_warnaTema",
+      "community": 0,
+      "norm_label": "input: warnatema"
+    },
+    {
+      "label": "input: tampilLatarSkor",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilLatarSkor",
+      "community": 0,
+      "norm_label": "input: tampillatarskor"
+    },
+    {
+      "label": "input: tampilBarSkor",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilBarSkor",
+      "community": 0,
+      "norm_label": "input: tampilbarskor"
+    },
+    {
+      "label": "input: barisSelangSeling",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_barisSelangSeling",
+      "community": 0,
+      "norm_label": "input: barisselangseling"
+    },
+    {
+      "label": "input: headerBerwarna",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_headerBerwarna",
+      "community": 0,
+      "norm_label": "input: headerberwarna"
+    },
+    {
+      "label": "input: tampilSimbolStatus",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilSimbolStatus",
+      "community": 0,
+      "norm_label": "input: tampilsimbolstatus"
+    },
+    {
+      "label": "input: tampilKelengkapan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilKelengkapan",
+      "community": 0,
+      "norm_label": "input: tampilkelengkapan"
+    },
+    {
+      "label": "input: tampilCompact",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilCompact",
+      "community": 0,
+      "norm_label": "input: tampilcompact"
+    },
+    {
+      "label": "input: bahasa",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bahasa",
+      "community": 0,
+      "norm_label": "input: bahasa"
+    },
+    {
+      "label": "input: tampilRingkasan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilRingkasan",
+      "community": 0,
+      "norm_label": "input: tampilringkasan"
+    },
+    {
+      "label": "input: tampilValuasi",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilValuasi",
+      "community": 0,
+      "norm_label": "input: tampilvaluasi"
+    },
+    {
+      "label": "input: tampilKualitas",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilKualitas",
+      "community": 0,
+      "norm_label": "input: tampilkualitas"
+    },
+    {
+      "label": "input: tampilPertumbuhan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilPertumbuhan",
+      "community": 0,
+      "norm_label": "input: tampilpertumbuhan"
+    },
+    {
+      "label": "input: tampilKesehatan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilKesehatan",
+      "community": 0,
+      "norm_label": "input: tampilkesehatan"
+    },
+    {
+      "label": "input: tampilDividen",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilDividen",
+      "community": 0,
+      "norm_label": "input: tampildividen"
+    },
+    {
+      "label": "input: tampilMomentum",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilMomentum",
+      "community": 0,
+      "norm_label": "input: tampilmomentum"
+    },
+    {
+      "label": "input: tampilIndonesia",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilIndonesia",
+      "community": 0,
+      "norm_label": "input: tampilindonesia"
+    },
+    {
+      "label": "input: modeSektor",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_modeSektor",
+      "community": 0,
+      "norm_label": "input: modesektor"
+    },
+    {
+      "label": "input: toleransiSiklikal",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_toleransiSiklikal",
+      "community": 0,
+      "norm_label": "input: toleransisiklikal"
+    },
+    {
+      "label": "input: gunakanBobotKustom",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_gunakanBobotKustom",
+      "community": 0,
+      "norm_label": "input: gunakanbobotkustom"
+    },
+    {
+      "label": "input: presetBobot",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_presetBobot",
+      "community": 0,
+      "norm_label": "input: presetbobot"
+    },
+    {
+      "label": "input: bobotValue",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bobotValue",
+      "community": 0,
+      "norm_label": "input: bobotvalue"
+    },
+    {
+      "label": "input: bobotQuality",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bobotQuality",
+      "community": 0,
+      "norm_label": "input: bobotquality"
+    },
+    {
+      "label": "input: bobotGrowth",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bobotGrowth",
+      "community": 0,
+      "norm_label": "input: bobotgrowth"
+    },
+    {
+      "label": "input: bobotHealth",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bobotHealth",
+      "community": 0,
+      "norm_label": "input: bobothealth"
+    },
+    {
+      "label": "input: bobotMomentum",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bobotMomentum",
+      "community": 0,
+      "norm_label": "input: bobotmomentum"
+    },
+    {
+      "label": "input: bobotIncome",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bobotIncome",
+      "community": 0,
+      "norm_label": "input: bobotincome"
+    },
+    {
+      "label": "input: bobotIndonesia",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bobotIndonesia",
+      "community": 0,
+      "norm_label": "input: bobotindonesia"
+    },
+    {
+      "label": "input: tampilRisikoGorengan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tampilRisikoGorengan",
+      "community": 0,
+      "norm_label": "input: tampilrisikogorengan"
+    },
+    {
+      "label": "input: ambangARA",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_ambangARA",
+      "community": 0,
+      "norm_label": "input: ambangara"
+    },
+    {
+      "label": "input: lookbackARA",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_lookbackARA",
+      "community": 0,
+      "norm_label": "input: lookbackara"
+    },
+    {
+      "label": "input: kapKecilMiliar",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_kapKecilMiliar",
+      "community": 0,
+      "norm_label": "input: kapkecilmiliar"
+    },
+    {
+      "label": "input: kapBesarMiliar",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_kapBesarMiliar",
+      "community": 0,
+      "norm_label": "input: kapbesarmiliar"
+    },
+    {
+      "label": "input: likuiditasRendahJt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_likuiditasRendahJt",
+      "community": 0,
+      "norm_label": "input: likuiditasrendahjt"
+    },
+    {
+      "label": "input: likuiditasTinggiJt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_likuiditasTinggiJt",
+      "community": 0,
+      "norm_label": "input: likuiditastinggijt"
+    },
+    {
+      "label": "input: hargaRecehan",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_hargaRecehan",
+      "community": 0,
+      "norm_label": "input: hargarecehan"
+    },
+    {
+      "label": "input: carInput",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_carInput",
+      "community": 0,
+      "norm_label": "input: carinput"
+    },
+    {
+      "label": "input: nplInput",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_nplInput",
+      "community": 0,
+      "norm_label": "input: nplinput"
+    },
+    {
+      "label": "input: ldrInput",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_ldrInput",
+      "community": 0,
+      "norm_label": "input: ldrinput"
+    },
+    {
+      "label": "fin: sharesOut",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_sharesOut",
+      "community": 3,
+      "norm_label": "fin: sharesout"
+    },
+    {
+      "label": "fin: epsTtm",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_epsTtm",
+      "community": 3,
+      "norm_label": "fin: epsttm"
+    },
+    {
+      "label": "fin: bvps",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_bvps",
+      "community": 3,
+      "norm_label": "fin: bvps"
+    },
+    {
+      "label": "fin: revenueTtm",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_revenueTtm",
+      "community": 3,
+      "norm_label": "fin: revenuettm"
+    },
+    {
+      "label": "fin: evEbitda",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_evEbitda",
+      "community": 3,
+      "norm_label": "fin: evebitda"
+    },
+    {
+      "label": "fin: evSales",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_evSales",
+      "community": 3,
+      "norm_label": "fin: evsales"
+    },
+    {
+      "label": "fin: roe",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_roe",
+      "community": 3,
+      "norm_label": "fin: roe"
+    },
+    {
+      "label": "fin: roa",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_roa",
+      "community": 3,
+      "norm_label": "fin: roa"
+    },
+    {
+      "label": "fin: roic",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_roic",
+      "community": 3,
+      "norm_label": "fin: roic"
+    },
+    {
+      "label": "fin: grossM",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_grossM",
+      "community": 3,
+      "norm_label": "fin: grossm"
+    },
+    {
+      "label": "fin: opM",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_opM",
+      "community": 3,
+      "norm_label": "fin: opm"
+    },
+    {
+      "label": "fin: netM",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_netM",
+      "community": 3,
+      "norm_label": "fin: netm"
+    },
+    {
+      "label": "fin: ebitdaM",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_ebitdaM",
+      "community": 3,
+      "norm_label": "fin: ebitdam"
+    },
+    {
+      "label": "fin: fcfMargin",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_fcfMargin",
+      "community": 3,
+      "norm_label": "fin: fcfmargin"
+    },
+    {
+      "label": "fin: piotroski",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_piotroski",
+      "community": 3,
+      "norm_label": "fin: piotroski"
+    },
+    {
+      "label": "fin: revGrowth",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_revGrowth",
+      "community": 3,
+      "norm_label": "fin: revgrowth"
+    },
+    {
+      "label": "fin: epsGrowth",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_epsGrowth",
+      "community": 3,
+      "norm_label": "fin: epsgrowth"
+    },
+    {
+      "label": "fin: sgr",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_sgr",
+      "community": 3,
+      "norm_label": "fin: sgr"
+    },
+    {
+      "label": "fin: debtEq",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_debtEq",
+      "community": 3,
+      "norm_label": "fin: debteq"
+    },
+    {
+      "label": "fin: debtAsset",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_debtAsset",
+      "community": 3,
+      "norm_label": "fin: debtasset"
+    },
+    {
+      "label": "fin: debtEbitda",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_debtEbitda",
+      "community": 6,
+      "norm_label": "fin: debtebitda"
+    },
+    {
+      "label": "fin: netDebtEbitda",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_netDebtEbitda",
+      "community": 6,
+      "norm_label": "fin: netdebtebitda"
+    },
+    {
+      "label": "fin: cashDebt",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_cashDebt",
+      "community": 6,
+      "norm_label": "fin: cashdebt"
+    },
+    {
+      "label": "fin: currRatio",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_currRatio",
+      "community": 6,
+      "norm_label": "fin: currratio"
+    },
+    {
+      "label": "fin: quickRatio",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_quickRatio",
+      "community": 6,
+      "norm_label": "fin: quickratio"
+    },
+    {
+      "label": "fin: interestCover",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_interestCover",
+      "community": 6,
+      "norm_label": "fin: interestcover"
+    },
+    {
+      "label": "fin: altmanZ",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_altmanZ",
+      "community": 6,
+      "norm_label": "fin: altmanz"
+    },
+    {
+      "label": "fin: ocf",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_ocf",
+      "community": 6,
+      "norm_label": "fin: ocf"
+    },
+    {
+      "label": "fin: fcf",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_fcf",
+      "community": 6,
+      "norm_label": "fin: fcf"
+    },
+    {
+      "label": "fin: divYield",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_divYield",
+      "community": 6,
+      "norm_label": "fin: divyield"
+    },
+    {
+      "label": "fin: payout",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_payout",
+      "community": 6,
+      "norm_label": "fin: payout"
+    },
+    {
+      "label": "fin: dps",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_dps",
+      "community": 6,
+      "norm_label": "fin: dps"
+    },
+    {
+      "label": "sector: isFinancialLegacyMode",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isFinancialLegacyMode",
+      "community": 101,
+      "norm_label": "sector: isfinanciallegacymode"
+    },
+    {
+      "label": "sector: isBankSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isBankSektor",
+      "community": 97,
+      "norm_label": "sector: isbanksektor"
+    },
+    {
+      "label": "sector: isAsuransiSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isAsuransiSektor",
+      "community": 96,
+      "norm_label": "sector: isasuransisektor"
+    },
+    {
+      "label": "sector: isSekuritasSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isSekuritasSektor",
+      "community": 108,
+      "norm_label": "sector: issekuritassektor"
+    },
+    {
+      "label": "sector: isFinancialGenericAuto",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isFinancialGenericAuto",
+      "community": 100,
+      "norm_label": "sector: isfinancialgenericauto"
+    },
+    {
+      "label": "sector: isFinancialSector",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isFinancialSector",
+      "community": 102,
+      "norm_label": "sector: isfinancialsector"
+    },
+    {
+      "label": "sector: isSiklikalSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isSiklikalSektor",
+      "community": 110,
+      "norm_label": "sector: issiklikalsektor"
+    },
+    {
+      "label": "sector: isPropertySektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isPropertySektor",
+      "community": 107,
+      "norm_label": "sector: ispropertysektor"
+    },
+    {
+      "label": "sector: isInfrastrukturSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isInfrastrukturSektor",
+      "community": 104,
+      "norm_label": "sector: isinfrastruktursektor"
+    },
+    {
+      "label": "sector: isTechnologySektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isTechnologySektor",
+      "community": 111,
+      "norm_label": "sector: istechnologysektor"
+    },
+    {
+      "label": "sector: isTransportasiSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isTransportasiSektor",
+      "community": 112,
+      "norm_label": "sector: istransportasisektor"
+    },
+    {
+      "label": "sector: isKonsumerSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isKonsumerSektor",
+      "community": 106,
+      "norm_label": "sector: iskonsumersektor"
+    },
+    {
+      "label": "sector: isIndustriSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isIndustriSektor",
+      "community": 103,
+      "norm_label": "sector: isindustrisektor"
+    },
+    {
+      "label": "sector: isKesehatanSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isKesehatanSektor",
+      "community": 105,
+      "norm_label": "sector: iskesehatansektor"
+    },
+    {
+      "label": "sector: isBatubaraSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isBatubaraSektor",
+      "community": 98,
+      "norm_label": "sector: isbatubarasektor"
+    },
+    {
+      "label": "sector: isCPOSektor",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isCPOSektor",
+      "community": 99,
+      "norm_label": "sector: iscposektor"
+    },
+    {
+      "label": "sector: sektorLabel",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_sektorLabel",
+      "community": 114,
+      "norm_label": "sector: sektorlabel"
+    },
+    {
+      "label": "sector: isSiklikalLike",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_isSiklikalLike",
+      "community": 109,
+      "norm_label": "sector: issiklikallike"
+    },
+    {
+      "label": "watchlist: bankListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_bankListIDX",
+      "community": 86,
+      "norm_label": "watchlist: banklistidx"
+    },
+    {
+      "label": "watchlist: coalListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_coalListIDX",
+      "community": 87,
+      "norm_label": "watchlist: coallistidx"
+    },
+    {
+      "label": "watchlist: cpoListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_cpoListIDX",
+      "community": 89,
+      "norm_label": "watchlist: cpolistidx"
+    },
+    {
+      "label": "watchlist: consumerListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_consumerListIDX",
+      "community": 88,
+      "norm_label": "watchlist: consumerlistidx"
+    },
+    {
+      "label": "watchlist: industriListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_industriListIDX",
+      "community": 94,
+      "norm_label": "watchlist: industrilistidx"
+    },
+    {
+      "label": "watchlist: healthcareListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_healthcareListIDX",
+      "community": 93,
+      "norm_label": "watchlist: healthcarelistidx"
+    },
+    {
+      "label": "watchlist: propertyListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_propertyListIDX",
+      "community": 113,
+      "norm_label": "watchlist: propertylistidx"
+    },
+    {
+      "label": "watchlist: infraListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_infraListIDX",
+      "community": 95,
+      "norm_label": "watchlist: infralistidx"
+    },
+    {
+      "label": "watchlist: techListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_techListIDX",
+      "community": 115,
+      "norm_label": "watchlist: techlistidx"
+    },
+    {
+      "label": "watchlist: transportListIDX",
+      "file_type": "code",
+      "source_file": "src/modules/02-data.pine",
+      "id": "src_modules_02data_transportListIDX",
+      "community": 116,
+      "norm_label": "watchlist: transportlistidx"
+    },
+    {
+      "label": "color: tableBg",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_tableBg",
+      "community": 84,
+      "norm_label": "color: tablebg"
+    },
+    {
+      "label": "color: altBg",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_altBg",
+      "community": 26,
+      "norm_label": "color: altbg"
+    },
+    {
+      "label": "color: headerBg",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_headerBg",
+      "community": 65,
+      "norm_label": "color: headerbg"
+    },
+    {
+      "label": "color: sectionBg",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_sectionBg",
+      "community": 83,
+      "norm_label": "color: sectionbg"
+    },
+    {
+      "label": "color: gridCol",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_gridCol",
+      "community": 59,
+      "norm_label": "color: gridcol"
+    },
+    {
+      "label": "color: mainTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_mainTxt",
+      "community": 71,
+      "norm_label": "color: maintxt"
+    },
+    {
+      "label": "color: mutedTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_mutedTxt",
+      "community": 72,
+      "norm_label": "color: mutedtxt"
+    },
+    {
+      "label": "color: titleTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_titleTxt",
+      "community": 85,
+      "norm_label": "color: titletxt"
+    },
+    {
+      "label": "color: bullTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bullTxt",
+      "community": 28,
+      "norm_label": "color: bulltxt"
+    },
+    {
+      "label": "color: bearTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_bearTxt",
+      "community": 27,
+      "norm_label": "color: beartxt"
+    },
+    {
+      "label": "color: purpleTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_purpleTxt",
+      "community": 82,
+      "norm_label": "color: purpletxt"
+    },
+    {
+      "label": "color: goldTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_goldTxt",
+      "community": 58,
+      "norm_label": "color: goldtxt"
+    },
+    {
+      "label": "color: cyanTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_cyanTxt",
+      "community": 29,
+      "norm_label": "color: cyantxt"
+    },
+    {
+      "label": "color: neutralTxt",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_neutralTxt",
+      "community": 73,
+      "norm_label": "color: neutraltxt"
+    },
+    {
+      "label": "theme: isLightTheme",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_isLightTheme",
+      "community": 69,
+      "norm_label": "theme: islighttheme"
+    },
+    {
+      "label": "theme: isDarkTheme",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_isDarkTheme",
+      "community": 67,
+      "norm_label": "theme: isdarktheme"
+    },
+    {
+      "label": "theme: isEmerald",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_isEmerald",
+      "community": 68,
+      "norm_label": "theme: isemerald"
+    },
+    {
+      "label": "theme: isRoyal",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_isRoyal",
+      "community": 70,
+      "norm_label": "theme: isroyal"
+    },
+    {
+      "label": "theme: isAmber",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_isAmber",
+      "community": 66,
+      "norm_label": "theme: isamber"
+    },
+    {
+      "label": "const: grupUtama",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_grupUtama",
+      "community": 64,
+      "norm_label": "const: gruputama"
+    },
+    {
+      "label": "const: grupSektor",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_grupSektor",
+      "community": 63,
+      "norm_label": "const: grupsektor"
+    },
+    {
+      "label": "const: grupBobot",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_grupBobot",
+      "community": 61,
+      "norm_label": "const: grupbobot"
+    },
+    {
+      "label": "const: grupRisiko",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_grupRisiko",
+      "community": 62,
+      "norm_label": "const: gruprisiko"
+    },
+    {
+      "label": "const: grupBank",
+      "file_type": "code",
+      "source_file": "src/modules/01-base.pine",
+      "id": "src_modules_01base_grupBank",
+      "community": 60,
+      "norm_label": "const: grupbank"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "build.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "build",
+      "target": "build_sh__entry"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package",
+      "target": "package_description"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package",
+      "target": "package_devdependencies"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package",
+      "target": "package_license"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package",
+      "target": "package_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package",
+      "target": "package_private"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package",
+      "target": "package_scripts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package",
+      "target": "package_version"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_build"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_ci"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_lint"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test_all"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_transpile"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_pinets"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_gh_sync",
+      "target": "scripts_gh_sync_create_issue"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_gh_sync",
+      "target": "scripts_gh_sync_sh__entry"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/gh-sync.sh",
+      "source_location": "L53",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "scripts_gh_sync_sh__entry",
+      "target": "scripts_gh_sync_create_issue"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_err"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_ok"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_lint",
+      "target": "scripts_lint_sh__entry"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "scripts_lint_sh__entry",
+      "target": "scripts_lint_err"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/lint.sh",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "scripts_lint_sh__entry",
+      "target": "scripts_lint_ok"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pinets-verify.mjs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_pinets_verify",
+      "target": "tests_pinets_verify_candles"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L134",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_dummycandles"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L127",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L116",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L145",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_runner",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/runner.mjs",
+      "source_location": "L117",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_runner_runtest",
+      "target": "tests_scoring_runner_dummycandles"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_runtest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_lastval"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_assert"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_runner_summary"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-growth.mjs",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_growth",
+      "target": "tests_scoring_test_growth_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-health.mjs",
+      "source_location": "L84",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_health",
+      "target": "tests_scoring_test_health_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-income.mjs",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_income",
+      "target": "tests_scoring_test_income_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-momentum.mjs",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_momentum",
+      "target": "tests_scoring_test_momentum_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-overall.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_overall",
+      "target": "tests_scoring_test_overall_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-quality.mjs",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_quality",
+      "target": "tests_scoring_test_quality_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-regression.mjs",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_regression",
+      "target": "tests_scoring_test_regression_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_actualsource"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_allpassed"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_checks"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasconsumerweights"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasfsafelower"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hasfsafelowersafe"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_hassekuritasquality"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-source-match.mjs",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_source_match",
+      "target": "tests_scoring_test_source_match_testfiles"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/scoring/test-value.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_scoring_test_value",
+      "target": "tests_scoring_test_value_t"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/transpile.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_transpile",
+      "target": "tests_transpile_sh__entry"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_nolocalfunctions",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_reservedkeywords",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CONTRIBUTING.md",
+      "source": "contributing_development",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI.md",
+      "source": "docs_ai_airoles",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_7layerarchitecture",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_requestbudget",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_roadmap",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_changelog",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_spints008",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/ISSUE_TEMPLATE/bug.yml",
+      "source": "github_issuetemplate_bug",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/ISSUE_TEMPLATE/feature.yml",
+      "source": "github_issuetemplate_feature",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/build.yml",
+      "source": "github_workflows_build",
+      "target": "readme_papaninstrumen"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "docs_readme_id_overallscore"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_15kelassektor"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_89automatedtests"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_idxsaham"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_riskmodule"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_screenshotpreview"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_papaninstrumen",
+      "target": "readme_sectoraware"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_5pilars",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ARCHITECTURE.md",
+      "source": "docs_architecture_scoringprinciples",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_p0bugs",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "readme_5presetbobot",
+      "target": "readme_7dimensiscoring"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_growth"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_health"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_income"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_indonesiafactor"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_momentum"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_quality"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md",
+      "source": "readme_7dimensiscoring",
+      "target": "docs_readme_id_value"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "readme_sectoraware",
+      "target": "docs_development_sectorawarematrix"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "README.md",
+      "source": "readme_riskmodule",
+      "target": "docs_readme_id_indonesiafactor"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DEVELOPMENT.md",
+      "source": "docs_development_6leveltesting",
+      "target": "readme_89automatedtests"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/build.yml",
+      "source": "github_workflows_build",
+      "target": "readme_89automatedtests"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI.md",
+      "source": "docs_ai_contextloadingorder",
+      "target": "docs_architecture_7layerarchitecture"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_inputfloatna",
+      "target": "docs_architecture_requestbudget"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/AI.md",
+      "source": "docs_ai_productphilosophy",
+      "target": "docs_architecture_scoringprinciples"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CATATAN.md",
+      "source": "catatan_backlog",
+      "target": "docs_development_spints008"
+    },
+    {
+      "relation": "depends_on",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_01base",
+      "target": "src_modules_02data"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_ambangARA",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bahasa",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_barisSelangSeling",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bobotGrowth",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bobotHealth",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bobotIncome",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bobotIndonesia",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bobotMomentum",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bobotQuality",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_bobotValue",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_carInput",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_gunakanBobotKustom",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_hargaRecehan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_headerBerwarna",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_indeksAcuan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_kapBesarMiliar",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_kapKecilMiliar",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_ldrInput",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_likuiditasRendahJt",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_likuiditasTinggiJt",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_lookbackARA",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_modeSektor",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_nplInput",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_periodeLaporan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_posisiInput",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_presetBobot",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_simbolInput",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilBarSkor",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilCompact",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilDividen",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilIndonesia",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilKelengkapan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilKesehatan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilKualitas",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilLatarSkor",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilMomentum",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilPertumbuhan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilRingkasan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilRisikoGorengan",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilSimbolStatus",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_tampilValuasi",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_toleransiSiklikal",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_ukuranTeksInput",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/01-base.pine",
+      "source": "src_modules_01base_warnaTema",
+      "target": "src_modules_01base"
+    },
+    {
+      "relation": "depends_on",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/03-ui.pine",
+      "source": "src_modules_02data",
+      "target": "src_modules_03ui"
+    },
+    {
+      "relation": "depends_on",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/04-scoring.pine",
+      "source": "src_modules_03ui",
+      "target": "src_modules_04scoring"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_altmanZ",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_cashDebt",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_currRatio",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_debtEbitda",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_divYield",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_dps",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_fcf",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_interestCover",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_netDebtEbitda",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_ocf",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_payout",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_quickRatio",
+      "target": "src_modules_02data_f_fin"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_bvps",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_debtAsset",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_debtEq",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_ebitdaM",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_epsGrowth",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_epsTtm",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_evEbitda",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_evSales",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_fcfMargin",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_grossM",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_netM",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_opM",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_piotroski",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_revGrowth",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_revenueTtm",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_roa",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_roe",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_roic",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_sgr",
+      "target": "src_modules_02data_f_stat"
+    },
+    {
+      "relation": "sourced_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/modules/02-data.pine",
+      "source": "src_modules_02data_sharesOut",
+      "target": "src_modules_02data_f_stat"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "hy_7dimensiscoring_set",
+      "label": "7 Dimensi Scoring",
+      "nodes": [
+        "docs_readme_id_value",
+        "docs_readme_id_quality",
+        "docs_readme_id_growth",
+        "docs_readme_id_health",
+        "docs_readme_id_income",
+        "docs_readme_id_momentum",
+        "docs_readme_id_indonesiafactor"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/README.id.md"
+    },
+    {
+      "id": "hy_docs_set",
+      "label": "Documentation Files",
+      "nodes": [
+        "docs_architecture_7layerarchitecture",
+        "docs_architecture_scoringprinciples",
+        "docs_ai_airoles",
+        "docs_development_codingstandard",
+        "docs_development_changelog",
+        "catatan_reservedkeywords"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "CATATAN.md"
+    },
+    {
+      "id": "hy_ci_pipeline",
+      "label": "GitHub CI Pipeline",
+      "nodes": [
+        "github_workflows_build"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/build.yml"
+    }
+  ],
+  "built_at_commit": "3c92fce04a539ed03a51a341737bbeb55c55e814"
+}

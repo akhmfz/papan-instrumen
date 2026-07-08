@@ -1,0 +1,18 @@
+{
+  "0": "DEVELOPMENT.md — Panduan Pengembangan",
+  "1": "Panduan Pengguna — Papan Instrumen",
+  "2": "CATATAN PENGEMBANGAN — Lessons Learned",
+  "3": "runner.mjs",
+  "4": "Metodologi Scoring",
+  "5": "Saham: Papan Instrumen By. Akhmfz",
+  "6": "package.json",
+  "7": "Cara Berkontribusi",
+  "8": "Changelog",
+  "9": "AI.md — AI Collaboration Context",
+  "10": "test-source-match.mjs",
+  "11": "lint.sh",
+  "12": "gh-sync.sh",
+  "13": "build.sh",
+  "14": "pinets-verify.mjs",
+  "15": "transpile.sh"
+}
