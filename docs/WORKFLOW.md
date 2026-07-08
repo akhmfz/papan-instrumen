@@ -17,7 +17,8 @@
 7. [Pine Script v6 — Konvensi](#7-pine-script-v6--konvensi)
 8. [Cara Inject Kode Pine ke Graph (Inject2)](#8-cara-inject-kode-pine-ke-graph-inject2)
 9. [Troubleshooting](#9-troubleshooting)
-10. [Cheat Sheet](#10-cheat-sheet)
+10. [Communication & Reporting Style](#10-communication--reporting-style)
+11. [Cheat Sheet](#11-cheat-sheet)
 
 ---
 
@@ -125,6 +126,16 @@
 
 Cara pindah: tekan **Tab**.
 
+**When NOT to use Plan mode** — langsung Build:
+- Typo/komentar fix sepele
+- Rename variabel lokal dengan instruksi jelas
+- Tugas research/eksplorasi murni (baca kode, cari bug, tidak perlu nulis)
+- Perubahan yang user sudah beri instruksi sangat detail dan spesifik
+
+**Autonomous mode**: untuk tindakan reversibel yang mengikuti dari permintaan awal, agent langsung kerjakan tanpa bertanya "Mau saya lanjutkan?". Berhenti hanya untuk: (1) aksi destruktif (hapus file, force push), (2) perubahan scope yang user harus putuskan, (3) perubahan yang menyentuh uang riil tanpa plan mode dulu.
+
+**Don't end turns with plans**: agent tidak boleh mengakhiri giliran dengan daftar "next steps" atau janji kerja yang belum dilakukan. Kalau paragraf terakhir adalah rencana/analisa/pertanyaan/next steps — kerjakan sekarang juga. Akhiri giliran hanya ketika tugas selesai atau benar-benar terblokir oleh input user.
+
 ### 2.2 Custom Agents
 
 Tersimpan di `.opencode/agent/*.md`:
@@ -153,6 +164,8 @@ Tersimpan di `.opencode/agent/*.md`:
 **Aturan wajib:** Setiap perubahan pada `strategy()` (entry, exit, position sizing, stop/target) **harus lewat Plan mode dulu**.
 
 Perubahan pada `indicator()` kosmetik (warna, style plot) boleh langsung Build mode.
+
+**Autonomous execution:** Agent bertindak tanpa bertanya untuk perubahan reversibel. Berhenti otomatis untuk aksi destruktif, perubahan scope, atau perubahan strategi tanpa plan mode.
 
 ---
 
@@ -447,6 +460,8 @@ Mulai sesi baru
 │  3. graphify export obsidian │ ← Update vault notes
 │  4. git add + commit + push  │ ← Simpan perubahan
 │  5. Catat ke Obsidian vault  │ ← Keputusan & temuan
+│  6. Jangan akhiri giliran    │ ← Kalau masih ada "next steps",
+│     dengan rencana           │    kerjakan sekarang, bukan janji
 └──────────────────────────────┘
 ```
 
@@ -820,7 +835,22 @@ Lihat `CATATAN.md` untuk daftar lengkap anti-pattern.
 
 ---
 
-## 10. Cheat Sheet
+## 10. Communication & Reporting Style
+
+Gaya komunikasi agent selama sesi — diadopsi dari Claude Code Fable 5:
+
+- **Lead with the outcome**: Baris pertama setelah selesai harus menjawab "apa yang terjadi" — TLDR dulu, detail setelahnya. Jangan mulai dengan kronologi.
+- **Readable > concise**: Kalau user harus baca ulang, waktu yang dihemat oleh brevitas hilang. Tulis dalam kalimat lengkap dengan istilah teknis yang dieja, bukan fragmen/singkatan/jargon.
+- **Calibrate ke pertanyaan**: Sederhana → jawab langsung dalam prosa. Kompleks → baru pakai header/section/tabel.
+- **Code comments**: Hanya untuk menyatakan constraint yang tidak bisa ditunjukkan kode. Tidak untuk bilang "apa yang dilakukan baris berikutnya".
+- **Report outcomes faithfully**: Kalau test fail, bilang "test fail". Kalau step dilewati, bilang dilewati. Selesai dan terverifikasi → state plainly tanpa "seharusnya" atau "semoga."
+- **Evidence before action**: Jangan ubah system state tanpa verifikasi bahwa bukti mendukung aksi spesifik itu. Sinyal yang pattern-match ke failure known mungkin punya penyebab berbeda.
+
+> Prinsip ini juga terdaftar di `AGENTS.md` bagian 12.
+
+---
+
+## 11. Cheat Sheet
 
 ### 10.1 Perintah Cepat
 
@@ -854,14 +884,16 @@ git add -A && git commit -m "msg" && git push
 
 ```
 1. Mulai → baca GRAPH_REPORT.md + catatan Obsidian
-2. Plan mode → susun rencana
-3. Build mode → implementasi
+2. Plan mode → susun rencana (skip untuk perubahan kecil)
+3. Build mode → implementasi (autonomous — jangan tanya izin)
 4. /pine-lint + npm run test:all
 5. graphify . --update --no-viz
 6. graphify export obsidian --dir ...
 7. git add/commit/push (kode)
 8. Catat di Obsidian vault
-9. Vault auto push (dalam 10 menit)
+9. Jangan akhiri dengan rencana — kalau masih ada yang bisa
+   dikerjakan, kerjakan sekarang. Baru akhiri giliran.
+10. Vault auto push (dalam 10 menit)
 ```
 
 ### 10.3 File Penting
@@ -890,5 +922,5 @@ git add -A && git commit -m "msg" && git push
 ---
 
 > **Dokumentasi ini diperbarui:** 2026-07-08
-> **Oleh:** OpenCode — Sesi Setup Obsidian + Graphify + Git
+> **Oleh:** OpenCode — Sesi Pattern Update AGENTS.md
 > **Untuk:** Proyek Papan Instrumen & Papan Gerak
