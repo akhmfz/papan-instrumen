@@ -1,0 +1,114 @@
+[
+  {
+    "scenario": "BBCA-bank-large",
+    "actual": {
+      "peScore": 88,
+      "pbScore": 65.8,
+      "roeScore": 67.5,
+      "roaScore": 9.2,
+      "roicScore": 39,
+      "yieldScore": 0,
+      "payoutScore": 95,
+      "rsiScore": 93.3,
+      "maScore": 100,
+      "currScore": 46.7,
+      "interestScore": 7.8
+    },
+    "status": "PASS"
+  },
+  {
+    "scenario": "ADRO-coal-commodity",
+    "actual": {
+      "peScore": 100,
+      "pbScore": 92.9,
+      "evScore": 100,
+      "roeScore": 100,
+      "roicScore": 85,
+      "yieldScore": 70,
+      "rsiScore": 80,
+      "currScore": 83.3,
+      "interestScore": 100,
+      "volScore": 35.7
+    },
+    "status": "PASS"
+  },
+  {
+    "scenario": "KRAS-loss-cyclical",
+    "actual": {
+      "peScore": 0,
+      "psScore": 0,
+      "pbScore": 98.1,
+      "roeScore": 0,
+      "roaScore": 0,
+      "roicScore": 0,
+      "revScore": 0,
+      "epsScore": 0,
+      "yieldScore": 0,
+      "rsiScore": 6.7,
+      "maScore": 25,
+      "volScore": 17.1
+    },
+    "status": "PASS"
+  },
+  {
+    "scenario": "TLKM-infra-telekom",
+    "actual": {
+      "peScore": 88.1,
+      "pbScore": 79.9,
+      "evScore": 88.8,
+      "roeScore": 95,
+      "roicScore": 65,
+      "yieldScore": 24,
+      "rsiScore": 73.3,
+      "maScore": 100,
+      "currScore": 100,
+      "interestScore": 100,
+      "mcapScore": 100
+    },
+    "status": "PASS"
+  },
+  {
+    "scenario": "GOTO-tech-growth",
+    "actual": {
+      "peScore": 0,
+      "psScore": 0,
+      "pbScore": 71.5,
+      "evSalesScore": 82.1,
+      "roeScore": 0,
+      "roaScore": 0,
+      "revScore": 100,
+      "epsScore": 33.3,
+      "volScore": 0,
+      "mcapScore": 100
+    },
+    "status": "PASS"
+  },
+  {
+    "scenario": "regression-P0-1",
+    "actual": {
+      "peScore": 54.1,
+      "pbScore": 78.8,
+      "debtEqScore": 0,
+      "debtAssetScore": 31.3,
+      "netDebtEbitdaScore": 0,
+      "currScore": 6.7,
+      "volScore": 50,
+      "mcapScore": 100
+    },
+    "status": "PASS"
+  },
+  {
+    "scenario": "regression-P0-2-consumer",
+    "actual": {
+      "peScore": 79.6,
+      "pbScore": 58.2,
+      "roeScore": 50,
+      "roicScore": 35,
+      "yieldScore": 10,
+      "currScore": 86.7,
+      "evScore": 82,
+      "mcapScore": 100
+    },
+    "status": "PASS"
+  }
+]

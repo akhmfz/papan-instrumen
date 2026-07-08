@@ -1,0 +1,786 @@
+{
+  "file": "src/modules/04-scoring.pine",
+  "generatedAt": "2026-07-08",
+  "externalVariables": [
+    {
+      "name": "dClose",
+      "type": "float",
+      "typicalRange": "0–1000000+ (Rupiah, tergantung emiten)",
+      "source": "02-data.pine (MarketData from request.security)",
+      "dimensions": ["value", "quality", "momentum", "indonesia", "risk"],
+      "usedInLines": [14,15,18,19,21,29,30,37,39,41,45,50,52,619,667,669,670]
+    },
+    {
+      "name": "sharesOut",
+      "type": "float",
+      "typicalRange": "1e8–1e13",
+      "source": "02-data.pine (request.financial TOTAL_SHARES_OUTSTANDING)",
+      "dimensions": ["value", "indonesia", "risk"],
+      "usedInLines": [37,559,613]
+    },
+    {
+      "name": "epsTtm",
+      "type": "float",
+      "typicalRange": "-5000–50000",
+      "source": "02-data.pine (request.financial EARNINGS_PER_SHARE_DILUTED TTM)",
+      "dimensions": ["value", "(noData check)"],
+      "usedInLines": [39,45,49,636,686]
+    },
+    {
+      "name": "revenueTtm",
+      "type": "float",
+      "typicalRange": "0–1e15",
+      "source": "02-data.pine (request.financial TOTAL_REVENUE TTM)",
+      "dimensions": ["value"],
+      "usedInLines": [40]
+    },
+    {
+      "name": "bvps",
+      "type": "float",
+      "typicalRange": "0–50000",
+      "source": "02-data.pine (request.financial BOOK_VALUE_PER_SHARE)",
+      "dimensions": ["value", "(noData check)"],
+      "usedInLines": [41,49,636,687]
+    },
+    {
+      "name": "epsGrowth",
+      "type": "float",
+      "typicalRange": "-100–500 (%)",
+      "source": "02-data.pine (request.financial EARNINGS_PER_SHARE_DILUTED_ONE_YEAR_GROWTH)",
+      "dimensions": ["value", "growth"],
+      "usedInLines": [43,260,317,726]
+    },
+    {
+      "name": "evEbitda",
+      "type": "float",
+      "typicalRange": "0–100",
+      "source": "02-data.pine (request.financial ENTERPRISE_VALUE_EBITDA)",
+      "dimensions": ["value"],
+      "usedInLines": [59,679,680]
+    },
+    {
+      "name": "evSales",
+      "type": "float",
+      "typicalRange": "0–50",
+      "source": "02-data.pine (request.financial EV_REVENUE)",
+      "dimensions": ["value"],
+      "usedInLines": [60,681]
+    },
+    {
+      "name": "opM",
+      "type": "float",
+      "typicalRange": "-50–60 (%)",
+      "source": "02-data.pine (request.financial OPERATING_MARGIN)",
+      "dimensions": ["value", "quality"],
+      "usedInLines": [46,147,715]
+    },
+    {
+      "name": "fcf",
+      "type": "float",
+      "typicalRange": "-1e13–1e13",
+      "source": "02-data.pine (request.financial FREE_CASH_FLOW)",
+      "dimensions": ["value", "health", "income"],
+      "usedInLines": [47,491,766]
+    },
+    {
+      "name": "dps",
+      "type": "float",
+      "typicalRange": "0–5000",
+      "source": "02-data.pine (request.financial DPS_COMMON_STOCK_PRIM_ISSUE)",
+      "dimensions": ["income"],
+      "usedInLines": [52]
+    },
+    {
+      "name": "divYield",
+      "type": "float",
+      "typicalRange": "0–20 (%)",
+      "source": "02-data.pine (request.financial DIVIDENDS_YIELD)",
+      "dimensions": ["income", "(noData check)"],
+      "usedInLines": [52,528,636,691]
+    },
+    {
+      "name": "high52",
+      "type": "float",
+      "typicalRange": "0–1000000+",
+      "source": "02-data.pine (MarketData from ta.highest(high,252))",
+      "dimensions": ["momentum"],
+      "usedInLines": [14,15]
+    },
+    {
+      "name": "low52",
+      "type": "float",
+      "typicalRange": "0–1000000+",
+      "source": "02-data.pine (MarketData from ta.lowest(low,252))",
+      "dimensions": ["momentum"],
+      "usedInLines": [14]
+    },
+    {
+      "name": "sma20",
+      "type": "float",
+      "typicalRange": "price-scaled",
+      "source": "02-data.pine (MarketData from ta.sma(close,20))",
+      "dimensions": ["momentum"],
+      "usedInLines": [18,19,29,30]
+    },
+    {
+      "name": "sma50",
+      "type": "float",
+      "typicalRange": "price-scaled",
+      "source": "02-data.pine (MarketData from ta.sma(close,50))",
+      "dimensions": ["momentum"],
+      "usedInLines": [18,19,21,29,30,33]
+    },
+    {
+      "name": "sma200",
+      "type": "float",
+      "typicalRange": "price-scaled",
+      "source": "02-data.pine (MarketData from ta.sma(close,200))",
+      "dimensions": ["momentum"],
+      "usedInLines": [18,19,21,29,30]
+    },
+    {
+      "name": "rsi14",
+      "type": "float",
+      "typicalRange": "0–100",
+      "source": "02-data.pine (MarketData from ta.rsi(close,14))",
+      "dimensions": ["momentum"],
+      "usedInLines": [538,770]
+    },
+    {
+      "name": "ret6m",
+      "type": "float",
+      "typicalRange": "-100–500 (%)",
+      "source": "02-data.pine (MarketData from (close/close[126]-1)*100)",
+      "dimensions": ["momentum"],
+      "usedInLines": [11,773]
+    },
+    {
+      "name": "ret12m",
+      "type": "float",
+      "typicalRange": "-100–500 (%)",
+      "source": "02-data.pine (MarketData from (close/close[252]-1)*100)",
+      "dimensions": ["momentum"],
+      "usedInLines": [12,774]
+    },
+    {
+      "name": "bench6m",
+      "type": "float",
+      "typicalRange": "-100–200 (%)",
+      "source": "02-data.pine (request.security from indeksAcuan)",
+      "dimensions": ["momentum"],
+      "usedInLines": [11]
+    },
+    {
+      "name": "bench12m",
+      "type": "float",
+      "typicalRange": "-100–200 (%)",
+      "source": "02-data.pine (request.security from indeksAcuan)",
+      "dimensions": ["momentum"],
+      "usedInLines": [12]
+    },
+    {
+      "name": "volatility",
+      "type": "float",
+      "typicalRange": "10–200 (%) annualized",
+      "source": "02-data.pine (MarketData from ta.stdev(...)*sqrt(252)*100)",
+      "dimensions": ["momentum", "indonesia", "risk"],
+      "usedInLines": [542,549,569,617,785]
+    },
+    {
+      "name": "valTradedAvg20",
+      "type": "float",
+      "typicalRange": "0–1e12",
+      "source": "02-data.pine (MarketData from ta.sma(close*volume,20))",
+      "dimensions": ["indonesia", "risk"],
+      "usedInLines": [558,612,731,783]
+    },
+    {
+      "name": "volAvg20",
+      "type": "float",
+      "typicalRange": "0–1e10",
+      "source": "02-data.pine (MarketData from ta.sma(volume,20))",
+      "dimensions": ["indonesia", "risk"],
+      "usedInLines": [559,613]
+    },
+    {
+      "name": "araHits",
+      "type": "float",
+      "typicalRange": "0–lookbackARA",
+      "source": "02-data.pine (MarketData, counted from loop)",
+      "dimensions": ["risk"],
+      "usedInLines": [618,786]
+    },
+    {
+      "name": "ret1m",
+      "type": "float",
+      "typicalRange": "-100–200 (%)",
+      "source": "02-data.pine (MarketData from (close/close[21]-1)*100)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [771]
+    },
+    {
+      "name": "ret3m",
+      "type": "float",
+      "typicalRange": "-100–300 (%)",
+      "source": "02-data.pine (MarketData from (close/close[63]-1)*100)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [772]
+    },
+    {
+      "name": "roe",
+      "type": "float",
+      "typicalRange": "-50–60 (%)",
+      "source": "02-data.pine (request.financial RETURN_ON_EQUITY)",
+      "dimensions": ["quality", "(noData check)"],
+      "usedInLines": [143,636,708]
+    },
+    {
+      "name": "roa",
+      "type": "float",
+      "typicalRange": "-30–30 (%)",
+      "source": "02-data.pine (request.financial RETURN_ON_ASSETS)",
+      "dimensions": ["quality"],
+      "usedInLines": [144,709]
+    },
+    {
+      "name": "roic",
+      "type": "float",
+      "typicalRange": "-30–50 (%)",
+      "source": "02-data.pine (request.financial RETURN_ON_INVESTED_CAPITAL)",
+      "dimensions": ["quality"],
+      "usedInLines": [145,710]
+    },
+    {
+      "name": "grossM",
+      "type": "float",
+      "typicalRange": "0–90 (%)",
+      "source": "02-data.pine (request.financial GROSS_MARGIN)",
+      "dimensions": ["quality"],
+      "usedInLines": [146,713]
+    },
+    {
+      "name": "netM",
+      "type": "float",
+      "typicalRange": "-50–50 (%)",
+      "source": "02-data.pine (request.financial NET_MARGIN)",
+      "dimensions": ["quality"],
+      "usedInLines": [148,717]
+    },
+    {
+      "name": "ebitdaM",
+      "type": "float",
+      "typicalRange": "0–80 (%)",
+      "source": "02-data.pine (request.financial EBITDA_MARGIN)",
+      "dimensions": ["quality"],
+      "usedInLines": [149,719]
+    },
+    {
+      "name": "fcfMargin",
+      "type": "float",
+      "typicalRange": "-50–50 (%)",
+      "source": "02-data.pine (request.financial FREE_CASH_FLOW_MARGIN)",
+      "dimensions": ["quality"],
+      "usedInLines": [150,721]
+    },
+    {
+      "name": "piotroski",
+      "type": "float",
+      "typicalRange": "0–9",
+      "source": "02-data.pine (request.financial PIOTROSKI_F_SCORE)",
+      "dimensions": ["quality"],
+      "usedInLines": [151,711]
+    },
+    {
+      "name": "revGrowth",
+      "type": "float",
+      "typicalRange": "-100–500 (%)",
+      "source": "02-data.pine (request.financial REVENUE_ONE_YEAR_GROWTH)",
+      "dimensions": ["growth"],
+      "usedInLines": [259,317,725]
+    },
+    {
+      "name": "sgr",
+      "type": "float",
+      "typicalRange": "0–50 (%)",
+      "source": "02-data.pine (request.financial SUSTAINABLE_GROWTH_RATE)",
+      "dimensions": ["growth"],
+      "usedInLines": [261,727]
+    },
+    {
+      "name": "ocf",
+      "type": "float",
+      "typicalRange": "-1e13–1e13",
+      "source": "02-data.pine (request.financial CASH_F_OPERATING_ACTIVITIES)",
+      "dimensions": ["growth", "health", "indonesia"],
+      "usedInLines": [328,490,765]
+    },
+    {
+      "name": "debtEq",
+      "type": "float",
+      "typicalRange": "0–10 (ratio)",
+      "source": "02-data.pine (request.financial DEBT_TO_EQUITY)",
+      "dimensions": ["health", "(noData check)"],
+      "usedInLines": [480,481,636,748]
+    },
+    {
+      "name": "debtAsset",
+      "type": "float",
+      "typicalRange": "0–0.9 (ratio)",
+      "source": "02-data.pine (request.financial DEBT_TO_ASSET)",
+      "dimensions": ["health"],
+      "usedInLines": [482,750]
+    },
+    {
+      "name": "debtEbitda",
+      "type": "float",
+      "typicalRange": "0–15 (ratio)",
+      "source": "02-data.pine (request.financial DEBT_TO_EBITDA)",
+      "dimensions": ["health"],
+      "usedInLines": [483,752]
+    },
+    {
+      "name": "netDebtEbitda",
+      "type": "float",
+      "typicalRange": "-5–15 (ratio)",
+      "source": "02-data.pine (request.financial NET_DEBT_TO_EBITDA)",
+      "dimensions": ["health"],
+      "usedInLines": [484,754]
+    },
+    {
+      "name": "cashDebt",
+      "type": "float",
+      "typicalRange": "0–5 (ratio)",
+      "source": "02-data.pine (request.financial CASH_TO_DEBT)",
+      "dimensions": ["health"],
+      "usedInLines": [485,756]
+    },
+    {
+      "name": "currRatio",
+      "type": "float",
+      "typicalRange": "0.1–10 (ratio)",
+      "source": "02-data.pine (request.financial CURRENT_RATIO)",
+      "dimensions": ["health"],
+      "usedInLines": [486,760]
+    },
+    {
+      "name": "quickRatio",
+      "type": "float",
+      "typicalRange": "0.1–5 (ratio)",
+      "source": "02-data.pine (request.financial QUICK_RATIO)",
+      "dimensions": ["health"],
+      "usedInLines": [487,762]
+    },
+    {
+      "name": "interestCover",
+      "type": "float",
+      "typicalRange": "-10–100 (ratio)",
+      "source": "02-data.pine (request.financial INTERST_COVER)",
+      "dimensions": ["health"],
+      "usedInLines": [488,758]
+    },
+    {
+      "name": "altmanZ",
+      "type": "float",
+      "typicalRange": "-5–10",
+      "source": "02-data.pine (request.financial ALTMAN_Z_SCORE)",
+      "dimensions": ["health"],
+      "usedInLines": [489,764]
+    },
+    {
+      "name": "payout",
+      "type": "float",
+      "typicalRange": "0–100 (%)",
+      "source": "02-data.pine (request.financial DIVIDEND_PAYOUT_RATIO)",
+      "dimensions": ["income"],
+      "usedInLines": [529,692]
+    },
+    {
+      "name": "betaVal",
+      "type": "float",
+      "typicalRange": "0–3",
+      "source": "02-data.pine (calculated: correlation*stdev ratio vs benchmark)",
+      "dimensions": ["indonesia"],
+      "usedInLines": [567,733]
+    },
+    {
+      "name": "idrVol",
+      "type": "float",
+      "typicalRange": "5–30 (%) annualized",
+      "source": "02-data.pine (from USD/IDR stdev*sqrt(252)*100)",
+      "dimensions": ["indonesia"],
+      "usedInLines": [571,734]
+    },
+    {
+      "name": "idrTrend3M",
+      "type": "float",
+      "typicalRange": "-20–20 (%)",
+      "source": "02-data.pine (from USD/IDR (close/close[63]-1)*100)",
+      "dimensions": ["indonesia"],
+      "usedInLines": [572,735]
+    },
+    {
+      "name": "carInput",
+      "type": "float",
+      "typicalRange": "-1 (disabled) or 8–30 (%)",
+      "source": "01-base.pine (input.float, manual bank CAR)",
+      "dimensions": ["health (bank only)"],
+      "usedInLines": [494,505,742]
+    },
+    {
+      "name": "nplInput",
+      "type": "float",
+      "typicalRange": "-1 (disabled) or 0–15 (%)",
+      "source": "01-base.pine (input.float, manual bank NPL)",
+      "dimensions": ["health (bank only)"],
+      "usedInLines": [495,505,744]
+    },
+    {
+      "name": "ldrInput",
+      "type": "float",
+      "typicalRange": "-1 (disabled) or 50–120 (%)",
+      "source": "01-base.pine (input.float, manual bank LDR)",
+      "dimensions": ["health (bank only)"],
+      "usedInLines": [496,505,746]
+    },
+    {
+      "name": "lookbackARA",
+      "type": "int",
+      "typicalRange": "5–60 (default 20)",
+      "source": "01-base.pine (input.int, group risiko)",
+      "dimensions": ["risk"],
+      "usedInLines": [618,786]
+    },
+    {
+      "name": "hargaRecehan",
+      "type": "float",
+      "typicalRange": "50 (default) in Rupiah",
+      "source": "01-base.pine (input.float, threshold penny stock)",
+      "dimensions": ["risk"],
+      "usedInLines": [619]
+    },
+    {
+      "name": "kapKecilMiliar",
+      "type": "float",
+      "typicalRange": "1000 (default) Miliar Rp",
+      "source": "01-base.pine (input.float, threshold small cap)",
+      "dimensions": ["indonesia", "risk"],
+      "usedInLines": [563,615]
+    },
+    {
+      "name": "kapBesarMiliar",
+      "type": "float",
+      "typicalRange": "10000 (default) Miliar Rp",
+      "source": "01-base.pine (input.float, threshold large cap)",
+      "dimensions": ["indonesia", "risk"],
+      "usedInLines": [563,615]
+    },
+    {
+      "name": "likuiditasRendahJt",
+      "type": "float",
+      "typicalRange": "500 (default) Juta Rp",
+      "source": "01-base.pine (input.float, threshold low liquidity)",
+      "dimensions": ["indonesia", "risk"],
+      "usedInLines": [561,616]
+    },
+    {
+      "name": "likuiditasTinggiJt",
+      "type": "float",
+      "typicalRange": "20000 (default) Juta Rp",
+      "source": "01-base.pine (input.float, threshold high liquidity)",
+      "dimensions": ["indonesia", "risk"],
+      "usedInLines": [561,616]
+    },
+    {
+      "name": "bahasa",
+      "type": "string",
+      "typicalRange": "\"Indonesia\" or \"English\"",
+      "source": "01-base.pine (input.string, language toggle)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [17,23,629,637,644,645,646,647,648,651,662,663,666,673,690,698,699,700,701,702,705,724,730,738]
+    },
+    {
+      "name": "sym",
+      "type": "string",
+      "typicalRange": "ticker ID (e.g. \"IDX:BBCA\")",
+      "source": "01-base.pine (input.symbol, default current ticker)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [630]
+    },
+    {
+      "name": "periodeLaporan",
+      "type": "string",
+      "typicalRange": "\"FQ\", \"FY\", or \"TTM\"",
+      "source": "01-base.pine (input.string, reporting period)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [631]
+    },
+    {
+      "name": "sektorLabel",
+      "type": "string",
+      "typicalRange": "e.g. \"Finansial — Bank\", \"Non-Finansial Umum\"",
+      "source": "02-data.pine (computed string from sector flags)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [632]
+    },
+    {
+      "name": "indeksAcuan",
+      "type": "string",
+      "typicalRange": "\"IDX:COMPOSITE\" (default)",
+      "source": "01-base.pine (input.symbol, benchmark index)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [633]
+    },
+    {
+      "name": "papan",
+      "type": "table",
+      "typicalRange": "table object (6 cols, ROWS rows)",
+      "source": "03-ui.pine (var table papan = table.new(...))",
+      "dimensions": ["(render only)"],
+      "usedInLines": [624]
+    },
+    {
+      "name": "ROWS",
+      "type": "int",
+      "typicalRange": "90 (constant)",
+      "source": "03-ui.pine (const int ROWS = 90)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [624]
+    },
+    {
+      "name": "headerBg",
+      "type": "color",
+      "typicalRange": "light/dark theme dependent",
+      "source": "01-base.pine (color, theme-dependent)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [629,630,631,632,633,634]
+    },
+    {
+      "name": "titleTxt",
+      "type": "color",
+      "typicalRange": "light/dark theme dependent",
+      "source": "01-base.pine (color, theme-dependent)",
+      "dimensions": ["(render only)"],
+      "usedInLines": [629,630,631,632,633,634]
+    },
+    {
+      "name": "bobotIndonesia",
+      "type": "float",
+      "typicalRange": "0.0–2.0 (default 1.0)",
+      "source": "01-base.pine (input.float, group bobot)",
+      "dimensions": ["indonesia"],
+      "usedInLines": [586]
+    }
+  ],
+
+  "sectorFlags": {
+    "description": "Boolean variables defined in 02-data.pine (sector detection) and read in 04-scoring.pine for sector-aware weight adjustments",
+    "flags": [
+      {
+        "name": "isSiklikalSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect from list/watchlist/sector/industry or manual override)",
+        "defaultValue": "f(modeSektor, tolerance, watchlists)",
+        "dimensions": ["value", "quality", "growth", "health", "indonesia"]
+      },
+      {
+        "name": "isBatubaraSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect from coal watchlist or manual)",
+        "defaultValue": "f(modeSektor, watchlist)",
+        "dimensions": ["(used via isSiklikalLike only)"]
+      },
+      {
+        "name": "isCPOSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect from CPO watchlist or manual)",
+        "defaultValue": "f(modeSektor, watchlist)",
+        "dimensions": ["(used via isSiklikalLike only)"]
+      },
+      {
+        "name": "isFinancialSector",
+        "type": "bool",
+        "source": "02-data.pine (isBankSektor or isAsuransiSektor or isSekuritasSektor or legacy/generic)",
+        "defaultValue": "composite flag",
+        "dimensions": ["value", "growth"]
+      },
+      {
+        "name": "isBankSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect from bank watchlist/industry/override)",
+        "defaultValue": "f(modeSektor, watchlist)",
+        "dimensions": ["quality", "health"]
+      },
+      {
+        "name": "isAsuransiSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect from industry string or override)",
+        "defaultValue": "f(modeSektor, industry/override)",
+        "dimensions": ["quality", "health"]
+      },
+      {
+        "name": "isSekuritasSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect from industry string or override)",
+        "defaultValue": "f(modeSektor, industry/override)",
+        "dimensions": ["quality", "health"]
+      },
+      {
+        "name": "isPropertySektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect or override)",
+        "defaultValue": "f(modeSektor, watchlist/industry/override)",
+        "dimensions": ["value", "quality", "growth", "health"]
+      },
+      {
+        "name": "isInfrastrukturSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect or override)",
+        "defaultValue": "f(modeSektor, watchlist/industry/override)",
+        "dimensions": ["value", "quality", "growth", "health", "indonesia"]
+      },
+      {
+        "name": "isTechnologySektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect or override)",
+        "defaultValue": "f(modeSektor, watchlist/industry/override)",
+        "dimensions": ["value", "quality", "growth", "health", "indonesia"]
+      },
+      {
+        "name": "isTransportasiSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect or override)",
+        "defaultValue": "f(modeSektor, watchlist/industry/override)",
+        "dimensions": ["value", "quality", "growth"]
+      },
+      {
+        "name": "isKonsumerSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect or override)",
+        "defaultValue": "f(modeSektor, watchlist/industry/override)",
+        "dimensions": ["value", "quality", "growth", "health"]
+      },
+      {
+        "name": "isIndustriSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect or override)",
+        "defaultValue": "f(modeSektor, watchlist/industry/override)",
+        "dimensions": ["value", "quality", "growth", "health"]
+      },
+      {
+        "name": "isKesehatanSektor",
+        "type": "bool",
+        "source": "02-data.pine (auto-detect or override)",
+        "defaultValue": "f(modeSektor, watchlist/industry/override)",
+        "dimensions": ["value", "quality", "growth", "health"]
+      }
+    ]
+  },
+
+  "toggleUI": {
+    "description": "Boolean/string UI input variables from 01-base.pine that control rendering and scoring behavior",
+    "variables": [
+      {"name": "tampilIndonesia", "type": "bool", "default": false, "description": "Enable 7th Indonesia factor dimension"},
+      {"name": "tampilRisikoGorengan", "type": "bool", "default": true, "description": "Show liquidity/pump-and-dump risk module"},
+      {"name": "tampilRingkasan", "type": "bool", "default": true, "description": "Show price/market cap summary section"},
+      {"name": "tampilValuasi", "type": "bool", "default": true, "description": "Show valuation ratios section"},
+      {"name": "tampilCompact", "type": "bool", "default": false, "description": "Compact mode (hides detail sections)"},
+      {"name": "tampilDividen", "type": "bool", "default": true, "description": "Show dividend/yield section"},
+      {"name": "tampilKualitas", "type": "bool", "default": true, "description": "Show quality metrics section"},
+      {"name": "tampilPertumbuhan", "type": "bool", "default": true, "description": "Show growth section"},
+      {"name": "tampilKesehatan", "type": "bool", "default": true, "description": "Show financial health section"},
+      {"name": "tampilMomentum", "type": "bool", "default": true, "description": "Show market momentum section"},
+      {"name": "tampilKelengkapan", "type": "bool", "default": true, "description": "Show data completeness indicator (n/x)"},
+      {"name": "pakaiBobotTertimbang", "type": "bool", "default": false, "description": "Use custom/preset weights instead of equal weight (derived: gunakanBobotKustom or presetBobot != 'Custom')"},
+      {"name": "bahasa", "type": "string", "default": "\"Indonesia\"", "description": "Language toggle: 'Indonesia' or 'English'"}
+    ]
+  },
+
+  "derivedVariables": {
+    "description": "Variables computed within 04-scoring.pine from other (external or previously derived) variables. Only top-level; intermediate weight variables (w*) and score sub-variables omitted for brevity.",
+    "variables": [
+      {"name": "isSiklikalLike", "type": "bool", "computedFrom": ["isSiklikalSektor", "isBatubaraSektor", "isCPOSektor"], "usedIn": "value/quality/growth/health/indonesia weights"},
+      {"name": "relStr6m", "type": "float", "computedFrom": ["ret6m", "bench6m"], "usedIn": "momentum, indonesia"},
+      {"name": "relStr12m", "type": "float", "computedFrom": ["ret12m", "bench12m"], "usedIn": "momentum, indonesia"},
+      {"name": "pos52", "type": "float", "computedFrom": ["dClose", "high52", "low52"], "usedIn": "momentum (52W position %)"},
+      {"name": "dist52High", "type": "float", "computedFrom": ["dClose", "high52"], "usedIn": "momentum (distance from 52W high %)"},
+      {"name": "maStatus", "type": "string", "computedFrom": ["dClose", "sma20", "sma50", "sma200", "bahasa"], "usedIn": "momentum (MA trend label)"},
+      {"name": "maScore", "type": "float", "computedFrom": ["dClose", "sma20", "sma50", "sma200"], "usedIn": "momentum"},
+      {"name": "mcap", "type": "float", "computedFrom": ["sharesOut", "dClose"], "usedIn": "value(ps), income(fcfYield), health(ocfScore/fcfScore), indonesia, risk"},
+      {"name": "pe", "type": "float", "computedFrom": ["dClose", "epsTtm"], "usedIn": "value"},
+      {"name": "ps", "type": "float", "computedFrom": ["mcap", "revenueTtm"], "usedIn": "value"},
+      {"name": "pb", "type": "float", "computedFrom": ["dClose", "bvps"], "usedIn": "value"},
+      {"name": "peg", "type": "float", "computedFrom": ["pe", "epsGrowth"], "usedIn": "value"},
+      {"name": "earnYield", "type": "float", "computedFrom": ["epsTtm", "dClose"], "usedIn": "value"},
+      {"name": "opEarnYield", "type": "float", "computedFrom": ["opM", "ps"], "usedIn": "value"},
+      {"name": "fcfYield", "type": "float", "computedFrom": ["fcf", "mcap"], "usedIn": "income"},
+      {"name": "grahamPrice", "type": "float", "computedFrom": ["epsTtm", "bvps"], "usedIn": "value"},
+      {"name": "grahamUpside", "type": "float", "computedFrom": ["grahamPrice", "dClose"], "usedIn": "value"},
+      {"name": "dpsEst", "type": "float", "computedFrom": ["dps", "divYield", "dClose"], "usedIn": "income"},
+      {"name": "growthSpread", "type": "float", "computedFrom": ["revGrowth", "epsGrowth"], "usedIn": "growth (spread modifier)"},
+      {"name": "spreadModifier", "type": "float", "computedFrom": ["growthSpread", "revGrowth", "epsGrowth"], "usedIn": "growth (modifier)"},
+      {"name": "earningsQuality", "type": "float", "computedFrom": ["ocf"], "usedIn": "growth (modifier)"},
+      {"name": "growthModifier", "type": "float", "computedFrom": ["spreadModifier", "earningsQuality"], "usedIn": "growth"},
+      {"name": "indoMcapMiliar", "type": "float", "computedFrom": ["mcap"], "usedIn": "indonesia"},
+      {"name": "indoValTradedJt", "type": "float", "computedFrom": ["valTradedAvg20"], "usedIn": "indonesia"},
+      {"name": "indoTurnoverPct", "type": "float", "computedFrom": ["volAvg20", "sharesOut"], "usedIn": "indonesia"},
+      {"name": "mcapMiliar", "type": "float", "computedFrom": ["mcap"], "usedIn": "risk"},
+      {"name": "valTradedJt", "type": "float", "computedFrom": ["valTradedAvg20"], "usedIn": "risk"},
+      {"name": "turnoverPct", "type": "float", "computedFrom": ["volAvg20", "sharesOut"], "usedIn": "risk"},
+      {"name": "effectiveBobotIndonesia", "type": "float", "computedFrom": ["bobotIndonesia", "wIndonesia"], "usedIn": "overallScore (weighted mode)"},
+      {"name": "noData", "type": "bool", "computedFrom": ["epsTtm", "bvps", "roe", "debtEq", "divYield"], "usedIn": "render (guards all sections)"},
+      {"name": "isEN", "type": "bool", "computedFrom": ["bahasa"], "usedIn": "render (language switch)"}
+    ]
+  },
+
+  "externalFunctions": {
+    "description": "Functions called from 04-scoring.pine but defined in other modules (01-base.pine, 03-ui.pine, or libraries)",
+    "scoringFunctions": {
+      "source": "01-base.pine (or PapanInstrumen.pine)",
+      "functions": ["f_safeDiv", "f_scoreLowerSafe", "f_scoreHigher", "f_scoreLower", "f_scoreMid", "f_scorePositive", "f_scoreCashFlow", "f_clamp", "f_wavgArr", "f_avg3", "f_avg4", "f_avg5", "f_avg6", "f_avg7", "f_wavg6", "f_wavg7", "f_countValid4", "f_countValid5", "f_countValid6", "f_countValid7"]
+    },
+    "formattingFunctions": {
+      "source": "01-base.pine (or PapanInstrumen.pine)",
+      "functions": ["pi_formatNumber", "pi_formatPercent", "pi_formatMoney", "pi_overallBadge", "pi_arrow", "f_scoreColor"]
+    },
+    "renderFunctions": {
+      "source": "03-ui.pine",
+      "functions": ["f_headerCell", "f_section", "f_row", "f_riskRow", "f_scoreCardN", "f_warningCell", "f_riskCard"]
+    }
+  },
+
+  "pineScriptBuiltins": {
+    "description": "TradingView built-in functions/variables used (not external dependencies, but listed for completeness)",
+    "functions": ["na", "math.sqrt", "math.abs", "math.max", "str.tostring", "table.clear", "array.from", "barstate.islast"]
+  },
+
+  "dependencyGraph": {
+    "description": "Which module provides each category of external dependency",
+    "02-data.pine": [
+      "dClose, rsi14, sma20, sma50, sma200, high52, low52",
+      "ret1m, ret3m, ret6m, ret12m, volatility, volAvg20, valTradedAvg20, araHits",
+      "bench6m, bench12m, betaVal, idrVol, idrTrend3M",
+      "sharesOut, epsTtm, bvps, revenueTtm, evEbitda, evSales",
+      "roe, roa, roic, grossM, opM, netM, ebitdaM, fcfMargin, piotroski",
+      "revGrowth, epsGrowth, sgr, ocf, fcf",
+      "debtEq, debtAsset, debtEbitda, netDebtEbitda, cashDebt, currRatio, quickRatio, interestCover, altmanZ",
+      "divYield, payout, dps",
+      "sektorLabel",
+      "ALL sector flags: isSiklikalSektor, isBatubaraSektor, isCPOSektor, isFinancialSector, isBankSektor, isAsuransiSektor, isSekuritasSektor, isPropertySektor, isInfrastrukturSektor, isTechnologySektor, isTransportasiSektor, isKonsumerSektor, isIndustriSektor, isKesehatanSektor"
+    ],
+    "01-base.pine": [
+      "carInput, nplInput, ldrInput (input.float bank-specific)",
+      "lookbackARA (input.int)",
+      "hargaRecehan, kapKecilMiliar, kapBesarMiliar, likuiditasRendahJt, likuiditasTinggiJt (input.float thresholds)",
+      "bahasa, sym, indeksAcuan, periodeLaporan (input.strings)",
+      "headerBg, titleTxt (theme colors)",
+      "bobotIndonesia (input.float)",
+      "ALL toggle/UI vars: tampil*, pakaiBobotTertimbang",
+      "ALL scoring/formatting functions (f_*, pi_*, f_scoreColor)"
+    ],
+    "03-ui.pine": [
+      "papan (table object)",
+      "ROWS (const int = 90)",
+      "ALL render functions (f_headerCell, f_section, f_row, f_riskRow, f_scoreCardN, f_warningCell, f_riskCard)"
+    ]
+  }
+}
