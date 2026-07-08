@@ -1,0 +1,2 @@
+git+https://github.com/akhmfz/pine-semantic-platform.git@v2.0.0
+

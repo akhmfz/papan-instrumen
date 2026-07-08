@@ -27,14 +27,18 @@ graph.json (Graphify-out — enriched knowledge graph)
 
 ## Component Overview
 
-| Component | File | Function |
-|-----------|------|----------|
-| Parser | `scripts/extract_ast.py` | Parse `.pine` via pynescript ANTLR → `pine_semantic.json` |
-| Injector | `scripts/inject_graph.py` | Inject calls/reads/writes edges into Graphify `graph.json` |
-| Query Engine | `scripts/pine_query.py` | Query functions, callers, callees, modules, search |
-| Context Engine | `scripts/pine_context.py` | Assemble context for AI agent (review/impl/arch/bugfix profiles) |
-| Validation | `scripts/pine_validate.py` | 5-category validation: parser, schema, graph, golden, context |
-| Schema Validator | `scripts/validate_semantic.py` | Validate `pine_semantic.json` against schema v1.1 |
+| Component | Source | Function |
+|-----------|--------|----------|
+| Parser | `pine-semantic-platform` (`pine-extract`) | Parse `.pine` via pynescript ANTLR → `pine_semantic.json` |
+| Injector | `pine-semantic-platform` (`pine-inject-graph`) | Inject calls/reads/writes edges into Graphify `graph.json` |
+| Query Engine | `pine-semantic-platform` (`pine-query`) | Query functions, callers, callees, modules, search |
+| Context Engine | `pine-semantic-platform` (`pine-context`) | Assemble context for AI agent (review/impl/arch/bugfix profiles) |
+| Validation | `pine-semantic-platform` (`pine-validate`) | 5-category validation: parser, schema, graph, golden, context |
+| Schema Validator | `pine-semantic-platform` (`pine-validate-semantic`) | Validate `pine_semantic.json` against schema v1.1 |
+
+> **v2.0+**: All tools live in [`pine-semantic-platform`](https://github.com/akhmfz/pine-semantic-platform).
+> Local `scripts/*.py` are thin wrappers. Install via `pip install -e /path/to/pine-semantic-platform` or `pip install pine-semantic-platform>=2.0,<3.0`.
+> See `requirements.txt` at project root.
 
 ## Why This Architecture
 
