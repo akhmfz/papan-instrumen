@@ -50,6 +50,28 @@ See `docs/architecture-overview.md` for full diagram.
 | Golden tests | — | ✅ 99/99 PASS |
 | Context tests | — | ✅ 5/5 PASS |
 
+## v1.1.1 — Production Validation Pipeline (2026-07-08)
+
+**feat: production validation pipeline with golden scenarios**
+
+Added a validation pipeline that runs the actual production scoring code against
+representative market scenarios. Unlike the previous test suite (which copied
+utility functions and hand-crafted expected values), this pipeline reads directly
+from `src/modules/*.pine` and runs via PineTS.
+
+| Scenario | Type | Scores | Status |
+|----------|------|--------|--------|
+| BBCA-bank-large | Bank premium | 11 | ✅ |
+| ADRO-coal-commodity | Coal cyclical | 10 | ✅ |
+| KRAS-loss-cyclical | Distressed steel | 12 | ✅ |
+| TLKM-infra-telekom | Infra stable | 11 | ✅ |
+| GOTO-tech-growth | Tech loss-making | 10 | ✅ |
+| regression-P0-1 | Negatif EBITDA | 8 | ✅ |
+| regression-P0-2 | Consumer weights | 8 | ✅ |
+
+**Architecture:** See `tests/production/` — `pipeline.mjs`, `extract-production.mjs`,
+`data/scenarios.json`, `golden/scenarios.json`.
+
 ## Known Limitations
 
 - **Parser speed**: ANTLR-based parse takes >120s per project — optimization needed

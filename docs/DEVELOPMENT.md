@@ -197,6 +197,14 @@ Wajib sebelum setiap `git tag` + `gh release create`:
 
 ## Changelog
 
+### v1.1.1 — Production Validation Pipeline (2026-07-08)
+- **Production Validation Pipeline**: tests/production/pipeline.mjs — membaca actual source
+  dari src/modules/*.pine, menjalankan via PineTS, memvalidasi terhadap golden snapshots
+- **7 scenarios**: BBCA (bank), ADRO (coal), KRAS (loss), TLKM (infra), GOTO (tech),
+  regression P0-1 (negatif EBITDA), regression P0-2 (consumer weights)
+- **Golden snapshots**: golden/scenarios.json — baseline dari actual production output
+- **Pattern**: tidak ada copy-paste UTILS_HEADER — semua kode dari production source
+
 ### v1.1.0 — Semantic Platform: Inject2 Pipeline (2026-07-08)
 - **Semantic Platform**: extract_ast.py (pynescript ANTLR parser),
   inject_graph.py (calls/reads/writes injector), pine_query.py (query engine),
